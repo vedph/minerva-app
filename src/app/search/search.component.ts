@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute } from '@angular/router';
-import { PythiaSearchModule } from '@myrmidon/pythia-search';
+
+import { ItaSearchComponent } from '../components/ita-search/ita-search.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, MatCardModule, PythiaSearchModule],
+  imports: [CommonModule, MatCardModule, ItaSearchComponent],
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],

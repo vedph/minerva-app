@@ -1,0 +1,336 @@
+// Generated from pqita.g4 by ANTLR 4.13.2
+
+import { ParseTreeListener } from 'antlr4';
+
+import { ExpressionContext } from './pqita.parser.js';
+import { VerbContext } from './pqita.parser.js';
+import { ItemOrSetContext } from './pqita.parser.js';
+import { ItemContext } from './pqita.parser.js';
+import { ItemContinuationContext } from './pqita.parser.js';
+import { SetContext } from './pqita.parser.js';
+import { OperatorContext } from './pqita.parser.js';
+import { SimilarityContext } from './pqita.parser.js';
+import { DegreeContext } from './pqita.parser.js';
+import { ArticleContext } from './pqita.parser.js';
+import { QuantifierContext } from './pqita.parser.js';
+import { PosTagContext } from './pqita.parser.js';
+import { StyleTagContext } from './pqita.parser.js';
+import { LocationOrRelationContext } from './pqita.parser.js';
+import { LocationContext } from './pqita.parser.js';
+import { RelationContext } from './pqita.parser.js';
+import { RecursiveExpressionContext } from './pqita.parser.js';
+import { NegationContext } from './pqita.parser.js';
+
+/**
+ * This interface defines a complete listener for a parse tree produced by
+ * `pqitaParser`.
+ */
+export default class PqitaListener extends ParseTreeListener {
+  private _pairs: string[] = [];
+  private _output: string = '';
+
+  private appendPair(pair: string) {
+    if (this._pairs.length > 0) {
+      this._output += ' AND ';
+    }
+    this._output += pair;
+  }
+
+  private handleOperatorValue(
+    operator: string | undefined,
+    value: string
+  ): string {
+    const cleanValue = value.replace(/^"|"$/g, '');
+    switch (operator?.trim()) {
+      case 'uguale a':
+        return `[value="${cleanValue}"]`;
+      case 'iniziante per':
+        return `[value^="${cleanValue}"]`;
+      case 'terminante per':
+        return `[value$="${cleanValue}"]`;
+      case 'contenente':
+        return `[value*="${cleanValue}"]`;
+      case 'corrispondente a':
+        return `[value?="${cleanValue}"]`;
+      case 'poco simile a':
+        return `[value%="${cleanValue}:0.5"]`;
+      case 'simile a':
+        return `[value%="${cleanValue}:0.8"]`;
+      case 'molto simile a':
+        return `[value%="${cleanValue}:0.9"]`;
+      default:
+        return `[value="${cleanValue}"]`;
+    }
+  }
+
+  public getResult(): string {
+    return this._output.trim();
+  }
+
+  /**
+   * Enter a parse tree produced by `pqitaParser.expression`.
+   * @param ctx the parse tree
+   */
+  enterExpression?: (ctx: ExpressionContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.expression`.
+   * @param ctx the parse tree
+   */
+  exitExpression?: (ctx: ExpressionContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.verb`.
+   * @param ctx the parse tree
+   */
+  enterVerb?: (ctx: VerbContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.verb`.
+   * @param ctx the parse tree
+   */
+  exitVerb?: (ctx: VerbContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.itemOrSet`.
+   * @param ctx the parse tree
+   */
+  enterItemOrSet?: (ctx: ItemOrSetContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.itemOrSet`.
+   * @param ctx the parse tree
+   */
+  exitItemOrSet?: (ctx: ItemOrSetContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.item`.
+   * @param ctx the parse tree
+   */
+  enterItem?: (ctx: ItemContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.item`.
+   * @param ctx the parse tree
+   */
+  exitItem?(ctx: ItemContext): void {
+    const continuation = ctx.itemContinuation();
+    const operator = continuation.operator()?.getText();
+    const value = continuation.VALUE().getText();
+    const pair = this.handleOperatorValue(operator, value);
+    this.appendPair(pair);
+  }
+  /**
+   * Enter a parse tree produced by `pqitaParser.itemContinuation`.
+   * @param ctx the parse tree
+   */
+  enterItemContinuation?: (ctx: ItemContinuationContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.itemContinuation`.
+   * @param ctx the parse tree
+   */
+  exitItemContinuation?: (ctx: ItemContinuationContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.set`.
+   * @param ctx the parse tree
+   */
+  enterSet?: (ctx: SetContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.set`.
+   * @param ctx the parse tree
+   */
+  exitSet?(ctx: SetContext): void {
+    const setType = ctx.SET_TYPE().getText().trim();
+    let pair = '';
+
+    switch (true) {
+      case setType.includes('forestierismi'):
+        pair = '[language<>"ita"]';
+        break;
+      case setType.includes('anglicismi'):
+        pair = '[language="eng"]';
+        break;
+      case setType.includes('latinismi'):
+        pair = '[language="lat"]';
+        break;
+      case setType.includes('parole'):
+        return; // No output for 'parole'
+    }
+
+    if (pair) {
+      this.appendPair(pair);
+    }
+  }
+
+  /**
+   * Enter a parse tree produced by `pqitaParser.operator`.
+   * @param ctx the parse tree
+   */
+  enterOperator?: (ctx: OperatorContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.operator`.
+   * @param ctx the parse tree
+   */
+  exitOperator?: (ctx: OperatorContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.similarity`.
+   * @param ctx the parse tree
+   */
+  enterSimilarity?: (ctx: SimilarityContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.similarity`.
+   * @param ctx the parse tree
+   */
+  exitSimilarity?: (ctx: SimilarityContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.degree`.
+   * @param ctx the parse tree
+   */
+  enterDegree?: (ctx: DegreeContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.degree`.
+   * @param ctx the parse tree
+   */
+  exitDegree?: (ctx: DegreeContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.article`.
+   * @param ctx the parse tree
+   */
+  enterArticle?: (ctx: ArticleContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.article`.
+   * @param ctx the parse tree
+   */
+  exitArticle?: (ctx: ArticleContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.quantifier`.
+   * @param ctx the parse tree
+   */
+  enterQuantifier?: (ctx: QuantifierContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.quantifier`.
+   * @param ctx the parse tree
+   */
+  exitQuantifier?: (ctx: QuantifierContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.posTag`.
+   * @param ctx the parse tree
+   */
+  enterPosTag?: (ctx: PosTagContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.posTag`.
+   * @param ctx the parse tree
+   */
+  exitPosTag?(ctx: PosTagContext): void {
+    const pos = ctx.POS_TYPE().getText();
+    this.appendPair(`[pos="${pos}"]`);
+  }
+
+  /**
+   * Enter a parse tree produced by `pqitaParser.styleTag`.
+   * @param ctx the parse tree
+   */
+  enterStyleTag?: (ctx: StyleTagContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.styleTag`.
+   * @param ctx the parse tree
+   */
+  exitStyleTag?(ctx: StyleTagContext): void {
+    const style = ctx.STYLE_TYPE().getText();
+    let pair = '';
+
+    if (style.includes('grassetto')) {
+      pair = '[b="1"]';
+    } else if (style.includes('corsivo')) {
+      pair = '[i="1"]';
+    } else if (style.includes('sottolineato')) {
+      pair = '[u="1"]';
+    }
+
+    if (pair) {
+      this.appendPair(pair);
+    }
+  }
+
+  /**
+   * Enter a parse tree produced by `pqitaParser.locationOrRelation`.
+   * @param ctx the parse tree
+   */
+  enterLocationOrRelation?: (ctx: LocationOrRelationContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.locationOrRelation`.
+   * @param ctx the parse tree
+   */
+  exitLocationOrRelation?: (ctx: LocationOrRelationContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.location`.
+   * @param ctx the parse tree
+   */
+  enterLocation?: (ctx: LocationContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.location`.
+   * @param ctx the parse tree
+   */
+  exitLocation?(ctx: LocationContext): void {
+    const hasNot = ctx.negation() !== undefined;
+    const locType = ctx.LOC_TYPE().getText();
+    let alignment = '';
+
+    if (locType.includes('inizio')) {
+      alignment = hasNot ? 'LALIGN(n=1)' : 'LALIGN(m=0)';
+    } else if (locType.includes('fine')) {
+      alignment = hasNot ? 'RALIGN(n=1)' : 'RALIGN(m=0)';
+    }
+
+    if (alignment) {
+      this._output += ` ${alignment} [$name="snt"]`;
+    }
+  }
+
+  /**
+   * Enter a parse tree produced by `pqitaParser.relation`.
+   * @param ctx the parse tree
+   */
+  enterRelation?: (ctx: RelationContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.relation`.
+   * @param ctx the parse tree
+   */
+  exitRelation?(ctx: RelationContext): void {
+    const hasNot = ctx.negation() !== undefined;
+    const relType = ctx.REL_TYPE().getText();
+    let operator = '';
+
+    if (hasNot) {
+      this._output += ' NOT';
+    }
+
+    if (relType.includes('vicino')) {
+      operator = 'NEAR(m=3,s=snt)';
+    } else if (relType.includes('attaccat')) {
+      operator = 'NEAR(m=0,s=snt)';
+    } else if (relType.includes('prima')) {
+      operator = 'BEFORE(m=3,s=snt)';
+    } else if (relType.includes('dopo')) {
+      operator = 'AFTER(m=3,s=snt)';
+    }
+
+    if (operator) {
+      this._output += ` ${operator} `;
+    }
+  }
+
+  /**
+   * Enter a parse tree produced by `pqitaParser.recursiveExpression`.
+   * @param ctx the parse tree
+   */
+  enterRecursiveExpression?: (ctx: RecursiveExpressionContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.recursiveExpression`.
+   * @param ctx the parse tree
+   */
+  exitRecursiveExpression?: (ctx: RecursiveExpressionContext) => void;
+  /**
+   * Enter a parse tree produced by `pqitaParser.negation`.
+   * @param ctx the parse tree
+   */
+  enterNegation?: (ctx: NegationContext) => void;
+  /**
+   * Exit a parse tree produced by `pqitaParser.negation`.
+   * @param ctx the parse tree
+   */
+  exitNegation?: (ctx: NegationContext) => void;
+}

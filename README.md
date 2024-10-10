@@ -33,3 +33,31 @@ To update messages: `npm run xi18n` and use Poedit to edit `messages.it.xlf`.
 ## Static Pages
 
 Source document: <https://docs.google.com/document/d/12yXGM6TPunSVkkMUiW7ejtkqc0GaAPr8OJZAKnUGLZg/edit?usp=sharing>
+
+## ANTLR
+
+ANTLR requires JDK to generate the TS files from the G4 grammar file. For instance in Ubuntu:
+
+```bash
+python3 -m venv pyantlr
+cd pyantlr
+source bin/activate
+pip install antlr4-tools
+antlr4 -Dlanguage=TypeScript pqita.g4
+```
+
+The [ANTLR runtime for TS](https://github.com/antlr/antlr4/blob/master/doc/typescript-target.md) is installed via `npm i antlr4`.
+
+To install JAVA:
+
+1. goto <https://www.oracle.com/java/technologies/downloads/>.
+2. download your installer and run it.
+
+Setting environment variables in Windows:
+
+1. right-click on the "Start" button and select "System".
+2. click on "Advanced system settings".
+3. in the "Advanced" tab, click on "Environment Variables".
+4. under "System variables", find the "Path" variable and click "Edit".
+5. add the path to the "bin" directory of your Java installation. This is typically located in `C:\Program Files\Java\jdk-version\bin`. Click "OK" to save the changes.
+6. Verify Installation from a PowerShell terminal with command `java -version`:
