@@ -1,0 +1,118 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the theme object.
+$minerva-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+:root {
+  @include mat.all-component-themes($minerva-theme);
+}
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($minerva-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($minerva-theme);
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Text rendition */
+
+article.rendition span.hit {
+  background-color: #f8ff3d;
+}
+article.rendition span.abbr {
+  color: #97a2ad;
+}
+article.rendition span.address {
+  color: #7dab90;
+}
+article.rendition span.date {
+  color: #b38736;
+}
+article.rendition span.email {
+  color: #cfc7b8;
+}
+article.rendition span.foreign {
+  color: #4c2e70;
+}
+article.rendition span.hi-b {
+  font-weight: bold;
+}
+article.rendition span.hi-i {
+  font-style: italic;
+}
+article.rendition span.hi-u {
+  text-decoration: underline;
+}
+article.rendition span.hi-bi {
+  font-weight: bold;
+  font-style: italic;
+}
+article.rendition span.hi-bu {
+  font-weight: bold;
+  text-decoration: underline;
+}
+article.rendition span.hi-iu {
+  font-style: italic;
+  text-decoration: underline;
+}
+article.rendition span.juridic-name {
+  color: #34827f;
+}
+article.rendition span.num {
+  color: silver;
+}
+article.rendition span.pers-name {
+  color: #598234;
+}
+article.rendition span.place-name {
+  color: #33803b;
+}
+article.rendition div {
+  margin: 16px 0;
+}
+article.rendition p {
+  margin: 4px 0;
+}
+article.rendition p.pa-l {
+  text-align: left;
+}
+article.rendition p.pa-r {
+  text-align: right;
+}
+article.rendition p.pa-c {
+  text-align: center;
+}
+article.rendition p.pa-j {
+  text-align: justify;
+}
+article.rendition q {
+  font-style: italic;
+}
+article.rendition q:before,
+q:after {
+  content: "";
+}

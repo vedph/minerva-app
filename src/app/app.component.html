@@ -1,0 +1,39 @@
+<div>
+  <header>
+    <mat-toolbar color="primary" id="toolbar">
+      <span id="logo"><img src="./img/ac-pen_40.png" alt="Fusisoft" /></span>
+      <a mat-button routerLink="/home">Minerva</a>
+
+      <button type="button" mat-button routerLink="/index" i18n>Index</button>
+      <button type="button" mat-button routerLink="/search" i18n>Search</button>
+
+      <!-- help -->
+      <button type="button" mat-button [matMenuTriggerFor]="helpMenu" i18n>
+        Help
+      </button>
+      <mat-menu #helpMenu>
+        <a mat-menu-item routerLink="/manual" i18n>User's guide</a>
+        <a mat-menu-item routerLink="/about" i18n>About the project</a>
+      </mat-menu>
+
+      <span class="tb-fill-remaining-space"></span>
+    </mat-toolbar>
+  </header>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <span><a routerLink="/about">AttiChiari</a></span> -
+    <span>
+      <a href="mailto:attichiari@unige.it">attichiari&#x40;unige.it</a>
+      (Università di Genova),
+      <a href="mailto:attichiari@unisalento.it"
+        >attichiari&#x40;unisalento.it</a
+      >
+      (Università del Salento),
+      <a href="mailto:attichiari@unitus.it">attichiari&#x40;unitus.it</a>
+      (Università degli studi della Tuscia)</span
+    >
+  </footer>
+</div>

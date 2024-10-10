@@ -1,0 +1,51 @@
+#container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  grid-template-areas:
+    "banner"
+    "text"
+    "logos";
+  justify-items: center;
+}
+#container a {
+  color: #303030;
+  text-decoration: none;
+}
+#container a:hover {
+  color: #303030;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#banner {
+  grid-area: banner;
+}
+#logos {
+  grid-area: logos;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+  gap: 40px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+#text {
+  font-size: 1.2em;
+  grid-area: text;
+  column-width: 800px;
+  color: #303030;
+}
+#subscribe {
+  text-align: center;
+  font-weight: bold;
+}
+#subscribe a {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  #logos {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+  }
+}
