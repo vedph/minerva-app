@@ -61,3 +61,23 @@ Setting environment variables in Windows:
 4. under "System variables", find the "Path" variable and click "Edit".
 5. add the path to the "bin" directory of your Java installation. This is typically located in `C:\Program Files\Java\jdk-version\bin`. Click "OK" to save the changes.
 6. Verify Installation from a PowerShell terminal with command `java -version`:
+
+The ANTLR grammar used to convert fixed but composable Italian sentences is based on these components (the asterisk marks required components):
+
+(1) VERB: "trova".
+
+(*2):
+   (2.1.) ITEM: "[la] parola" | "[la] locuzione" | "[il] lemma" | "[il] forestierismo" | "[l'] anglicismo" | "[il] latinismo".
+     (2.1.1.) OPERATOR: "uguale a|iniziante per|terminante per|contente|corrispondente a|(molto|poco) simile a" or just nothing.
+     (2.1.2.) VALUE: any text between double quotes.
+   (2.2.) SET: "tutte|tutti (le|i|gli)
+parole|forestierismi|anglicismi|latinismi".
+
+(3) POS: "come verbo|aggettivo|sostantivo" etc.
+
+(4) STYLE: "in grassetto|corsivo|sottolineato".
+
+(5.1.) LOC: ["non"] + "a inizio di frase|fine di frase".
+(5.2):
+   (5.2.1.) REL: ["non"] + "vicino a|(attaccato|attaccata|attaccati) a|prima (di|della|del)|dopo (di|della|del)"
+   (5.2.2.) another sequence from 2 to 5, recursively.
