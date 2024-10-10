@@ -28,27 +28,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Localization
 
-1. `ng add @angular/localize`.
-2. in `app.config.ts`, add `import '@angular/localize/init';`. Among other stuff, this will import `$localize`. Do not import `$localize` directly because it can be imported only once.
-3. extract XLIF: `ng extract-i18n --output-path=src/i18n`.
-4. create copies of XLIF with translations: When creating a new translation, you can use an editor like PoEdit for editing the localized copy of this XLIF file. Then you will rather synchronize the files. To synch translations once you rebuild XLIF, use some translation-memory enabled tool like OmegaT.
-5. in `angular.json`, under your `projects/YOURPROJECT` add an `i18n` section where you configure all the supported locales, e.g.:
-
-    ```json
-    "i18n": {
-      "sourceLocale": "en-US",
-      "locales": {
-        "it": {
-          "baseHref": "",
-          "translation": "src/i18n/messages.it.xlf"
-        }
-      }
-    },
-    ```
-
-6. in `angular.json`, under `projects/YOURPROJECT/architect/build/options` add a localize property with the languages you want to build, e.g. `"localize": ["it"]`.
+To update messages: `npm run xi18n` and use Poedit to edit `messages.it.xlf`.
 
 ## Static Pages
 
 Source document: <https://docs.google.com/document/d/12yXGM6TPunSVkkMUiW7ejtkqc0GaAPr8OJZAKnUGLZg/edit?usp=sharing>
-

@@ -4,6 +4,15 @@
   "newProjectRoot": "projects",
   "projects": {
     "minerva": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "it": {
+            "baseHref": "",
+            "translation": "src/i18n/messages.it.xlf"
+          }
+        }
+      },
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -34,6 +43,7 @@
           },
           "configurations": {
             "production": {
+              "localize": ["it"],
               "budgets": [
                 {
                   "type": "initial",
@@ -49,6 +59,7 @@
               "outputHashing": "all"
             },
             "development": {
+              "localize": ["it"],
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
