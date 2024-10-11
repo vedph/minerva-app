@@ -23,7 +23,7 @@ import {
   Interval,
   IntervalSet,
 } from 'antlr4';
-import PqitaListener from './pqita.listener.js';
+import pqitaListener from './pqita.listener.js';
 // for running tests with parameters, TODO: discuss strategy for typed parameters in CI
 // eslint-disable-next-line no-unused-vars
 type int = number;
@@ -360,6 +360,7 @@ export default class PqitaParser extends Parser {
         case 4:
         case 5:
         case 6:
+        case 7:
         case 8:
         case 9:
           this.enterOuterAlt(localctx, 1);
@@ -478,6 +479,7 @@ export default class PqitaParser extends Parser {
             this.match(PqitaParser.T__5);
           }
           break;
+        case 7:
         case 8:
         case 9:
           this.enterOuterAlt(localctx, 6);
@@ -510,12 +512,21 @@ export default class PqitaParser extends Parser {
       this.state
     );
     this.enterRule(localctx, 14, PqitaParser.RULE_similarity);
+    let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 81;
-        this.degree();
         this.state = 82;
+        this._errHandler.sync(this);
+        _la = this._input.LA(1);
+        if (_la === 8 || _la === 9) {
+          {
+            this.state = 81;
+            this.degree();
+          }
+        }
+
+        this.state = 84;
         this.match(PqitaParser.T__6);
       }
     } catch (re) {
@@ -543,7 +554,7 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 84;
+        this.state = 86;
         _la = this._input.LA(1);
         if (!(_la === 8 || _la === 9)) {
           this._errHandler.recoverInline(this);
@@ -577,7 +588,7 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 86;
+        this.state = 88;
         _la = this._input.LA(1);
         if (!((_la & ~0x1f) === 0 && ((1 << _la) & 7168) !== 0)) {
           this._errHandler.recoverInline(this);
@@ -611,7 +622,7 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 88;
+        this.state = 90;
         _la = this._input.LA(1);
         if (!(_la === 13 || _la === 14)) {
           this._errHandler.recoverInline(this);
@@ -644,9 +655,9 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 90;
+        this.state = 92;
         this.match(PqitaParser.T__14);
-        this.state = 91;
+        this.state = 93;
         this.match(PqitaParser.POS_TYPE);
       }
     } catch (re) {
@@ -673,7 +684,7 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 93;
+        this.state = 95;
         this.match(PqitaParser.STYLE_TYPE);
       }
     } catch (re) {
@@ -699,27 +710,27 @@ export default class PqitaParser extends Parser {
     this.enterRule(localctx, 26, PqitaParser.RULE_locationOrRelation);
     let _la: number;
     try {
-      this.state = 100;
+      this.state = 102;
       this._errHandler.sync(this);
-      switch (this._interp.adaptivePredict(this._input, 10, this._ctx)) {
+      switch (this._interp.adaptivePredict(this._input, 11, this._ctx)) {
         case 1:
           this.enterOuterAlt(localctx, 1);
           {
-            this.state = 95;
+            this.state = 97;
             this.location();
           }
           break;
         case 2:
           this.enterOuterAlt(localctx, 2);
           {
-            this.state = 96;
-            this.relation();
             this.state = 98;
+            this.relation();
+            this.state = 100;
             this._errHandler.sync(this);
             _la = this._input.LA(1);
             if ((_la & ~0x1f) === 0 && ((1 << _la) & 162816) !== 0) {
               {
-                this.state = 97;
+                this.state = 99;
                 this.recursiveExpression();
               }
             }
@@ -751,17 +762,17 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 103;
+        this.state = 105;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if (_la === 16) {
           {
-            this.state = 102;
+            this.state = 104;
             this.negation();
           }
         }
 
-        this.state = 105;
+        this.state = 107;
         this.match(PqitaParser.LOC_TYPE);
       }
     } catch (re) {
@@ -789,17 +800,17 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 108;
+        this.state = 110;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if (_la === 16) {
           {
-            this.state = 107;
+            this.state = 109;
             this.negation();
           }
         }
 
-        this.state = 110;
+        this.state = 112;
         this.match(PqitaParser.REL_TYPE);
       }
     } catch (re) {
@@ -827,34 +838,34 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 112;
-        this.itemOrSet();
         this.state = 114;
+        this.itemOrSet();
+        this.state = 116;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if (_la === 15) {
           {
-            this.state = 113;
+            this.state = 115;
             this.posTag();
           }
         }
 
-        this.state = 117;
+        this.state = 119;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if (_la === 20) {
           {
-            this.state = 116;
+            this.state = 118;
             this.styleTag();
           }
         }
 
-        this.state = 120;
+        this.state = 122;
         this._errHandler.sync(this);
         _la = this._input.LA(1);
         if ((_la & ~0x1f) === 0 && ((1 << _la) & 6356992) !== 0) {
           {
-            this.state = 119;
+            this.state = 121;
             this.locationOrRelation();
           }
         }
@@ -883,7 +894,7 @@ export default class PqitaParser extends Parser {
     try {
       this.enterOuterAlt(localctx, 1);
       {
-        this.state = 122;
+        this.state = 124;
         this.match(PqitaParser.T__15);
       }
     } catch (re) {
@@ -901,55 +912,56 @@ export default class PqitaParser extends Parser {
   }
 
   public static readonly _serializedATN: number[] = [
-    4, 1, 24, 125, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7, 4,
+    4, 1, 24, 127, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7, 4,
     2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7, 10, 2,
     11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15, 2, 16, 7,
     16, 2, 17, 7, 17, 1, 0, 3, 0, 38, 8, 0, 1, 0, 1, 0, 3, 0, 42, 8, 0, 1, 0, 3,
     0, 45, 8, 0, 1, 0, 3, 0, 48, 8, 0, 1, 1, 1, 1, 1, 2, 1, 2, 3, 2, 54, 8, 2,
     1, 3, 3, 3, 57, 8, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 1, 4, 3, 4, 66, 8,
     4, 1, 5, 1, 5, 3, 5, 70, 8, 5, 1, 5, 1, 5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1,
-    6, 3, 6, 80, 8, 6, 1, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 9, 1, 9, 1, 10, 1, 10,
-    1, 11, 1, 11, 1, 11, 1, 12, 1, 12, 1, 13, 1, 13, 1, 13, 3, 13, 99, 8, 13, 3,
-    13, 101, 8, 13, 1, 14, 3, 14, 104, 8, 14, 1, 14, 1, 14, 1, 15, 3, 15, 109,
-    8, 15, 1, 15, 1, 15, 1, 16, 1, 16, 3, 16, 115, 8, 16, 1, 16, 3, 16, 118, 8,
-    16, 1, 16, 3, 16, 121, 8, 16, 1, 17, 1, 17, 1, 17, 0, 0, 18, 0, 2, 4, 6, 8,
-    10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 0, 3, 1, 0, 8, 9, 1, 0,
-    10, 12, 1, 0, 13, 14, 126, 0, 37, 1, 0, 0, 0, 2, 49, 1, 0, 0, 0, 4, 53, 1,
-    0, 0, 0, 6, 56, 1, 0, 0, 0, 8, 65, 1, 0, 0, 0, 10, 67, 1, 0, 0, 0, 12, 79,
-    1, 0, 0, 0, 14, 81, 1, 0, 0, 0, 16, 84, 1, 0, 0, 0, 18, 86, 1, 0, 0, 0, 20,
-    88, 1, 0, 0, 0, 22, 90, 1, 0, 0, 0, 24, 93, 1, 0, 0, 0, 26, 100, 1, 0, 0, 0,
-    28, 103, 1, 0, 0, 0, 30, 108, 1, 0, 0, 0, 32, 112, 1, 0, 0, 0, 34, 122, 1,
-    0, 0, 0, 36, 38, 3, 2, 1, 0, 37, 36, 1, 0, 0, 0, 37, 38, 1, 0, 0, 0, 38, 39,
-    1, 0, 0, 0, 39, 41, 3, 4, 2, 0, 40, 42, 3, 22, 11, 0, 41, 40, 1, 0, 0, 0,
-    41, 42, 1, 0, 0, 0, 42, 44, 1, 0, 0, 0, 43, 45, 3, 24, 12, 0, 44, 43, 1, 0,
-    0, 0, 44, 45, 1, 0, 0, 0, 45, 47, 1, 0, 0, 0, 46, 48, 3, 26, 13, 0, 47, 46,
-    1, 0, 0, 0, 47, 48, 1, 0, 0, 0, 48, 1, 1, 0, 0, 0, 49, 50, 5, 1, 0, 0, 50,
-    3, 1, 0, 0, 0, 51, 54, 3, 6, 3, 0, 52, 54, 3, 10, 5, 0, 53, 51, 1, 0, 0, 0,
-    53, 52, 1, 0, 0, 0, 54, 5, 1, 0, 0, 0, 55, 57, 3, 18, 9, 0, 56, 55, 1, 0, 0,
-    0, 56, 57, 1, 0, 0, 0, 57, 58, 1, 0, 0, 0, 58, 59, 5, 17, 0, 0, 59, 60, 3,
-    8, 4, 0, 60, 7, 1, 0, 0, 0, 61, 62, 3, 12, 6, 0, 62, 63, 5, 23, 0, 0, 63,
-    66, 1, 0, 0, 0, 64, 66, 5, 23, 0, 0, 65, 61, 1, 0, 0, 0, 65, 64, 1, 0, 0, 0,
-    66, 9, 1, 0, 0, 0, 67, 69, 3, 20, 10, 0, 68, 70, 3, 18, 9, 0, 69, 68, 1, 0,
-    0, 0, 69, 70, 1, 0, 0, 0, 70, 71, 1, 0, 0, 0, 71, 72, 5, 18, 0, 0, 72, 11,
-    1, 0, 0, 0, 73, 80, 5, 2, 0, 0, 74, 80, 5, 3, 0, 0, 75, 80, 5, 4, 0, 0, 76,
-    80, 5, 5, 0, 0, 77, 80, 5, 6, 0, 0, 78, 80, 3, 14, 7, 0, 79, 73, 1, 0, 0, 0,
-    79, 74, 1, 0, 0, 0, 79, 75, 1, 0, 0, 0, 79, 76, 1, 0, 0, 0, 79, 77, 1, 0, 0,
-    0, 79, 78, 1, 0, 0, 0, 80, 13, 1, 0, 0, 0, 81, 82, 3, 16, 8, 0, 82, 83, 5,
-    7, 0, 0, 83, 15, 1, 0, 0, 0, 84, 85, 7, 0, 0, 0, 85, 17, 1, 0, 0, 0, 86, 87,
-    7, 1, 0, 0, 87, 19, 1, 0, 0, 0, 88, 89, 7, 2, 0, 0, 89, 21, 1, 0, 0, 0, 90,
-    91, 5, 15, 0, 0, 91, 92, 5, 19, 0, 0, 92, 23, 1, 0, 0, 0, 93, 94, 5, 20, 0,
-    0, 94, 25, 1, 0, 0, 0, 95, 101, 3, 28, 14, 0, 96, 98, 3, 30, 15, 0, 97, 99,
-    3, 32, 16, 0, 98, 97, 1, 0, 0, 0, 98, 99, 1, 0, 0, 0, 99, 101, 1, 0, 0, 0,
-    100, 95, 1, 0, 0, 0, 100, 96, 1, 0, 0, 0, 101, 27, 1, 0, 0, 0, 102, 104, 3,
-    34, 17, 0, 103, 102, 1, 0, 0, 0, 103, 104, 1, 0, 0, 0, 104, 105, 1, 0, 0, 0,
-    105, 106, 5, 21, 0, 0, 106, 29, 1, 0, 0, 0, 107, 109, 3, 34, 17, 0, 108,
-    107, 1, 0, 0, 0, 108, 109, 1, 0, 0, 0, 109, 110, 1, 0, 0, 0, 110, 111, 5,
-    22, 0, 0, 111, 31, 1, 0, 0, 0, 112, 114, 3, 4, 2, 0, 113, 115, 3, 22, 11, 0,
-    114, 113, 1, 0, 0, 0, 114, 115, 1, 0, 0, 0, 115, 117, 1, 0, 0, 0, 116, 118,
-    3, 24, 12, 0, 117, 116, 1, 0, 0, 0, 117, 118, 1, 0, 0, 0, 118, 120, 1, 0, 0,
-    0, 119, 121, 3, 26, 13, 0, 120, 119, 1, 0, 0, 0, 120, 121, 1, 0, 0, 0, 121,
-    33, 1, 0, 0, 0, 122, 123, 5, 16, 0, 0, 123, 35, 1, 0, 0, 0, 16, 37, 41, 44,
-    47, 53, 56, 65, 69, 79, 98, 100, 103, 108, 114, 117, 120,
+    6, 3, 6, 80, 8, 6, 1, 7, 3, 7, 83, 8, 7, 1, 7, 1, 7, 1, 8, 1, 8, 1, 9, 1, 9,
+    1, 10, 1, 10, 1, 11, 1, 11, 1, 11, 1, 12, 1, 12, 1, 13, 1, 13, 1, 13, 3, 13,
+    101, 8, 13, 3, 13, 103, 8, 13, 1, 14, 3, 14, 106, 8, 14, 1, 14, 1, 14, 1,
+    15, 3, 15, 111, 8, 15, 1, 15, 1, 15, 1, 16, 1, 16, 3, 16, 117, 8, 16, 1, 16,
+    3, 16, 120, 8, 16, 1, 16, 3, 16, 123, 8, 16, 1, 17, 1, 17, 1, 17, 0, 0, 18,
+    0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 0, 3, 1,
+    0, 8, 9, 1, 0, 10, 12, 1, 0, 13, 14, 129, 0, 37, 1, 0, 0, 0, 2, 49, 1, 0, 0,
+    0, 4, 53, 1, 0, 0, 0, 6, 56, 1, 0, 0, 0, 8, 65, 1, 0, 0, 0, 10, 67, 1, 0, 0,
+    0, 12, 79, 1, 0, 0, 0, 14, 82, 1, 0, 0, 0, 16, 86, 1, 0, 0, 0, 18, 88, 1, 0,
+    0, 0, 20, 90, 1, 0, 0, 0, 22, 92, 1, 0, 0, 0, 24, 95, 1, 0, 0, 0, 26, 102,
+    1, 0, 0, 0, 28, 105, 1, 0, 0, 0, 30, 110, 1, 0, 0, 0, 32, 114, 1, 0, 0, 0,
+    34, 124, 1, 0, 0, 0, 36, 38, 3, 2, 1, 0, 37, 36, 1, 0, 0, 0, 37, 38, 1, 0,
+    0, 0, 38, 39, 1, 0, 0, 0, 39, 41, 3, 4, 2, 0, 40, 42, 3, 22, 11, 0, 41, 40,
+    1, 0, 0, 0, 41, 42, 1, 0, 0, 0, 42, 44, 1, 0, 0, 0, 43, 45, 3, 24, 12, 0,
+    44, 43, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 47, 1, 0, 0, 0, 46, 48, 3, 26,
+    13, 0, 47, 46, 1, 0, 0, 0, 47, 48, 1, 0, 0, 0, 48, 1, 1, 0, 0, 0, 49, 50, 5,
+    1, 0, 0, 50, 3, 1, 0, 0, 0, 51, 54, 3, 6, 3, 0, 52, 54, 3, 10, 5, 0, 53, 51,
+    1, 0, 0, 0, 53, 52, 1, 0, 0, 0, 54, 5, 1, 0, 0, 0, 55, 57, 3, 18, 9, 0, 56,
+    55, 1, 0, 0, 0, 56, 57, 1, 0, 0, 0, 57, 58, 1, 0, 0, 0, 58, 59, 5, 17, 0, 0,
+    59, 60, 3, 8, 4, 0, 60, 7, 1, 0, 0, 0, 61, 62, 3, 12, 6, 0, 62, 63, 5, 23,
+    0, 0, 63, 66, 1, 0, 0, 0, 64, 66, 5, 23, 0, 0, 65, 61, 1, 0, 0, 0, 65, 64,
+    1, 0, 0, 0, 66, 9, 1, 0, 0, 0, 67, 69, 3, 20, 10, 0, 68, 70, 3, 18, 9, 0,
+    69, 68, 1, 0, 0, 0, 69, 70, 1, 0, 0, 0, 70, 71, 1, 0, 0, 0, 71, 72, 5, 18,
+    0, 0, 72, 11, 1, 0, 0, 0, 73, 80, 5, 2, 0, 0, 74, 80, 5, 3, 0, 0, 75, 80, 5,
+    4, 0, 0, 76, 80, 5, 5, 0, 0, 77, 80, 5, 6, 0, 0, 78, 80, 3, 14, 7, 0, 79,
+    73, 1, 0, 0, 0, 79, 74, 1, 0, 0, 0, 79, 75, 1, 0, 0, 0, 79, 76, 1, 0, 0, 0,
+    79, 77, 1, 0, 0, 0, 79, 78, 1, 0, 0, 0, 80, 13, 1, 0, 0, 0, 81, 83, 3, 16,
+    8, 0, 82, 81, 1, 0, 0, 0, 82, 83, 1, 0, 0, 0, 83, 84, 1, 0, 0, 0, 84, 85, 5,
+    7, 0, 0, 85, 15, 1, 0, 0, 0, 86, 87, 7, 0, 0, 0, 87, 17, 1, 0, 0, 0, 88, 89,
+    7, 1, 0, 0, 89, 19, 1, 0, 0, 0, 90, 91, 7, 2, 0, 0, 91, 21, 1, 0, 0, 0, 92,
+    93, 5, 15, 0, 0, 93, 94, 5, 19, 0, 0, 94, 23, 1, 0, 0, 0, 95, 96, 5, 20, 0,
+    0, 96, 25, 1, 0, 0, 0, 97, 103, 3, 28, 14, 0, 98, 100, 3, 30, 15, 0, 99,
+    101, 3, 32, 16, 0, 100, 99, 1, 0, 0, 0, 100, 101, 1, 0, 0, 0, 101, 103, 1,
+    0, 0, 0, 102, 97, 1, 0, 0, 0, 102, 98, 1, 0, 0, 0, 103, 27, 1, 0, 0, 0, 104,
+    106, 3, 34, 17, 0, 105, 104, 1, 0, 0, 0, 105, 106, 1, 0, 0, 0, 106, 107, 1,
+    0, 0, 0, 107, 108, 5, 21, 0, 0, 108, 29, 1, 0, 0, 0, 109, 111, 3, 34, 17, 0,
+    110, 109, 1, 0, 0, 0, 110, 111, 1, 0, 0, 0, 111, 112, 1, 0, 0, 0, 112, 113,
+    5, 22, 0, 0, 113, 31, 1, 0, 0, 0, 114, 116, 3, 4, 2, 0, 115, 117, 3, 22, 11,
+    0, 116, 115, 1, 0, 0, 0, 116, 117, 1, 0, 0, 0, 117, 119, 1, 0, 0, 0, 118,
+    120, 3, 24, 12, 0, 119, 118, 1, 0, 0, 0, 119, 120, 1, 0, 0, 0, 120, 122, 1,
+    0, 0, 0, 121, 123, 3, 26, 13, 0, 122, 121, 1, 0, 0, 0, 122, 123, 1, 0, 0, 0,
+    123, 33, 1, 0, 0, 0, 124, 125, 5, 16, 0, 0, 125, 35, 1, 0, 0, 0, 17, 37, 41,
+    44, 47, 53, 56, 65, 69, 79, 82, 100, 102, 105, 110, 116, 119, 122,
   ];
 
   private static __ATN: ATN;
@@ -998,12 +1010,12 @@ export class ExpressionContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_expression;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterExpression) {
       listener.enterExpression(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitExpression) {
       listener.exitExpression(this);
     }
@@ -1022,12 +1034,12 @@ export class VerbContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_verb;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterVerb) {
       listener.enterVerb(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitVerb) {
       listener.exitVerb(this);
     }
@@ -1052,12 +1064,12 @@ export class ItemOrSetContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_itemOrSet;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterItemOrSet) {
       listener.enterItemOrSet(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitItemOrSet) {
       listener.exitItemOrSet(this);
     }
@@ -1088,12 +1100,12 @@ export class ItemContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_item;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterItem) {
       listener.enterItem(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitItem) {
       listener.exitItem(this);
     }
@@ -1118,12 +1130,12 @@ export class ItemContinuationContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_itemContinuation;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterItemContinuation) {
       listener.enterItemContinuation(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitItemContinuation) {
       listener.exitItemContinuation(this);
     }
@@ -1151,12 +1163,12 @@ export class SetContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_set;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterSet) {
       listener.enterSet(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitSet) {
       listener.exitSet(this);
     }
@@ -1178,12 +1190,12 @@ export class OperatorContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_operator;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterOperator) {
       listener.enterOperator(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitOperator) {
       listener.exitOperator(this);
     }
@@ -1205,12 +1217,12 @@ export class SimilarityContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_similarity;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterSimilarity) {
       listener.enterSimilarity(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitSimilarity) {
       listener.exitSimilarity(this);
     }
@@ -1229,12 +1241,12 @@ export class DegreeContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_degree;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterDegree) {
       listener.enterDegree(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitDegree) {
       listener.exitDegree(this);
     }
@@ -1253,12 +1265,12 @@ export class ArticleContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_article;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterArticle) {
       listener.enterArticle(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitArticle) {
       listener.exitArticle(this);
     }
@@ -1277,12 +1289,12 @@ export class QuantifierContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_quantifier;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterQuantifier) {
       listener.enterQuantifier(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitQuantifier) {
       listener.exitQuantifier(this);
     }
@@ -1304,12 +1316,12 @@ export class PosTagContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_posTag;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterPosTag) {
       listener.enterPosTag(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitPosTag) {
       listener.exitPosTag(this);
     }
@@ -1331,12 +1343,12 @@ export class StyleTagContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_styleTag;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterStyleTag) {
       listener.enterStyleTag(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitStyleTag) {
       listener.exitStyleTag(this);
     }
@@ -1367,12 +1379,12 @@ export class LocationOrRelationContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_locationOrRelation;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterLocationOrRelation) {
       listener.enterLocationOrRelation(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitLocationOrRelation) {
       listener.exitLocationOrRelation(this);
     }
@@ -1397,12 +1409,12 @@ export class LocationContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_location;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterLocation) {
       listener.enterLocation(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitLocation) {
       listener.exitLocation(this);
     }
@@ -1427,12 +1439,12 @@ export class RelationContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_relation;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterRelation) {
       listener.enterRelation(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitRelation) {
       listener.exitRelation(this);
     }
@@ -1466,12 +1478,12 @@ export class RecursiveExpressionContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_recursiveExpression;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterRecursiveExpression) {
       listener.enterRecursiveExpression(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitRecursiveExpression) {
       listener.exitRecursiveExpression(this);
     }
@@ -1490,12 +1502,12 @@ export class NegationContext extends ParserRuleContext {
   public get ruleIndex(): number {
     return PqitaParser.RULE_negation;
   }
-  public enterRule(listener: PqitaListener): void {
+  public enterRule(listener: pqitaListener): void {
     if (listener.enterNegation) {
       listener.enterNegation(this);
     }
   }
-  public exitRule(listener: PqitaListener): void {
+  public exitRule(listener: pqitaListener): void {
     if (listener.exitNegation) {
       listener.exitNegation(this);
     }

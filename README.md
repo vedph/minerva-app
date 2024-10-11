@@ -40,6 +40,12 @@ antlr4 -Dlanguage=TypeScript pqita.g4
 
 The [ANTLR runtime for TS](https://github.com/antlr/antlr4/blob/master/doc/typescript-target.md) is installed via `npm i antlr4`.
 
+If you update the grammar, you should regenerate the TS files and then:
+
+- for lexer: overwrite all the code and rename `pqitaLexer` in `PqitaLexer`.
+- for parser: overwrite all the code and rename `pqitaParser` in `PqitaParser`.
+- for listener: keep the existing code, patching it where required.
+
 ### Grammar
 
 The ANTLR grammar used to convert fixed but composable Italian sentences based on components.
