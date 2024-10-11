@@ -33,7 +33,8 @@
 #text {
   font-size: 1.2em;
   grid-area: text;
-  column-width: 800px;
+  /* TODO: uncomment when test removed from home */
+  /* column-width: 800px; */
   color: #303030;
 }
 #subscribe {

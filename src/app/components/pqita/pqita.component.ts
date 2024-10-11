@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { PqitaService } from '../../services/pqita.service';
 import { SpeechRecognitionService } from '../../services/speech-recognition.service';
@@ -37,6 +38,7 @@ interface HistoryEntry {
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
+    MatTooltipModule
   ],
   providers: [SpeechRecognitionService],
   templateUrl: './pqita.component.html',

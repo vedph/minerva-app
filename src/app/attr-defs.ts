@@ -92,7 +92,7 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     label: $localize`collection place`,
     type: QueryBuilderTermType.Document,
     group: $localize`document`,
-    tip: $localize`Collection place: "fi" or "ge".`,
+    tip: $localize`Collection place: "fi", "ge", "le", "vt".`,
   },
   {
     value: 'sesso-avv',
