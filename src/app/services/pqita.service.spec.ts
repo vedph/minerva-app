@@ -13,4 +13,16 @@ describe('PqitaService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should convert parola "cane" to [value="cane"]', () => {
+    expect(service.convertQuery('parola "cane"')).toBe(
+      '[value="cane"]'
+    );
+  });
+
+  it('should convert trova la parola "cane" to [value="cane"]', () => {
+    expect(service.convertQuery('trova la parola "cane"')).toBe(
+      '[value="cane"]'
+    );
+  });
 });
