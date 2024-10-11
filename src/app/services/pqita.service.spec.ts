@@ -14,6 +14,7 @@ describe('PqitaService', () => {
     expect(service).toBeTruthy();
   });
 
+  // parola
   it('should convert parola "cane" to [value="cane"]', () => {
     expect(service.convertQuery('parola "cane"')).toBe('[value="cane"]');
   });
@@ -72,4 +73,10 @@ describe('PqitaService', () => {
     );
   });
 
+  // locuzione
+  it('should convert locuzione "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
+    expect(service.convertQuery('locuzione "pro tempore"')).toBe(
+      '[$fp-lat] AND [_value="pro tempore"]'
+    );
+  });
 });

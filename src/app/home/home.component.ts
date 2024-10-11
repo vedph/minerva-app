@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 
 import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
+import { PqitaService } from '../services/pqita.service';
 
 @Component({
   standalone: true,
@@ -17,7 +18,11 @@ import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
 export class HomeComponent {
   public user$: Observable<User | null>;
 
-  constructor(authService: AuthJwtService) {
+  constructor(authService: AuthJwtService, pqitaService: PqitaService) {
     this.user$ = authService.currentUser$;
+
+    // @@
+    let result = pqitaService.convertQuery('locuzione "cane"');
+    console.log(result);
   }
 }

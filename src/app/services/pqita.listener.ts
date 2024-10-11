@@ -130,6 +130,8 @@ export default class PqitaListener extends ParseTreeListener {
    * @param ctx the parse tree
    */
   exitItem?(ctx: ItemContext): void {
+    const symbol = ctx.ITEM().symbol.text;
+    // TODO
     const continuation = ctx.itemContinuation();
     const operator = continuation.operator()?.getText();
     const value = continuation.VALUE().getText();
