@@ -81,3 +81,67 @@ parole|forestierismi|anglicismi|latinismi".
 (5.2):
    (5.2.1.) REL: ["non"] + "vicino a|(attaccato|attaccata|attaccati) a|prima (di|della|del)|dopo (di|della|del)"
    (5.2.2.) another sequence from 2 to 5, recursively.
+
+So for instance we can have:
+
+- `trova la parola uguale a "esempio"` which is:
+
+1. trova
+  2.1. la parola
+    2.1.1. uguale a
+    2.1.2. "esempio"
+
+- `tutti i latinismi` which is:
+
+2.2 tutti i latinismi
+
+- `trova la parola "cane" come sostantivo in grassetto prima della parola "bello"`, which is:
+
+1. trova
+  2.1.1. la parola
+  2.1.2. "cane"
+3. come sostantivo
+4. in grassetto
+  5.2.1. prima della
+  2.1. parola
+    2.1.1. nothing
+    2.1.2. "bello"
+
+The corresponding parser directions are to build pairs joined by `AND`, handling recursion at branch 5.2, as follows:
+
+- on item: according to operator:
+  - "uguale a": output `[value="<VALUE>"]`;
+  - "iniziante per": output `[value^="<VALUE>"]`;
+  - "terminante per": output `[value$="<VALUE>"]`;
+  - "contenente": output `[value*="<VALUE>"]`;
+  - "corrispondente a": output `[value?="<VALUE>"]`;
+  - "simile a": output `[value%="<VALUE>:<THRESHOLD>"]` where THRESHOLD is 0.5 for "poco simile a", 0.8 for "simile a", 0.9 for "molto simile a";
+
+- on set: according to set:
+  - "parole": nothing. This assumes that there will be other nodes after this (for branches 3 or 4), or we should emit an error.
+  - "forestierismi": output `[language<>"ita"]`;
+  - "anglicismi": output `[language="eng"]`;
+  - "latinismi": output `[language="lat"]`;
+
+- on pos: output `[pos="<POS>"]`;
+
+- on style: according to style:
+  - "in grassetto": output `[b="1"]`;
+  - "in corsivo": output `[i="1"]`;
+  - "in sottolineato": output `[u="1"]`;
+
+- on loc: this provides a join between the previously output pair and the next one. According to loc:
+  - "a inizio di frase":
+    - if "non": output space + `LALIGN(n=1) [$name="snt"]` after a left pair. There should be one, or there is an error;
+    - else: output space + `LALIGN(m=0) [$name="snt"]` after a left pair. There should be one, or there is an error;
+  - "a fine di frase":
+    - if "non": output space + `RALIGN(n=1) [$name="snt"]` after a left pair. There should be one, or there is an error;
+    - else: output space + `RALIGN(m=0) [$name="snt"]` after a left pair. There should be one, or there is an error.
+
+- on rel:
+  - if "non", output space + `NOT`;
+  - according to rel:
+    - "vicino a": output space + `NEAR(m=3,s=snt)` + space;
+    - "(attaccato|attaccata|attaccati) a": output space + `NEAR(m=0,s=snt)` + space;
+    - "prima di|della|del": output space + `BEFORE(m=3,s=snt)` + space;
+    - "dopo di|della|del": output space + `AFTER(m=3,s=snt)` + space.
