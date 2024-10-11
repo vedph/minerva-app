@@ -8,6 +8,7 @@
         placeholder="text"
         i18n-placeholder
         rows="3"
+        (keydown.enter)="search()"
       ></textarea>
       @if ($any(text).errors?.required && (text.dirty || text.touched)) {
       <mat-error i18n>text required</mat-error>
@@ -30,6 +31,15 @@
       >
         <mat-icon>clear</mat-icon>
       </button>
+      <button
+        type="button"
+        mat-icon-button
+        class="mat-primary"
+        (click)="convert()"
+        [disabled]="listening || !text.value?.length"
+      >
+        <mat-icon>arrow_circle_right</mat-icon>
+      </button>
       @if (listening) {
       <button
         type="button"
@@ -41,12 +51,7 @@
         <ng-container i18n>stop</ng-container>
       </button>
       } @else {
-      <button
-        type="button"
-        class="mat-primary"
-        mat-flat-button
-        (click)="startListening()"
-      >
+      <button type="button" mat-flat-button (click)="startListening()">
         <mat-icon>mic</mat-icon>
         <ng-container i18n>listen</ng-container>
       </button>
@@ -85,6 +90,7 @@
         class="mat-primary"
         mat-flat-button
         (click)="search()"
+        [disabled]="listening || !query.value?.length"
       >
         <mat-icon>search</mat-icon>
         <ng-container i18n>search</ng-container>
