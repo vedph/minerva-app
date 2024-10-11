@@ -8,9 +8,11 @@ import { MatCardModule } from '@angular/material/card';
 import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
 import { PqitaService } from '../services/pqita.service';
 
+import { PqitaComponent } from '../components/pqita/pqita.component';
+
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule],
+  imports: [CommonModule, RouterModule, MatCardModule, PqitaComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
@@ -22,7 +24,7 @@ export class HomeComponent {
     this.user$ = authService.currentUser$;
 
     // @@
-    let result = pqitaService.convertQuery('locuzione "cane"');
-    console.log(result);
+    // let result = pqitaService.convertQuery('locuzione "cane"');
+    // console.log(result);
   }
 }

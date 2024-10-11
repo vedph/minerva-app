@@ -20,6 +20,7 @@ import { QUERY_BUILDER_ATTR_DEFS_KEY } from '@myrmidon/pythia-query-builder';
 
 // local
 import { I18nPaginatorIntlService } from './services/i18n-paginator-intl.service';
+import { SPEECH_RECOGNITION_LANG } from './services/speech-recognition.service';
 import { routes } from './app.routes';
 import { ATTR_DEFS } from './attr-defs';
 
@@ -37,6 +38,10 @@ export const appConfig: ApplicationConfig = {
     {
       provide: QUERY_BUILDER_ATTR_DEFS_KEY,
       useValue: ATTR_DEFS,
+    },
+    {
+      provide: SPEECH_RECOGNITION_LANG,
+      useValue: 'it-IT',
     },
     // paginator i18n
     {

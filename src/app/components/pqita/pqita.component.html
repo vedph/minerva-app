@@ -1,0 +1,145 @@
+<form [formGroup]="form" id="container">
+  <!-- input -->
+  <div id="input">
+    <mat-form-field class="long-text">
+      <textarea
+        matInput
+        [formControl]="text"
+        placeholder="text"
+        i18n-placeholder
+        rows="3"
+      ></textarea>
+      @if ($any(text).errors?.required && (text.dirty || text.touched)) {
+      <mat-error i18n>text required</mat-error>
+      } @if ($any(text).errors?.maxLength && (text.dirty || text.touched)) {
+      <mat-error i18n>text too long</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <!-- listener -->
+  <div id="listener">
+    <!-- buttons -->
+    <div id="button-row">
+      <button
+        type="button"
+        mat-icon-button
+        class="mat-warn"
+        (click)="clearText()"
+        [disabled]="listening || !text.value?.length"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+      @if (listening) {
+      <button
+        type="button"
+        class="mat-warn"
+        mat-flat-button
+        (click)="stopListening()"
+      >
+        <mat-icon>mic_off</mat-icon>
+        <ng-container i18n>stop</ng-container>
+      </button>
+      } @else {
+      <button
+        type="button"
+        class="mat-primary"
+        mat-flat-button
+        (click)="startListening()"
+      >
+        <mat-icon>mic</mat-icon>
+        <ng-container i18n>listen</ng-container>
+      </button>
+      }
+    </div>
+    <!-- progress -->
+    @if (listening) {
+    <div>
+      <mat-progress-bar mode="indeterminate" />
+    </div>
+    <!-- autorun -->
+    <div>
+      <mat-checkbox [formControl]="autoRun" i18n>autorun</mat-checkbox>
+    </div>
+    }
+  </div>
+
+  <!-- query -->
+  <div id="query">
+    <mat-form-field class="long-text">
+      <textarea
+        matInput
+        [formControl]="query"
+        placeholder="query"
+        i18n-placeholder
+      ></textarea>
+      @if ($any(query).errors?.required && (query.dirty || query.touched)) {
+      <mat-error i18n>query required</mat-error>
+      } @if ($any(query).errors?.maxLength && (query.dirty || query.touched)) {
+      <mat-error i18n>query too long</mat-error>
+      }
+    </mat-form-field>
+    <div>
+      <button
+        type="button"
+        class="mat-primary"
+        mat-flat-button
+        (click)="search()"
+      >
+        <mat-icon>search</mat-icon>
+        <ng-container i18n>search</ng-container>
+      </button>
+    </div>
+  </div>
+
+  <!-- history -->
+  <div id="history">
+    @if (history.value.length) {
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th i18n>text</th>
+          <th i18n class="noif-lt-md">query</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (h of history.value; track $index; let i=$index) {
+        <tr>
+          <td>
+            <button
+              type="button"
+              mat-icon-button
+              class="mat-primary"
+              (click)="pickFromHistory(i)"
+              matTooltip="Pick this entry"
+              [disabled]="listening"
+              i18n-matTooltip
+            >
+              <mat-icon>open_in_new</mat-icon>
+            </button>
+            <button
+              type="button"
+              mat-icon-button
+              class="mat-warn"
+              (click)="removeFromHistory(i)"
+              matTooltip="Remove this entry"
+              [disabled]="listening"
+              i18n-matTooltip
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+          <td class="text-cell">
+            {{ h.text }}
+          </td>
+          <td class="query-cell noif-lt-md">
+            {{ h.query }}
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+</form>
