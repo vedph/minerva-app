@@ -22,12 +22,35 @@ import { RecursiveExpressionContext } from './pqita.parser.js';
 import { NegationContext } from './pqita.parser.js';
 
 /**
+ * Options for the PqitaListener.
+ */
+export interface PqitaListenerOptions {
+  lowSimilarityThreshold: number;
+  similarityThreshold: number;
+  highSimilarityThreshold: number;
+  proximityThreshold: number;
+}
+
+const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
+  lowSimilarityThreshold: 0.5,
+  similarityThreshold: 0.8,
+  highSimilarityThreshold: 0.9,
+  proximityThreshold: 3,
+};
+
+/**
  * This interface defines a complete listener for a parse tree produced by
  * `pqitaParser`.
  */
 export default class PqitaListener extends ParseTreeListener {
   private _pairs: string[] = [];
   private _output: string = '';
+
+  constructor(
+    private _options: PqitaListenerOptions = DEFAULT_LISTENER_OPTIONS
+  ) {
+    super();
+  }
 
   private appendPair(pair: string) {
     if (this._pairs.length > 0) {
@@ -53,11 +76,11 @@ export default class PqitaListener extends ParseTreeListener {
       case 'corrispondente a':
         return `[value?="${cleanValue}"]`;
       case 'poco simile a':
-        return `[value%="${cleanValue}:0.5"]`;
+        return `[value%="${cleanValue}:${this._options.lowSimilarityThreshold}"]`;
       case 'simile a':
-        return `[value%="${cleanValue}:0.8"]`;
+        return `[value%="${cleanValue}:${this._options.similarityThreshold}"]`;
       case 'molto simile a':
-        return `[value%="${cleanValue}:0.9"]`;
+        return `[value%="${cleanValue}:${this._options.highSimilarityThreshold}"]`;
       default:
         return `[value="${cleanValue}"]`;
     }
@@ -299,13 +322,13 @@ export default class PqitaListener extends ParseTreeListener {
     }
 
     if (relType.includes('vicino')) {
-      operator = 'NEAR(m=3,s=snt)';
+      operator = `NEAR(m=${this._options.proximityThreshold},s=snt)`;
     } else if (relType.includes('attaccat')) {
       operator = 'NEAR(m=0,s=snt)';
     } else if (relType.includes('prima')) {
-      operator = 'BEFORE(m=3,s=snt)';
+      operator = `BEFORE(m=${this._options.proximityThreshold},s=snt)`;
     } else if (relType.includes('dopo')) {
-      operator = 'AFTER(m=3,s=snt)';
+      operator = `AFTER(m=${this._options.proximityThreshold},s=snt)`;
     }
 
     if (operator) {

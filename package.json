@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
-    "xi18n": "ng extract-i18n --output-path src/18n && xliffmerge --profile xliffmerge.json it"
+    "xi18n": "ng extract-i18n --output-path src/i18n && xliffmerge --profile xliffmerge.json it"
   },
   "private": true,
   "dependencies": {

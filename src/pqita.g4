@@ -1,6 +1,6 @@
 grammar pqita;
 
-// Parser Rules
+// PARSER RULES
 expression:
 	verb? itemOrSet posTag? styleTag? locationOrRelation?;
 
@@ -22,7 +22,7 @@ operator:
 	| 'corrispondente a'
 	| similarity;
 
-similarity: degree 'simile a';
+similarity: degree? 'simile a';
 
 degree: 'molto' | 'poco';
 
@@ -45,7 +45,7 @@ recursiveExpression:
 
 negation: 'non';
 
-// Lexer Rules
+// LEXER RULES
 ITEM:
 	'parola'
 	| 'locuzione'
@@ -61,7 +61,22 @@ SET_TYPE: ('le' | 'i' | 'gli') WS (
 		| 'latinismi'
 	);
 
-POS_TYPE: 'verbo' | 'aggettivo' | 'sostantivo';
+// UDP tags: ADJ ADP ADV AUX CCONJ DET NOUN NUM PRON PROPN SCONJ SYM VERB X
+POS_TYPE:
+	'aggettivo'
+	| 'apposizione'
+	| 'avverbio'
+	| 'ausiliare'
+	| 'congiunzione coordinante'
+  | 'determinante'
+	| 'sostantivo'
+  | 'numero'
+  | 'pronome'
+  | 'nome proprio'
+  | 'congiunzione subordinante'
+  | 'simbolo'
+  | 'verbo'
+  | 'altro';
 
 STYLE_TYPE: 'in' WS ( 'grassetto' | 'corsivo' | 'sottolineato');
 
