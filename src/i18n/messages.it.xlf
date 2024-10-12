@@ -425,7 +425,7 @@
       </trans-unit>
       <trans-unit id="7010678577492369839" datatype="html">
         <source>Document's sort key.</source>
-        <target state="translated">Chiave di ordinamento del documento</target>
+        <target state="translated">Chiave di ordinamento del documento.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">95</context>
@@ -1233,7 +1233,7 @@
       </trans-unit>
       <trans-unit id="1297898493568516996" datatype="html">
         <source>Filters the first pair so that it must not be after the second pair, at the specified distance from it.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che non sia dopo la seconda, alla distanza specificata.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">421</context>
@@ -1249,7 +1249,7 @@
       </trans-unit>
       <trans-unit id="89989402839143048" datatype="html">
         <source>Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che sia dentro il testo definito dalla seconda, eventualmente alla distanza specificata dall'inizio o fine del contenitore.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">445</context>
@@ -1313,7 +1313,7 @@
       </trans-unit>
       <trans-unit id="8373612448662259948" datatype="html">
         <source>Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che non sia dentro il testo definito dalla seconda, eventualmente alla distanza specificata dall'inizio o fine del contenitore.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">481</context>
@@ -1329,7 +1329,7 @@
       </trans-unit>
       <trans-unit id="2528454948766196994" datatype="html">
         <source>Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che la sua estensione si sovrapponga a quella definita dalla seconda, eventualmente per l'ammontare di posizioni specificate.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">517</context>
@@ -1345,7 +1345,7 @@
       </trans-unit>
       <trans-unit id="274691664307407516" datatype="html">
         <source>Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che la sua estensione non si sovrapponga a quella definita dalla seconda, eventualmente per l'ammontare specificato di posizioni.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">541</context>
@@ -1361,7 +1361,7 @@
       </trans-unit>
       <trans-unit id="878668021187514328" datatype="html">
         <source>Filters the first pair so that its span must left-align with the one defined by the second pair: A can start with or after B, but not before B.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che la sua estensione sia allineata a sinistra con quella definita dalla seconda: A può iniziare con o dopo B, ma non prima.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">565</context>
@@ -1377,7 +1377,7 @@
       </trans-unit>
       <trans-unit id="8499729124433191090" datatype="html">
         <source>Filters the first pair so that its span must not left-align with the one defined by the second pair: A can start before B, but not with/after B.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che la sua estensione non sia allineata a sinistra con quella definita dalla seconda: A può iniziare prima di B, ma non con o dopo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">589</context>
@@ -1393,7 +1393,7 @@
       </trans-unit>
       <trans-unit id="7886461190646342997" datatype="html">
         <source>Filters the first pair so that its span must right-align with the one defined by the second pair: A can end with or before B, but not after B.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che la sua estensione sia allineata a destra con quella definita dalla seconda: A può iniziare con o prima di B, ma non dopo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">613</context>
@@ -1409,7 +1409,7 @@
       </trans-unit>
       <trans-unit id="4324682071779661408" datatype="html">
         <source>Filters the first pair so that its span must not right-align with the one defined by the second pair: A can end after B, but not with/before B.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Filtra la prima coppia in modo che la sua estensione non sia allineata a destra con quella definita dalla seconda: A può iniziare dopo B, ma non con o prima.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">637</context>
@@ -1489,7 +1489,7 @@
       </trans-unit>
       <trans-unit id="4418684598942329483" datatype="html">
         <source>Location operator not allowed in document scope</source>
-        <target state="needs-translation"/>
+        <target state="translated">Operatore di collocazione non ammesso per documenti</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">813</context>
@@ -1497,7 +1497,7 @@
       </trans-unit>
       <trans-unit id="2993022444469024258" datatype="html">
         <source>Location operator must connect two pairs</source>
-        <target state="needs-translation"/>
+        <target state="translated">L'operatore di collocazione deve connettere due coppie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">822</context>
@@ -1513,7 +1513,7 @@
       </trans-unit>
       <trans-unit id="8264391366668313967" datatype="html">
         <source>Invalid value in n/m argument(s).</source>
-        <target state="translated">Valore non valido negli</target>
+        <target state="translated">Valore non valido negli argomenti n/m.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">1002</context>
@@ -1521,7 +1521,7 @@
       </trans-unit>
       <trans-unit id="5915575195769274503" datatype="html">
         <source>Argument s cannot be used with NOT.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Gli argomenti non possono essere usati con NOT.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">1008</context>
@@ -1533,7 +1533,7 @@
       </trans-unit>
       <trans-unit id="9061202522239420785" datatype="html">
         <source>Invalid value in ns/ms argument(s).</source>
-        <target state="needs-translation"/>
+        <target state="translated">Valore non valido negli argomenti ns/ms.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">1028</context>
@@ -1541,7 +1541,7 @@
       </trans-unit>
       <trans-unit id="7085758603307274176" datatype="html">
         <source>Invalid value in ne/me argument(s).</source>
-        <target state="needs-translation"/>
+        <target state="translated">Valore non valido negli argomenti ne/me.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">1035</context>
@@ -1649,7 +1649,7 @@
       </trans-unit>
       <trans-unit id="3364545187261230111" datatype="html">
         <source>Read in context</source>
-        <target state="needs-translation"/>
+        <target state="translated">Leggi in contesto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1657,7 +1657,7 @@
       </trans-unit>
       <trans-unit id="9065131043794167815" datatype="html">
         <source>Read document</source>
-        <target state="needs-translation"/>
+        <target state="translated">Leggi in documento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1673,7 +1673,7 @@
       </trans-unit>
       <trans-unit id="7985872200977399463" datatype="html">
         <source>Search this form</source>
-        <target state="needs-translation"/>
+        <target state="translated">Cerca questa forma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-browser/paged-word-tree-browser.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1681,7 +1681,7 @@
       </trans-unit>
       <trans-unit id="6624901070284420104" datatype="html">
         <source>See this form distribution</source>
-        <target state="needs-translation"/>
+        <target state="translated">Visualizza la distribuzione di questa forma</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-browser/paged-word-tree-browser.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1705,7 +1705,7 @@
       </trans-unit>
       <trans-unit id="3970926993273657249" datatype="html">
         <source>value pattern</source>
-        <target state="needs-translation"/>
+        <target state="translated">modello del valore</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1721,7 +1721,7 @@
       </trans-unit>
       <trans-unit id="4200029649359977709" datatype="html">
         <source>min.len.</source>
-        <target state="needs-translation"/>
+        <target state="translated">lunghezza min.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1729,7 +1729,7 @@
       </trans-unit>
       <trans-unit id="4249863792368529011" datatype="html">
         <source>max.len.</source>
-        <target state="needs-translation"/>
+        <target state="translated">lunghezza max</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1737,7 +1737,7 @@
       </trans-unit>
       <trans-unit id="2064206656217416827" datatype="html">
         <source>min.nr.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nr.min.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1745,7 +1745,7 @@
       </trans-unit>
       <trans-unit id="4128506891616077459" datatype="html">
         <source>max.nr.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nr.max.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1753,7 +1753,7 @@
       </trans-unit>
       <trans-unit id="1513042301013155917" datatype="html">
         <source>sort order</source>
-        <target state="needs-translation"/>
+        <target state="translated">ordinamento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1777,7 +1777,7 @@
       </trans-unit>
       <trans-unit id="422603044340396704" datatype="html">
         <source>by rev.value</source>
-        <target state="needs-translation"/>
+        <target state="translated">per valore inverso</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1793,7 +1793,7 @@
       </trans-unit>
       <trans-unit id="8583825692753174768" datatype="html">
         <source>descending</source>
-        <target state="needs-translation"/>
+        <target state="translated">discendente</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1801,7 +1801,7 @@
       </trans-unit>
       <trans-unit id="3890771237132928825" datatype="html">
         <source>Set selected attributes</source>
-        <target state="needs-translation"/>
+        <target state="translated">Imposta attributi selezionati</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts-list/token-counts-list.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1809,7 +1809,7 @@
       </trans-unit>
       <trans-unit id="5419209686110665604" datatype="html">
         <source>attributes</source>
-        <target state="needs-translation"/>
+        <target state="translated">attributi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts-list/token-counts-list.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1817,7 +1817,7 @@
       </trans-unit>
       <trans-unit id="8172004788141359828" datatype="html">
         <source>nr.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nr.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts/token-counts.component.html</context>
           <context context-type="linenumber">1</context>
@@ -1825,7 +1825,7 @@
       </trans-unit>
       <trans-unit id="805209415163218951" datatype="html">
         <source>Copy data</source>
-        <target state="needs-translation"/>
+        <target state="translated">Copia dati</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts/token-counts.component.html</context>
           <context context-type="linenumber">1</context>
@@ -1833,7 +1833,7 @@
       </trans-unit>
       <trans-unit id="6460821631400322716" datatype="html">
         <source>Download data</source>
-        <target state="needs-translation"/>
+        <target state="translated">Scarica dati</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts/token-counts.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -1841,7 +1841,7 @@
       </trans-unit>
       <trans-unit id="969162659595657718" datatype="html">
         <source>Copied to clipboard</source>
-        <target state="needs-translation"/>
+        <target state="translated">Copia effettuata negli appunti</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts/token-counts.component.ts</context>
           <context context-type="linenumber">123</context>
@@ -1849,7 +1849,7 @@
       </trans-unit>
       <trans-unit id="2812446888132459854" datatype="html">
         <source>INDEX</source>
-        <target state="needs-translation"/>
+        <target state="translated">INDICE</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/services/paged-word-tree-store.service.ts</context>
           <context context-type="linenumber">49</context>
@@ -1897,7 +1897,7 @@
       </trans-unit>
       <trans-unit id="8542141668031982040" datatype="html">
         <source>act</source>
-        <target state="needs-translation"/>
+        <target state="translated">atto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">21</context>
@@ -1905,7 +1905,7 @@
       </trans-unit>
       <trans-unit id="1862101394161949565" datatype="html">
         <source>Act's category (e.g. "ricorso al tar")</source>
-        <target state="needs-translation"/>
+        <target state="translated">Categoria atto (es. "ricorso al tar")</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">24</context>
@@ -1913,7 +1913,7 @@
       </trans-unit>
       <trans-unit id="3088778329935688932" datatype="html">
         <source>Act's date in the form YYYYMMDD.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Data dell'atto nella forma AAAAMMGG.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">31</context>
@@ -1921,7 +1921,7 @@
       </trans-unit>
       <trans-unit id="5506193490001370729" datatype="html">
         <source>judge</source>
-        <target state="needs-translation"/>
+        <target state="translated">giudicante</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">35</context>
@@ -1929,7 +1929,7 @@
       </trans-unit>
       <trans-unit id="5897557178094968758" datatype="html">
         <source>Judging body (e.g. "corte di appello").</source>
-        <target state="needs-translation"/>
+        <target state="translated">Istituzione giudicante (es. "corte di appello")</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">38</context>
@@ -1937,7 +1937,7 @@
       </trans-unit>
       <trans-unit id="9117297518187814718" datatype="html">
         <source>degree</source>
-        <target state="needs-translation"/>
+        <target state="translated">grado</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">42</context>
@@ -1949,7 +1949,7 @@
       </trans-unit>
       <trans-unit id="2455815086824493090" datatype="html">
         <source>Judgement degree: "1", "2", "3".</source>
-        <target state="needs-translation"/>
+        <target state="translated">Grado di giudizio: "1", "2", "3".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">45</context>
@@ -1957,7 +1957,7 @@
       </trans-unit>
       <trans-unit id="7626807079200393760" datatype="html">
         <source>doc. group</source>
-        <target state="needs-translation"/>
+        <target state="translated">gruppo doc.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">49</context>
@@ -1965,7 +1965,7 @@
       </trans-unit>
       <trans-unit id="9160368422775664345" datatype="html">
         <source>Arbitrary ID to group acts together.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Identificativo arbitrario per raggruppare atti insieme.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">52</context>
@@ -1973,7 +1973,7 @@
       </trans-unit>
       <trans-unit id="2688941909989631221" datatype="html">
         <source>group nr.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nr. gruppo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">56</context>
@@ -1981,7 +1981,7 @@
       </trans-unit>
       <trans-unit id="4614191250602932588" datatype="html">
         <source>The ordinal number of a grouped act.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Il numero ordinale di un atto raggruppato.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">59</context>
@@ -1997,7 +1997,7 @@
       </trans-unit>
       <trans-unit id="401385712076724323" datatype="html">
         <source>Document numeric ID.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Identificativo numerico del documento.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">66</context>
@@ -2053,7 +2053,7 @@
       </trans-unit>
       <trans-unit id="187024271495894868" datatype="html">
         <source>Collection place: "fi", "ge", "le", "vt".</source>
-        <target state="new"/>
+        <target state="translated">Sede di raccolta: "fi", "ge", "le", "vt".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">95</context>
@@ -2061,7 +2061,7 @@
       </trans-unit>
       <trans-unit id="8193743232544268572" datatype="html">
         <source>sex</source>
-        <target state="needs-translation"/>
+        <target state="translated">sesso</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">99</context>
@@ -2069,7 +2069,7 @@
       </trans-unit>
       <trans-unit id="1220675902344239755" datatype="html">
         <source>Author's sex: "M", "F", "X".</source>
-        <target state="needs-translation"/>
+        <target state="translated">Sesso dell'autore: "M", "F", "X".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">102</context>
@@ -2077,7 +2077,7 @@
       </trans-unit>
       <trans-unit id="3262618292154623320" datatype="html">
         <source>abbreviation</source>
-        <target state="needs-translation"/>
+        <target state="translated">abbreviazione</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">110</context>
@@ -2085,7 +2085,7 @@
       </trans-unit>
       <trans-unit id="1745454876109413204" datatype="html">
         <source>Abbreviation: "1" if an abbreviation.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Abbreviazione: "1" se abbreviazione.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">113</context>
@@ -2109,7 +2109,7 @@
       </trans-unit>
       <trans-unit id="2810844969104710423" datatype="html">
         <source>bold</source>
-        <target state="needs-translation"/>
+        <target state="translated">grassetto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">124</context>
@@ -2117,7 +2117,7 @@
       </trans-unit>
       <trans-unit id="1619420461380297398" datatype="html">
         <source>Bold: "1" if bold.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Grassetto: "1" se grassetto.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">127</context>
@@ -2125,7 +2125,7 @@
       </trans-unit>
       <trans-unit id="1710170991162777812" datatype="html">
         <source>clitic</source>
-        <target state="needs-translation"/>
+        <target state="translated">clitica</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">131</context>
@@ -2133,7 +2133,7 @@
       </trans-unit>
       <trans-unit id="932307642854841272" datatype="html">
         <source>Clitic: "yes" if clitic.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Clitica: "yes" se clitica.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">134</context>
@@ -2141,7 +2141,7 @@
       </trans-unit>
       <trans-unit id="7461155148792506158" datatype="html">
         <source>definite</source>
-        <target state="needs-translation"/>
+        <target state="translated">definito</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">138</context>
@@ -2149,7 +2149,7 @@
       </trans-unit>
       <trans-unit id="23916025433287015" datatype="html">
         <source>Definite: "def"inite or "ind"efinite.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Definito: "def"inito o "ind"efinito.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">141</context>
@@ -2157,7 +2157,7 @@
       </trans-unit>
       <trans-unit id="3649113421864070375" datatype="html">
         <source>Degree: "abs"olute or "cmp"=comparative.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Grado: "abs"=assoluto o "cmp"=comparativo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">148</context>
@@ -2165,7 +2165,7 @@
       </trans-unit>
       <trans-unit id="3062702827413827031" datatype="html">
         <source>deprel</source>
-        <target state="needs-translation"/>
+        <target state="translated">relaz. dip.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">152</context>
@@ -2173,7 +2173,7 @@
       </trans-unit>
       <trans-unit id="9095949567434215927" datatype="html">
         <source>Universal dependency relation.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Relazione di dipendenza.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">155</context>
@@ -2189,7 +2189,7 @@
       </trans-unit>
       <trans-unit id="7787651082609486257" datatype="html">
         <source>foreign</source>
-        <target state="needs-translation"/>
+        <target state="translated">forestierismo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">165</context>
@@ -2197,7 +2197,7 @@
       </trans-unit>
       <trans-unit id="7193065326124683358" datatype="html">
         <source>Foreign word: ISO-639/3 language code (e.g. "eng").</source>
-        <target state="needs-translation"/>
+        <target state="translated">Forestiersismo: codice lingua ISO-639/3 (es. "eng").</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">168</context>
@@ -2205,7 +2205,7 @@
       </trans-unit>
       <trans-unit id="802467329535819869" datatype="html">
         <source>gender</source>
-        <target state="needs-translation"/>
+        <target state="translated">genere</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">172</context>
@@ -2213,7 +2213,7 @@
       </trans-unit>
       <trans-unit id="471086520238218178" datatype="html">
         <source>Gender: "masc"uline or "fem"inine.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Genere: "masc"hile o "fem"minile.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">175</context>
@@ -2221,7 +2221,7 @@
       </trans-unit>
       <trans-unit id="8497278965577453274" datatype="html">
         <source>italic</source>
-        <target state="needs-translation"/>
+        <target state="translated">corsivo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">179</context>
@@ -2229,7 +2229,7 @@
       </trans-unit>
       <trans-unit id="35243301383062438" datatype="html">
         <source>Italic: "1" if italic.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Corsivo: "1" se corsivo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">182</context>
@@ -2237,7 +2237,7 @@
       </trans-unit>
       <trans-unit id="1584143991962793208" datatype="html">
         <source>Word's length in letters.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Lunghezza della parola in lettere.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">189</context>
@@ -2245,7 +2245,7 @@
       </trans-unit>
       <trans-unit id="3140385308409984321" datatype="html">
         <source>left punctuation</source>
-        <target state="needs-translation"/>
+        <target state="translated">interpunzione sx</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">193</context>
@@ -2253,7 +2253,7 @@
       </trans-unit>
       <trans-unit id="139593548598838077" datatype="html">
         <source>Left punctuation(s).</source>
-        <target state="needs-translation"/>
+        <target state="translated">Interpunzioni a sinistra.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">196</context>
@@ -2261,7 +2261,7 @@
       </trans-unit>
       <trans-unit id="6345887728209096741" datatype="html">
         <source>right punctuation</source>
-        <target state="needs-translation"/>
+        <target state="translated">interpunzione dx</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">200</context>
@@ -2269,7 +2269,7 @@
       </trans-unit>
       <trans-unit id="7633454106113563729" datatype="html">
         <source>Right punctuation(s).</source>
-        <target state="needs-translation"/>
+        <target state="translated">Interpunzioni a destra.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">203</context>
@@ -2277,7 +2277,7 @@
       </trans-unit>
       <trans-unit id="1443518662580645057" datatype="html">
         <source>The paradigmatic form of a word.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Forma paradigmatica della parola.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">210</context>
@@ -2285,7 +2285,7 @@
       </trans-unit>
       <trans-unit id="905471079547166891" datatype="html">
         <source>mood</source>
-        <target state="needs-translation"/>
+        <target state="translated">modo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">214</context>
@@ -2293,7 +2293,7 @@
       </trans-unit>
       <trans-unit id="5375281418631141867" datatype="html">
         <source>Mood: "cnd"=conditional, "imp"erative, "ind"icative, "sub"junctive.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Modo: "cnd"=condizionale, "imp"erativo, "ind"icativo, "sub"=congiuntivo.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">217</context>
@@ -2309,7 +2309,7 @@
       </trans-unit>
       <trans-unit id="537656106274349896" datatype="html">
         <source>Digits: "1" if digit(s).</source>
-        <target state="needs-translation"/>
+        <target state="translated">Cifre: "1" se cifre.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">224</context>
@@ -2325,7 +2325,7 @@
       </trans-unit>
       <trans-unit id="6116162427985797203" datatype="html">
         <source>Number: "sing"ular or "plur"al.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Numero: "sing"olare or "plur"ale.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">231</context>
@@ -2333,7 +2333,7 @@
       </trans-unit>
       <trans-unit id="8890419453888910099" datatype="html">
         <source>number type</source>
-        <target state="needs-translation"/>
+        <target state="translated">tipo numerale</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">235</context>
@@ -2341,7 +2341,7 @@
       </trans-unit>
       <trans-unit id="875116273184331389" datatype="html">
         <source>Number type: "ord"inal, "card"inal.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tipo di numerale: "ord"inale, "card"inale.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">238</context>
@@ -2349,7 +2349,7 @@
       </trans-unit>
       <trans-unit id="5636879376186953408" datatype="html">
         <source>org.name, f.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nome giur. f.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">242</context>
@@ -2357,7 +2357,7 @@
       </trans-unit>
       <trans-unit id="8329552830767071239" datatype="html">
         <source>Female juridic person name.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Nome femminile di persona giuridica.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">245</context>
@@ -2365,7 +2365,7 @@
       </trans-unit>
       <trans-unit id="1241392178445167680" datatype="html">
         <source>org.name, m.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nome giur. m.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">249</context>
@@ -2373,7 +2373,7 @@
       </trans-unit>
       <trans-unit id="3904921540177529871" datatype="html">
         <source>Male juridic person name.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Nome maschile di persona giuridica.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">252</context>
@@ -2389,7 +2389,7 @@
       </trans-unit>
       <trans-unit id="5498679979811177204" datatype="html">
         <source>Person: "1", "2", "3".</source>
-        <target state="needs-translation"/>
+        <target state="translated">Persona: "1", "2", "3".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">259</context>
@@ -2397,7 +2397,7 @@
       </trans-unit>
       <trans-unit id="9197286910143930448" datatype="html">
         <source>person name, f.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nome pers. f.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">263</context>
@@ -2405,7 +2405,7 @@
       </trans-unit>
       <trans-unit id="4574003738927641529" datatype="html">
         <source>Female person name.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Nome femminile di persona.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">266</context>
@@ -2413,7 +2413,7 @@
       </trans-unit>
       <trans-unit id="4042905273054196011" datatype="html">
         <source>person name, m.</source>
-        <target state="needs-translation"/>
+        <target state="translated">nome pers. m.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">270</context>
@@ -2421,7 +2421,7 @@
       </trans-unit>
       <trans-unit id="7868150702657804185" datatype="html">
         <source>Male person name.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Nome maschile di persona.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">273</context>
@@ -2437,7 +2437,7 @@
       </trans-unit>
       <trans-unit id="7381162070303144749" datatype="html">
         <source>Person's surname.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Cognome di persona.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">280</context>
@@ -2445,7 +2445,7 @@
       </trans-unit>
       <trans-unit id="2545864634845062068" datatype="html">
         <source>poss</source>
-        <target state="needs-translation"/>
+        <target state="translated">possessivo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">284</context>
@@ -2453,7 +2453,7 @@
       </trans-unit>
       <trans-unit id="7514283476197699296" datatype="html">
         <source>Possessive: "yes".</source>
-        <target state="needs-translation"/>
+        <target state="translated">Posessivo: "yes".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">287</context>
@@ -2461,7 +2461,7 @@
       </trans-unit>
       <trans-unit id="2720046703182512817" datatype="html">
         <source>prontype</source>
-        <target state="needs-translation"/>
+        <target state="translated">tipo pronome</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">291</context>
@@ -2469,7 +2469,7 @@
       </trans-unit>
       <trans-unit id="7674492771458030565" datatype="html">
         <source>Pronoun type: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tipo di pronome: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">294</context>
@@ -2485,7 +2485,7 @@
       </trans-unit>
       <trans-unit id="1036621343787792486" datatype="html">
         <source>Tense: "fut"ure, "imp"erfect, "past", "pres"ent.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Tempo: "fut"uro, "imp"erfetto, "past"=passato, "pres"ente.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">301</context>
@@ -2509,7 +2509,7 @@
       </trans-unit>
       <trans-unit id="4320618315562567804" datatype="html">
         <source>verbform</source>
-        <target state="needs-translation"/>
+        <target state="translated">forma vrb.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">312</context>
@@ -2517,7 +2517,7 @@
       </trans-unit>
       <trans-unit id="3846775483797086670" datatype="html">
         <source>Verbal form: "fin"ite, "ger"und, "inf"inite, "part"iciple.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Forma verbale: "fin"ita, "ger"und., "inf"inito, "part"icipio.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">315</context>
@@ -2533,7 +2533,7 @@
       </trans-unit>
       <trans-unit id="7888545719702174299" datatype="html">
         <source>Paragraph: characters count.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Paragrafo: numero di caratteri.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">326</context>
@@ -2541,7 +2541,7 @@
       </trans-unit>
       <trans-unit id="7898635987165663685" datatype="html">
         <source>sentence</source>
-        <target state="needs-translation"/>
+        <target state="translated">frase</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">330</context>
@@ -2549,7 +2549,7 @@
       </trans-unit>
       <trans-unit id="455879840210417809" datatype="html">
         <source>Sentence: characters count.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Frase: numero di caratteri.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">333</context>
@@ -2557,7 +2557,7 @@
       </trans-unit>
       <trans-unit id="2290946192198035130" datatype="html">
         <source>Latin phrase</source>
-        <target state="needs-translation"/>
+        <target state="translated">locuzione latina</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">337</context>
@@ -2565,7 +2565,7 @@
       </trans-unit>
       <trans-unit id="5378355716851940687" datatype="html">
         <source>Latin phrase with its value.</source>
-        <target state="needs-translation"/>
+        <target state="translated">Locuzione latina col suo valore.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">340</context>
@@ -2585,7 +2585,7 @@
       </trans-unit>
       <trans-unit id="1393818609368048905" datatype="html">
         <source>text required</source>
-        <target state="needs-translation"/>
+        <target state="translated">testo obbligatorio</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">14</context>
@@ -2593,7 +2593,7 @@
       </trans-unit>
       <trans-unit id="1218111824508929077" datatype="html">
         <source>text too long</source>
-        <target state="needs-translation"/>
+        <target state="translated">testo troppo lungo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">16</context>
@@ -2625,7 +2625,7 @@
       </trans-unit>
       <trans-unit id="3102388290978275812" datatype="html">
         <source>Pick this entry</source>
-        <target state="needs-translation"/>
+        <target state="translated">Seleziona questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">121,122</context>
@@ -2633,7 +2633,7 @@
       </trans-unit>
       <trans-unit id="1111411697912114791" datatype="html">
         <source>Remove this entry</source>
-        <target state="needs-translation"/>
+        <target state="translated">Rimuovi questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">132,133</context>
@@ -2689,7 +2689,7 @@
       </trans-unit>
       <trans-unit id="6221116945238325541" datatype="html">
         <source>Page <x id="PH" equiv-text="page + 1"/> of <x id="PH_1" equiv-text="amountPages"/></source>
-        <target state="needs-translation"/>
+        <target state="translated">Pagina <x id="PH" equiv-text="page + 1"/> di <x id="PH_1" equiv-text="amountPages"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/i18n-paginator-intl.service.ts</context>
           <context context-type="linenumber">22</context>

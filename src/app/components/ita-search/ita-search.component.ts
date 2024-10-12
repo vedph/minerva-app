@@ -29,7 +29,7 @@ import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
 import { PqitaComponent } from '../pqita/pqita.component';
 
 @Component({
-  selector: 'pythia-ita-search',
+  selector: 'minerva-ita-search',
   standalone: true,
   imports: [
     CommonModule,
