@@ -2,10 +2,21 @@
   <!-- query -->
   <div id="query">
     <mat-tab-group [(selectedIndex)]="queryTabIndex">
+      <!-- query - simple -->
+      <mat-tab i18n-label label="simple">
+        <minerva-pqita/>
+      </mat-tab>
+      <!-- query - builder -->
+      <mat-tab i18n-label label="builder">
+        <pythia-query-builder
+          (queryChange)="onQueryChange($event)"
+          (queryPeek)="onQueryPeek($event)"
+        ></pythia-query-builder>
+      </mat-tab>
       <!-- query - advanced -->
       <mat-tab i18n-label label="advanced">
         <form [formGroup]="form" (submit)="search()">
-          <mat-form-field style="width: 100%">
+          <mat-form-field class="max-width">
             <mat-label i18n>query</mat-label>
             <textarea
               #queryCtl
@@ -61,13 +72,6 @@
             }
           </div>
         </form>
-      </mat-tab>
-      <!-- query - builder -->
-      <mat-tab i18n-label label="builder">
-        <pythia-query-builder
-          (queryChange)="onQueryChange($event)"
-          (queryPeek)="onQueryPeek($event)"
-        ></pythia-query-builder>
       </mat-tab>
     </mat-tab-group>
     <!-- query progress -->
