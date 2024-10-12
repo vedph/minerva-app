@@ -1,11 +1,10 @@
 import { Routes } from '@angular/router';
 
-import { SearchComponent } from '@myrmidon/pythia-search';
-
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ManualComponent } from './manual/manual.component';
 import { WordsComponent } from './words/words.component';
+import { SearchComponent } from './search/search.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
