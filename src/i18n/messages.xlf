@@ -1859,8 +1859,8 @@
           <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="540065739318164711" datatype="html">
-        <source>Collection place: &quot;fi&quot; or &quot;ge&quot;.</source>
+      <trans-unit id="187024271495894868" datatype="html">
+        <source>Collection place: &quot;fi&quot;, &quot;ge&quot;, &quot;le&quot;, &quot;vt&quot;.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">95</context>

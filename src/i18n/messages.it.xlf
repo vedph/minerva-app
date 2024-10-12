@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="it-IT">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="it">
     <body>
       <trans-unit id="1446670643492611810" datatype="html">
         <source>Hide password</source>
@@ -1505,7 +1505,7 @@
       </trans-unit>
       <trans-unit id="7825883107276468881" datatype="html">
         <source>Unbalanced parentheses</source>
-        <target state="needs-translation"/>
+        <target state="translated">Parentesi non bilanciate</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">830</context>
@@ -1513,7 +1513,7 @@
       </trans-unit>
       <trans-unit id="8264391366668313967" datatype="html">
         <source>Invalid value in n/m argument(s).</source>
-        <target state="needs-translation"/>
+        <target state="translated">Valore non valido negli</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">1002</context>
@@ -2051,9 +2051,9 @@
           <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="540065739318164711" datatype="html">
-        <source>Collection place: "fi" or "ge".</source>
-        <target state="translated">Sede di raccolta: "fi", "ge", "le", "vt".</target>
+      <trans-unit id="187024271495894868" datatype="html">
+        <source>Collection place: "fi", "ge", "le", "vt".</source>
+        <target state="new"/>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">95</context>
