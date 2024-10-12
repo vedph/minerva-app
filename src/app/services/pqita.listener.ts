@@ -60,30 +60,70 @@ export default class PqitaListener extends ParseTreeListener {
   }
 
   private handleOperatorValue(
+    item: string,
     operator: string | undefined,
     value: string
   ): string {
     const cleanValue = value.replace(/^"|"$/g, '');
+
+    // locuzione: $fp_lat AND _value=VALUE
+    // lemma: lemma=VALUE
+    // forestierismo: language<>"ita" AND value=VALUE
+    // anglicismo: language="eng" AND value=VALUE
+    // latinismo: language="lat" AND value=VALUE
+    const sb: string[] = [];
+    switch (item) {
+      case 'locuzione':
+        sb.push('[$fp_lat] AND [_value');
+        break;
+      case 'lemma':
+        sb.push('[lemma');
+        break;
+      case 'forestierismo':
+        sb.push('[language<>"ita"] AND [value');
+        break;
+      case 'anglicismo':
+        sb.push('[language="eng"] AND [value');
+        break;
+      case 'latinismo':
+        sb.push('[language="lat"] AND [value');
+        break;
+      default:
+        sb.push('[value');
+          break;
+    }
+
     switch (operator?.trim()) {
       case 'uguale a':
-        return `[value="${cleanValue}"]`;
+        sb.push(`="${cleanValue}"]`);
+        break;
       case 'iniziante per':
-        return `[value^="${cleanValue}"]`;
+        sb.push(`^="${cleanValue}"]`);
+        break;
       case 'terminante per':
-        return `[value$="${cleanValue}"]`;
+        sb.push(`$="${cleanValue}"]`);
+        break;
       case 'contenente':
-        return `[value*="${cleanValue}"]`;
+        sb.push(`*="${cleanValue}"]`);
+        break;
       case 'corrispondente a':
-        return `[value?="${cleanValue}"]`;
+        sb.push(`?="${cleanValue}"]`);
+        break;
       case 'poco simile a':
-        return `[value%="${cleanValue}:${this._options.lowSimilarityThreshold}"]`;
+        sb.push(`%="${cleanValue}:${this._options.lowSimilarityThreshold}"]`);
+        break;
       case 'simile a':
-        return `[value%="${cleanValue}:${this._options.similarityThreshold}"]`;
+        sb.push(`%="${cleanValue}:${this._options.similarityThreshold}"]`);
+        break;
       case 'molto simile a':
-        return `[value%="${cleanValue}:${this._options.highSimilarityThreshold}"]`;
+        sb.push(`%="${cleanValue}:${this._options.highSimilarityThreshold}"]`);
+        break;
       default:
-        return `[value="${cleanValue}"]`;
+        sb.push(`="${cleanValue}"]`);
+        break;
     }
+
+    return sb.join('');
   }
 
   public getResult(): string {
@@ -131,11 +171,10 @@ export default class PqitaListener extends ParseTreeListener {
    */
   exitItem?(ctx: ItemContext): void {
     const symbol = ctx.ITEM().symbol.text;
-    // TODO
     const continuation = ctx.itemContinuation();
     const operator = continuation.operator()?.getText();
     const value = continuation.VALUE().getText();
-    const pair = this.handleOperatorValue(operator, value);
+    const pair = this.handleOperatorValue(symbol ,operator, value);
     this.appendPair(pair);
   }
   /**
