@@ -421,7 +421,9 @@ describe('PqitaService', () => {
   });
 
   it('should convert tutte le parole come numero to [pos="NUM"]', () => {
-    expect(service.convertQuery('tutte le parole come numero')).toBe('[pos="NUM"]');
+    expect(service.convertQuery('tutte le parole come numero')).toBe(
+      '[pos="NUM"]'
+    );
   });
 
   it('should convert tutte le parole come pronome to [pos="PRON"]', () => {
@@ -443,7 +445,9 @@ describe('PqitaService', () => {
   });
 
   it('should convert tutte le parole come simbolo to [pos="SYM"]', () => {
-    expect(service.convertQuery('tutte le parole come simbolo')).toBe('[pos="SYM"]');
+    expect(service.convertQuery('tutte le parole come simbolo')).toBe(
+      '[pos="SYM"]'
+    );
   });
 
   it('should convert tutte le parole come verbo to [pos="VERB"]', () => {
@@ -453,6 +457,27 @@ describe('PqitaService', () => {
   });
 
   it('should convert tutte le parole come altro to [pos="X"]', () => {
-    expect(service.convertQuery('tutte le parole come altro')).toBe('[pos="X"]');
+    expect(service.convertQuery('tutte le parole come altro')).toBe(
+      '[pos="X"]'
+    );
+  });
+
+  // set: forestierismi
+  it('should convert tutti i forestierismi to [language<>"ita"]', () => {
+    expect(service.convertQuery('tutti i forestierismi')).toBe(
+      '[language<>"ita"]'
+    );
+  });
+
+  // set: anglicismi
+  it('should convert tutti gli anglicismi to [language="eng"]', () => {
+    expect(service.convertQuery('tutti gli anglicismi')).toBe(
+      '[language="eng"]'
+    );
+  });
+
+  // set: latinismi
+  it('should convert tutti i latinismi to [language="lat"]', () => {
+    expect(service.convertQuery('tutti i latinismi')).toBe('[language="lat"]');
   });
 });
