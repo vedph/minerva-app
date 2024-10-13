@@ -66,7 +66,7 @@ export default class PqitaListener extends ParseTreeListener {
   ): string {
     const cleanValue = value.replace(/^"|"$/g, '');
 
-    // locuzione: $fp_lat AND _value=VALUE
+    // locuzione: $fp-lat AND _value=VALUE
     // lemma: lemma=VALUE
     // forestierismo: language<>"ita" AND value=VALUE
     // anglicismo: language="eng" AND value=VALUE
@@ -74,7 +74,7 @@ export default class PqitaListener extends ParseTreeListener {
     const sb: string[] = [];
     switch (item) {
       case 'locuzione':
-        sb.push('[$fp_lat] AND [_value');
+        sb.push('[$fp-lat] AND [_value');
         break;
       case 'lemma':
         sb.push('[lemma');

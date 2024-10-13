@@ -34,7 +34,7 @@
       <button
         type="button"
         mat-icon-button
-        class="mat-primary"
+        class="mat-primary shifted-up-15"
         (click)="convert()"
         [disabled]="listening || !text.value?.length"
       >
@@ -43,7 +43,7 @@
       @if (listening) {
       <button
         type="button"
-        class="mat-warn"
+        class="mat-warn shifted-up-15"
         mat-flat-button
         (click)="stopListening()"
       >

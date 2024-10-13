@@ -66,6 +66,10 @@
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="16642106996549783" datatype="html">
         <source>scope</source>
@@ -186,6 +190,10 @@
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts/token-counts.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="8255610003295042658" datatype="html">
         <source>value required</source>
@@ -301,6 +309,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2797527932365132552" datatype="html">
@@ -1570,6 +1582,10 @@
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6811361795221561918" datatype="html">
         <source>builder</source>
@@ -1578,6 +1594,10 @@
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3879814431730090822" datatype="html">
         <source>query</source>
@@ -1585,6 +1605,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
@@ -1600,7 +1624,11 @@
         <target state="translated">ctrl+Enter per avviare</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">1,2</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7158592746571420879" datatype="html">
@@ -1609,6 +1637,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
@@ -1623,6 +1655,10 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">82</context>
         </context-group>
@@ -1635,6 +1671,10 @@
           <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">84</context>
         </context-group>
@@ -1644,7 +1684,11 @@
         <target state="translated">Usa la query selezionata</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">1,2</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3364545187261230111" datatype="html">
@@ -1652,7 +1696,11 @@
         <target state="translated">Leggi in contesto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">1,2</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9065131043794167815" datatype="html">
@@ -1660,7 +1708,11 @@
         <target state="translated">Leggi in documento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">1,2</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5452158299332252307" datatype="html">
@@ -1668,7 +1720,11 @@
         <target state="translated">(nessun risultato)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
-          <context context-type="linenumber">1,2</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7985872200977399463" datatype="html">
@@ -2571,6 +2627,14 @@
           <context context-type="linenumber">340</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6661206209579686552" datatype="html">
+        <source>simple</source>
+        <target state="translated">semplice</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3667842621564887364" datatype="html">
         <source>text</source>
         <target state="translated">testo</target>
@@ -2637,6 +2701,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
           <context context-type="linenumber">132,133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2212695292809375179" datatype="html">
+        <source> Search </source>
+        <target state="translated">Ricerca</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/search/search.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8642445555713453888" datatype="html">

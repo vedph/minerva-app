@@ -79,4 +79,58 @@ describe('PqitaService', () => {
       '[$fp-lat] AND [_value="pro tempore"]'
     );
   });
+
+  it('should convert trova la locuzione "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
+    expect(service.convertQuery('trova la locuzione "pro tempore"')).toBe(
+      '[$fp-lat] AND [_value="pro tempore"]'
+    );
+  });
+
+  it('should convert trova la locuzione uguale a "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
+    expect(service.convertQuery('trova la locuzione uguale a "pro tempore"')).toBe(
+      '[$fp-lat] AND [_value="pro tempore"]'
+    );
+  });
+
+  it('should convert trova la locuzione iniziante per "pro" to [$fp-lat] AND [_value^="pro"]', () => {
+    expect(service.convertQuery('trova la locuzione iniziante per "pro"')).toBe(
+      '[$fp-lat] AND [_value^="pro"]'
+    );
+  });
+
+  it('should convert trova la locuzione terminante per "tempore" to [$fp-lat] AND [_value$="tempore"]', () => {
+    expect(service.convertQuery('trova la locuzione terminante per "tempore"')).toBe(
+      '[$fp-lat] AND [_value$="tempore"]'
+    );
+  });
+
+  it('should convert trova la locuzione contenente "temp" to [$fp-lat] AND [_value*="temp"]', () => {
+    expect(service.convertQuery('trova la locuzione contenente "temp"')).toBe(
+      '[$fp-lat] AND [_value*="temp"]'
+    );
+  });
+
+  it('should convert trova la locuzione corrispondente a "pro tempore" to [$fp-lat] AND [_value?="pro tempore"]', () => {
+    expect(
+      service.convertQuery('trova la locuzione corrispondente a "pro tempore"')
+    ).toBe('[$fp-lat] AND [_value?="pro tempore"]');
+  });
+
+  it('should convert trova la locuzione simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.8"]', () => {
+    expect(service.convertQuery('trova la locuzione simile a "pro tempore"')).toBe(
+      '[$fp-lat] AND [_value%="pro tempore:0.8"]'
+    );
+  });
+
+  it('should convert trova la locuzione molto simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.9"]', () => {
+    expect(
+      service.convertQuery('trova la locuzione molto simile a "pro tempore"')
+    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.8"]');
+  });
+
+  it('should convert trova la locuzione poco simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.5"]', () => {
+    expect(
+      service.convertQuery('trova la locuzione poco simile a "pro tempore"')
+    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.5"]');
+  });
 });
