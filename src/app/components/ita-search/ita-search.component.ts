@@ -153,6 +153,13 @@ export class ItaSearchComponent {
     this._repository.setFilter({ query });
   }
 
+  public onSearchRequest(query: string): void {
+    this.query.setValue(query);
+    this.query.markAsDirty();
+    this.query.updateValueAndValidity();
+    this.search();
+  }
+
   public onPageChange(event: PageEvent): void {
     this._repository.setPage(event.pageIndex + 1, event.pageSize);
   }

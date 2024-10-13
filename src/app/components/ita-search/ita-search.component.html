@@ -4,7 +4,7 @@
     <mat-tab-group [(selectedIndex)]="queryTabIndex">
       <!-- query - simple -->
       <mat-tab i18n-label label="simple">
-        <minerva-pqita/>
+        <minerva-pqita (searchRequest)="onSearchRequest($event)" />
       </mat-tab>
       <!-- query - builder -->
       <mat-tab i18n-label label="builder">
