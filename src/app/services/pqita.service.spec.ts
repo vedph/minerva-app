@@ -63,7 +63,7 @@ describe('PqitaService', () => {
 
   it('should convert trova la parola molto simile a "cane" to [value%="cane:0.9"]', () => {
     expect(service.convertQuery('trova la parola molto simile a "cane"')).toBe(
-      '[value%="cane:0.8"]'
+      '[value%="cane:0.9"]'
     );
   });
 
@@ -125,7 +125,7 @@ describe('PqitaService', () => {
   it('should convert trova la locuzione molto simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.9"]', () => {
     expect(
       service.convertQuery('trova la locuzione molto simile a "pro tempore"')
-    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.8"]');
+    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.9"]');
   });
 
   it('should convert trova la locuzione poco simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.5"]', () => {

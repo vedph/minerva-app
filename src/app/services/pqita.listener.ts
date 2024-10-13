@@ -109,13 +109,13 @@ export default class PqitaListener extends ParseTreeListener {
       case 'corrispondente a':
         sb.push(`?="${cleanValue}"]`);
         break;
-      case 'poco simile a':
+      case 'pocosimile a':
         sb.push(`%="${cleanValue}:${this._options.lowSimilarityThreshold}"]`);
         break;
       case 'simile a':
         sb.push(`%="${cleanValue}:${this._options.similarityThreshold}"]`);
         break;
-      case 'molto simile a':
+      case 'moltosimile a':
         sb.push(`%="${cleanValue}:${this._options.highSimilarityThreshold}"]`);
         break;
       default:
