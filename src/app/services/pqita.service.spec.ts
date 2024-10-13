@@ -274,9 +274,9 @@ describe('PqitaService', () => {
   });
 
   it('should convert trova l\'anglicismo iniziante per "do" to [language="eng"] AND [value^="do"]', () => {
-    expect(
-      service.convertQuery('trova l\'anglicismo iniziante per "do"')
-    ).toBe('[language="eng"] AND [value^="do"]');
+    expect(service.convertQuery('trova l\'anglicismo iniziante per "do"')).toBe(
+      '[language="eng"] AND [value^="do"]'
+    );
   });
 
   it('should convert trova l\'anglicismo terminante per "og" to [language="eng"] AND [value$="og"]', () => {
@@ -335,15 +335,15 @@ describe('PqitaService', () => {
   });
 
   it('should convert trova il latinismo iniziante per "ca" to [language="lat"] AND [value^="ca"]', () => {
-    expect(
-      service.convertQuery('trova il latinismo iniziante per "ca"')
-    ).toBe('[language="lat"] AND [value^="ca"]');
+    expect(service.convertQuery('trova il latinismo iniziante per "ca"')).toBe(
+      '[language="lat"] AND [value^="ca"]'
+    );
   });
 
   it('should convert trova il latinismo terminante per "is" to [language="lat"] AND [value$="is"]', () => {
-    expect(
-      service.convertQuery('trova il latinismo terminante per "is"')
-    ).toBe('[language="lat"] AND [value$="is"]');
+    expect(service.convertQuery('trova il latinismo terminante per "is"')).toBe(
+      '[language="lat"] AND [value$="is"]'
+    );
   });
 
   it('should convert trova il latinismo contenente "an" to [language="lat"] AND [value*="an"]', () => {
@@ -374,5 +374,85 @@ describe('PqitaService', () => {
     expect(
       service.convertQuery('trova il latinismo poco simile a "canis"')
     ).toBe('[language="lat"] AND [value%="canis:0.5"]');
+  });
+
+  // set: parole
+  // ADJ ADP ADV AUX CCONJ DET NOUN NUM PRON PROPN SCONJ SYM VERB X
+  it('should convert tutte le parole come aggettivo to [pos="ADJ"]', () => {
+    expect(service.convertQuery('tutte le parole come aggettivo')).toBe(
+      '[pos="ADJ"]'
+    );
+  });
+
+  it('should convert tutte le parole come apposizione to [pos="ADP"]', () => {
+    expect(service.convertQuery('tutte le parole come apposizione')).toBe(
+      '[pos="ADP"]'
+    );
+  });
+
+  it('should convert tutte le parole come avverbio to [pos="ADV"]', () => {
+    expect(service.convertQuery('tutte le parole come avverbio')).toBe(
+      '[pos="ADV"]'
+    );
+  });
+
+  it('should convert tutte le parole come ausiliare to [pos="AUX"]', () => {
+    expect(service.convertQuery('tutte le parole come ausiliare')).toBe(
+      '[pos="AUX"]'
+    );
+  });
+
+  it('should convert tutte le parole come congiunzione coordinante to [pos="CCONJ"]', () => {
+    expect(
+      service.convertQuery('tutte le parole come congiunzione coordinante')
+    ).toBe('[pos="CCONJ"]');
+  });
+
+  it('should convert tutte le parole come determinante to [pos="DET"]', () => {
+    expect(service.convertQuery('tutte le parole come determinante')).toBe(
+      '[pos="DET"]'
+    );
+  });
+
+  it('should convert tutte le parole come sostantivo to [pos="NOUN"]', () => {
+    expect(service.convertQuery('tutte le parole come sostantivo')).toBe(
+      '[pos="NOUN"]'
+    );
+  });
+
+  it('should convert tutte le parole come numero to [pos="NUM"]', () => {
+    expect(service.convertQuery('tutte le parole come numero')).toBe('[pos="NUM"]');
+  });
+
+  it('should convert tutte le parole come pronome to [pos="PRON"]', () => {
+    expect(service.convertQuery('tutte le parole come pronome')).toBe(
+      '[pos="PRON"]'
+    );
+  });
+
+  it('should convert tutte le parole come nome proprio to [pos="PROPN"]', () => {
+    expect(service.convertQuery('tutte le parole come nome proprio')).toBe(
+      '[pos="PROPN"]'
+    );
+  });
+
+  it('should convert tutte le parole come congiunzione subordinante to [pos="SCONJ"]', () => {
+    expect(
+      service.convertQuery('tutte le parole come congiunzione subordinante')
+    ).toBe('[pos="SCONJ"]');
+  });
+
+  it('should convert tutte le parole come simbolo to [pos="SYM"]', () => {
+    expect(service.convertQuery('tutte le parole come simbolo')).toBe('[pos="SYM"]');
+  });
+
+  it('should convert tutte le parole come verbo to [pos="VERB"]', () => {
+    expect(service.convertQuery('tutte le parole come verbo')).toBe(
+      '[pos="VERB"]'
+    );
+  });
+
+  it('should convert tutte le parole come altro to [pos="X"]', () => {
+    expect(service.convertQuery('tutte le parole come altro')).toBe('[pos="X"]');
   });
 });

@@ -29,6 +29,7 @@ export interface PqitaListenerOptions {
   similarityThreshold: number;
   highSimilarityThreshold: number;
   proximityThreshold: number;
+  posMap: { [key: string]: string };
 }
 
 const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
@@ -36,6 +37,22 @@ const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
   similarityThreshold: 0.8,
   highSimilarityThreshold: 0.9,
   proximityThreshold: 3,
+  posMap: {
+    aggettivo: 'ADJ',
+    apposizione: 'ADP',
+    avverbio: 'ADV',
+    ausiliare: 'AUX',
+    'congiunzione coordinante': 'CCONJ',
+    determinante: 'DET',
+    sostantivo: 'NOUN',
+    numero: 'NUM',
+    pronome: 'PRON',
+    'nome proprio': 'PROPN',
+    'congiunzione subordinante': 'SCONJ',
+    simbolo: 'SYM',
+    verbo: 'VERB',
+    altro: 'X',
+  }
 };
 
 /**
@@ -280,7 +297,8 @@ export default class PqitaListener extends ParseTreeListener {
    */
   exitPosTag?(ctx: PosTagContext): void {
     const pos = ctx.POS_TYPE().getText();
-    this.appendPair(`[pos="${pos}"]`);
+    const tag = this._options.posMap[pos];
+    this.appendPair(`[pos="${tag}"]`);
   }
 
   /**
