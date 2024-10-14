@@ -91,7 +91,11 @@ export class PqitaComponent implements OnInit {
       return;
     }
     this.listening = true;
-    this._speechRecService.startListening();
+    if (this.autoRun.value) {
+      this._speechRecService.startListeningWithTimeout();
+    } else {
+      this._speechRecService.startListening();
+    }
   }
 
   public stopListening() {
