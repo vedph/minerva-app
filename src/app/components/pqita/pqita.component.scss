@@ -36,6 +36,10 @@ table th {
 .text-cell {
   word-wrap: break-word;
 }
+td.fit-width {
+  width: 1px;
+  white-space: nowrap;
+}
 
 div#container {
   display: grid;

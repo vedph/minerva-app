@@ -35,7 +35,7 @@
         type="button"
         mat-icon-button
         class="mat-primary"
-        (click)="convert()"
+        (click)="convert(true)"
         [disabled]="!text.value?.length || (listening$ | async)"
       >
         <mat-icon>arrow_circle_right</mat-icon>
@@ -124,7 +124,7 @@
       <tbody>
         @for (h of history.value; track $index; let i=$index) {
         <tr>
-          <td>
+          <td class="fit-width">
             <button
               type="button"
               mat-icon-button

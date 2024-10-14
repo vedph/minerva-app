@@ -96,8 +96,7 @@ export class PqitaComponent implements OnDestroy {
     this._subs.push(
       this.listening$.subscribe((listening) => {
         if (!listening) {
-          this.convert();
-
+          this.convert(true);
           if (this.autoRun.value && this.query.value) {
             this.searchRequest.emit(this.query.value);
           }
@@ -132,9 +131,11 @@ export class PqitaComponent implements OnDestroy {
 
   public stopListening() {
     this._speechRecService.stopListening();
-    this.convert();
-    if (this.query.value) {
-      this.appendToHistory(this.text.value!, this.query.value);
+    if (this.text.value) {
+      this.convert();
+      // if (this.query.value) {
+      //   this.appendToHistory(this.text.value!, this.query.value);
+      // }
     }
   }
 
@@ -178,7 +179,7 @@ export class PqitaComponent implements OnDestroy {
     }
   }
 
-  public convert(): void {
+  public convert(history = false): void {
     if (this.form.invalid) {
       return;
     }
@@ -186,6 +187,10 @@ export class PqitaComponent implements OnDestroy {
     this.query.setValue(query);
     this.query.markAsDirty();
     this.query.updateValueAndValidity();
+
+    if (history && query) {
+      this.appendToHistory(this.text.value!, query);
+    }
   }
 
   public search(): void {
