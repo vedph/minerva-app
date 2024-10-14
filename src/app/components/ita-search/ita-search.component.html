@@ -189,7 +189,10 @@
   <!-- export -->
   @if (query$ | async) {
   <div>
-    <pythia-search-export [query]="query$ | async" />
+    <pythia-search-export
+      [query]="query$ | async"
+      [disabled]="!page.items.length"
+    />
   </div>
   } }
 

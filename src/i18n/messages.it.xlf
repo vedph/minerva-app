@@ -1612,11 +1612,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">84</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7547092634478073292" datatype="html">
@@ -1644,7 +1644,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1251059121302440826" datatype="html">
@@ -1660,7 +1660,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6224264290591569468" datatype="html">
@@ -1676,7 +1676,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6147517065261084603" datatype="html">
@@ -1916,7 +1916,11 @@
         <target state="translated">Indice</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">7,8</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4580988005648117665" datatype="html">
@@ -1924,7 +1928,11 @@
         <target state="translated">Ricerca</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.component.html</context>
-          <context context-type="linenumber">8,9</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/search/search.component.html</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4349446481980481506" datatype="html">
@@ -2644,7 +2652,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">108,109</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1393818609368048905" datatype="html">
@@ -2663,20 +2671,20 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8885834281567677280" datatype="html">
-        <source>stop</source>
-        <target state="translated">ferma</target>
+      <trans-unit id="6290741210469421611" datatype="html">
+        <source>Stop listening</source>
+        <target state="translated">Termina dettatura</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2128462262946292187" datatype="html">
-        <source>listen</source>
-        <target state="translated">ascolta</target>
+      <trans-unit id="3523460393589810" datatype="html">
+        <source>Start listening</source>
+        <target state="translated">Inizia dettatura</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">59,60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="564076251363345560" datatype="html">
@@ -2692,7 +2700,7 @@
         <target state="translated">Seleziona questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">121,122</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1111411697912114791" datatype="html">
@@ -2700,15 +2708,7 @@
         <target state="translated">Rimuovi questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">132,133</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2212695292809375179" datatype="html">
-        <source> Search </source>
-        <target state="translated">Ricerca</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/search/search.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8642445555713453888" datatype="html">
@@ -2765,14 +2765,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/services/i18n-paginator-intl.service.ts</context>
           <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5219150916882731224" datatype="html">
-        <source> Words </source>
-        <target state="translated">Parole</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/words/words.component.html</context>
-          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
     </body>

@@ -35,6 +35,7 @@
   grid-area: text;
   column-width: 800px;
   color: #303030;
+  margin: 0 32px;
 }
 #subscribe {
   text-align: center;
