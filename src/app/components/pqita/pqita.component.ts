@@ -38,7 +38,7 @@ interface HistoryEntry {
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
   ],
   providers: [SpeechRecognitionService],
   templateUrl: './pqita.component.html',
@@ -76,8 +76,10 @@ export class PqitaComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    // when the speech recognition service detects a result, update the text field
+    // supplying quotes to the text
     this._speechRecService.onResult((text) => {
-      this.text.setValue(text);
+      this.text.setValue(this._pqitaService.supplyQuotes(text));
       this.text.markAsDirty();
       this.text.updateValueAndValidity();
       this.convert();
@@ -98,6 +100,10 @@ export class PqitaComponent implements OnInit {
     }
     this._speechRecService.stopListening();
     this.listening = false;
+
+    if (this.autoRun.value) {
+      this.convert();
+    }
   }
 
   public clearText() {

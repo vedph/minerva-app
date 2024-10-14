@@ -43,28 +43,33 @@
       @if (listening) {
       <button
         type="button"
-        class="mat-warn shifted-up-15"
-        mat-flat-button
+        class="mat-warn"
+        mat-icon-button
+        matTooltip="Stop listening"
+        i18n-matTooltip
         (click)="stopListening()"
       >
         <mat-icon>mic_off</mat-icon>
-        <ng-container i18n>stop</ng-container>
       </button>
       } @else {
-      <button type="button" mat-flat-button (click)="startListening()">
+      <button
+        type="button"
+        class="mat-primary"
+        mat-icon-button
+        matTooltip="Start listening"
+        i18n-matTooltip
+        (click)="startListening()"
+      >
         <mat-icon>mic</mat-icon>
-        <ng-container i18n>listen</ng-container>
       </button>
       }
+      <!-- autorun -->
+      <mat-checkbox [formControl]="autoRun" i18n>autorun</mat-checkbox>
     </div>
     <!-- progress -->
     @if (listening) {
     <div>
       <mat-progress-bar mode="indeterminate" />
-    </div>
-    <!-- autorun -->
-    <div>
-      <mat-checkbox [formControl]="autoRun" i18n>autorun</mat-checkbox>
     </div>
     }
   </div>
