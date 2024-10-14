@@ -64,7 +64,7 @@ export class PqitaComponent implements OnInit {
     this.text = formBuilder.control(null, {
       validators: [Validators.required, Validators.maxLength(1000)],
     });
-    this.autoRun = formBuilder.control(true, { nonNullable: true });
+    this.autoRun = formBuilder.control(false, { nonNullable: true });
     this.query = formBuilder.control(null);
     this.history = formBuilder.control([], { nonNullable: true });
     this.form = formBuilder.group({
