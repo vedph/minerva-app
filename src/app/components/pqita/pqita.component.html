@@ -34,7 +34,7 @@
       <button
         type="button"
         mat-icon-button
-        class="mat-primary shifted-up-15"
+        class="mat-primary"
         (click)="convert()"
         [disabled]="!text.value?.length || (listening$ | async)"
       >
@@ -63,12 +63,10 @@
         <mat-icon>mic</mat-icon>
       </button>
       }
-      <!-- autorun -->
-      <mat-checkbox [formControl]="autoRun" i18n>autorun</mat-checkbox>
     </div>
     <!-- progress -->
     @if (listening$ | async) {
-    <div>
+    <div class="long-text">
       <mat-progress-bar mode="indeterminate" />
     </div>
     }
@@ -89,7 +87,7 @@
       <mat-error i18n>query too long</mat-error>
       }
     </mat-form-field>
-    <div>
+    <div class="form-row">
       <button
         type="button"
         class="mat-primary"
@@ -100,6 +98,15 @@
         <mat-icon>search</mat-icon>
         <ng-container i18n>search</ng-container>
       </button>
+
+      <!-- autorun -->
+      <mat-slide-toggle
+        [formControl]="autoRun"
+        i18n-matTooltip
+        matTooltip="Autorun"
+      >
+        <mat-icon>flash_auto</mat-icon>
+      </mat-slide-toggle>
     </div>
   </div>
 

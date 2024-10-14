@@ -32,7 +32,7 @@ $minerva-theme: mat.define-theme((
 // @include mat.typography-hierarchy($minerva-theme);
 
 // Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($minerva-theme);
+@include mat.color-variants-backwards-compatibility($minerva-theme);
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
