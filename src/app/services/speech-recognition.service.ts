@@ -36,12 +36,13 @@ export class SpeechRecognitionService {
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         sb.push(event.results[i][0].transcript);
       }
-      // this._lastSpeechEnd = Date.now();
+      this._lastSpeechEnd = Date.now();
       this._text$.next(sb.join(''));
     };
   }
 
   public startListening(timeout?: number) {
+    this._lastSpeechEnd = 0;
     this._text$.next('');
     this._listening$.next(true);
     this._recognition.start();
@@ -50,10 +51,9 @@ export class SpeechRecognitionService {
     // is equal to or greater than the timeout, and if so it stops listening
     if (timeout) {
       this._timer = setInterval(() => {
-        if (
-          this._lastSpeechEnd &&
-          Date.now() - this._lastSpeechEnd >= timeout
-        ) {
+        const n = Date.now() - this._lastSpeechEnd;
+        console.log(n);
+        if (this._lastSpeechEnd && n >= timeout) {
           console.log('Speech recognition timeout');
           this.stopListening();
         }
