@@ -27,6 +27,7 @@ import { KwicSearchResult } from '@myrmidon/pythia-api';
 import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
 import { PythiaSearchModule, SearchRepository } from '@myrmidon/pythia-search';
 import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
+
 import { PqitaComponent } from '../pqita/pqita.component';
 
 @Component({

@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 interface IWindow extends Window {
   webkitSpeechRecognition: any;
@@ -9,10 +10,15 @@ export const SPEECH_RECOGNITION_LANG = 'SPEECH_RECOGNITION_LANG';
 @Injectable()
 export class SpeechRecognitionService {
   private readonly _recognition: any;
-  private _timeoutId: number | null = null;
-  private _lastSpeechTimestamp: number = 0;
+  private readonly _listening$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  private readonly _text$: BehaviorSubject<string> =
+    new BehaviorSubject<string>('');
+  private _lastSpeechEnd: number = 0;
+  private _timer?: number;
 
-  public isListening: boolean = false;
+  public listening$: Observable<boolean> = this._listening$.asObservable();
+  public text$: Observable<string> = this._text$.asObservable();
 
   constructor(@Inject(SPEECH_RECOGNITION_LANG) lang: string = 'it-IT') {
     const { webkitSpeechRecognition }: IWindow = window as unknown as IWindow;
@@ -21,55 +27,46 @@ export class SpeechRecognitionService {
     this._recognition.interimResults = true;
     this._recognition.lang = lang;
 
-    this._recognition.onspeechstart = () => {
-      this._lastSpeechTimestamp = Date.now();
-    };
-
     this._recognition.onspeechend = () => {
-      this._lastSpeechTimestamp = Date.now();
+      this._lastSpeechEnd = Date.now();
     };
-  }
 
-  public startListening() {
-    this.isListening = true;
-    this._recognition.start();
-  }
-
-  public startListeningWithTimeout(timeout: number = 3) {
-    this.startListening();
-    this._lastSpeechTimestamp = Date.now();
-
-    const checkSilence = () => {
-      const currentTime = Date.now();
-      const silenceDuration = (currentTime - this._lastSpeechTimestamp) / 1000;
-
-      if (silenceDuration >= timeout) {
-        this.stopListening();
-      } else {
-        this._timeoutId = window.setTimeout(checkSilence, 100);
+    this._recognition.onresult = (event: any) => {
+      let sb: string[] = [];
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        sb.push(event.results[i][0].transcript);
       }
+      // this._lastSpeechEnd = Date.now();
+      this._text$.next(sb.join(''));
     };
-
-    this._timeoutId = window.setTimeout(checkSilence, 100);
   }
 
-  public stopListening() {
-    this.isListening = false;
-    this._recognition.stop();
-    if (this._timeoutId !== null) {
-      window.clearTimeout(this._timeoutId);
-      this._timeoutId = null;
+  public startListening(timeout?: number) {
+    this._text$.next('');
+    this._listening$.next(true);
+    this._recognition.start();
+
+    // if timeout is set, start a timer which checks if the last speech end
+    // is equal to or greater than the timeout, and if so it stops listening
+    if (timeout) {
+      this._timer = setInterval(() => {
+        if (
+          this._lastSpeechEnd &&
+          Date.now() - this._lastSpeechEnd >= timeout
+        ) {
+          console.log('Speech recognition timeout');
+          this.stopListening();
+        }
+      }, 250);
     }
   }
 
-  public onResult(callback: (text: string) => void) {
-    this._recognition.onresult = (event: any) => {
-      let transcript = '';
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        transcript += event.results[i][0].transcript;
-      }
-      this._lastSpeechTimestamp = Date.now();
-      callback(transcript);
-    };
+  public stopListening() {
+    if (this._timer !== undefined) {
+      clearInterval(this._timer);
+      this._timer = undefined;
+    }
+    this._recognition.stop();
+    this._listening$.next(false);
   }
 }

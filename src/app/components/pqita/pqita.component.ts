@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,6 +13,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Observable,
+  Subscription,
+} from 'rxjs';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -44,14 +56,15 @@ interface HistoryEntry {
   templateUrl: './pqita.component.html',
   styleUrl: './pqita.component.scss',
 })
-export class PqitaComponent implements OnInit {
+export class PqitaComponent implements OnDestroy {
+  private readonly _subs: Subscription[] = [];
   public text: FormControl<string | null>;
   public autoRun: FormControl<boolean>;
   public query: FormControl<string | null>;
   public history: FormControl<HistoryEntry[]>;
   public form: FormGroup;
 
-  public listening?: boolean;
+  public readonly listening$: Observable<boolean>;
 
   @Output()
   public searchRequest: EventEmitter<string> = new EventEmitter<string>();
@@ -73,40 +86,53 @@ export class PqitaComponent implements OnInit {
       query: this.query,
       history: this.history,
     });
-  }
 
-  public ngOnInit(): void {
+    this.listening$ = this._speechRecService.listening$;
+
+    // when listening$ changes to false, convert the text to a query
+    // and emit the search request if autoRun is true
+    this._subs.push(
+      this.listening$.subscribe((listening) => {
+        if (!listening) {
+          this.convert();
+
+          if (this.autoRun.value && this.query.value) {
+            this.searchRequest.emit(this.query.value);
+          }
+        }
+      })
+    );
+
     // when the speech recognition service detects a result, update the text field
     // supplying quotes to the text
-    this._speechRecService.onResult((text) => {
-      this.text.setValue(this._pqitaService.supplyQuotes(text));
-      this.text.markAsDirty();
-      this.text.updateValueAndValidity();
-      this.convert();
-    });
+    this._subs.push(
+      this._speechRecService.text$
+        .pipe(distinctUntilChanged(), debounceTime(100))
+        .subscribe((text) => {
+          this.text.setValue(this._pqitaService.supplyQuotes(text));
+          this.text.markAsDirty();
+          this.text.updateValueAndValidity();
+        })
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this._subs.forEach((sub) => sub.unsubscribe());
   }
 
   public startListening() {
-    if (this.listening) {
-      return;
-    }
-    this.listening = true;
     if (this.autoRun.value) {
-      this._speechRecService.startListeningWithTimeout();
+      this._speechRecService.startListening(3000);
     } else {
       this._speechRecService.startListening();
     }
   }
 
   public stopListening() {
-    if (!this.listening) {
-      return;
-    }
     this._speechRecService.stopListening();
-    this.listening = false;
-
-    if (this.autoRun.value) {
-      this.convert();
+    this.convert();
+    if (this.query.value) {
+      this.appendToHistory(this.text.value!, this.query.value);
     }
   }
 
@@ -128,9 +154,6 @@ export class PqitaComponent implements OnInit {
   }
 
   public removeFromHistory(index: number): void {
-    if (this.listening) {
-      return;
-    }
     const entries = [...this.history.value];
     entries.splice(index, 1);
     this.history.setValue(entries);
@@ -139,9 +162,6 @@ export class PqitaComponent implements OnInit {
   }
 
   public pickFromHistory(index: number): void {
-    if (this.listening) {
-      return;
-    }
     const entry = this.history.value[index];
     this.text.setValue(entry.text);
     this.text.markAsDirty();
@@ -157,23 +177,17 @@ export class PqitaComponent implements OnInit {
   }
 
   public convert(): void {
-    if (this.form.invalid || this.listening) {
+    if (this.form.invalid) {
       return;
     }
     const query = this._pqitaService.convertQuery(this.text.value!);
     this.query.setValue(query);
     this.query.markAsDirty();
     this.query.updateValueAndValidity();
-
-    this.appendToHistory(this.text.value!, query);
-
-    if (this.autoRun.value) {
-      this.searchRequest.emit(query);
-    }
   }
 
   public search(): void {
-    if (this.form.invalid || this.listening) {
+    if (this.form.invalid) {
       return;
     }
     this.searchRequest.emit(this.query.value!);
