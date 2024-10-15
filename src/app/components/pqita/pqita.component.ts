@@ -133,15 +133,22 @@ export class PqitaComponent implements OnDestroy {
     this._speechRecService.stopListening();
     if (this.text.value) {
       this.convert();
-      // if (this.query.value) {
-      //   this.appendToHistory(this.text.value!, this.query.value);
-      // }
     }
   }
 
   public clearText() {
     this.text.reset();
     this.query.reset();
+  }
+
+  public convertByEnter(event: KeyboardEvent): void {
+    event.stopPropagation();
+    this.convert();
+  }
+
+  public searchByEnter(event: KeyboardEvent): void {
+    event.stopPropagation();
+    this.search();
   }
 
   private appendToHistory(text: string, query: string) {

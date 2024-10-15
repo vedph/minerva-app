@@ -3,18 +3,30 @@
   <div id="query">
     <mat-tab-group [(selectedIndex)]="queryTabIndex">
       <!-- query - simple -->
-      <mat-tab i18n-label label="simple">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>hdr_auto</mat-icon>
+          <span i18n class="label">simple</span>
+        </ng-template>
         <minerva-pqita (searchRequest)="onSearchRequest($event)" />
       </mat-tab>
       <!-- query - builder -->
-      <mat-tab i18n-label label="builder">
+      <mat-tab i18n-label>
+        <ng-template mat-tab-label>
+          <mat-icon>list</mat-icon>
+          <span i18n class="label">builder</span>
+        </ng-template>
         <pythia-query-builder
           (queryChange)="onQueryChange($event)"
           (queryPeek)="onQueryPeek($event)"
         ></pythia-query-builder>
       </mat-tab>
       <!-- query - advanced -->
-      <mat-tab i18n-label label="advanced">
+      <mat-tab i18n-label>
+        <ng-template mat-tab-label>
+          <mat-icon>code</mat-icon>
+          <span i18n class="label">advanced</span>
+        </ng-template>
         <form [formGroup]="form" (submit)="search()">
           <mat-form-field class="max-width">
             <mat-label i18n>query</mat-label>
