@@ -77,6 +77,8 @@ parole|forestierismi|anglicismi|latinismi".
    (5.2.1.) REL: ["non"] + "vicino a|(attaccato|attaccata|attaccati) a|prima (di|della|del)|dopo (di|della|del)"
    (5.2.2.) another sequence from 2 to 5, recursively.
 
+![grammar](./public/img/pqita.png)
+
 So for instance we can have:
 
 - `trova la parola uguale a "esempio"` which is:
