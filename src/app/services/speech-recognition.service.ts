@@ -41,6 +41,10 @@ export class SpeechRecognitionService {
     };
   }
 
+  public isListening(): boolean {
+    return this._listening$.value;
+  }
+
   public startListening(timeout?: number) {
     this._lastSpeechEnd = 0;
     this._text$.next('');

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
+  HostListener,
   OnDestroy,
   OnInit,
   Output,
@@ -39,6 +40,9 @@ interface HistoryEntry {
   query: string;
 }
 
+/**
+ * Component to convert text to a query and search for it.
+ */
 @Component({
   selector: 'minerva-pqita',
   standalone: true,
@@ -119,6 +123,19 @@ export class PqitaComponent implements OnDestroy {
 
   public ngOnDestroy(): void {
     this._subs.forEach((sub) => sub.unsubscribe());
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    // Ctrl + L toggles listening
+    if (event.ctrlKey && event.key === 'l') {
+      if (this._speechRecService.isListening()) {
+        this.stopListening();
+      } else {
+        this.startListening();
+      }
+      event.preventDefault();
+    }
   }
 
   public startListening() {
