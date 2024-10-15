@@ -95,6 +95,8 @@
         type="button"
         class="mat-primary"
         mat-flat-button
+        i18n-matTooltip
+        matTooltip="Search (Ctrl+T)"
         (click)="search()"
         [disabled]="!query.value?.length || (listening$ | async)"
       >

@@ -136,6 +136,11 @@ export class PqitaComponent implements OnDestroy {
       }
       event.preventDefault();
     }
+    // Ctrl + T searches
+    if (event.ctrlKey && event.key === 't' && this.form.valid) {
+      this.search();
+      event.preventDefault();
+    }
   }
 
   public startListening() {

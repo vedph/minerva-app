@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,10 +14,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -38,6 +46,7 @@ import { PqitaComponent } from '../pqita/pqita.component';
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
+    MatExpansionModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -49,12 +58,14 @@ import { PqitaComponent } from '../pqita/pqita.component';
     PythiaQueryBuilderModule,
     PythiaSearchModule,
     PythiaDocumentReaderModule,
-    PqitaComponent
+    PqitaComponent,
   ],
   templateUrl: './ita-search.component.html',
   styleUrl: './ita-search.component.scss',
 })
-export class ItaSearchComponent {
+export class ItaSearchComponent implements OnInit, OnDestroy {
+  private readonly _subs: Subscription[] = [];
+
   @ViewChild('queryCtl') queryElementRef: ElementRef | undefined;
 
   @Input()
@@ -79,6 +90,7 @@ export class ItaSearchComponent {
   public leftContextLabels: string[];
   public rightContextLabels: string[];
   public queryTabIndex: number;
+  public queryExpanded: boolean = true;
 
   constructor(private _repository: SearchRepository, formBuilder: FormBuilder) {
     this.query = formBuilder.control(null, [
@@ -102,11 +114,22 @@ export class ItaSearchComponent {
     this.readRequest$ = _repository.readRequest$;
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.initialQueryTerm) {
       this.query.setValue('[value="' + this.initialQueryTerm + '"]');
       setTimeout(() => this.search(), 0);
     }
+
+    // when page$ changes, set queryExpanded to false if page has any items
+    this._subs.push(
+      this._repository.page$.subscribe((page) => {
+        this.queryExpanded = !page?.items.length || !page.items.length;
+      })
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this._subs.forEach((sub) => sub.unsubscribe());
   }
 
   public pageChange(event: PageEvent): void {

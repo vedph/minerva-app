@@ -58,12 +58,9 @@ td.nr {
 }
 td.author {
   font-variant: small-caps;
-  color: #c04f05;
-  font-size: 110%;
 }
 td.title {
-  font-style: italic;
-  color: #038841;
+  font-size: 0.9em;
 }
 td.context {
   color: #404040;
@@ -73,7 +70,6 @@ td.value {
   font-weight: bold;
   cursor: pointer;
   text-align: center;
-  color: #2137aa;
 }
 code {
   color: #c04f05;
