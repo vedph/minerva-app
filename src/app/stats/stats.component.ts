@@ -63,7 +63,7 @@ export class StatsComponent {
       },
       series: [
         {
-          name: 'Span Data',
+          name: $localize`Spans`,
           type: 'pie',
           radius: '55%',
           center: ['50%', '60%'],
