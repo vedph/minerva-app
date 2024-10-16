@@ -1,6 +1,15 @@
-# Minerva
+# Minerva Frontend Application
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+
+🐋 Docker:
+
+1. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any;
+2. update version in `env.js` (and in Docker compose scripts);
+3. `ng build --configuration=production`;
+4. `docker build . -t vedph2020/minerva-app:0.0.1 -t vedph2020/minerva-app:latest` (replace with the current version).
+
+>Note that the default language for Minerva images is Italian.
 
 ## Localization
 
