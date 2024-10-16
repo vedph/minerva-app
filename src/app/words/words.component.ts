@@ -5,7 +5,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
-import { Lemma, Word } from '@myrmidon/pythia-api';
+import { EnvService } from '@myrmidon/ng-tools';
+
+import { AttributeInfo, Lemma, Word } from '@myrmidon/pythia-api';
 import { WordIndexComponent } from '@myrmidon/pythia-word-index';
 
 @Component({
@@ -22,7 +24,11 @@ import { WordIndexComponent } from '@myrmidon/pythia-word-index';
   styleUrl: './words.component.scss',
 })
 export class WordsComponent {
-  constructor(private _router: Router) {}
+  public attributes?: AttributeInfo[];
+
+  constructor(private _router: Router, env: EnvService) {
+    this.attributes = env.get('indexDocAttrs') as AttributeInfo[] | undefined;
+  }
 
   public onSearchRequest(token: Word | Lemma): void {
     this._router.navigate(['search', token.value]);
