@@ -130,6 +130,7 @@
       <tbody>
         @for (r of page.items; track r; let index=$index) {
         <tr>
+          <td class="nr noif-lt-md">{{ index + 1 }}.</td>
           <td class="fit-width">
             <!-- read -->
             <button
@@ -155,7 +156,6 @@
               <mat-icon>description</mat-icon>
             </button>
           </td>
-          <td class="nr noif-lt-md">{{ index + 1 }}.</td>
           <!-- author -->
           @if (!hideAuthor) {
           <td class="author">{{ r.author }}</td>
@@ -202,13 +202,25 @@
     }
   </div>
 
-  <!-- export -->
+  <!-- toolbar -->
   @if (query$ | async) {
-  <div>
+  <div class="form-row">
+    <!-- export -->
     <pythia-search-export
       [query]="query$ | async"
       [disabled]="!page.items.length"
     />
+    <!-- clear -->
+    <button
+      type="button"
+      class="mat-warn"
+      mat-flat-button
+      [disabled]="!page.items.length"
+      (click)="clearResults()"
+    >
+      <mat-icon>clear</mat-icon>
+      <ng-container i18n>clear</ng-container>
+    </button>
   </div>
   } }
 

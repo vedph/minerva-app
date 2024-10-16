@@ -188,6 +188,10 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
     this._repository.setPage(event.pageIndex + 1, event.pageSize);
   }
 
+  public clearResults(): void {
+    this._repository.clear();
+  }
+
   public readDocument(id: number) {
     this._repository.setReadRequest({
       documentId: id,
