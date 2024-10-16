@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
@@ -10,7 +11,13 @@ import { StatsService } from '@myrmidon/pythia-api';
 @Component({
   selector: 'app-stats',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatCardModule, NgxEchartsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    NgxEchartsModule,
+  ],
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss'],
 })
@@ -22,7 +29,7 @@ export class StatsComponent {
     'span.tok': $localize`token`,
   };
 
-  public data?: any;
+  public data?: { [key: string]: number };
 
   constructor(statsService: StatsService) {
     statsService.getStatistics().subscribe((data) => {
