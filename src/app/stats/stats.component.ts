@@ -32,7 +32,7 @@ export class StatsComponent {
     'span.fp-lat': $localize`latin phrase`,
     'span.p': $localize`paragraph`,
     'span.snt': $localize`sentence`,
-    'span.tok': $localize`token`,
+    'span.tok': $localize`words`,
   };
   private readonly _attrMap: { [key: string]: string } = {
     '@giudicante': 'organo giudicante',
@@ -63,7 +63,7 @@ export class StatsComponent {
     '@org-m': 'persona giuridica m.',
     '@foreign': 'forestierismo',
     '@n': 'n?',
-    '@deprel': 'relazione di dipendenza',
+    '@deprel': 'dipendenza',
     '@pn-f': 'antroponimo f.',
     '@tn': 'tn?',
     '@prontype': 'tipo di pronome',

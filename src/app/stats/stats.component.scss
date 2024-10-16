@@ -1,4 +1,40 @@
+div#container {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "pie cloud";
+  gap: 16px;
+}
+
+div#pie {
+  grid-area: pie;
+  width: 600px;
+}
 .chart {
   width: 100%;
   height: 400px;
+}
+
+div#cloud {
+  grid-area: cloud;
+  min-width: 800px;
+}
+
+@media only screen and (max-width: 959px) {
+  div#container {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "pie"
+      "cloud";
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+table td {
+  padding: 8px;
+  border: 1px solid #ddd;
 }

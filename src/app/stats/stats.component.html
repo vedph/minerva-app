@@ -4,19 +4,51 @@
     <mat-card-title i18n>Statistics</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <div id="pie">
-      <div echarts [options]="chartOptions" class="chart"></div>
-    </div>
-    <div id="cloud">
-      <angular-tag-cloud
-        [data]="cloudData"
-        [width]="1000"
-        [height]="400"
-        [zoomOnHover]="zoomOnHoverOptions"
-        [realignOnResize]="true"
-        [randomizeAngle]="true"
-      >
-      </angular-tag-cloud>
+    <div id="container">
+      <div id="pie">
+        <div echarts [options]="chartOptions" class="chart"></div>
+        @if (data) {
+        <div>
+          <table>
+            <tbody>
+              <tr>
+                <td i18n>documents</td>
+                <td>{{ data["document_count"] | number : "1.0-0" }}</td>
+              </tr>
+              <tr>
+                <td i18n>document metadata density</td>
+                <td>
+                  {{
+                    data["document_attribute_count_ratio"] | number : "1.2-2"
+                  }}
+                </td>
+              </tr>
+              <tr>
+                <td i18n>spans</td>
+                <td>{{ data["span_count"] | number : "1.0-0" }}</td>
+              </tr>
+              <tr>
+                <td i18n>span metadata density</td>
+                <td>
+                  {{ data["span_attribute_count_ratio"] | number : "1.2-2" }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        }
+      </div>
+      <div id="cloud">
+        <angular-tag-cloud
+          [data]="cloudData"
+          [width]="1000"
+          [height]="400"
+          [zoomOnHover]="zoomOnHoverOptions"
+          [realignOnResize]="true"
+          [randomizeAngle]="true"
+        >
+        </angular-tag-cloud>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>
