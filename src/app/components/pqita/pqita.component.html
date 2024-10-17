@@ -23,6 +23,7 @@
   <div id="listener">
     <!-- buttons -->
     <div id="button-row">
+      <!-- clear -->
       <button
         type="button"
         mat-icon-button
@@ -41,7 +42,8 @@
       >
         <mat-icon>arrow_circle_right</mat-icon>
       </button>
-      @if (listening$ | async) {
+      @if (!noSpeech) { @if (listening$ | async) {
+      <!-- stop listening -->
       <button
         type="button"
         class="mat-warn"
@@ -53,6 +55,7 @@
         <mat-icon>mic_off</mat-icon>
       </button>
       } @else {
+      <!-- start listening -->
       <button
         type="button"
         class="mat-primary"
@@ -63,7 +66,7 @@
       >
         <mat-icon>mic</mat-icon>
       </button>
-      }
+      } }
     </div>
     <!-- progress -->
     @if (listening$ | async) {

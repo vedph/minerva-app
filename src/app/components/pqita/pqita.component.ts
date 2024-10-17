@@ -70,6 +70,7 @@ export class PqitaComponent implements OnDestroy {
   public history: FormControl<HistoryEntry[]>;
   public form: FormGroup;
 
+  public noSpeech: boolean;
   public readonly listening$: Observable<boolean>;
 
   @Output()
@@ -80,6 +81,8 @@ export class PqitaComponent implements OnDestroy {
     private _pqitaService: PqitaService,
     private _speechRecService: SpeechRecognitionService
   ) {
+    this.noSpeech = this._speechRecService.unsupported;
+
     this.text = formBuilder.control(null, {
       validators: [Validators.required, Validators.maxLength(1000)],
     });
