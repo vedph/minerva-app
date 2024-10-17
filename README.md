@@ -151,3 +151,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
     - "(attaccato|attaccata|attaccati) a": output space + `NEAR(m=0,s=snt)` + space;
     - "prima di|della|del": output space + `BEFORE(m=3,s=snt)` + space;
     - "dopo di|della|del": output space + `AFTER(m=3,s=snt)` + space.
+
+## History
+
+### 0.0.1
+
+- 2024-10-17: created image.
