@@ -12,20 +12,24 @@ services:
       - minerva-network
 
   minerva-api:
-    image: vedph2020/minerva-api:0.0.1
+    image: vedph2020/minerva-api:0.0.4
     ports:
-        - 5180:8080
+      - 5180:8080
     depends_on:
-        - minerva-pgsql
+      - minerva-pgsql
     environment:
-        - CONNECTIONSTRINGS__DEFAULT=User ID=postgres;Password=postgres;Host=minerva-pgsql;Port=5432;Database={0};
-        # - ALLOWED__ORIGINS__3=http://www.something.com
-        - SEEDDELAY=30
-        - MESSAGING__APIROOTURL=https://minerva.it/api/
-        - MESSAGING__APPROOTURL=https://minerva.it/
-        - MESSAGING__SUPPORTEMAIL=attichiari@unige.it
+      - CONNECTIONSTRINGS__DEFAULT=User ID=postgres;Password=postgres;Host=minerva-pgsql;Port=5432;Database={0};
+      # - ALLOWED__ORIGINS__3=http://www.something.com
+      - SEEDDELAY=30
+      - MESSAGING__APIROOTURL=https://minerva.it/api/
+      - MESSAGING__APPROOTURL=https://minerva.it/
+      - MESSAGING__SUPPORTEMAIL=attichiari@unige.it
+      # unzip bin files from DB into host opt/dump to restore the DB
+      - DATA__SOURCEDIR=/opt/dump/
+    volumes:
+      - /opt/dump:/opt/dump
     networks:
-        - minerva-network
+      - minerva-network
 
   minerva-app:
     image: vedph2020/minerva-app:0.0.1
