@@ -154,6 +154,10 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-10-18:
+  - added word and lemmata stats.
+  - updated Angular.
+
 ### 0.0.2
 
 - 2024-10-18: replaced speech recognition engine to allow cross-browsers compatibility and fallback in case of no available engine (as it happens on Firefox).

@@ -33,6 +33,14 @@
                   {{ data["span_attribute_count_ratio"] | number : "1.2-2" }}
                 </td>
               </tr>
+              <tr>
+                <td i18n>words</td>
+                <td>{{ data["word_count"] | number : "1.0-0" }}</td>
+              </tr>
+              <tr>
+                <td i18n>lemmata</td>
+                <td>{{ data["lemma_count"] | number : "1.0-0" }}</td>
+              </tr>
             </tbody>
           </table>
         </div>
