@@ -215,13 +215,17 @@ export class PqitaComponent implements OnDestroy {
     if (this.form.invalid) {
       return;
     }
-    const query = this._pqitaService.convertQuery(this.text.value!);
-    this.query.setValue(query);
-    this.query.markAsDirty();
-    this.query.updateValueAndValidity();
-
-    if (history && query) {
-      this.appendToHistory(this.text.value!, query);
+    try {
+      const query = this._pqitaService.convertQuery(this.text.value!);
+      this.query.setValue(query);
+      this.query.markAsDirty();
+      this.query.updateValueAndValidity();
+      if (history && query) {
+        this.appendToHistory(this.text.value!, query);
+      }
+    } catch (e) {
+      console.log(e);
+      return;
     }
   }
 

@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any;
 2. update version in `env.js` (and in Docker compose scripts);
 3. `ng build --configuration=production`;
-4. `docker build . -t vedph2020/minerva-app:0.0.1 -t vedph2020/minerva-app:latest` (replace with the current version).
+4. `docker build . -t vedph2020/minerva-app:0.0.2 -t vedph2020/minerva-app:latest` (replace with the current version).
 
 >Note that the default language for Minerva images is Italian.
 
@@ -153,6 +153,10 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
     - "dopo di|della|del": output space + `AFTER(m=3,s=snt)` + space.
 
 ## History
+
+### 0.0.2
+
+- 2024-10-18: replaced speech recognition engine to allow cross-browsers compatibility and fallback in case of no available engine (as it happens on Firefox).
 
 ### 0.0.1
 
