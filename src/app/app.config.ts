@@ -4,7 +4,7 @@ import {
   provideZoneChangeDetection,
 } from '@angular/core';
 import { provideRouter, withDebugTracing } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
 // material
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -23,6 +23,7 @@ import { I18nPaginatorIntlService } from './services/i18n-paginator-intl.service
 import { SPEECH_RECOGNITION_LANG } from './services/speech-recognition.service';
 import { routes } from './app.routes';
 import { ATTR_DEFS } from './attr-defs';
+import { RateLimitInterceptor } from './interceptors/rate-limit.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,6 +35,12 @@ export const appConfig: ApplicationConfig = {
       NgxEchartsModule.forRoot({ echarts: () => import('echarts') })
     ),
     EnvServiceProvider,
+    // HTTP interceptors
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RateLimitInterceptor,
+      multi: true,
+    },
     // query builder
     {
       provide: QUERY_BUILDER_ATTR_DEFS_KEY,

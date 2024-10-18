@@ -157,6 +157,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 - 2024-10-18:
   - added word and lemmata stats.
   - updated Angular.
+  - added rate limit interceptor.
 
 ### 0.0.2
 
