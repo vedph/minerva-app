@@ -36,7 +36,7 @@
     "@myrmidon/pythia-stats": "^4.0.0",
     "@myrmidon/pythia-term-list": "^3.0.0",
     "@myrmidon/pythia-ui": "^4.0.0",
-    "@myrmidon/pythia-word-index": "^4.0.2",
+    "@myrmidon/pythia-word-index": "^4.0.3",
     "angular-tag-cloud-module": "^17.0.1",
     "antlr4": "^4.13.2",
     "echarts": "^5.5.1",
