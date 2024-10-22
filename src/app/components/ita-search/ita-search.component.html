@@ -19,6 +19,8 @@
             <span i18n class="label">builder</span>
           </ng-template>
           <pythia-query-builder
+            [hideCorpora]="true"
+            [hideDocuments]="true"
             (queryChange)="onQueryChange($event)"
             (queryPeek)="onQueryPeek($event)"
           ></pythia-query-builder>

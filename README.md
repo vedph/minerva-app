@@ -155,7 +155,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 ## History
 
 - 2024-10-22:
-  - changed some tokens in g4.
+  - changed some tokens in g4 (dopo without "di").
   - added tests.
   - updated Italian translations.
   - updated about page.

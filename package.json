@@ -31,7 +31,7 @@
     "@myrmidon/pythia-api": "^4.0.0",
     "@myrmidon/pythia-core": "^4.0.0",
     "@myrmidon/pythia-document-reader": "^4.0.0",
-    "@myrmidon/pythia-query-builder": "^4.0.1",
+    "@myrmidon/pythia-query-builder": "^4.0.2",
     "@myrmidon/pythia-search": "^4.0.3",
     "@myrmidon/pythia-stats": "^4.0.0",
     "@myrmidon/pythia-term-list": "^3.0.0",
