@@ -1,19 +1,26 @@
 <div>
   <header>
-    <mat-toolbar color="primary" id="toolbar">
-      <span id="logo"><img src="./img/ac-pen_40.png" alt="Fusisoft" /></span>
-      <a mat-button routerLink="/home">Minerva</a>
+    <mat-toolbar class="mat-primary" id="toolbar">
+      <a mat-button id="logo" routerLink="/home">
+        <img src="./img/ac-pen_40.png" alt="Minerva" />
+      </a>
+      <!-- <a mat-button routerLink="/home">Minerva</a> -->
 
+      <!-- index -->
       <button type="button" mat-button routerLink="/index" i18n>Index</button>
+
+      <!-- search -->
       <button type="button" mat-button routerLink="/search" i18n>Search</button>
 
       <!-- help -->
-      <button type="button" mat-button [matMenuTriggerFor]="helpMenu" i18n>
-        Help
+      <button type="button" mat-button routerLink="/manual" i18n>Help</button>
+
+      <!-- information  -->
+      <button type="button" mat-button [matMenuTriggerFor]="infoMenu" i18n>
+        Info
       </button>
-      <mat-menu #helpMenu>
+      <mat-menu #infoMenu>
         <a mat-menu-item routerLink="/stats" i18n>Statistics</a>
-        <a mat-menu-item routerLink="/manual" i18n>User's guide</a>
         <a mat-menu-item routerLink="/about" i18n>About the project</a>
       </mat-menu>
 
