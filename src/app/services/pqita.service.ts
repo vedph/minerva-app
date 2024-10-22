@@ -15,6 +15,7 @@ import PqitaListener from './pqita.listener';
   providedIn: 'root',
 })
 export class PqitaService {
+  // regex used to supply quotes - item, operator, value
   private readonly _valueRegex =
     /(?<item>parola|locuzione|lemma|forestierismo|latinismo|anglicismo)\s+(?:(?<operator>uguale a|iniziante per|terminante per|contenente|corrispondente a|(?:molto |poco )?simile a)\s+)?(?<value>(?:(?!parola|locuzione|lemma|forestierismo|latinismo|anglicismo|come|in|a inizio|a fine|vicino|attaccato|prima|dopo|uguale a|iniziante per|terminante per|contenente|corrispondente a|simile a)\S+\s*)+)/g;
 
@@ -45,12 +46,17 @@ export class PqitaService {
    * @returns The text with each value surrounded by quotes.
    */
   public supplyQuotes(text: string): string {
-    return text.replace(this._valueRegex, (match, item, operator, value) => {
-      if (operator) {
-        return `${item} ${operator} "${value.trim()}"`;
-      } else {
-        return `${item} "${value.trim()}"`;
+    const supplied = text.replace(
+      this._valueRegex,
+      (match, item, operator, value) => {
+        if (operator) {
+          return `${item} ${operator} "${value.trim()}" `;
+        } else {
+          return `${item} "${value.trim()}" `;
+        }
       }
-    });
+    );
+    // normalize WS
+    return supplied.replace(/\s+/g, ' ').trim();
   }
 }

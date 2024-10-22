@@ -779,11 +779,21 @@ describe('PqitaService', () => {
       service.convertQuery('parola "cane" prima della parola "bello"')
     ).toBe('[value="cane"] BEFORE(m=3,s=snt) [value="bello"]');
   });
+  it('should supply quotes in parola cane prima della parola bello', () => {
+    expect(service.supplyQuotes('parola cane prima della parola bello')).toBe(
+      'parola "cane" prima della parola "bello"'
+    );
+  });
 
   // after
   it('should convert parola "cane" dopo la parola "bel"', () => {
-    expect(
-      service.convertQuery('parola "cane" dopo la parola "bel"')
-    ).toBe('[value="cane"] AFTER(m=3,s=snt) [value="bel"]');
+    expect(service.convertQuery('parola "cane" dopo la parola "bel"')).toBe(
+      '[value="cane"] AFTER(m=3,s=snt) [value="bel"]'
+    );
+  });
+  it('should supply quotes in parola cane dopo la parola bel', () => {
+    expect(service.supplyQuotes('parola cane dopo la parola bel')).toBe(
+      'parola "cane" dopo la parola "bel"'
+    );
   });
 });
