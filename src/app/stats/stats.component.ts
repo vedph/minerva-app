@@ -29,10 +29,10 @@ import { StatsService } from '@myrmidon/pythia-api';
 })
 export class StatsComponent {
   private readonly _spanMap: { [key: string]: string } = {
-    'span.fp-lat': $localize`latin phrase`,
-    'span.p': $localize`paragraph`,
-    'span.snt': $localize`sentence`,
-    'span.tok': $localize`words`,
+    'span.fp-lat': $localize`latin phrases`,
+    'span.p': $localize`paragraphs`,
+    'span.snt': $localize`sentences`,
+    'span.tok': $localize`tokens`,
   };
   private readonly _attrMap: { [key: string]: string } = {
     '@giudicante': 'organo giudicante',
