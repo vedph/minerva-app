@@ -47,6 +47,7 @@
 
 @media (max-width: 600px) {
   #logos {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 100px));
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 }
