@@ -154,6 +154,11 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-10-22:
+  - changed some tokens in g4.
+  - added tests.
+  - updated Italian translations.
+  - updated about page.
 - 2024-10-19: hide language in word index.
 - 2024-10-18:
   - added word and lemmata stats.
