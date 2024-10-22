@@ -1,7 +1,9 @@
-<mat-card>
+<mat-card appearance="outlined">
   <mat-card-header>
-    <mat-icon mat-card-avatar>contact_page</mat-icon>
-    <mat-card-title>Informazioni</mat-card-title>
+    <mat-icon mat-card-avatar>lock_open</mat-icon>
+    <mat-card-title>
+      <strong>Il progetto</strong>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <article>
@@ -9,10 +11,12 @@
         <h2>Introduzione</h2>
         <p>
           Minerva è il frutto del lavoro svolto nell’ambito del progetto PRIN
-          AttiChiari. Grazie alla collaborazione di importanti figure della
-          magistratura e avvocatura, con una stretta sinergia tra università,
-          professioni e territorio, è stato possibile raccogliere più di 340
-          testi, per un totale di circa 1.300.000 token.
+          <a target="_blank" rel="noopener" href="https://attichiari.unige.it/">
+            AttiChiari</a
+          >. Grazie alla collaborazione di importanti figure della magistratura
+          e avvocatura, con una stretta sinergia tra università, professioni e
+          territorio, è stato possibile raccogliere più di 340 testi, per un
+          totale di circa 1.300.000 token.
         </p>
         <p>
           La prima fase del progetto si è concentrata sulla costituzione di un
@@ -26,19 +30,25 @@
         </p>
         <ol>
           <li>
-            digitalizzazione (conversione da pdf, se necessaria) e riversamento
+            Digitalizzazione (conversione da pdf, se necessaria) e riversamento
             in formato word;
           </li>
           <li>
-            pseudonimizzazione (eliminazione degli elementi identificativi:
+            Pseudonimizzazione (eliminazione degli elementi identificativi:
             parti, difensori, ufficio giudiziario, date, numeri di ruolo, ecc.),
             sul modello di esperienze già esistenti (quali le Linee Guida per la
             pubblicazione in forma anonima dei Lodi Arbitrali della Camera
             Arbitrale di Milano);
           </li>
-          <li>conversione automatica in formato TEI;</li>
+          <li>conversione in formato xml;</li>
           <li>
-            frammentazione dei documenti in porzioni dalla lunghezza media utile
+            Annotazione xml per l’archiviazione, per la citazione e per
+            l’identificazione dei fenomeni linguistici, per far sì che singole
+            porzioni di testo siano recuperabili in modo immediato e non
+            equivoco.
+          </li>
+          <li>
+            Frammentazione dei documenti in porzioni dalla lunghezza media utile
             a identificare l'immediato contesto linguistico, in modo da
             salvaguardarli ulteriormente da usi illeciti.
           </li>
@@ -76,162 +86,337 @@
         <h3>Università di GENOVA</h3>
         <ul>
           <li>
-            Prof. JACQUELINE VISCONTI (Professoressa ordinaria di Linguistica
-            italiana)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://rubrica.unige.it/personale/VUZBXlpq"
+            >
+              JACQUELINE VISCONTI </a
+            >(Professoressa ordinaria di Linguistica italiana)
           </li>
           <li>
-            Prof. CLAUDIA CAFFI (Professoressa ordinaria di Glottologia e
-            linguistica)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://diraas.unige.it/claudia-caffi"
+            >
+              CLAUDIA CAFFI</a
+            >
+            (Professoressa ordinaria di Glottologia e linguistica)
           </li>
           <li>
-            Phd GIULIA LOMBARDI (Assegnista di ricerca in Linguistica italiana)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://rubrica.unige.it/personale/UkNHWV5g"
+            >
+              MANUELA MANFREDINI</a
+            >
+            (Professoressa associata di Linguistica italiana)
           </li>
-          <li>Phd DANIELE FUSI (Contrattista)</li>
-          <li>Dott.ssa ANNA BARBANO (Contrattista)</li>
+          <li>
+            Phd
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://rubrica.unige.it/personale/UUBGXFxu"
+            >
+              GIULIA LOMBARDI</a
+            >
+            (Assegnista di ricerca in Linguistica italiana)
+          </li>
+          <li>
+            Phd
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://www.unive.it/data/persone/22711986/pubb_tipo"
+            >
+              DANIELE FUSI</a
+            >
+            (Contrattista)
+          </li>
+          <li>
+            Dott.ssa
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://giurisprudenza.unige.it/anna.barbano%40edu.unige.it"
+            >
+              ANNA BARBANO</a
+            >
+            (Contrattista)
+          </li>
           <li>Dott.ssa FERNANDA CANDRILLI (Contrattista)</li>
         </ul>
         <h3>Università degli studi di FIRENZE</h3>
         <ul>
           <li>
-            Prof. FEDERIGO BAMBI (Professore associato di Storia del diritto
-            medievale e moderno)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://cercachi.unifi.it/p-doc2-0-0-A-3f2a3d2e3b2c30.html"
+            >
+              FEDERIGO BAMBI</a
+            >
+            (Professore associato di Storia del diritto medievale e moderno)
           </li>
           <li>
-            Prof. ILARIA PAGNI (Professoressa ordinaria di Diritto processuale
-            civile)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://cercachi.unifi.it/p-doc2-0-0-A-3f2a3d2e372f2f.html"
+            >
+              ILARIA PAGNI</a
+            >
+            (Professoressa ordinaria di Diritto processuale civile)
           </li>
           <li>
-            Prof. PAOLO CAPPELLINI (Professore ordinario di Storia del diritto
-            medievale e moderno)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://cercachi.unifi.it/p-doc2-0-0-A-3f2a3b2d3b2b2a.html"
+            >
+              PAOLO CAPPELLINI</a
+            >
+            (Professore ordinario di Storia del diritto medievale e moderno)
           </li>
           <li>
-            Phd FEDERICO UNGARETTI DELL'IMMAGINE (Assegnista di ricerca in
+            Phd Avv. FEDERICO UNGARETTI DELL'IMMAGINE (Assegnista di ricerca in
             Diritto processuale civile)
           </li>
         </ul>
         <h3>Università del SALENTO</h3>
         <ul>
           <li>
-            Prof. MARIA VITTORIA DELL'ANNA (Professoressa associata di
-            Linguistica italiana)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://www.unisalento.it/scheda-utente/-/people/mariavittoria.dellanna"
+            >
+              MARIA VITTORIA DELL'ANNA</a
+            >
+            (Professoressa associata di Linguistica italiana)
           </li>
           <li>
-            PhD FRANCESCA FUSCO (Assegnista di ricerca in Linguistica italiana)
+            PhD Avv.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://www.unisalento.it/scheda-utente/-/people/francesca.fusco"
+            >
+              FRANCESCA FUSCO</a
+            >
+            (Assegnista di ricerca in Linguistica italiana)
+          </li>
+          <li>
+            Dott. BRANDON LOMBARDI (Assegnista di ricerca in Linguistica
+            italiana)
           </li>
         </ul>
         <h3>Università degli studi della TUSCIA</h3>
         <ul>
           <li>
-            Prof. RICCARDO GUALDO (Professore ordinario di Linguistica italiana)
+            Prof.
+            <a
+              target="_blank"
+              rel="noopener"
+              href="http://www.scienzepolitiche.unitus.it/docenti/paginaDocente.asp?ID_docente=50"
+            >
+              RICCARDO GUALDO</a
+            >
+            (Professore ordinario di Linguistica italiana)
           </li>
-          <li>Phd LAURA CLEMENZI (Ricercatrice in Linguistica italiana)</li>
+          <li>
+            Phd
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://www.unitus.it/personale/docente/laura-clemenzi/"
+            >
+              LAURA CLEMENZI</a
+            >
+            (Ricercatrice in Linguistica italiana)
+          </li>
         </ul>
       </section>
       <section>
         <h2>Bibliografia</h2>
         <ul>
           <li>
-            Dell'Anna, M. V. (Ed.) (2023), La lingua e la scrittura forense.
-            Storia, temi, prospettive”, Torino, Giappichelli.
+            <span class="author">Dell'Anna, M. V.</span> (Ed.) (2023).
+            <span class="title"
+              >La lingua e la scrittura forense. Storia, temi, prospettive</span
+            >, Torino, Giappichelli.
           </li>
           <li>
-            Gualdo, R. & Clemenzi, L. (a cura di), Atti Chiari: chiarezza e
-            concisione nella scrittura forense, Viterbo, Sette Città, 2021
-            (https://www.settecitta.eu/catalogo/libro/9788878539280-atti-chiari-Pe9A…).
+            <span class="author">Gualdo, R.</span> &
+            <span class="author">Clemenzi, L.</span> (Eds) (2022).
+            <span class="title">
+              Atti Chiari: chiarezza e concisione nella scrittura forense</span
+            >, Viterbo, Settecittà (<a
+              target="_blank"
+              rel="noopener"
+              href="https://www.settecitta.eu/catalogo/libro/9788878539280-atti-chiari-Pe9A"
+              >https://www.settecitta.eu/catalogo/libro/9788878539280-atti-chiari-Pe9A</a
+            >).
           </li>
           <li>
-            Visconti, J. (2022). Studi su testi giuridici. Norme, sentenze,
-            traduzione, Firenze, Accademia della Crusca
-            (https://www.edizionidicrusca.it/scheda.asp?idv=8635).
+            <span class="author">Visconti, J.</span> (2022).
+            <span class="title"
+              >Studi su testi giuridici. Norme, sentenze, traduzione</span
+            >, Firenze, Accademia della crusca (<a
+              target="_blank"
+              rel="noopener"
+              href="https://www.edizionidicrusca.it/scheda.asp?idv=8635"
+              >https://www.edizionidicrusca.it/scheda.asp?idv=8635</a
+            >).
           </li>
           <li>
-            Visconti, J. & Mura, A. (2022), Concision and Clarity in Italian
-            Court Proceedings. In G. Pontrandolfo and S. Gozdz (eds.), Law,
-            Language and the Courtroom: Legal Linguistics and the Discourse of
-            Judges, London: Routledge.
+            <span class="author">Visconti, J.</span> &
+            <span class="author">Mura, A.</span> (2022).
+            <span class="title">
+              Concision and Clarity in Italian Court Proceedings</span
+            >. In In G. Pontrandolfo and S. Gozdz (eds.),
+            <span class="title">
+              Law, Language and the Courtroom: Legal Linguistics and the
+              Discourse of Judges</span
+            >. London, Routledge.
           </li>
           <li>
-            Visconti, J. (2023), Aspetti della testualità in atti giudiziari
-            italiani e inglesi. In A.M. De Cesare, A. Ferrari, L. Lala, F.
-            Pecorari (Eds.), Forme della scrittura italiana contemporanea in
-            prospettiva contrastiva, Firenze, Cesati, pp. 315-325.
+            <span class="author">Visconti, J.</span> (2023).
+            <span class="title">
+              Aspetti della testualità in atti giudiziari italiani e
+              inglesi</span
+            >. A.M. De Cesare, A. Ferrari, L. Lala, F. Pecorari (Eds.),
+            <span class="title">
+              Forme della scrittura italiana contemporanea in prospettiva
+              contrastiva</span
+            >. Firenze, Cesati, pp. 315-325.
           </li>
           <li>
-            Visconti, J. (2023), Pragmatic features of Italian court
-            proceedings, in J. Engberg (ed.), Between Text, Meaning and Legal
-            Languages: Linguistic Approaches to Legal Interpretation, Berlin,
-            Boston: De Gruyter Mouton, pp. 79-90.
+            <span class="author">Visconti, J.</span> (2023).
+            <span class="title">
+              Pragmatic features of Italian court proceedings</span
+            >. In J. Engberg (ed.),
+            <span class="title"
+              >Between Text, Meaning and Legal Languages: Linguistic Approaches
+              to Legal Interpretation</span
+            >, Berlin, De Gruyter Mouton, pp. 79-90.
           </li>
           <li>
-            Visconti J. (2023), Detto non detto nella lingua degli avvocati, in
-            D. Mastrantonio, E. Salvatore (Eds.), Forme, strutture e didattica
-            dell’italiano Studi per i 60 anni di Massimo Palermo, Edizioni
-            Università per Stranieri di Siena, pp. 335-341.
+            <span class="author">Visconti, J.</span> (2023).
+            <span class="title">
+              Detto non detto nella lingua degli avvocati</span
+            >. In D. Mastrantonio, E. Salvatore (Eds.),
+            <span class="title">
+              Forme, strutture e didattica dell’italiano Studi per i 60 anni di
+              Massimo Palermo</span
+            >, Palermo, Edizioni Università per Stranieri di Siena, pp. 335-341.
           </li>
           <li>
-            Visconti, J. (2024), L’italiano giuridico, in S. Ballarè, I.
-            Fiorentini (Eds.), Le varietà dell'italiano contemporaneo, Roma,
-            Carocci, pp. 133-145.
+            <span class="author">Visconti, J.</span> (2024).
+            <span class="title"> L’italiano giuridico</span>. In S. Ballarè, I.
+            Fiorentini (Eds.),
+            <span class="title"> Le varietà dell'italiano contemporaneo</span>,
+            Roma, Carocci, pp. 133-145.
           </li>
           <li>
-            Visconti, J. (2024), Gli atti di parte: una miniera inesplorata, in
-            C. Marello (Ed.), Per Bice Mortara Garavelli, Quaderni
-            dell’Accademia delle Scienze 42, pp. 151-158.
+            <span class="author">Visconti, J.</span> (2024).
+            <span class="title">
+              Gli atti di parte: una miniera inesplorata</span
+            >. In C. Marello (Ed.),
+            <span class="title"> Per Bice Mortara Garavelli</span>, Roma,
+            Quaderni dell’Accademia delle Scienze 42, pp. 151-158.
           </li>
           <li>
-            Gualdo, R. (2022), Dalla competenza alle competenze. Un percorso
-            lessicale, in La lingua. Strutture, storie, variazioni. In M.V.
-            Dell’Anna & I. Tempesta (Eds.), Firenze, Cesati, pp. 21-34
+            <span class="author">Gualdo, R.</span> (2022).
+            <span class="title">
+              Dalla competenza alle competenze. Un percorso lessicale, in La
+              lingua. Strutture, storie, variazioni</span
+            >. In M.V. Dell’Anna & I. Tempesta (Eds.),
+            <span class="title"> La lingua. Strutture, storie, variazioni</span
+            >, Firenze, Cesati, pp. 21-34.
           </li>
           <li>
-            Gualdo, R. (2022), Paesaggio e ambiente nelle costituzioni italiana
-            e svizzera, in A. Ferrari, L. Lala, F. Pecorari (Eds.), L’italiano
-            dei testi costituzionali. Indagini linguistiche e testuali tra
-            Svizzera e Italia, Alessandria, Edizioni dell’Orso, pp. 507-514.
-          </li>
-          <li>
-            Clemenzi L., Fusco F., Fusi D., Lombardi G. (2023), Processing of
-            Personal Data in Court Proceedings: A Model for Linguistic and Legal
-            Studies. In P. in Anesa & j. Engberg (eds.), The Digital
-            (R)Evolution of Legal Discourse: New Genres, Media, and Linguistic
-            Practices, Berlin/Boston, De Gruyter Mouton, pp. 35-52 (ISBN:
-            978-3-11-104736-2).
-          </li>
-          <li>
-            Bambi, F. (2024), Qualche consiglio per una buona scrittura
-            giuridica. In G. Grasso, M. Maugeri, F. Tondin (Eds.), Comunicazione
-            e giustizia, Pubblicazione della Scuola superiore della
-            magistratura, Torino, Giappichelli, pp. 67-75.
-          </li>
-          <li>
-            Clemenzi, L., Fusco, F., Fusi, D., & Lombardi, G. (2022). Analisi
-            linguistica e pseudonimizzazione: strumenti e paradigmi. In F.
-            Ciracì, G. Miglietta, & C. Gatto (Eds.), Culture digitali.
-            Intersezioni: filosofia, arti, media. Preceedings della 11a
-            conferenza nazionale, AIUCD, Lecce, pp. 185–192
-            (http://amsacta.unibo.it/6848/).
-          </li>
-          <li>
-            Clemenzi, L., Fusco, F., Fusi, D., & Lombardi, G. (2023). Testi in
-            maschera: nuovi strumenti per la sicurezza e l’analisi linguistica
-            di corpora giuridici. Umanistica Digitale, 2023(16), 1–32.
-            https://doi.org/10.6092/issn.2532-8816/15608.
-          </li>
-          <li>
-            Lombardi, G. (2024). Forme e funzioni delle virgolette negli atti di
-            parte. Revue Romane. Langue et Littérature. International Journal of
-            Romance Languages and Literatures.
-            https://doi.org/10.1075/RRO.22011.LOM.
-          </li>
-          <li>
-            Fusco, F. (2022). Forestierismi e linguaggio giuridico
-            contemporaneo: gli atti degli avvocati. Testo e Senso, 24, 189–207
-            (https://doi.org/10.58015/2036-2293/585).
+            <span class="author">Gualdo, R.</span> (2022).
+            <span class="title"
+              >Paesaggio e ambiente nelle costituzioni italiana e svizzera</span
+            >. In A. Ferrari, L. Lala, F. Pecorari (Eds.),
+            <span class="title">
+              L’italiano dei testi costituzionali. Indagini linguistiche e
+              testuali tra Svizzera e Italia</span
+            >, Alessandria, Edizioni dell’Orso, pp. 507-514.
           </li>
           <li>
             <span class="author">Clemenzi, L.</span>,
             <span class="author">Fusco, F.</span>,
-            <span class="author">Fusi, D.</span>, &
+            <span class="author">Fusi, D.</span> &
+            <span class="author">Lombardi, G.</span> (2023).
+            <span class="title"
+              >Processing of Personal Data in Court Proceedings: A Model for
+              Linguistic and Legal Studies</span
+            >. In P. in Anesa & j. Engberg (eds.),
+            <span class="title"
+              >The Digital (R)Evolution of Legal Discourse: New Genres, Media,
+              and Linguistic Practices</span
+            >, Berlin/Boston, De Gruyter Mouton, pp. 35-52.
+          </li>
+          <li>
+            <span class="author">Bambi, F.</span> (2024).
+            <span class="title"
+              >Qualche consiglio per una buona scrittura giuridica</span
+            >. In G. Grasso, M. Maugeri, F. Tondin (Eds.),
+            <span class="title">
+              Comunicazione e giustizia, Pubblicazione della Scuola superiore
+              della magistratura</span
+            >, Torino, Giappichelli, pp. 67-75.
+          </li>
+          <li>
+            <span class="author">Clemenzi, L.</span>,
+            <span class="author">Fusco, F.</span>,
+            <span class="author">Fusi, D.</span> &
+            <span class="author">Lombardi, G.</span> (2023).
+            <span class="title"
+              >Testi in maschera: nuovi strumenti per la sicurezza e l’analisi
+              linguistica di corpora giuridici</span
+            >, Umanistica Digitale, 2023(16), 1–32.
+          </li>
+          <li>
+            <span class="author">Lombardi, G.</span> (2024).
+            <span class="title"
+              >Forme e funzioni delle virgolette negli atti di parte, </span
+            >Revue Romane. Langue et Littérature. International Journal of
+            Romance Languages and Literatures (<a
+              target="_blank"
+              rel="noopener"
+              href="https://doi.org/10.1075/RRO.22011.LOM"
+              >https://doi.org/10.1075/RRO.22011.LOM</a
+            >).
+          </li>
+          <li>
+            <span class="author">Fusco, F.</span> (2022).
+            <span class="title"
+              >Forestierismi e linguaggio giuridico contemporaneo: gli atti
+              degli avvocati.</span
+            >Testo e Senso, 24, 189–207 (<a
+              target="_blank"
+              rel="noopener"
+              href="https://doi.org/10.58015/2036-2293/585"
+              >https://doi.org/10.58015/2036-2293/585</a
+            >).
+          </li>
+          <li>
+            <span class="author">Clemenzi, L.</span>,
+            <span class="author">Fusco, F.</span>,
+            <span class="author">Fusi, D.</span> &
             <span class="author">Lombardi, G.</span> (2022).
             <span class="title"
               >Analisi linguistica e pseudonimizzazione: strumenti e

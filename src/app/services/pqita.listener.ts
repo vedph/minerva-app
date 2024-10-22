@@ -372,7 +372,7 @@ export default class PqitaListener extends ParseTreeListener {
    * @param ctx the parse tree
    */
   exitRelation?(ctx: RelationContext): void {
-    const hasNot = ctx.negation() !== undefined;
+    const hasNot = ctx.negation() !== null;
     const relType = ctx.REL_TYPE().getText();
     let operator = '';
 

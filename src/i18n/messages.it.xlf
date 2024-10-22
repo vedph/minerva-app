@@ -117,7 +117,7 @@
       </trans-unit>
       <trans-unit id="6777064974013960131" datatype="html">
         <source>entry</source>
-        <target state="translated">entrata</target>
+        <target state="translated">Componi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
           <context context-type="linenumber">1</context>
@@ -125,7 +125,7 @@
       </trans-unit>
       <trans-unit id="4555020547512776102" datatype="html">
         <source>Edit this entry</source>
-        <target state="translated">Modifica questa entrata</target>
+        <target state="translated">Modifica questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -133,7 +133,7 @@
       </trans-unit>
       <trans-unit id="156248726406627209" datatype="html">
         <source>Add a new entry before this one</source>
-        <target state="translated">Aggiungi nuova entrata prima di questa</target>
+        <target state="translated">Aggiungi nuovo elemento prima di questo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
           <context context-type="linenumber">1,3</context>
@@ -141,7 +141,7 @@
       </trans-unit>
       <trans-unit id="6831627050432295460" datatype="html">
         <source>Move this entry up</source>
-        <target state="translated">Muovi questa entrata in alto</target>
+        <target state="translated">Muovi questo elemento in alto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -149,7 +149,7 @@
       </trans-unit>
       <trans-unit id="3274889072659899698" datatype="html">
         <source>Move this entry down</source>
-        <target state="translated">Muovi questa entrata in basso</target>
+        <target state="translated">Muovi questo elemento in basso</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -157,7 +157,7 @@
       </trans-unit>
       <trans-unit id="3466810056266680739" datatype="html">
         <source>Delete this entry</source>
-        <target state="translated">Cancella questa entrata</target>
+        <target state="translated">Cancella questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry-set/query-entry-set.component.html</context>
           <context context-type="linenumber">1,2</context>
@@ -613,7 +613,7 @@
       </trans-unit>
       <trans-unit id="7709609791465421040" datatype="html">
         <source>POS</source>
-        <target state="translated">PDC</target>
+        <target state="translated">POS</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">140</context>
@@ -1457,7 +1457,7 @@
       </trans-unit>
       <trans-unit id="8531339399335085169" datatype="html">
         <source>Unexpected entry type</source>
-        <target state="translated">Tipo di entrata non atteso</target>
+        <target state="translated">Tipo di elemento non atteso</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">774</context>
@@ -1765,7 +1765,7 @@
       </trans-unit>
       <trans-unit id="3970926993273657249" datatype="html">
         <source>value pattern</source>
-        <target state="translated">modello del valore</target>
+        <target state="translated">Parola</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1781,7 +1781,7 @@
       </trans-unit>
       <trans-unit id="4200029649359977709" datatype="html">
         <source>min.len.</source>
-        <target state="translated">lunghezza min.</target>
+        <target state="translated">Lunghezza min.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1797,7 +1797,7 @@
       </trans-unit>
       <trans-unit id="2064206656217416827" datatype="html">
         <source>min.nr.</source>
-        <target state="translated">nr.min.</target>
+        <target state="translated">Freq. min.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1805,7 +1805,7 @@
       </trans-unit>
       <trans-unit id="4128506891616077459" datatype="html">
         <source>max.nr.</source>
-        <target state="translated">nr.max.</target>
+        <target state="translated">Freq. max.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -2205,7 +2205,7 @@
       </trans-unit>
       <trans-unit id="1710170991162777812" datatype="html">
         <source>clitic</source>
-        <target state="translated">clitica</target>
+        <target state="translated">clitico</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">131</context>
@@ -2221,7 +2221,7 @@
       </trans-unit>
       <trans-unit id="7461155148792506158" datatype="html">
         <source>definite</source>
-        <target state="translated">definito</target>
+        <target state="translated">Articolo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">138</context>
@@ -2525,7 +2525,7 @@
       </trans-unit>
       <trans-unit id="2545864634845062068" datatype="html">
         <source>poss</source>
-        <target state="translated">possessivo</target>
+        <target state="translated">agg. poss</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">284</context>

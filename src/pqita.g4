@@ -86,7 +86,7 @@ REL_TYPE:
 	'vicino a'
 	| ('attaccato' | 'attaccata' | 'attaccati') WS 'a'
 	| 'prima' WS ('di' | 'della' | 'del')
-	| 'dopo' WS ('di' | 'della' | 'del');
+	| 'dopo' WS ('l\'' | 'la' | 'il');
 
 VALUE: '"' ~["]* '"';
 

@@ -663,9 +663,9 @@ describe('PqitaService', () => {
     ).toBe('[language="lat"] AND [value%="canis:0.5"]');
   });
   it('should supply quotes in trova il latinismo poco simile a canis', () => {
-    expect(
-      service.supplyQuotes('trova il latinismo poco simile a canis')
-    ).toBe('trova il latinismo poco simile a "canis"');
+    expect(service.supplyQuotes('trova il latinismo poco simile a canis')).toBe(
+      'trova il latinismo poco simile a "canis"'
+    );
   });
 
   // set: parole
@@ -771,5 +771,19 @@ describe('PqitaService', () => {
   // set: latinismi
   it('should convert tutti i latinismi to [language="lat"]', () => {
     expect(service.convertQuery('tutti i latinismi')).toBe('[language="lat"]');
+  });
+
+  // before
+  it('should convert parola "cane" prima della parola "bello"', () => {
+    expect(
+      service.convertQuery('parola "cane" prima della parola "bello"')
+    ).toBe('[value="cane"] BEFORE(m=3,s=snt) [value="bello"]');
+  });
+
+  // after
+  it('should convert parola "cane" dopo la parola "bel"', () => {
+    expect(
+      service.convertQuery('parola "cane" dopo la parola "bel"')
+    ).toBe('[value="cane"] AFTER(m=3,s=snt) [value="bel"]');
   });
 });
