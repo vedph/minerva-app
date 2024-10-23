@@ -1,4 +1,3 @@
-import { QUERY_DOC_ATTR_DEFS } from '@myrmidon/pythia-query-builder';
 import {
   QueryBuilderTermDef,
   QueryBuilderTermType,
