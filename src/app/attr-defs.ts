@@ -15,7 +15,20 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
   // ------------------------------------------------------
   // document
   // ------------------------------------------------------
-  ...QUERY_DOC_ATTR_DEFS,
+  {
+    value: 'title',
+    label: $localize`title`,
+    type: QueryBuilderTermType.Document,
+    group: $localize`document`,
+    tip: $localize`Document's title.`,
+  },
+  {
+    value: 'date_value',
+    label: $localize`date`,
+    type: QueryBuilderTermType.Document,
+    group: $localize`document`,
+    tip: $localize`Numeric value calculated from document's date.`,
+  },
   {
     value: 'atto',
     label: $localize`act`,

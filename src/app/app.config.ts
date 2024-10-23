@@ -41,7 +41,6 @@ export const appConfig: ApplicationConfig = {
       useClass: RateLimitInterceptor,
       multi: true,
     },
-    // query builder
     {
       provide: QUERY_BUILDER_ATTR_DEFS_KEY,
       useValue: ATTR_DEFS,
