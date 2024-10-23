@@ -154,6 +154,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-10-23: updated packages and messages.
 - 2024-10-22:
   - changed some tokens in g4 (dopo without "di").
   - added tests.
