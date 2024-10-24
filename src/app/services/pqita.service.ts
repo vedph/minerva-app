@@ -25,11 +25,11 @@ export class PqitaService {
       return '';
     }
     // a text with no inner space is just a single word query
-    const value = inputText.trim();
+    let value = inputText.trim();
     if (!value.includes(' ')) {
       // if the text is wrapped in "", remove quotes
       if (value.startsWith('"') && value.endsWith('"')) {
-        return value.slice(1, -1);
+        value = value.slice(1, -1);
       }
       // convert into simple query
       return `[value="${value}"]`;
