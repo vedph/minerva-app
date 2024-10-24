@@ -80,7 +80,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">122,123</context>
+          <context context-type="linenumber">121,122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4028693387908424457" datatype="html">
@@ -203,7 +203,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">126,127</context>
+          <context context-type="linenumber">125,126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8255610003295042658" datatype="html">
@@ -310,7 +310,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">120,121</context>
+          <context context-type="linenumber">119,120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2797527932365132552" datatype="html">
@@ -1525,7 +1525,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
@@ -1579,10 +1579,6 @@
           <context context-type="sourcefile">projects/myrmidon/pythia-search/src/lib/components/search/search.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">19,20</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7547092634478073292" datatype="html">
         <source>ctrl+Enter to submit</source>
@@ -1603,7 +1599,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">82,83</context>
+          <context context-type="linenumber">81,82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3364545187261230111" datatype="html">
@@ -1614,7 +1610,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">143,144</context>
+          <context context-type="linenumber">142,143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9065131043794167815" datatype="html">
@@ -1625,7 +1621,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">154,155</context>
+          <context context-type="linenumber">153,154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5452158299332252307" datatype="html">
@@ -1636,7 +1632,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">203,204</context>
+          <context context-type="linenumber">202,203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7985872200977399463" datatype="html">
@@ -1695,15 +1691,15 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2064206656217416827" datatype="html">
-        <source>min.nr.</source>
+      <trans-unit id="2453183852015572085" datatype="html">
+        <source>min.freq.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4128506891616077459" datatype="html">
-        <source>max.nr.</source>
+      <trans-unit id="6215833873411036400" datatype="html">
+        <source>max.freq.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1716,39 +1712,84 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6855462350544488601" datatype="html">
-        <source>default</source>
+      <trans-unit id="6536248004600320842" datatype="html">
+        <source>▲ default</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5000533697841982597" datatype="html">
-        <source>by value</source>
+      <trans-unit id="3911297356907273395" datatype="html">
+        <source>▲ value</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.ts</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="422603044340396704" datatype="html">
-        <source>by rev.value</source>
+      <trans-unit id="3564206492933865904" datatype="html">
+        <source>▲ reversed value</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.ts</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2878882797670733908" datatype="html">
-        <source>by count</source>
+      <trans-unit id="3205662883788332602" datatype="html">
+        <source>▲ frequency</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.ts</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8583825692753174768" datatype="html">
-        <source>descending</source>
+      <trans-unit id="7855634635898519245" datatype="html">
+        <source>▼ default </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1750716017077027724" datatype="html">
+        <source>▼ value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2662918060471058417" datatype="html">
+        <source>▼ reversed value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8135140238553282885" datatype="html">
+        <source>▼ frequency</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/words/words.component.ts</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3890771237132928825" datatype="html">
@@ -2457,7 +2498,7 @@
         <source>clear</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ita-search/ita-search.component.html</context>
-          <context context-type="linenumber">224</context>
+          <context context-type="linenumber">223</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3667842621564887364" datatype="html">

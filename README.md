@@ -157,6 +157,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 - 2024-10-24:
   - hide query builder.
   - added single word query as a corner case in pqita service. Now if you enter a query having no inner spaces, it is assumed to be a single word search, whether the word is between `""` or not.
+  - updated packages to allow hiding some controls from the word index filter and provide custom sort order entries.
 - 2024-10-23: updated packages and messages.
 - 2024-10-22:
   - changed some tokens in g4 (dopo without "di").

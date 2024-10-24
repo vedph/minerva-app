@@ -7,7 +7,12 @@ import { Router } from '@angular/router';
 
 import { EnvService } from '@myrmidon/ng-tools';
 
-import { AttributeInfo, Lemma, Word } from '@myrmidon/pythia-api';
+import {
+  AttributeInfo,
+  Lemma,
+  Word,
+  WordSortOrder,
+} from '@myrmidon/pythia-api';
 import { WordIndexComponent } from '@myrmidon/pythia-word-index';
 
 @Component({
@@ -25,6 +30,24 @@ import { WordIndexComponent } from '@myrmidon/pythia-word-index';
 })
 export class WordsComponent {
   public attributes?: AttributeInfo[];
+  public sortOrderEntries = [
+    // ascending
+    { key: $localize`▲ value`, value: WordSortOrder.ByValue },
+    { key: $localize`▲ reversed value`, value: WordSortOrder.ByReversedValue },
+    { key: $localize`▲ frequency`, value: WordSortOrder.ByCount },
+    // descending
+    { key: $localize`▼ value`, value: WordSortOrder.ByValue, descending: true },
+    {
+      key: $localize`▼ reversed value`,
+      value: WordSortOrder.ByReversedValue,
+      descending: true,
+    },
+    {
+      key: $localize`▼ frequency`,
+      value: WordSortOrder.ByCount,
+      descending: true,
+    },
+  ];
 
   constructor(private _router: Router, env: EnvService) {
     this.attributes = env.get('indexDocAttrs') as AttributeInfo[] | undefined;

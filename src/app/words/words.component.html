@@ -6,6 +6,9 @@
   <mat-card-content>
     <pythia-word-index
       [hideLanguage]="true"
+      [hideFilter]="true"
+      [hideLoc]="true"
+      [sortOrderEntries]="sortOrderEntries"
       [attributes]="attributes"
       (searchRequest)="onSearchRequest($event)"
     />
