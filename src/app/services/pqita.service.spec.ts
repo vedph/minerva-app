@@ -14,6 +14,26 @@ describe('PqitaService', () => {
     expect(service).toBeTruthy();
   });
 
+  // corner case: single word query
+  it('should convert cane to [value="cane"]', () => {
+    expect(service.convertQuery('cane')).toBe('[value="cane"]');
+  });
+  it('should convert "cane" to [value="cane"]', () => {
+    expect(service.convertQuery('"cane"')).toBe('[value="cane"]');
+  });
+  it('should convert cane with left spc to [value="cane"]', () => {
+    expect(service.convertQuery('  cane')).toBe('[value="cane"]');
+  });
+  it('should convert cane with right spc to [value="cane"]', () => {
+    expect(service.convertQuery('cane  ')).toBe('[value="cane"]');
+  });
+  it('should convert spc + "cane" to [value="cane"]', () => {
+    expect(service.convertQuery(' "cane"')).toBe('[value="cane"]');
+  });
+  it('should convert "cane" + spc to [value="cane"]', () => {
+    expect(service.convertQuery(' "cane" ')).toBe('[value="cane"]');
+  });
+
   // parola
   it('should convert parola "cane" to [value="cane"]', () => {
     expect(service.convertQuery('parola "cane"')).toBe('[value="cane"]');

@@ -20,6 +20,21 @@ export class PqitaService {
     /(?<item>parola|locuzione|lemma|forestierismo|latinismo|anglicismo)\s+(?:(?<operator>uguale a|iniziante per|terminante per|contenente|corrispondente a|(?:molto |poco )?simile a)\s+)?(?<value>(?:(?!parola|locuzione|lemma|forestierismo|latinismo|anglicismo|come|in|a inizio|a fine|vicino|attaccato|prima|dopo|uguale a|iniziante per|terminante per|contenente|corrispondente a|simile a)\S+\s*)+)/g;
 
   public convertQuery(inputText: string): string {
+    // corner cases: empty
+    if (!inputText) {
+      return '';
+    }
+    // a text with no inner space is just a single word query
+    const value = inputText.trim();
+    if (!value.includes(' ')) {
+      // if the text is wrapped in "", remove quotes
+      if (value.startsWith('"') && value.endsWith('"')) {
+        return value.slice(1, -1);
+      }
+      // convert into simple query
+      return `[value="${value}"]`;
+    }
+
     // create the lexer and parser
     const charStream: CharStream = CharStreams.fromString(inputText);
     const lexer = new PqitaLexer(charStream);

@@ -13,7 +13,7 @@
           <minerva-pqita (searchRequest)="onSearchRequest($event)" />
         </mat-tab>
         <!-- query - builder -->
-        <mat-tab i18n-label>
+        <!-- <mat-tab i18n-label>
           <ng-template mat-tab-label>
             <mat-icon>list</mat-icon>
             <span i18n class="label">builder</span>
@@ -24,7 +24,7 @@
             (queryChange)="onQueryChange($event)"
             (queryPeek)="onQueryPeek($event)"
           ></pythia-query-builder>
-        </mat-tab>
+        </mat-tab> -->
         <!-- query - advanced -->
         <mat-tab i18n-label>
           <ng-template mat-tab-label>
@@ -56,7 +56,6 @@
               <button
                 style="margin-top: -24px"
                 type="submit"
-                color="primary"
                 class="mat-primary"
                 mat-flat-button
                 [disabled]="form.invalid || (loading$ | async)"
