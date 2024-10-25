@@ -404,7 +404,18 @@ describe('PqitaService', () => {
     ).toBe('[value="cane"] AND [prontype="tot"]');
   });
 
-  // parola + come: degree
+  // parola + come: degree=cmp
+  it('should convert parola "cane" come comparativo to [value="cane"] AND [degree="cmp"]', () => {
+    expect(service.convertQuery('parola "cane" come comparativo')).toBe(
+      '[value="cane"] AND [degree="cmp"]'
+    );
+  });
+  // parola + come: degree=abs
+  it('should convert parola "cane" come superlativo to [value="cane"] AND [degree="abs"]', () => {
+    expect(service.convertQuery('parola "cane" come superlativo')).toBe(
+      '[value="cane"] AND [degree="abs"]'
+    );
+  });
 
   // parola + in
   it('should convert parola "cane" in grassetto to [value="cane"] AND [b="1"]', () => {
