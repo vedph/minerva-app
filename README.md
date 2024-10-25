@@ -157,6 +157,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 - 2024-10-25:
   - added many more values to "come".
   - added more tests.
+  - readonly converted query in simple search.
 - 2024-10-24:
   - hide query builder.
   - added single word query as a corner case in pqita service. Now if you enter a query having no inner spaces, it is assumed to be a single word search, whether the word is between `""` or not.
