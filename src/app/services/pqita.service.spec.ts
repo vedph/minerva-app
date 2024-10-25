@@ -154,6 +154,11 @@ describe('PqitaService', () => {
   it('should convert parola "cane" come sostantivo to [value="cane"] AND [pos="NOUN"]', () => {
     expect(service.convertQuery('parola "cane" come sostantivo')).toBe('[value="cane"] AND [pos="NOUN"]');
   });
+
+  // parola + in
+  it('should convert parola "cane" in grassetto to [value="cane"] AND [b="1"]', () => {
+    expect(service.convertQuery('parola "cane" in grassetto')).toBe('[value="cane"] AND [b="1"]');
+  });
   //#endregion
 
   //#region locuzione
