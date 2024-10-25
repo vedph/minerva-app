@@ -14,7 +14,7 @@ describe('PqitaService', () => {
     expect(service).toBeTruthy();
   });
 
-  // corner case: single word query
+  //#region single word query
   it('should convert cane to [value="cane"]', () => {
     expect(service.convertQuery('cane')).toBe('[value="cane"]');
   });
@@ -33,8 +33,9 @@ describe('PqitaService', () => {
   it('should convert "cane" + spc to [value="cane"]', () => {
     expect(service.convertQuery(' "cane" ')).toBe('[value="cane"]');
   });
+  //#endregion
 
-  // parola
+  //#region parola
   it('should convert parola "cane" to [value="cane"]', () => {
     expect(service.convertQuery('parola "cane"')).toBe('[value="cane"]');
   });
@@ -53,6 +54,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // uguale a
   it('should convert trova la parola uguale a "cane" to [value="cane"]', () => {
     expect(service.convertQuery('trova la parola uguale a "cane"')).toBe(
       '[value="cane"]'
@@ -64,6 +66,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // iniziante per
   it('should convert trova la parola iniziante per "ca" to [value^="ca"]', () => {
     expect(service.convertQuery('trova la parola iniziante per "ca"')).toBe(
       '[value^="ca"]'
@@ -75,6 +78,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // terminante per
   it('should convert trova la parola terminante per "ne" to [value$="ne"]', () => {
     expect(service.convertQuery('trova la parola terminante per "ne"')).toBe(
       '[value$="ne"]'
@@ -86,6 +90,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // contenente
   it('should convert trova la parola contenente "an" to [value*="an"]', () => {
     expect(service.convertQuery('trova la parola contenente "an"')).toBe(
       '[value*="an"]'
@@ -97,6 +102,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // corrispondente a
   it('should convert trova la parola corrispondente a "c?n?" to [value?="c?n?"]', () => {
     expect(
       service.convertQuery('trova la parola corrispondente a "c?n?"')
@@ -108,6 +114,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // simile a
   it('should convert trova la parola simile a "cane" to [value%="cane:0.8"]', () => {
     expect(service.convertQuery('trova la parola simile a "cane"')).toBe(
       '[value%="cane:0.8"]'
@@ -119,6 +126,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // molto simile a
   it('should convert trova la parola molto simile a "cane" to [value%="cane:0.9"]', () => {
     expect(service.convertQuery('trova la parola molto simile a "cane"')).toBe(
       '[value%="cane:0.9"]'
@@ -130,6 +138,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // poco simile a
   it('should convert trova la parola poco simile a "cane" to [value%="cane:0.5"]', () => {
     expect(service.convertQuery('trova la parola poco simile a "cane"')).toBe(
       '[value%="cane:0.5"]'
@@ -140,8 +149,9 @@ describe('PqitaService', () => {
       'trova la parola poco simile a "cane"'
     );
   });
+  //#endregion
 
-  // locuzione
+  //#region locuzione
   it('should convert locuzione "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
     expect(service.convertQuery('locuzione "pro tempore"')).toBe(
       '[$fp-lat] AND [_value="pro tempore"]'
@@ -164,6 +174,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // uguale a
   it('should convert trova la locuzione uguale a "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
     expect(
       service.convertQuery('trova la locuzione uguale a "pro tempore"')
@@ -175,6 +186,7 @@ describe('PqitaService', () => {
     ).toBe('trova la locuzione uguale a "pro tempore"');
   });
 
+  // iniziante per
   it('should convert trova la locuzione iniziante per "pro" to [$fp-lat] AND [_value^="pro"]', () => {
     expect(service.convertQuery('trova la locuzione iniziante per "pro"')).toBe(
       '[$fp-lat] AND [_value^="pro"]'
@@ -186,6 +198,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // terminante per
   it('should convert trova la locuzione terminante per "tempore" to [$fp-lat] AND [_value$="tempore"]', () => {
     expect(
       service.convertQuery('trova la locuzione terminante per "tempore"')
@@ -197,6 +210,7 @@ describe('PqitaService', () => {
     ).toBe('trova la locuzione terminante per "tempore"');
   });
 
+  // contenente
   it('should convert trova la locuzione contenente "temp" to [$fp-lat] AND [_value*="temp"]', () => {
     expect(service.convertQuery('trova la locuzione contenente "temp"')).toBe(
       '[$fp-lat] AND [_value*="temp"]'
@@ -208,6 +222,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // corrispondente a
   it('should convert trova la locuzione corrispondente a "pro tempore" to [$fp-lat] AND [_value?="pro tempore"]', () => {
     expect(
       service.convertQuery('trova la locuzione corrispondente a "pro tempore"')
@@ -219,6 +234,7 @@ describe('PqitaService', () => {
     ).toBe('trova la locuzione corrispondente a "pro tempore"');
   });
 
+  // simile a
   it('should convert trova la locuzione simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.8"]', () => {
     expect(
       service.convertQuery('trova la locuzione simile a "pro tempore"')
@@ -230,6 +246,7 @@ describe('PqitaService', () => {
     ).toBe('trova la locuzione simile a "pro tempore"');
   });
 
+  // molto simile a
   it('should convert trova la locuzione molto simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.9"]', () => {
     expect(
       service.convertQuery('trova la locuzione molto simile a "pro tempore"')
@@ -241,6 +258,7 @@ describe('PqitaService', () => {
     ).toBe('trova la locuzione molto simile a "pro tempore"');
   });
 
+  // poco simile a
   it('should convert trova la locuzione poco simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.5"]', () => {
     expect(
       service.convertQuery('trova la locuzione poco simile a "pro tempore"')
@@ -251,8 +269,9 @@ describe('PqitaService', () => {
       service.supplyQuotes('trova la locuzione poco simile a pro tempore')
     ).toBe('trova la locuzione poco simile a "pro tempore"');
   });
+  //#endregion
 
-  // lemma
+  //#region lemma
   it('should convert lemma "cane" to [lemma="cane"]', () => {
     expect(service.convertQuery('lemma "cane"')).toBe('[lemma="cane"]');
   });
@@ -271,6 +290,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // uguale a
   it('should convert trova il lemma uguale a "cane" to [lemma="cane"]', () => {
     expect(service.convertQuery('trova il lemma uguale a "cane"')).toBe(
       '[lemma="cane"]'
@@ -282,6 +302,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // iniziante per
   it('should convert trova il lemma iniziante per "ca" to [lemma^="ca"]', () => {
     expect(service.convertQuery('trova il lemma iniziante per "ca"')).toBe(
       '[lemma^="ca"]'
@@ -293,6 +314,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // terminante per
   it('should convert trova il lemma terminante per "ne" to [lemma$="ne"]', () => {
     expect(service.convertQuery('trova il lemma terminante per "ne"')).toBe(
       '[lemma$="ne"]'
@@ -304,6 +326,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // contenente
   it('should convert trova il lemma contenente "an" to [lemma*="an"]', () => {
     expect(service.convertQuery('trova il lemma contenente "an"')).toBe(
       '[lemma*="an"]'
@@ -315,6 +338,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // corrispondente a
   it('should convert trova il lemma corrispondente a "c?n?" to [lemma?="c?n?"]', () => {
     expect(service.convertQuery('trova il lemma corrispondente a "c?n?"')).toBe(
       '[lemma?="c?n?"]'
@@ -326,6 +350,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // simile a
   it('should convert trova il lemma simile a "cane" to [lemma%="cane:0.8"]', () => {
     expect(service.convertQuery('trova il lemma simile a "cane"')).toBe(
       '[lemma%="cane:0.8"]'
@@ -337,6 +362,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // molto simile a
   it('should convert trova il lemma molto simile a "cane" to [lemma%="cane:0.9"]', () => {
     expect(service.convertQuery('trova il lemma molto simile a "cane"')).toBe(
       '[lemma%="cane:0.9"]'
@@ -348,6 +374,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // poco simile a
   it('should convert trova il lemma poco simile a "cane" to [lemma%="cane:0.5"]', () => {
     expect(service.convertQuery('trova il lemma poco simile a "cane"')).toBe(
       '[lemma%="cane:0.5"]'
@@ -358,8 +385,9 @@ describe('PqitaService', () => {
       'trova il lemma poco simile a "cane"'
     );
   });
+  //#endregion
 
-  // forestierismo
+  //#region forestierismo
   it('should convert forestierismo "dog" to [language<>"ita"] AND [value="dog"]', () => {
     expect(service.convertQuery('forestierismo "dog"')).toBe(
       '[language<>"ita"] AND [value="dog"]'
@@ -382,6 +410,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // uguale a
   it('should convert trova il forestierismo uguale a "dog" to [language<>"ita"] AND [value="dog"]', () => {
     expect(service.convertQuery('trova il forestierismo uguale a "dog"')).toBe(
       '[language<>"ita"] AND [value="dog"]'
@@ -393,6 +422,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // iniziante per
   it('should convert trova il forestierismo iniziante per "do" to [language<>"ita"] AND [value^="do"]', () => {
     expect(
       service.convertQuery('trova il forestierismo iniziante per "do"')
@@ -404,6 +434,7 @@ describe('PqitaService', () => {
     ).toBe('trova il forestierismo iniziante per "do"');
   });
 
+  // terminante per
   it('should convert trova il forestierismo terminante per "og" to [language<>"ita"] AND [value$="og"]', () => {
     expect(
       service.convertQuery('trova il forestierismo terminante per "og"')
@@ -415,6 +446,7 @@ describe('PqitaService', () => {
     ).toBe('trova il forestierismo terminante per "og"');
   });
 
+  // contenente
   it('should convert trova il forestierismo contenente "og" to [language<>"ita"] AND [value*="og"]', () => {
     expect(service.convertQuery('trova il forestierismo contenente "og"')).toBe(
       '[language<>"ita"] AND [value*="og"]'
@@ -426,6 +458,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // corrispondente a
   it('should convert trova il forestierismo corrispondente a "d?g" to [language<>"ita"] AND [value?="d?g"]', () => {
     expect(
       service.convertQuery('trova il forestierismo corrispondente a "d?g"')
@@ -437,6 +470,7 @@ describe('PqitaService', () => {
     ).toBe('trova il forestierismo corrispondente a "d?g"');
   });
 
+  // simile a
   it('should convert trova il forestierismo simile a "dog" to [language<>"ita"] AND [value%="dog:0.8"]', () => {
     expect(service.convertQuery('trova il forestierismo simile a "dog"')).toBe(
       '[language<>"ita"] AND [value%="dog:0.8"]'
@@ -448,6 +482,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // molto simile a
   it('should convert trova il forestierismo molto simile a "dog" to [language<>"ita"] AND [value%="dog:0.9"]', () => {
     expect(
       service.convertQuery('trova il forestierismo molto simile a "dog"')
@@ -459,6 +494,7 @@ describe('PqitaService', () => {
     ).toBe('trova il forestierismo molto simile a "dog"');
   });
 
+  // poco simile a
   it('should convert trova il forestierismo poco simile a "dog" to [language<>"ita"] AND [value%="dog:0.5"]', () => {
     expect(
       service.convertQuery('trova il forestierismo poco simile a "dog"')
@@ -469,8 +505,9 @@ describe('PqitaService', () => {
       service.supplyQuotes('trova il forestierismo poco simile a dog')
     ).toBe('trova il forestierismo poco simile a "dog"');
   });
+  //#endregion
 
-  // anglicismo
+  //#region anglicismo
   it('should convert anglicismo "dog" to [language="eng"] AND [value="dog"]', () => {
     expect(service.convertQuery('anglicismo "dog"')).toBe(
       '[language="eng"] AND [value="dog"]'
@@ -491,6 +528,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // uguale a
   it('should convert trova l\'anglicismo uguale a "dog" to [language="eng"] AND [value="dog"]', () => {
     expect(service.convertQuery('trova l\'anglicismo uguale a "dog"')).toBe(
       '[language="eng"] AND [value="dog"]'
@@ -502,6 +540,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // iniziante per
   it('should convert trova l\'anglicismo iniziante per "do" to [language="eng"] AND [value^="do"]', () => {
     expect(service.convertQuery('trova l\'anglicismo iniziante per "do"')).toBe(
       '[language="eng"] AND [value^="do"]'
@@ -513,6 +552,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // terminante per
   it('should convert trova l\'anglicismo terminante per "og" to [language="eng"] AND [value$="og"]', () => {
     expect(
       service.convertQuery('trova l\'anglicismo terminante per "og"')
@@ -524,6 +564,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // contenente
   it('should convert trova l\'anglicismo contenente "og" to [language="eng"] AND [value*="og"]', () => {
     expect(service.convertQuery('trova l\'anglicismo contenente "og"')).toBe(
       '[language="eng"] AND [value*="og"]'
@@ -535,6 +576,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // corrispondente a
   it('should convert trova l\'anglicismo corrispondente a "d?g" to [language="eng"] AND [value?="d?g"]', () => {
     expect(
       service.convertQuery('trova l\'anglicismo corrispondente a "d?g"')
@@ -546,6 +588,7 @@ describe('PqitaService', () => {
     ).toBe('trova l\'anglicismo corrispondente a "d?g"');
   });
 
+  // simile a
   it('should convert trova l\'anglicismo simile a "dog" to [language="eng"] AND [value%="dog:0.8"]', () => {
     expect(service.convertQuery('trova l\'anglicismo simile a "dog"')).toBe(
       '[language="eng"] AND [value%="dog:0.8"]'
@@ -557,6 +600,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // molto simile a
   it('should convert trova l\'anglicismo molto simile a "dog" to [language="eng"] AND [value%="dog:0.9"]', () => {
     expect(
       service.convertQuery('trova l\'anglicismo molto simile a "dog"')
@@ -568,6 +612,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // poco simile a
   it('should convert trova l\'anglicismo poco simile a "dog" to [language="eng"] AND [value%="dog:0.5"]', () => {
     expect(
       service.convertQuery('trova l\'anglicismo poco simile a "dog"')
@@ -578,8 +623,9 @@ describe('PqitaService', () => {
       'trova l\'anglicismo poco simile a "dog"'
     );
   });
+  //#endregion
 
-  // latinismo
+  //#region latinismo
   it('should convert latinismo "canis" to [language="lat"] AND [value="canis"]', () => {
     expect(service.convertQuery('latinismo "canis"')).toBe(
       '[language="lat"] AND [value="canis"]'
@@ -600,6 +646,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // uguale a
   it('should convert trova il latinismo uguale a "canis" to [language="lat"] AND [value="canis"]', () => {
     expect(service.convertQuery('trova il latinismo uguale a "canis"')).toBe(
       '[language="lat"] AND [value="canis"]'
@@ -611,6 +658,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // iniziante per
   it('should convert trova il latinismo iniziante per "ca" to [language="lat"] AND [value^="ca"]', () => {
     expect(service.convertQuery('trova il latinismo iniziante per "ca"')).toBe(
       '[language="lat"] AND [value^="ca"]'
@@ -622,6 +670,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // terminante per
   it('should convert trova il latinismo terminante per "is" to [language="lat"] AND [value$="is"]', () => {
     expect(service.convertQuery('trova il latinismo terminante per "is"')).toBe(
       '[language="lat"] AND [value$="is"]'
@@ -633,6 +682,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // contenente
   it('should convert trova il latinismo contenente "an" to [language="lat"] AND [value*="an"]', () => {
     expect(service.convertQuery('trova il latinismo contenente "an"')).toBe(
       '[language="lat"] AND [value*="an"]'
@@ -644,6 +694,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // corrispondente a
   it('should convert trova il latinismo corrispondente a "c?n?" to [language="lat"] AND [value?="c?n?"]', () => {
     expect(
       service.convertQuery('trova il latinismo corrispondente a "c?n?"')
@@ -655,6 +706,7 @@ describe('PqitaService', () => {
     ).toBe('trova il latinismo corrispondente a "c?n?"');
   });
 
+  // simile a
   it('should convert trova il latinismo simile a "canis" to [language="lat"] AND [value%="canis:0.8"]', () => {
     expect(service.convertQuery('trova il latinismo simile a "canis"')).toBe(
       '[language="lat"] AND [value%="canis:0.8"]'
@@ -666,6 +718,7 @@ describe('PqitaService', () => {
     );
   });
 
+  // molto simile a
   it('should convert trova il latinismo molto simile a "canis" to [language="lat"] AND [value%="canis:0.9"]', () => {
     expect(
       service.convertQuery('trova il latinismo molto simile a "canis"')
@@ -677,6 +730,7 @@ describe('PqitaService', () => {
     ).toBe('trova il latinismo molto simile a "canis"');
   });
 
+  // poco simile a
   it('should convert trova il latinismo poco simile a "canis" to [language="lat"] AND [value%="canis:0.5"]', () => {
     expect(
       service.convertQuery('trova il latinismo poco simile a "canis"')
@@ -687,8 +741,9 @@ describe('PqitaService', () => {
       'trova il latinismo poco simile a "canis"'
     );
   });
+  //#endregion
 
-  // set: parole
+  //#region set: parole
   // ADJ ADP ADV AUX CCONJ DET NOUN NUM PRON PROPN SCONJ SYM VERB X
   it('should convert tutte le parole come aggettivo to [pos="ADJ"]', () => {
     expect(service.convertQuery('tutte le parole come aggettivo')).toBe(
@@ -774,25 +829,93 @@ describe('PqitaService', () => {
     );
   });
 
-  // set: forestierismi
+  // verbform: infinito gerundio participio
+  it('should convert tutte le parole come infinito to [verbform="inf"]', () => {
+    expect(service.convertQuery('tutte le parole come infinito')).toBe(
+      '[verbform="inf"]'
+    );
+  });
+
+  it('should convert tutte le parole come gerundio to [verbform="ger"]', () => {
+    expect(service.convertQuery('tutte le parole come gerundio')).toBe(
+      '[verbform="ger"]'
+    );
+  });
+
+  it('should convert tutte le parole come participio to [verbform="part"]', () => {
+    expect(service.convertQuery('tutte le parole come participio')).toBe(
+      '[verbform="part"]'
+    );
+  });
+
+  // mood: indicativo congiuntivo condizionale imperativo
+  it('should convert tutte le parole come indicativo to [mood="ind"]', () => {
+    expect(service.convertQuery('tutte le parole come indicativo')).toBe(
+      '[mood="ind"]'
+    );
+  });
+
+  it('should convert tutte le parole come congiuntivo to [mood="sub"]', () => {
+    expect(service.convertQuery('tutte le parole come congiuntivo')).toBe(
+      '[mood="sub"]'
+    );
+  });
+
+  it('should convert tutte le parole come condizionale to [mood="cnd"]', () => {
+    expect(service.convertQuery('tutte le parole come condizionale')).toBe(
+      '[mood="cnd"]'
+    );
+  });
+
+  it('should convert tutte le parole come imperativo to [mood="imp"]', () => {
+    expect(service.convertQuery('tutte le parole come imperativo')).toBe(
+      '[mood="imp"]'
+    );
+  });
+
+  // tense: presente passato futuro
+  it('should convert tutte le parole come presente to [tense="pres"]', () => {
+    expect(service.convertQuery('tutte le parole come presente')).toBe(
+      '[tense="pres"]'
+    );
+  });
+
+  it('should convert tutte le parole come passato to [tense="past"]', () => {
+    expect(service.convertQuery('tutte le parole come passato')).toBe(
+      '[tense="past"]'
+    );
+  });
+
+  it('should convert tutte le parole come futuro to [tense="fut"]', () => {
+    expect(service.convertQuery('tutte le parole come futuro')).toBe(
+      '[tense="fut"]'
+    );
+  });
+  //#endregion
+
+  //#region set: forestierismi
   it('should convert tutti i forestierismi to [language<>"ita"]', () => {
     expect(service.convertQuery('tutti i forestierismi')).toBe(
       '[language<>"ita"]'
     );
   });
+  //#endregion
 
-  // set: anglicismi
+  //#region set: anglicismi
   it('should convert tutti gli anglicismi to [language="eng"]', () => {
     expect(service.convertQuery('tutti gli anglicismi')).toBe(
       '[language="eng"]'
     );
   });
+  //#endregion
 
-  // set: latinismi
+  //#region set: latinismi
   it('should convert tutti i latinismi to [language="lat"]', () => {
     expect(service.convertQuery('tutti i latinismi')).toBe('[language="lat"]');
   });
+  //#endregion
 
+  //#region location
   // before
   it('should convert parola "cane" prima della parola "bello"', () => {
     expect(
@@ -816,4 +939,5 @@ describe('PqitaService', () => {
       'parola "cane" dopo la parola "bel"'
     );
   });
+  //#endregion
 });

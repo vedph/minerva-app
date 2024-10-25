@@ -38,6 +38,7 @@ const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
   highSimilarityThreshold: 0.9,
   proximityThreshold: 3,
   posMap: {
+    // pos
     aggettivo: 'ADJ',
     apposizione: 'ADP',
     avverbio: 'ADV',
@@ -52,7 +53,20 @@ const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
     simbolo: 'SYM',
     verbo: 'VERB',
     altro: 'X',
-  }
+    // verbform
+    infinito: 'verbform=inf',
+    gerundio: 'verbform=ger',
+    participio: 'verbform=part',
+    // mood
+    indicativo: 'mood=ind',
+    congiuntivo: 'mood=sub',
+    condizionale: 'mood=cnd',
+    imperativo: 'mood=imp',
+    // tense
+    presente: 'tense=pres',
+    passato: 'tense=past',
+    futuro: 'tense=fut',
+  },
 };
 
 /**
@@ -107,7 +121,7 @@ export default class PqitaListener extends ParseTreeListener {
         break;
       default:
         sb.push('[value');
-          break;
+        break;
     }
 
     switch (operator?.trim()) {
@@ -191,7 +205,7 @@ export default class PqitaListener extends ParseTreeListener {
     const continuation = ctx.itemContinuation();
     const operator = continuation.operator()?.getText();
     const value = continuation.VALUE().getText();
-    const pair = this.handleOperatorValue(symbol ,operator, value);
+    const pair = this.handleOperatorValue(symbol, operator, value);
     this.appendPair(pair);
   }
   /**
@@ -298,7 +312,15 @@ export default class PqitaListener extends ParseTreeListener {
   exitPosTag?(ctx: PosTagContext): void {
     const pos = ctx.POS_TYPE().getText();
     const tag = this._options.posMap[pos];
-    this.appendPair(`[pos="${tag}"]`);
+
+    // if tag has form name=value, append [name="value"]
+    const [name, value] = tag.split('=');
+    if (value) {
+      this.appendPair(`[${name}="${value}"]`);
+    } else {
+      // else append [pos="tag"]
+      this.appendPair(`[pos="${tag}"]`);
+    }
   }
 
   /**

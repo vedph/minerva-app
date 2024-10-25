@@ -24,6 +24,10 @@ export class PqitaService {
     if (!inputText) {
       return '';
     }
+
+    // lowercase
+    inputText = inputText.toLowerCase();
+
     // a text with no inner space is just a single word query
     let value = inputText.trim();
     if (!value.includes(' ')) {

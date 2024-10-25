@@ -76,7 +76,17 @@ POS_TYPE:
   | 'congiunzione subordinante'
   | 'simbolo'
   | 'verbo'
-  | 'altro';
+  | 'altro'
+  | 'infinito'
+  | 'gerundio'
+  | 'participio'
+  | 'indicativo'
+  | 'congiuntivo'
+  | 'condizionale'
+  | 'imperativo'
+  | 'presente'
+  | 'passato'
+  | 'futuro';
 
 STYLE_TYPE: 'in' WS ( 'grassetto' | 'corsivo' | 'sottolineato');
 
