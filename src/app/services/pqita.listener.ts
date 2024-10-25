@@ -62,10 +62,39 @@ const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
     congiuntivo: 'mood=sub',
     condizionale: 'mood=cnd',
     imperativo: 'mood=imp',
+    // definite
+    'modo definito': 'definite=def',
+    'modo indefinito': 'definite=ind',
     // tense
     presente: 'tense=pres',
     passato: 'tense=past',
     futuro: 'tense=fut',
+    // person
+    'prima persona': 'person=1',
+    'seconda persona': 'person=2',
+    'terza persona': 'person=3',
+    // number
+    singolare: 'number=sing',
+    plurale: 'number=plur',
+    // gender
+    maschile: 'gender=masc',
+    femminile: 'gender=fem',
+    // clitic
+    clitica: 'clitic=yes',
+    // poss
+    possessivo: 'poss=yes',
+    // prontype
+    articolo: 'prontype=art',
+    'pronome dimostrativo': 'prontype=dem',
+    'pronome indefinito': 'prontype=ind',
+    'pronome interrogativo': 'prontype=int',
+    'pronome negativo': 'prontype=neg',
+    'pronome personale': 'prontype=prs',
+    'pronome relativo': 'prontype=rel',
+    'pronome totalizzante': 'prontype=tot',
+    // degree
+    comparativo: 'degree=cmp',
+    superlativo: 'degree=abs',
   },
 };
 

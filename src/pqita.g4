@@ -77,16 +77,48 @@ POS_TYPE:
   | 'simbolo'
   | 'verbo'
   | 'altro'
+  // verbform
   | 'infinito'
   | 'gerundio'
   | 'participio'
+  // mood
   | 'indicativo'
   | 'congiuntivo'
   | 'condizionale'
   | 'imperativo'
+  // definite
+  | 'modo definito'
+  | 'modo indefinito'
+  // tense
   | 'presente'
   | 'passato'
-  | 'futuro';
+  | 'futuro'
+  // person
+  | 'prima persona'
+  | 'seconda persona'
+  | 'terza persona'
+  // number
+  | 'singolare'
+  | 'plurale'
+  // gender
+  | 'maschile'
+  | 'femminile'
+  // clitic
+  | 'clitica'
+  // poss
+  | 'possessivo'
+  // prontype
+  | 'articolo'
+  | 'pronome dimostrativo'
+  | 'pronome indefinito'
+  | 'pronome interrogativo'
+  | 'pronome negativo'
+  | 'pronome personale'
+  | 'pronome relativo'
+  | 'pronome totalizzante'
+  // degree
+  | 'comparativo'
+  | 'superlativo';
 
 STYLE_TYPE: 'in' WS ( 'grassetto' | 'corsivo' | 'sottolineato');
 

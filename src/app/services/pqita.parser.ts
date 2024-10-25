@@ -28,7 +28,7 @@ import pqitaListener from './pqita.listener.js';
 // eslint-disable-next-line no-unused-vars
 type int = number;
 
-export default class pqitaParser extends Parser {
+export default class PqitaParser extends Parser {
   public static readonly T__0 = 1;
   public static readonly T__1 = 2;
   public static readonly T__2 = 3;
@@ -143,16 +143,16 @@ export default class pqitaParser extends Parser {
     return 'pqita.g4';
   }
   public get literalNames(): (string | null)[] {
-    return pqitaParser.literalNames;
+    return PqitaParser.literalNames;
   }
   public get symbolicNames(): (string | null)[] {
-    return pqitaParser.symbolicNames;
+    return PqitaParser.symbolicNames;
   }
   public get ruleNames(): string[] {
-    return pqitaParser.ruleNames;
+    return PqitaParser.ruleNames;
   }
   public get serializedATN(): number[] {
-    return pqitaParser._serializedATN;
+    return PqitaParser._serializedATN;
   }
 
   protected createFailedPredicateException(
@@ -166,8 +166,8 @@ export default class pqitaParser extends Parser {
     super(input);
     this._interp = new ParserATNSimulator(
       this,
-      pqitaParser._ATN,
-      pqitaParser.DecisionsToDFA,
+      PqitaParser._ATN,
+      PqitaParser.DecisionsToDFA,
       new PredictionContextCache()
     );
   }
@@ -178,7 +178,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 0, pqitaParser.RULE_expression);
+    this.enterRule(localctx, 0, PqitaParser.RULE_expression);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -241,12 +241,12 @@ export default class pqitaParser extends Parser {
   // @RuleVersion(0)
   public verb(): VerbContext {
     let localctx: VerbContext = new VerbContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 2, pqitaParser.RULE_verb);
+    this.enterRule(localctx, 2, PqitaParser.RULE_verb);
     try {
       this.enterOuterAlt(localctx, 1);
       {
         this.state = 49;
-        this.match(pqitaParser.T__0);
+        this.match(PqitaParser.T__0);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -268,7 +268,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 4, pqitaParser.RULE_itemOrSet);
+    this.enterRule(localctx, 4, PqitaParser.RULE_itemOrSet);
     try {
       this.state = 53;
       this._errHandler.sync(this);
@@ -310,7 +310,7 @@ export default class pqitaParser extends Parser {
   // @RuleVersion(0)
   public item(): ItemContext {
     let localctx: ItemContext = new ItemContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 6, pqitaParser.RULE_item);
+    this.enterRule(localctx, 6, PqitaParser.RULE_item);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -326,7 +326,7 @@ export default class pqitaParser extends Parser {
         }
 
         this.state = 58;
-        this.match(pqitaParser.ITEM);
+        this.match(PqitaParser.ITEM);
         this.state = 59;
         this.itemContinuation();
       }
@@ -350,7 +350,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 8, pqitaParser.RULE_itemContinuation);
+    this.enterRule(localctx, 8, PqitaParser.RULE_itemContinuation);
     try {
       this.state = 65;
       this._errHandler.sync(this);
@@ -369,7 +369,7 @@ export default class pqitaParser extends Parser {
               this.state = 61;
               this.operator();
               this.state = 62;
-              this.match(pqitaParser.VALUE);
+              this.match(PqitaParser.VALUE);
             }
           }
           break;
@@ -377,7 +377,7 @@ export default class pqitaParser extends Parser {
           this.enterOuterAlt(localctx, 2);
           {
             this.state = 64;
-            this.match(pqitaParser.VALUE);
+            this.match(PqitaParser.VALUE);
           }
           break;
         default:
@@ -399,7 +399,7 @@ export default class pqitaParser extends Parser {
   // @RuleVersion(0)
   public set_(): SetContext {
     let localctx: SetContext = new SetContext(this, this._ctx, this.state);
-    this.enterRule(localctx, 10, pqitaParser.RULE_set);
+    this.enterRule(localctx, 10, PqitaParser.RULE_set);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -417,7 +417,7 @@ export default class pqitaParser extends Parser {
         }
 
         this.state = 71;
-        this.match(pqitaParser.SET_TYPE);
+        this.match(PqitaParser.SET_TYPE);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -439,7 +439,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 12, pqitaParser.RULE_operator);
+    this.enterRule(localctx, 12, PqitaParser.RULE_operator);
     try {
       this.state = 79;
       this._errHandler.sync(this);
@@ -448,35 +448,35 @@ export default class pqitaParser extends Parser {
           this.enterOuterAlt(localctx, 1);
           {
             this.state = 73;
-            this.match(pqitaParser.T__1);
+            this.match(PqitaParser.T__1);
           }
           break;
         case 3:
           this.enterOuterAlt(localctx, 2);
           {
             this.state = 74;
-            this.match(pqitaParser.T__2);
+            this.match(PqitaParser.T__2);
           }
           break;
         case 4:
           this.enterOuterAlt(localctx, 3);
           {
             this.state = 75;
-            this.match(pqitaParser.T__3);
+            this.match(PqitaParser.T__3);
           }
           break;
         case 5:
           this.enterOuterAlt(localctx, 4);
           {
             this.state = 76;
-            this.match(pqitaParser.T__4);
+            this.match(PqitaParser.T__4);
           }
           break;
         case 6:
           this.enterOuterAlt(localctx, 5);
           {
             this.state = 77;
-            this.match(pqitaParser.T__5);
+            this.match(PqitaParser.T__5);
           }
           break;
         case 7:
@@ -511,7 +511,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 14, pqitaParser.RULE_similarity);
+    this.enterRule(localctx, 14, PqitaParser.RULE_similarity);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -527,7 +527,7 @@ export default class pqitaParser extends Parser {
         }
 
         this.state = 84;
-        this.match(pqitaParser.T__6);
+        this.match(PqitaParser.T__6);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -549,7 +549,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 16, pqitaParser.RULE_degree);
+    this.enterRule(localctx, 16, PqitaParser.RULE_degree);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -583,7 +583,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 18, pqitaParser.RULE_article);
+    this.enterRule(localctx, 18, PqitaParser.RULE_article);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -617,7 +617,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 20, pqitaParser.RULE_quantifier);
+    this.enterRule(localctx, 20, PqitaParser.RULE_quantifier);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -651,14 +651,14 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 22, pqitaParser.RULE_posTag);
+    this.enterRule(localctx, 22, PqitaParser.RULE_posTag);
     try {
       this.enterOuterAlt(localctx, 1);
       {
         this.state = 92;
-        this.match(pqitaParser.T__14);
+        this.match(PqitaParser.T__14);
         this.state = 93;
-        this.match(pqitaParser.POS_TYPE);
+        this.match(PqitaParser.POS_TYPE);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -680,12 +680,12 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 24, pqitaParser.RULE_styleTag);
+    this.enterRule(localctx, 24, PqitaParser.RULE_styleTag);
     try {
       this.enterOuterAlt(localctx, 1);
       {
         this.state = 95;
-        this.match(pqitaParser.STYLE_TYPE);
+        this.match(PqitaParser.STYLE_TYPE);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -707,7 +707,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 26, pqitaParser.RULE_locationOrRelation);
+    this.enterRule(localctx, 26, PqitaParser.RULE_locationOrRelation);
     let _la: number;
     try {
       this.state = 102;
@@ -757,7 +757,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 28, pqitaParser.RULE_location);
+    this.enterRule(localctx, 28, PqitaParser.RULE_location);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -773,7 +773,7 @@ export default class pqitaParser extends Parser {
         }
 
         this.state = 107;
-        this.match(pqitaParser.LOC_TYPE);
+        this.match(PqitaParser.LOC_TYPE);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -795,7 +795,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 30, pqitaParser.RULE_relation);
+    this.enterRule(localctx, 30, PqitaParser.RULE_relation);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -811,7 +811,7 @@ export default class pqitaParser extends Parser {
         }
 
         this.state = 112;
-        this.match(pqitaParser.REL_TYPE);
+        this.match(PqitaParser.REL_TYPE);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -833,7 +833,7 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 32, pqitaParser.RULE_recursiveExpression);
+    this.enterRule(localctx, 32, PqitaParser.RULE_recursiveExpression);
     let _la: number;
     try {
       this.enterOuterAlt(localctx, 1);
@@ -890,12 +890,12 @@ export default class pqitaParser extends Parser {
       this._ctx,
       this.state
     );
-    this.enterRule(localctx, 34, pqitaParser.RULE_negation);
+    this.enterRule(localctx, 34, PqitaParser.RULE_negation);
     try {
       this.enterOuterAlt(localctx, 1);
       {
         this.state = 124;
-        this.match(pqitaParser.T__15);
+        this.match(PqitaParser.T__15);
       }
     } catch (re) {
       if (re instanceof RecognitionException) {
@@ -966,23 +966,23 @@ export default class pqitaParser extends Parser {
 
   private static __ATN: ATN;
   public static get _ATN(): ATN {
-    if (!pqitaParser.__ATN) {
-      pqitaParser.__ATN = new ATNDeserializer().deserialize(
-        pqitaParser._serializedATN
+    if (!PqitaParser.__ATN) {
+      PqitaParser.__ATN = new ATNDeserializer().deserialize(
+        PqitaParser._serializedATN
       );
     }
 
-    return pqitaParser.__ATN;
+    return PqitaParser.__ATN;
   }
 
-  static DecisionsToDFA = pqitaParser._ATN.decisionToState.map(
+  static DecisionsToDFA = PqitaParser._ATN.decisionToState.map(
     (ds: DecisionState, index: number) => new DFA(ds, index)
   );
 }
 
 export class ExpressionContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1008,7 +1008,7 @@ export class ExpressionContext extends ParserRuleContext {
     ) as LocationOrRelationContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_expression;
+    return PqitaParser.RULE_expression;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterExpression) {
@@ -1024,7 +1024,7 @@ export class ExpressionContext extends ParserRuleContext {
 
 export class VerbContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1032,7 +1032,7 @@ export class VerbContext extends ParserRuleContext {
     this.parser = parser;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_verb;
+    return PqitaParser.RULE_verb;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterVerb) {
@@ -1048,7 +1048,7 @@ export class VerbContext extends ParserRuleContext {
 
 export class ItemOrSetContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1062,7 +1062,7 @@ export class ItemOrSetContext extends ParserRuleContext {
     return this.getTypedRuleContext(SetContext, 0) as SetContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_itemOrSet;
+    return PqitaParser.RULE_itemOrSet;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterItemOrSet) {
@@ -1078,7 +1078,7 @@ export class ItemOrSetContext extends ParserRuleContext {
 
 export class ItemContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1086,7 +1086,7 @@ export class ItemContext extends ParserRuleContext {
     this.parser = parser;
   }
   public ITEM(): TerminalNode {
-    return this.getToken(pqitaParser.ITEM, 0);
+    return this.getToken(PqitaParser.ITEM, 0);
   }
   public itemContinuation(): ItemContinuationContext {
     return this.getTypedRuleContext(
@@ -1098,7 +1098,7 @@ export class ItemContext extends ParserRuleContext {
     return this.getTypedRuleContext(ArticleContext, 0) as ArticleContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_item;
+    return PqitaParser.RULE_item;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterItem) {
@@ -1114,7 +1114,7 @@ export class ItemContext extends ParserRuleContext {
 
 export class ItemContinuationContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1125,10 +1125,10 @@ export class ItemContinuationContext extends ParserRuleContext {
     return this.getTypedRuleContext(OperatorContext, 0) as OperatorContext;
   }
   public VALUE(): TerminalNode {
-    return this.getToken(pqitaParser.VALUE, 0);
+    return this.getToken(PqitaParser.VALUE, 0);
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_itemContinuation;
+    return PqitaParser.RULE_itemContinuation;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterItemContinuation) {
@@ -1144,7 +1144,7 @@ export class ItemContinuationContext extends ParserRuleContext {
 
 export class SetContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1155,13 +1155,13 @@ export class SetContext extends ParserRuleContext {
     return this.getTypedRuleContext(QuantifierContext, 0) as QuantifierContext;
   }
   public SET_TYPE(): TerminalNode {
-    return this.getToken(pqitaParser.SET_TYPE, 0);
+    return this.getToken(PqitaParser.SET_TYPE, 0);
   }
   public article(): ArticleContext {
     return this.getTypedRuleContext(ArticleContext, 0) as ArticleContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_set;
+    return PqitaParser.RULE_set;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterSet) {
@@ -1177,7 +1177,7 @@ export class SetContext extends ParserRuleContext {
 
 export class OperatorContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1188,7 +1188,7 @@ export class OperatorContext extends ParserRuleContext {
     return this.getTypedRuleContext(SimilarityContext, 0) as SimilarityContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_operator;
+    return PqitaParser.RULE_operator;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterOperator) {
@@ -1204,7 +1204,7 @@ export class OperatorContext extends ParserRuleContext {
 
 export class SimilarityContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1215,7 +1215,7 @@ export class SimilarityContext extends ParserRuleContext {
     return this.getTypedRuleContext(DegreeContext, 0) as DegreeContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_similarity;
+    return PqitaParser.RULE_similarity;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterSimilarity) {
@@ -1231,7 +1231,7 @@ export class SimilarityContext extends ParserRuleContext {
 
 export class DegreeContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1239,7 +1239,7 @@ export class DegreeContext extends ParserRuleContext {
     this.parser = parser;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_degree;
+    return PqitaParser.RULE_degree;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterDegree) {
@@ -1255,7 +1255,7 @@ export class DegreeContext extends ParserRuleContext {
 
 export class ArticleContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1263,7 +1263,7 @@ export class ArticleContext extends ParserRuleContext {
     this.parser = parser;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_article;
+    return PqitaParser.RULE_article;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterArticle) {
@@ -1279,7 +1279,7 @@ export class ArticleContext extends ParserRuleContext {
 
 export class QuantifierContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1287,7 +1287,7 @@ export class QuantifierContext extends ParserRuleContext {
     this.parser = parser;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_quantifier;
+    return PqitaParser.RULE_quantifier;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterQuantifier) {
@@ -1303,7 +1303,7 @@ export class QuantifierContext extends ParserRuleContext {
 
 export class PosTagContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1311,10 +1311,10 @@ export class PosTagContext extends ParserRuleContext {
     this.parser = parser;
   }
   public POS_TYPE(): TerminalNode {
-    return this.getToken(pqitaParser.POS_TYPE, 0);
+    return this.getToken(PqitaParser.POS_TYPE, 0);
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_posTag;
+    return PqitaParser.RULE_posTag;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterPosTag) {
@@ -1330,7 +1330,7 @@ export class PosTagContext extends ParserRuleContext {
 
 export class StyleTagContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1338,10 +1338,10 @@ export class StyleTagContext extends ParserRuleContext {
     this.parser = parser;
   }
   public STYLE_TYPE(): TerminalNode {
-    return this.getToken(pqitaParser.STYLE_TYPE, 0);
+    return this.getToken(PqitaParser.STYLE_TYPE, 0);
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_styleTag;
+    return PqitaParser.RULE_styleTag;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterStyleTag) {
@@ -1357,7 +1357,7 @@ export class StyleTagContext extends ParserRuleContext {
 
 export class LocationOrRelationContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1377,7 +1377,7 @@ export class LocationOrRelationContext extends ParserRuleContext {
     ) as RecursiveExpressionContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_locationOrRelation;
+    return PqitaParser.RULE_locationOrRelation;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterLocationOrRelation) {
@@ -1393,7 +1393,7 @@ export class LocationOrRelationContext extends ParserRuleContext {
 
 export class LocationContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1401,13 +1401,13 @@ export class LocationContext extends ParserRuleContext {
     this.parser = parser;
   }
   public LOC_TYPE(): TerminalNode {
-    return this.getToken(pqitaParser.LOC_TYPE, 0);
+    return this.getToken(PqitaParser.LOC_TYPE, 0);
   }
   public negation(): NegationContext {
     return this.getTypedRuleContext(NegationContext, 0) as NegationContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_location;
+    return PqitaParser.RULE_location;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterLocation) {
@@ -1423,7 +1423,7 @@ export class LocationContext extends ParserRuleContext {
 
 export class RelationContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1431,13 +1431,13 @@ export class RelationContext extends ParserRuleContext {
     this.parser = parser;
   }
   public REL_TYPE(): TerminalNode {
-    return this.getToken(pqitaParser.REL_TYPE, 0);
+    return this.getToken(PqitaParser.REL_TYPE, 0);
   }
   public negation(): NegationContext {
     return this.getTypedRuleContext(NegationContext, 0) as NegationContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_relation;
+    return PqitaParser.RULE_relation;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterRelation) {
@@ -1453,7 +1453,7 @@ export class RelationContext extends ParserRuleContext {
 
 export class RecursiveExpressionContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1476,7 +1476,7 @@ export class RecursiveExpressionContext extends ParserRuleContext {
     ) as LocationOrRelationContext;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_recursiveExpression;
+    return PqitaParser.RULE_recursiveExpression;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterRecursiveExpression) {
@@ -1492,7 +1492,7 @@ export class RecursiveExpressionContext extends ParserRuleContext {
 
 export class NegationContext extends ParserRuleContext {
   constructor(
-    parser?: pqitaParser,
+    parser?: PqitaParser,
     parent?: ParserRuleContext,
     invokingState?: number
   ) {
@@ -1500,7 +1500,7 @@ export class NegationContext extends ParserRuleContext {
     this.parser = parser;
   }
   public get ruleIndex(): number {
-    return pqitaParser.RULE_negation;
+    return PqitaParser.RULE_negation;
   }
   public enterRule(listener: pqitaListener): void {
     if (listener.enterNegation) {
