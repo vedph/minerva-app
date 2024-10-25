@@ -10,7 +10,10 @@
             <mat-icon>hdr_auto</mat-icon>
             <span i18n class="label">simple</span>
           </ng-template>
-          <minerva-pqita (searchRequest)="onSearchRequest($event)" />
+          <minerva-pqita
+            [readonlyQuery]="readonlyQuery"
+            (searchRequest)="onSearchRequest($event)"
+          />
         </mat-tab>
         <!-- query - builder -->
         <!-- <mat-tab i18n-label>

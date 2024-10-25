@@ -80,18 +80,21 @@
   <div id="query">
     <mat-form-field class="long-text">
       <textarea
+        [readonly]="readonlyQuery"
         matInput
         [formControl]="query"
         placeholder="query"
         i18n-placeholder
         (keyup.control.enter)="searchByEnter($any($event))"
       ></textarea>
+      @if (!readonlyQuery) {
       <mat-hint i18n>Ctrl+Enter to search</mat-hint>
+
       @if ($any(query).errors?.required && (query.dirty || query.touched)) {
       <mat-error i18n>query required</mat-error>
       } @if ($any(query).errors?.maxLength && (query.dirty || query.touched)) {
       <mat-error i18n>query too long</mat-error>
-      }
+      } }
     </mat-form-field>
     <div class="form-row" style="margin-top: 8px">
       <button

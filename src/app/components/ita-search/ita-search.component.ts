@@ -68,13 +68,29 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
 
   @ViewChild('queryCtl') queryElementRef: ElementRef | undefined;
 
+  /**
+   * Initial query term to be set in the search box.
+   */
   @Input()
   public initialQueryTerm: string | undefined;
 
+  /**
+   * Whether to hide the author field in the search results.
+   */
   @Input()
   public hideAuthor?: boolean;
+
+  /**
+   * Whether to hide the title field in the search results.
+   */
   @Input()
   public hideTitle?: boolean;
+
+  /**
+   * Whether to make the converted query read-only.
+   */
+  @Input()
+  public readonlyQuery?: boolean;
 
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;

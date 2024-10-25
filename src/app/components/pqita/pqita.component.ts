@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   HostListener,
+  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -72,6 +73,12 @@ export class PqitaComponent implements OnDestroy {
 
   public noSpeech: boolean;
   public readonly listening$: Observable<boolean>;
+
+  /**
+   * Whether to make the converted query read-only.
+   */
+  @Input()
+  public readonlyQuery?: boolean;
 
   @Output()
   public searchRequest: EventEmitter<string> = new EventEmitter<string>();
