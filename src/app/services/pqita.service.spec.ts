@@ -267,11 +267,80 @@ describe('PqitaService', () => {
       '[value="cane"] AND [mood="imp"]'
     );
   });
-  // parola + come: definite
-  // parola + come: tense
-  // parola + come: person
-  // parola + come: number
-  // parola + come: gender
+  // parola + come: definite=def
+  it('should convert parola "cane" come modo definito to [value="cane"] AND [definite="def"]', () => {
+    expect(service.convertQuery('parola "cane" come modo definito')).toBe(
+      '[value="cane"] AND [definite="def"]'
+    );
+  });
+  // parola + come: definite=ind
+  it('should convert parola "cane" come modo indefinito to [value="cane"] AND [definite="ind"]', () => {
+    expect(service.convertQuery('parola "cane" come modo indefinito')).toBe(
+      '[value="cane"] AND [definite="ind"]'
+    );
+  });
+
+  // parola + come: tense=pres
+  it('should convert parola "cane" come presente to [value="cane"] AND [tense="pres"]', () => {
+    expect(service.convertQuery('parola "cane" come presente')).toBe(
+      '[value="cane"] AND [tense="pres"]'
+    );
+  });
+  // parola + come: tense=past
+  it('should convert parola "cane" come passato to [value="cane"] AND [tense="past"]', () => {
+    expect(service.convertQuery('parola "cane" come passato')).toBe(
+      '[value="cane"] AND [tense="past"]'
+    );
+  });
+  // parola + come: tense=fut
+  it('should convert parola "cane" come futuro to [value="cane"] AND [tense="fut"]', () => {
+    expect(service.convertQuery('parola "cane" come futuro')).toBe(
+      '[value="cane"] AND [tense="fut"]'
+    );
+  });
+  // parola + come: person=1
+  it('should convert parola "cane" come prima persona to [value="cane"] AND [person="1"]', () => {
+    expect(service.convertQuery('parola "cane" come prima persona')).toBe(
+      '[value="cane"] AND [person="1"]'
+    );
+  });
+  // parola + come: person=2
+  it('should convert parola "cane" come seconda persona to [value="cane"] AND [person="2"]', () => {
+    expect(service.convertQuery('parola "cane" come seconda persona')).toBe(
+      '[value="cane"] AND [person="2"]'
+    );
+  });
+  // parola + come: person=3
+  it('should convert parola "cane" come terza persona to [value="cane"] AND [person="3"]', () => {
+    expect(service.convertQuery('parola "cane" come terza persona')).toBe(
+      '[value="cane"] AND [person="3"]'
+    );
+  });
+  // parola + come: number=sing
+  it('should convert parola "cane" come singolare to [value="cane"] AND [number="sing"]', () => {
+    expect(service.convertQuery('parola "cane" come singolare')).toBe(
+      '[value="cane"] AND [number="sing"]'
+    );
+  });
+  // parola + come: number=plur
+  it('should convert parola "cane" come plurale to [value="cane"] AND [number="plur"]', () => {
+    expect(service.convertQuery('parola "cane" come plurale')).toBe(
+      '[value="cane"] AND [number="plur"]'
+    );
+  });
+  // parola + come: gender=masc
+  it('should convert parola "cane" come maschile to [value="cane"] AND [gender="masc"]', () => {
+    expect(service.convertQuery('parola "cane" come maschile')).toBe(
+      '[value="cane"] AND [gender="masc"]'
+    );
+  });
+  // parola + come: gender=fem
+  it('should convert parola "cane" come femminile to [value="cane"] AND [gender="fem"]', () => {
+    expect(service.convertQuery('parola "cane" come femminile')).toBe(
+      '[value="cane"] AND [gender="fem"]'
+    );
+  });
+
   // parola + come: clitic
   // parola + come: poss
   // parola + come: prontype
