@@ -341,9 +341,69 @@ describe('PqitaService', () => {
     );
   });
 
-  // parola + come: clitic
-  // parola + come: poss
-  // parola + come: prontype
+  // parola + come: clitic=yes
+  it('should convert parola "cane" come clitica to [value="cane"] AND [clitic="yes"]', () => {
+    expect(service.convertQuery('parola "cane" come clitica')).toBe(
+      '[value="cane"] AND [clitic="yes"]'
+    );
+  });
+
+  // parola + come: poss=yes
+  it('should convert parola "cane" come possessivo to [value="cane"] AND [poss="yes"]', () => {
+    expect(service.convertQuery('parola "cane" come possessivo')).toBe(
+      '[value="cane"] AND [poss="yes"]'
+    );
+  });
+
+  // parola + come: prontype=art
+  it('should convert parola "cane" come articolo to [value="cane"] AND [prontype="art"]', () => {
+    expect(service.convertQuery('parola "cane" come articolo')).toBe(
+      '[value="cane"] AND [prontype="art"]'
+    );
+  });
+  // parola + come: prontype=dem
+  it('should convert parola "cane" come pronome dimostrativo to [value="cane"] AND [prontype="dem"]', () => {
+    expect(
+      service.convertQuery('parola "cane" come pronome dimostrativo')
+    ).toBe('[value="cane"] AND [prontype="dem"]');
+  });
+  // parola + come: prontype=ind
+  it('should convert parola "cane" come pronome indefinito to [value="cane"] AND [prontype="ind"]', () => {
+    expect(service.convertQuery('parola "cane" come pronome indefinito')).toBe(
+      '[value="cane"] AND [prontype="ind"]'
+    );
+  });
+  // parola + come: prontype=int
+  it('should convert parola "cane" come pronome interrogativo to [value="cane"] AND [prontype="int"]', () => {
+    expect(
+      service.convertQuery('parola "cane" come pronome interrogativo')
+    ).toBe('[value="cane"] AND [prontype="int"]');
+  });
+  // parola + come: prontype=neg
+  it('should convert parola "cane" come pronome negativo to [value="cane"] AND [prontype="neg"]', () => {
+    expect(service.convertQuery('parola "cane" come pronome negativo')).toBe(
+      '[value="cane"] AND [prontype="neg"]'
+    );
+  });
+  // parola + come: prontype=prs
+  it('should convert parola "cane" come pronome personale to [value="cane"] AND [prontype="prs"]', () => {
+    expect(service.convertQuery('parola "cane" come pronome personale')).toBe(
+      '[value="cane"] AND [prontype="prs"]'
+    );
+  });
+  // parola + come: prontype=rel
+  it('should convert parola "cane" come pronome relativo to [value="cane"] AND [prontype="rel"]', () => {
+    expect(service.convertQuery('parola "cane" come pronome relativo')).toBe(
+      '[value="cane"] AND [prontype="rel"]'
+    );
+  });
+  // parola + come: prontype=tot
+  it('should convert parola "cane" come pronome totalizzante to [value="cane"] AND [prontype="tot"]', () => {
+    expect(
+      service.convertQuery('parola "cane" come pronome totalizzante')
+    ).toBe('[value="cane"] AND [prontype="tot"]');
+  });
+
   // parola + come: degree
 
   // parola + in
