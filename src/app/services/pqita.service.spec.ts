@@ -150,14 +150,138 @@ describe('PqitaService', () => {
     );
   });
 
-  // parola + come
-  it('should convert parola "cane" come sostantivo to [value="cane"] AND [pos="NOUN"]', () => {
-    expect(service.convertQuery('parola "cane" come sostantivo')).toBe('[value="cane"] AND [pos="NOUN"]');
+  // parola + come: aggettivo
+  it('should convert parola "cane" come aggettivo to [value="cane"] AND [pos="ADJ"]', () => {
+    expect(service.convertQuery('parola "cane" come aggettivo')).toBe(
+      '[value="cane"] AND [pos="ADJ"]'
+    );
   });
+  // parola + come: apposizione
+  it('should convert parola "cane" come apposizione to [value="cane"] AND [pos="ADP"]', () => {
+    expect(service.convertQuery('parola "cane" come apposizione')).toBe(
+      '[value="cane"] AND [pos="ADP"]'
+    );
+  });
+  // parola + come: avverbio
+  it('should convert parola "cane" come avverbio to [value="cane"] AND [pos="ADV"]', () => {
+    expect(service.convertQuery('parola "cane" come avverbio')).toBe(
+      '[value="cane"] AND [pos="ADV"]'
+    );
+  });
+  // parola + come: ausiliare
+  it('should convert parola "cane" come ausiliare to [value="cane"] AND [pos="AUX"]', () => {
+    expect(service.convertQuery('parola "cane" come ausiliare')).toBe(
+      '[value="cane"] AND [pos="AUX"]'
+    );
+  });
+  // parola + come: congiunzione coordinante
+  // parola + come: determinante
+  // parola + come: sostantivo
+  it('should convert parola "cane" come sostantivo to [value="cane"] AND [pos="NOUN"]', () => {
+    expect(service.convertQuery('parola "cane" come sostantivo')).toBe(
+      '[value="cane"] AND [pos="NOUN"]'
+    );
+  });
+  // parola + come: numero
+  it('should convert parola "cane" come numero to [value="cane"] AND [pos="NUM"]', () => {
+    expect(service.convertQuery('parola "cane" come numero')).toBe(
+      '[value="cane"] AND [pos="NUM"]'
+    );
+  });
+  // parola + come: pronome
+  it('should convert parola "cane" come pronome to [value="cane"] AND [pos="PRON"]', () => {
+    expect(service.convertQuery('parola "cane" come pronome')).toBe(
+      '[value="cane"] AND [pos="PRON"]'
+    );
+  });
+  // parola + come: nome proprio
+  it('should convert parola "cane" come nome proprio to [value="cane"] AND [pos="PROPN"]', () => {
+    expect(service.convertQuery('parola "cane" come nome proprio')).toBe(
+      '[value="cane"] AND [pos="PROPN"]'
+    );
+  });
+  // parola + come: congiunzione subordinante
+  it('should convert parola "cane" come congiunzione subordinante to [value="cane"] AND [pos="SCONJ"]', () => {
+    expect(
+      service.convertQuery('parola "cane" come congiunzione subordinante')
+    ).toBe('[value="cane"] AND [pos="SCONJ"]');
+  });
+  // parola + come: simbolo
+  it('should convert parola "cane" come simbolo to [value="cane"] AND [pos="SYM"]', () => {
+    expect(service.convertQuery('parola "cane" come simbolo')).toBe(
+      '[value="cane"] AND [pos="SYM"]'
+    );
+  });
+  // parola + come: verbo
+  it('should convert parola "cane" come verbo to [value="cane"] AND [pos="VERB"]', () => {
+    expect(service.convertQuery('parola "cane" come verbo')).toBe(
+      '[value="cane"] AND [pos="VERB"]'
+    );
+  });
+  // parola + come: altro
+  it('should convert parola "cane" come altro to [value="cane"] AND [pos="X"]', () => {
+    expect(service.convertQuery('parola "cane" come altro')).toBe(
+      '[value="cane"] AND [pos="X"]'
+    );
+  });
+  // parola + come: verbform=inf
+  it('should convert parola "cane" come infinito to [value="cane"] AND [verbform="inf"]', () => {
+    expect(service.convertQuery('parola "cane" come infinito')).toBe(
+      '[value="cane"] AND [verbform="inf"]'
+    );
+  });
+  // parola + come: verbform=ger
+  it('should convert parola "cane" come gerundio to [value="cane"] AND [verbform="ger"]', () => {
+    expect(service.convertQuery('parola "cane" come gerundio')).toBe(
+      '[value="cane"] AND [verbform="ger"]'
+    );
+  });
+  // parola + come: verbform=part
+  it('should convert parola "cane" come participio to [value="cane"] AND [verbform="part"]', () => {
+    expect(service.convertQuery('parola "cane" come participio')).toBe(
+      '[value="cane"] AND [verbform="part"]'
+    );
+  });
+
+  // parola + come: mood=ind
+  it('should convert parola "cane" come indicativo to [value="cane"] AND [mood="ind"]', () => {
+    expect(service.convertQuery('parola "cane" come indicativo')).toBe(
+      '[value="cane"] AND [mood="ind"]'
+    );
+  });
+  // parola + come: mood=sub
+  it('should convert parola "cane" come congiuntivo to [value="cane"] AND [mood="sub"]', () => {
+    expect(service.convertQuery('parola "cane" come congiuntivo')).toBe(
+      '[value="cane"] AND [mood="sub"]'
+    );
+  });
+  // parola + come: mood=cnd
+  it('should convert parola "cane" come condizionale to [value="cane"] AND [mood="cnd"]', () => {
+    expect(service.convertQuery('parola "cane" come condizionale')).toBe(
+      '[value="cane"] AND [mood="cnd"]'
+    );
+  });
+  // parola + come: mood=imp
+  it('should convert parola "cane" come imperativo to [value="cane"] AND [mood="imp"]', () => {
+    expect(service.convertQuery('parola "cane" come imperativo')).toBe(
+      '[value="cane"] AND [mood="imp"]'
+    );
+  });
+  // parola + come: definite
+  // parola + come: tense
+  // parola + come: person
+  // parola + come: number
+  // parola + come: gender
+  // parola + come: clitic
+  // parola + come: poss
+  // parola + come: prontype
+  // parola + come: degree
 
   // parola + in
   it('should convert parola "cane" in grassetto to [value="cane"] AND [b="1"]', () => {
-    expect(service.convertQuery('parola "cane" in grassetto')).toBe('[value="cane"] AND [b="1"]');
+    expect(service.convertQuery('parola "cane" in grassetto')).toBe(
+      '[value="cane"] AND [b="1"]'
+    );
   });
   //#endregion
 
