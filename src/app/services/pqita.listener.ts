@@ -71,11 +71,11 @@ const DEFAULT_LISTENER_OPTIONS: PqitaListenerOptions = {
 
 /**
  * This interface defines a complete listener for a parse tree produced by
- * `pqitaParser`.
+ * `PqitaParser`.
  */
 export default class PqitaListener extends ParseTreeListener {
-  private _pairs: string[] = [];
   private _output: string = '';
+  private _noAnd: boolean = false;
 
   constructor(
     private _options: PqitaListenerOptions = DEFAULT_LISTENER_OPTIONS
@@ -83,11 +83,12 @@ export default class PqitaListener extends ParseTreeListener {
     super();
   }
 
-  private appendPair(pair: string) {
-    if (this._pairs.length > 0) {
+  private appendPair(pair: string, and?: boolean): void {
+    if (and && !this._noAnd) {
       this._output += ' AND ';
     }
     this._output += pair;
+    this._noAnd = false;
   }
 
   private handleOperatorValue(
@@ -241,13 +242,13 @@ export default class PqitaListener extends ParseTreeListener {
       case setType.includes('latinismi'):
         pair = '[language="lat"]';
         break;
-      case setType.includes('parole'):
-        return; // No output for 'parole'
+      // no output for 'parole'
     }
 
     if (pair) {
       this.appendPair(pair);
     }
+    this._noAnd = true;
   }
 
   /**
@@ -316,10 +317,10 @@ export default class PqitaListener extends ParseTreeListener {
     // if tag has form name=value, append [name="value"]
     const [name, value] = tag.split('=');
     if (value) {
-      this.appendPair(`[${name}="${value}"]`);
+      this.appendPair(`[${name}="${value}"]`, true);
     } else {
       // else append [pos="tag"]
-      this.appendPair(`[pos="${tag}"]`);
+      this.appendPair(`[pos="${tag}"]`, true);
     }
   }
 
@@ -345,7 +346,7 @@ export default class PqitaListener extends ParseTreeListener {
     }
 
     if (pair) {
-      this.appendPair(pair);
+      this.appendPair(pair, true);
     }
   }
 
@@ -414,6 +415,8 @@ export default class PqitaListener extends ParseTreeListener {
 
     if (operator) {
       this._output += ` ${operator} `;
+      // next pair should not be connected with AND
+      this._noAnd = true;
     }
   }
 

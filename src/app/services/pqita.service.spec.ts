@@ -149,6 +149,11 @@ describe('PqitaService', () => {
       'trova la parola poco simile a "cane"'
     );
   });
+
+  // parola + come
+  it('should convert parola "cane" come sostantivo to [value="cane"] AND [pos="NOUN"]', () => {
+    expect(service.convertQuery('parola "cane" come sostantivo')).toBe('[value="cane"] AND [pos="NOUN"]');
+  });
   //#endregion
 
   //#region locuzione
