@@ -1187,6 +1187,12 @@ describe('PqitaService', () => {
   it('should convert tutti i latinismi to [language="lat"]', () => {
     expect(service.convertQuery('tutti i latinismi')).toBe('[language="lat"]');
   });
+
+  it('should convert tutti i latinismi in grassetto to [language="lat"] AND [b="1"]', () => {
+    expect(service.convertQuery('tutti i latinismi in grassetto')).toBe(
+      '[language="lat"] AND [b="1"]'
+    );
+  });
   //#endregion
 
   //#region location

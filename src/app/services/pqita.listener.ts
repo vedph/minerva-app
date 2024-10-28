@@ -261,23 +261,20 @@ export default class PqitaListener extends ParseTreeListener {
     const setType = ctx.SET_TYPE().getText().trim();
     let pair = '';
 
-    switch (true) {
-      case setType.includes('forestierismi'):
-        pair = '[language<>"ita"]';
-        break;
-      case setType.includes('anglicismi'):
-        pair = '[language="eng"]';
-        break;
-      case setType.includes('latinismi'):
-        pair = '[language="lat"]';
-        break;
+    if (setType.includes('forestierismi')) {
+      pair = '[language<>"ita"]';
+    } else if (setType.includes('anglicismi')) {
+      pair = '[language="eng"]';
+    } else if (setType.includes('latinismi')) {
+      pair = '[language="lat"]';
+    } else {
       // no output for 'parole'
+      this._noAnd = true;
     }
 
     if (pair) {
       this.appendPair(pair);
     }
-    this._noAnd = true;
   }
 
   /**

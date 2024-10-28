@@ -154,6 +154,10 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-10-28: fix to set AND for type "tutti i latinismi in corsivo".
+
+### 0.0.3
+
 - 2024-10-25:
   - added many more values to "come".
   - added more tests.
