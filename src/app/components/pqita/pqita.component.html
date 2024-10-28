@@ -1,7 +1,7 @@
 <form [formGroup]="form" id="container">
   <!-- input -->
   <div id="input">
-    <mat-form-field class="long-text">
+    <mat-form-field class="full-width">
       <textarea
         matInput
         [formControl]="text"
@@ -19,7 +19,7 @@
     </mat-form-field>
   </div>
 
-  <!-- listener -->
+  <!-- listener toolbar -->
   <div id="listener">
     <!-- buttons -->
     <div id="button-row">
@@ -76,9 +76,47 @@
     }
   </div>
 
-  <!-- query -->
+  <!-- query text -->
   <div id="query">
-    <mat-form-field class="long-text">
+    <div class="form-row">
+      <!-- preset groups -->
+      @if (presetEntries?.length) {
+      <mat-form-field>
+        <mat-select
+          [formControl]="presetGroup"
+          placeholder="preset group"
+          i18n-placeholder
+        >
+          <mat-option [value]="null">
+            <ng-container i18n>(all)</ng-container>
+          </mat-option>
+          @for (group of presetGroups; track $index) {
+          <mat-option [value]="group">
+            {{ group }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      }
+      <!-- preset entries -->
+      @if (filteredPresetEntries.length) {
+      <mat-form-field class="filler">
+        <mat-select
+          [formControl]="presetEntry"
+          placeholder="preset"
+          i18n-placeholder
+          (selectionChange)="pickFromPreset()"
+        >
+          @for (entry of filteredPresetEntries; track $index) {
+          <mat-option [value]="entry">
+            {{ entry.value }}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      }
+    </div>
+    <mat-form-field class="full-width">
       <textarea
         [readonly]="readonlyQuery"
         matInput

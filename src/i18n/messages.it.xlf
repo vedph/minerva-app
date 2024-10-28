@@ -1668,11 +1668,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">125</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7547092634478073292" datatype="html">
@@ -1696,7 +1696,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1251059121302440826" datatype="html">
@@ -1712,7 +1712,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6224264290591569468" datatype="html">
@@ -1728,7 +1728,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6147517065261084603" datatype="html">
@@ -1829,7 +1829,7 @@
       </trans-unit>
       <trans-unit id="4200029649359977709" datatype="html">
         <source>min.len.</source>
-        <target state="translated">Lunghezza min.</target>
+        <target state="translated">lung.min.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1837,7 +1837,7 @@
       </trans-unit>
       <trans-unit id="4249863792368529011" datatype="html">
         <source>max.len.</source>
-        <target state="translated">lunghezza max</target>
+        <target state="translated">lung.max</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/paged-word-tree-filter/paged-word-tree-filter.component.html</context>
           <context context-type="linenumber">2</context>
@@ -2788,7 +2788,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1818911797176445812" datatype="html">
@@ -2831,12 +2831,36 @@
           <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1824583620595478627" datatype="html">
+        <source>preset group</source>
+        <target state="translated">gruppo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9108584444072992798" datatype="html">
+        <source>(all)</source>
+        <target state="translated">(tutte)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6363726609931368825" datatype="html">
+        <source>preset</source>
+        <target state="translated">predefinita</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8201115425109799813" datatype="html">
         <source>Ctrl+Enter to search</source>
         <target state="translated">Ctrl+Invio per cercare</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="485087364212446452" datatype="html">
@@ -2844,7 +2868,7 @@
         <target state="translated">Trova (Ctrl+T)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2738453683619846204" datatype="html">
@@ -2852,7 +2876,7 @@
         <target state="translated">Auto</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3102388290978275812" datatype="html">
@@ -2860,7 +2884,7 @@
         <target state="translated">Seleziona questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1111411697912114791" datatype="html">
@@ -2868,7 +2892,7 @@
         <target state="translated">Rimuovi questo elemento</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8642445555713453888" datatype="html">

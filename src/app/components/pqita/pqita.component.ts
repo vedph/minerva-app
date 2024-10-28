@@ -28,11 +28,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { EnvService } from '@myrmidon/ng-tools';
+
 import { PqitaService } from '../../services/pqita.service';
 import { SpeechRecognitionService } from '../../services/speech-recognition.service';
+
+export interface PqitaPresetEntry {
+  group?: string;
+  value: string;
+}
 
 const MAX_HISTORY = 10;
 
@@ -56,6 +64,7 @@ interface HistoryEntry {
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
+    MatSelectModule,
     MatSlideToggleModule,
     MatTooltipModule,
   ],
@@ -73,6 +82,12 @@ export class PqitaComponent implements OnDestroy {
 
   public noSpeech: boolean;
   public readonly listening$: Observable<boolean>;
+  // presets
+  public readonly presetGroups?: string[];
+  public readonly presetEntries?: PqitaPresetEntry[];
+  public filteredPresetEntries: PqitaPresetEntry[] = [];
+  public presetGroup: FormControl<string | null>;
+  public presetEntry: FormControl<PqitaPresetEntry | null>;
 
   /**
    * Whether to make the converted query read-only.
@@ -86,10 +101,20 @@ export class PqitaComponent implements OnDestroy {
   constructor(
     formBuilder: FormBuilder,
     private _pqitaService: PqitaService,
-    private _speechRecService: SpeechRecognitionService
+    private _speechRecService: SpeechRecognitionService,
+    env: EnvService
   ) {
     this.noSpeech = this._speechRecService.unsupported;
 
+    this.presetEntries = env.get('pqitaPresetEntries') as
+      | PqitaPresetEntry[]
+      | undefined;
+    this.presetGroups = this.presetEntries
+      ? Array.from(new Set(this.presetEntries.map((e) => e.group || '-')))
+      : undefined;
+
+    this.presetGroup = formBuilder.control(null);
+    this.presetEntry = formBuilder.control(null);
     this.text = formBuilder.control(null, {
       validators: [Validators.required, Validators.maxLength(1000)],
     });
@@ -97,6 +122,8 @@ export class PqitaComponent implements OnDestroy {
     this.query = formBuilder.control(null);
     this.history = formBuilder.control([], { nonNullable: true });
     this.form = formBuilder.group({
+      presetGroup: this.presetGroup,
+      presetEntry: this.presetEntry,
       text: this.text,
       autoRun: this.autoRun,
       query: this.query,
@@ -129,6 +156,24 @@ export class PqitaComponent implements OnDestroy {
           this.text.updateValueAndValidity();
         })
     );
+
+    // when preset group changes, filter the preset entries in the control
+    this._subs.push(
+      this.presetGroup.valueChanges
+        .pipe(distinctUntilChanged(), debounceTime(300))
+        .subscribe((group) => {
+          if (this.presetEntries) {
+            this.presetEntry.setValue(null);
+            this.presetEntry.markAsDirty();
+            this.presetEntry.updateValueAndValidity();
+          }
+          this.filteredPresetEntries = this.presetEntries
+            ? this.presetEntries.filter((e) => e.group === group || !group)
+            : [];
+        })
+    );
+
+    this.presetGroup.setValue(null);
   }
 
   public ngOnDestroy(): void {
@@ -171,6 +216,15 @@ export class PqitaComponent implements OnDestroy {
   public clearText() {
     this.text.reset();
     this.query.reset();
+  }
+
+  public pickFromPreset() {
+    if (this.presetEntry.value) {
+      this.text.setValue(this.presetEntry.value.value);
+      this.text.markAsDirty();
+      this.text.updateValueAndValidity();
+      this.convert();
+    }
   }
 
   public convertByEnter(event: KeyboardEvent): void {

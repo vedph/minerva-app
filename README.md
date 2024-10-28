@@ -154,7 +154,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
-- 2024-10-28: fix to set AND for type "tutti i latinismi in corsivo".
+- 2024-10-28:
+  - fix to set AND for type "tutti i latinismi in corsivo".
+  - added query presets.
 
 ### 0.0.3
 

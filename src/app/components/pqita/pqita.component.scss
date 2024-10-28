@@ -2,6 +2,9 @@
   width: 100%;
   max-width: 800px;
 }
+.full-width {
+  width: 100%;
+}
 .form-row {
   display: flex;
   gap: 8px;
@@ -10,6 +13,9 @@
 }
 .form-row * {
   flex: 0 0 auto;
+}
+.form-row .filler {
+  flex: 1 1 auto;
 }
 .button-row {
   display: flex;

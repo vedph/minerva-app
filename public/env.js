@@ -12,4 +12,9 @@
     { name: "sede-giudicante", type: 0 },
     { name: "sesso-avv", type: 0 },
   ];
+  window.__env.pqitaPresetEntries = [
+    { group: "linguista", value: 'trova la parola "accertamento"' },
+    { group: "linguista", value: "trova tutti i latinismi" },
+    { group: "giurista", value: "trova tutti i latinismi" },
+  ];
 })(this);
