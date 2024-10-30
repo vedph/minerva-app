@@ -423,6 +423,34 @@ describe('PqitaService', () => {
       '[value="cane"] AND [b="1"]'
     );
   });
+
+  // parola + vicino a
+  it('should convert parola "cane" vicino alla parola "bello" to [value="cane"] NEAR(m=3,s=snt) [value="bello"]', () => {
+    expect(
+      service.convertQuery('parola "cane" vicino alla parola "bello"')
+    ).toBe('[value="cane"] NEAR(m=3,s=snt) [value="bello"]');
+  });
+
+  // parola + attaccato a
+  it('should convert parola "cane" attaccata alla parola "bello" to [value="cane"] NEAR(m=0,s=snt) [value="bello"]', () => {
+    expect(
+      service.convertQuery('parola "cane" attaccata alla parola "bello"')
+    ).toBe('[value="cane"] NEAR(m=0,s=snt) [value="bello"]');
+  });
+
+  // parola + prima di
+  it('should convert parola "cane" prima della parola "bello" to [value="cane"] BEFORE(m=3,s=snt) [value="bello"]', () => {
+    expect(
+      service.convertQuery('parola "cane" prima della parola "bello"')
+    ).toBe('[value="cane"] BEFORE(m=3,s=snt) [value="bello"]');
+  });
+
+  // parola + dopo
+  it('should convert parola "cane" dopo la parola "bello" to [value="cane"] AFTER(m=3,s=snt) [value="bello"]', () => {
+    expect(
+      service.convertQuery('parola "cane" dopo la parola "bello"')
+    ).toBe('[value="cane"] AFTER(m=3,s=snt) [value="bello"]');
+  });
   //#endregion
 
   //#region locuzione
