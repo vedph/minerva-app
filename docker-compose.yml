@@ -19,7 +19,7 @@ services:
       - minerva-pgsql
     environment:
       - CONNECTIONSTRINGS__DEFAULT=User ID=postgres;Password=postgres;Host=minerva-pgsql;Port=5432;Database={0};
-      # - ALLOWED__ORIGINS__3=http://www.something.com
+      # - ALLOWEDORIGINS__3=http://www.something.com
       - SEEDDELAY=30
       - MESSAGING__APIROOTURL=https://minerva.it/api/
       - MESSAGING__APPROOTURL=https://minerva.it/
