@@ -154,6 +154,10 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-10-31:
+  - updated about and Italian translations.
+  - updated Angular.
+  - reexported pqita.png with correct colors.
 - 2024-10-30:
   - more tests.
   - added preset queries.
