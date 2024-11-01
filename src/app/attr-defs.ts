@@ -254,14 +254,14 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     label: $localize`org.name, f.`,
     type: QueryBuilderTermType.Token,
     group: $localize`token`,
-    tip: $localize`Female juridic person name.`,
+    tip: $localize`Feminine juridic person name.`,
   },
   {
     value: 'org-m',
     label: $localize`org.name, m.`,
     type: QueryBuilderTermType.Token,
     group: $localize`token`,
-    tip: $localize`Male juridic person name.`,
+    tip: $localize`Masculine juridic person name.`,
   },
   {
     value: 'person',
@@ -275,14 +275,14 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     label: $localize`person name, f.`,
     type: QueryBuilderTermType.Token,
     group: $localize`token`,
-    tip: $localize`Female person name.`,
+    tip: $localize`Feminine person name.`,
   },
   {
     value: 'pn-m',
     label: $localize`person name, m.`,
     type: QueryBuilderTermType.Token,
     group: $localize`token`,
-    tip: $localize`Male person name.`,
+    tip: $localize`Masculine person name.`,
   },
   {
     value: 'pn-s',
@@ -303,7 +303,7 @@ export const ATTR_DEFS: QueryBuilderTermDef[] = [
     label: $localize`prontype`,
     type: QueryBuilderTermType.Token,
     group: 'pos',
-    tip: $localize`Pronoun type: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".`,
+    tip: $localize`Pronoun type: "art", "dem", "ind", "int", "neg", "prs", "rel", "tot".`,
   },
   {
     value: 'tense',
