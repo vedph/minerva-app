@@ -2301,8 +2301,8 @@
           <context context-type="linenumber">254</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8329552830767071239" datatype="html">
-        <source>Female juridic person name.</source>
+      <trans-unit id="2150866005317362421" datatype="html">
+        <source>Feminine juridic person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">257</context>
@@ -2315,8 +2315,8 @@
           <context context-type="linenumber">261</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3904921540177529871" datatype="html">
-        <source>Male juridic person name.</source>
+      <trans-unit id="8910030394177650971" datatype="html">
+        <source>Masculine juridic person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">264</context>
@@ -2343,8 +2343,8 @@
           <context context-type="linenumber">275</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4574003738927641529" datatype="html">
-        <source>Female person name.</source>
+      <trans-unit id="467026753343306990" datatype="html">
+        <source>Feminine person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">278</context>
@@ -2357,8 +2357,8 @@
           <context context-type="linenumber">282</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7868150702657804185" datatype="html">
-        <source>Male person name.</source>
+      <trans-unit id="505622836744675938" datatype="html">
+        <source>Masculine person name.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">285</context>
@@ -2399,8 +2399,8 @@
           <context context-type="linenumber">303</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7674492771458030565" datatype="html">
-        <source>Pronoun type: &quot;art&quot;, &quot;dem&quot;, &quot;exc&quot;, &quot;ind&quot;, &quot;int&quot;, &quot;neg&quot;, &quot;prs&quot;, &quot;rel&quot;, &quot;tot&quot;.</source>
+      <trans-unit id="5747419076022213342" datatype="html">
+        <source>Pronoun type: &quot;art&quot;, &quot;dem&quot;, &quot;ind&quot;, &quot;int&quot;, &quot;neg&quot;, &quot;prs&quot;, &quot;rel&quot;, &quot;tot&quot;.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">306</context>

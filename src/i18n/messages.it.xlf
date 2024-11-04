@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.2"
-  xmlns="urn:oasis:names:tc:xliff:document:1.2">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template" target-language="it">
     <body>
       <trans-unit id="1446670643492611810" datatype="html">
@@ -53,9 +52,7 @@
         <note priority="1" from="description">auth-jwt-login</note>
       </trans-unit>
       <trans-unit id="187187500641108332" datatype="html">
-        <source>
-          <x id="INTERPOLATION"/>
-        </source>
+        <source><x id="INTERPOLATION"/></source>
         <target state="translated">
           <x id="INTERPOLATION"/>
         </target>
@@ -2544,9 +2541,9 @@
           <context context-type="linenumber">254</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8329552830767071239" datatype="html">
-        <source>Female juridic person name.</source>
-        <target state="translated">Nome femminile di persona giuridica.</target>
+      <trans-unit id="2150866005317362421" datatype="html">
+        <source>Feminine juridic person name.</source>
+        <target state="translated">Nome di persona giuridica femminile.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">257</context>
@@ -2560,9 +2557,9 @@
           <context context-type="linenumber">261</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3904921540177529871" datatype="html">
-        <source>Male juridic person name.</source>
-        <target state="translated">Nome maschile di persona giuridica.</target>
+      <trans-unit id="8910030394177650971" datatype="html">
+        <source>Masculine juridic person name.</source>
+        <target state="translated">Nome di persona giuridica maschile.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">264</context>
@@ -2592,9 +2589,9 @@
           <context context-type="linenumber">275</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4574003738927641529" datatype="html">
-        <source>Female person name.</source>
-        <target state="translated">Nome femminile di persona.</target>
+      <trans-unit id="467026753343306990" datatype="html">
+        <source>Feminine person name.</source>
+        <target state="translated">Antroponimo femminile.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">278</context>
@@ -2608,9 +2605,9 @@
           <context context-type="linenumber">282</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7868150702657804185" datatype="html">
-        <source>Male person name.</source>
-        <target state="translated">Nome maschile di persona.</target>
+      <trans-unit id="505622836744675938" datatype="html">
+        <source>Masculine person name.</source>
+        <target state="translated">Antroponimo maschile.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">285</context>
@@ -2656,9 +2653,9 @@
           <context context-type="linenumber">303</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7674492771458030565" datatype="html">
-        <source>Pronoun type: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".</source>
-        <target state="translated">Tipo di pronome: "art", "dem", "exc", "ind", "int", "neg", "prs", "rel", "tot".</target>
+      <trans-unit id="5747419076022213342" datatype="html">
+        <source>Pronoun type: "art", "dem", "ind", "int", "neg", "prs", "rel", "tot".</source>
+        <target state="translated">Tipo di pronome: "art", "dem", "ind", "int", "neg", "prs", "rel", "tot".</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/attr-defs.ts</context>
           <context context-type="linenumber">306</context>
@@ -2949,97 +2946,95 @@
         </context-group>
       </trans-unit>
       <trans-unit id="6221116945238325541" datatype="html">
-        <source>Page <x id="PH" equiv-text="page + 1"/>
- of <x id="PH_1" equiv-text="amountPages"/>
-      </source>
-      <target state="translated">Pagina <x id="PH" equiv-text="page + 1"/>
+        <source>Page <x id="PH" equiv-text="page + 1"/> of <x id="PH_1" equiv-text="amountPages"/></source>
+        <target state="translated">Pagina <x id="PH" equiv-text="page + 1"/>
  di <x id="PH_1" equiv-text="amountPages"/>
     </target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/services/i18n-paginator-intl.service.ts</context>
-      <context context-type="linenumber">22</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="3492770922767185670" datatype="html">
-    <source>document metadata density</source>
-    <target state="translated">densità metadati documenti</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.html</context>
-      <context context-type="linenumber">19,20</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="8140831128146257801" datatype="html">
-    <source>spans</source>
-    <target state="translated">regioni di testo</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.html</context>
-      <context context-type="linenumber">27,28</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="4658717036845845558" datatype="html">
-    <source>span metadata density</source>
-    <target state="translated">densità metadati regioni di testo</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.html</context>
-      <context context-type="linenumber">31,32</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="1473635030596766447" datatype="html">
-    <source>words</source>
-    <target state="translated">parole</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.html</context>
-      <context context-type="linenumber">37</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="738101097642727355" datatype="html">
-    <source>lemmata</source>
-    <target state="translated">lemmi</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.html</context>
-      <context context-type="linenumber">41,42</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="5251205648771382844" datatype="html">
-    <source>latin phrases</source>
-    <target state="translated">fraseologie latine</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-      <context context-type="linenumber">32</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="542972672351118913" datatype="html">
-    <source>paragraphs</source>
-    <target state="translated">paragrafi</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-      <context context-type="linenumber">33</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="6856774007710621971" datatype="html">
-    <source>sentences</source>
-    <target state="translated">frasi</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-      <context context-type="linenumber">34</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="8821114980467455667" datatype="html">
-    <source>tokens</source>
-    <target state="translated">token</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-      <context context-type="linenumber">35</context>
-    </context-group>
-  </trans-unit>
-  <trans-unit id="6343223903068580126" datatype="html">
-    <source>Spans</source>
-    <target state="translated">Regioni di testo</target>
-    <context-group purpose="location">
-      <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-      <context context-type="linenumber">125</context>
-    </context-group>
-  </trans-unit>
-</body>
-</file>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/services/i18n-paginator-intl.service.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3492770922767185670" datatype="html">
+        <source>document metadata density</source>
+        <target state="translated">densità metadati documenti</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8140831128146257801" datatype="html">
+        <source>spans</source>
+        <target state="translated">regioni di testo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4658717036845845558" datatype="html">
+        <source>span metadata density</source>
+        <target state="translated">densità metadati regioni di testo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1473635030596766447" datatype="html">
+        <source>words</source>
+        <target state="translated">parole</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="738101097642727355" datatype="html">
+        <source>lemmata</source>
+        <target state="translated">lemmi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5251205648771382844" datatype="html">
+        <source>latin phrases</source>
+        <target state="translated">fraseologie latine</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="542972672351118913" datatype="html">
+        <source>paragraphs</source>
+        <target state="translated">paragrafi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6856774007710621971" datatype="html">
+        <source>sentences</source>
+        <target state="translated">frasi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8821114980467455667" datatype="html">
+        <source>tokens</source>
+        <target state="translated">token</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6343223903068580126" datatype="html">
+        <source>Spans</source>
+        <target state="translated">Regioni di testo</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
