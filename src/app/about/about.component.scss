@@ -8,3 +8,10 @@ article {
 .title {
   font-style: italic;
 }
+a {
+  color: #005cbb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
