@@ -154,6 +154,10 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-11-06:
+  - added diacritic stripping in simple query.
+  - hide preset group when single.
+
 ### 0.0.4
 
 - 2024-11-05: updated packages (fix in search clear).

@@ -72,7 +72,7 @@ interface HistoryEntry {
   templateUrl: './pqita.component.html',
   styleUrl: './pqita.component.scss',
 })
-export class PqitaComponent implements OnDestroy {
+export class PqitaComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];
   public text: FormControl<string | null>;
   public autoRun: FormControl<boolean>;
@@ -83,8 +83,8 @@ export class PqitaComponent implements OnDestroy {
   public noSpeech: boolean;
   public readonly listening$: Observable<boolean>;
   // presets
-  public readonly presetGroups?: string[];
-  public readonly presetEntries?: PqitaPresetEntry[];
+  public readonly presetGroups: string[];
+  public readonly presetEntries: PqitaPresetEntry[];
   public filteredPresetEntries: PqitaPresetEntry[] = [];
   public presetGroup: FormControl<string | null>;
   public presetEntry: FormControl<PqitaPresetEntry | null>;
@@ -106,12 +106,11 @@ export class PqitaComponent implements OnDestroy {
   ) {
     this.noSpeech = this._speechRecService.unsupported;
 
-    this.presetEntries = env.get('pqitaPresetEntries') as
-      | PqitaPresetEntry[]
-      | undefined;
+    this.presetEntries =
+      (env.get('pqitaPresetEntries') as PqitaPresetEntry[] | undefined) || [];
     this.presetGroups = this.presetEntries
       ? Array.from(new Set(this.presetEntries.map((e) => e.group || '-')))
-      : undefined;
+      : [];
 
     this.presetGroup = formBuilder.control(null);
     this.presetEntry = formBuilder.control(null);
@@ -162,18 +161,31 @@ export class PqitaComponent implements OnDestroy {
       this.presetGroup.valueChanges
         .pipe(distinctUntilChanged(), debounceTime(300))
         .subscribe((group) => {
-          if (this.presetEntries) {
+          // clear the preset entry
+          if (this.presetEntry.value) {
             this.presetEntry.setValue(null);
             this.presetEntry.markAsDirty();
             this.presetEntry.updateValueAndValidity();
           }
-          this.filteredPresetEntries = this.presetEntries
-            ? this.presetEntries.filter((e) => e.group === group || !group)
-            : [];
+          // set the filtered preset entries
+          this.setFilteredPresetEntries(group);
         })
     );
 
     this.presetGroup.setValue(null);
+  }
+
+  private setFilteredPresetEntries(group?: string | null): void {
+    this.filteredPresetEntries = this.presetEntries
+      ? this.presetEntries.filter((e) => e.group === group || !group)
+      : [];
+  }
+
+  public ngOnInit(): void {
+    if (this.presetGroups.length > 0) {
+      this.presetGroup.setValue(this.presetGroups[0]);
+      this.setFilteredPresetEntries(this.presetGroups[0]);
+    }
   }
 
   public ngOnDestroy(): void {

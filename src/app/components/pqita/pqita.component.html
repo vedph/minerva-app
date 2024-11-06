@@ -80,7 +80,7 @@
   <div id="query">
     <div class="form-row">
       <!-- preset groups -->
-      @if (presetEntries?.length) {
+      @if (presetGroups.length > 1) {
       <mat-form-field>
         <mat-select
           [formControl]="presetGroup"
