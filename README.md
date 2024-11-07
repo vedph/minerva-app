@@ -154,6 +154,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-11-07: search lemma rather than word when clicking on lemma in words index.
 - 2024-11-06:
   - added diacritic stripping in simple query.
   - hide preset group when single.

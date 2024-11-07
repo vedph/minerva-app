@@ -54,6 +54,10 @@ export class WordsComponent {
   }
 
   public onSearchRequest(token: Word | Lemma): void {
-    this._router.navigate(['search', token.value]);
+    if (token.type === 'lemma') {
+      this._router.navigate(['search', '^' + token.value]);
+    } else {
+      this._router.navigate(['search', token.value]);
+    }
   }
 }
