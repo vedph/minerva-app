@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any. Then use Poedit or any other tool to add translations;
 2. update version in `env.js` (and in Docker compose scripts);
 3. `ng build --configuration=production`;
-4. `docker build . -t vedph2020/minerva-app:0.0.4 -t vedph2020/minerva-app:latest` (replace with the current version).
+4. `docker build . -t vedph2020/minerva-app:0.0.5 -t vedph2020/minerva-app:latest` (replace with the current version).
 
 >Note that the default language for Minerva images is Italian.
 
@@ -154,16 +154,19 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
-- 2024-11-07: search lemma rather than word when clicking on lemma in words index.
+### 0.0.5
+
+- 2024-11-07:
+  - search lemma rather than word when clicking on lemma in words index.
+  - better "no results" message.
+  - updated Angular.
 - 2024-11-06:
   - added diacritic stripping in simple query.
   - hide preset group when single.
 
 ### 0.0.4
 
-- 2024-11-05:
-  - updated packages (fix in search clear).
-  - better no results message.
+- 2024-11-05: updated packages (fix in search clear).
 - 2024-10-31:
   - updated about and Italian translations.
   - updated Angular.

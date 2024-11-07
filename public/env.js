@@ -1,7 +1,7 @@
 (function (window) {
   window.__env = window.__env || {};
   window.__env.apiUrl = "http://localhost:5180/api/";
-  window.__env.version = "0.0.4";
+  window.__env.version = "0.0.5";
   window.__env.hasLemmata = "true";
   window.__env.indexDocAttrs = [
     { name: "data", type: 0 },
