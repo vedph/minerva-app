@@ -201,9 +201,9 @@
       (page)="onPageChange($event)"
       [showFirstLastButtons]="true"
     />
-    } @else {
+    } @else { @if (query$ | async) {
     <div id="no-results" i18n>(no results)</div>
-    }
+    } }
   </div>
 
   <!-- toolbar -->

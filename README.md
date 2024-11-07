@@ -161,7 +161,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ### 0.0.4
 
-- 2024-11-05: updated packages (fix in search clear).
+- 2024-11-05:
+  - updated packages (fix in search clear).
+  - better no results message.
 - 2024-10-31:
   - updated about and Italian translations.
   - updated Angular.
