@@ -396,7 +396,8 @@ export default class PqitaListener extends ParseTreeListener {
    * @param ctx the parse tree
    */
   exitLocation?(ctx: LocationContext): void {
-    const hasNot = ctx.negation() !== undefined;
+    const neg = ctx.negation();
+    const hasNot = neg !== undefined && neg !== null;
     const locType = ctx.LOC_TYPE().getText();
     let alignment = '';
 
@@ -421,7 +422,8 @@ export default class PqitaListener extends ParseTreeListener {
    * @param ctx the parse tree
    */
   exitRelation?(ctx: RelationContext): void {
-    const hasNot = ctx.negation() !== null;
+    const neg = ctx.negation();
+    const hasNot = neg !== undefined && neg !== null;
     const relType = ctx.REL_TYPE().getText();
     let operator = '';
 

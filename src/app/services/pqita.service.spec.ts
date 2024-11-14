@@ -1247,5 +1247,12 @@ describe('PqitaService', () => {
       'parola "cane" dopo la parola "bel"'
     );
   });
+
+  // a inizio di frase
+  it('should convert parola "cane" a inizio di frase', () => {
+    expect(
+      service.convertQuery("parola \"cane\" a inizio di frase")
+    ).toBe('[value="cane"] LALIGN(m=0) [$snt]');
+  });
   //#endregion
 });
