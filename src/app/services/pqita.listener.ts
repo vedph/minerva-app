@@ -402,9 +402,9 @@ export default class PqitaListener extends ParseTreeListener {
     let alignment = '';
 
     if (locType.includes('inizio')) {
-      alignment = hasNot ? 'LALIGN(n=1)' : 'LALIGN(m=0)';
+      alignment = (hasNot ? 'NOT ' : '') + 'LALIGN(m=0)';
     } else if (locType.includes('fine')) {
-      alignment = hasNot ? 'RALIGN(n=1)' : 'RALIGN(m=0)';
+      alignment = (hasNot ? 'NOT ' : '') + 'RALIGN(m=0)';
     }
 
     if (alignment) {
