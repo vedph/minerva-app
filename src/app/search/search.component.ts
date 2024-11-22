@@ -8,11 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { ItaSearchComponent } from '../components/ita-search/ita-search.component';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, ItaSearchComponent],
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
+    imports: [CommonModule, MatCardModule, MatIconModule, ItaSearchComponent],
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
   public initialQueryTerm: string | undefined;

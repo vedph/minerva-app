@@ -14,18 +14,17 @@ import {
 import { StatsService } from '@myrmidon/pythia-api';
 
 @Component({
-  selector: 'app-stats',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatIconModule,
-    NgxEchartsModule,
-    TagCloudComponent,
-  ],
-  templateUrl: './stats.component.html',
-  styleUrls: ['./stats.component.scss'],
+    selector: 'app-stats',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatIconModule,
+        NgxEchartsModule,
+        TagCloudComponent,
+    ],
+    templateUrl: './stats.component.html',
+    styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent {
   private readonly _spanMap: { [key: string]: string } = {

@@ -16,17 +16,16 @@ import {
 import { WordIndexComponent } from '@myrmidon/pythia-word-index';
 
 @Component({
-  selector: 'app-words',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatIconModule,
-    WordIndexComponent,
-  ],
-  templateUrl: './words.component.html',
-  styleUrl: './words.component.scss',
+    selector: 'app-words',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatIconModule,
+        WordIndexComponent,
+    ],
+    templateUrl: './words.component.html',
+    styleUrl: './words.component.scss'
 })
 export class WordsComponent {
   public attributes?: AttributeInfo[];

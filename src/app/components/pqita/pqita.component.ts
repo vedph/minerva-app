@@ -53,24 +53,23 @@ interface HistoryEntry {
  * Component to convert text to a query and search for it.
  */
 @Component({
-  selector: 'minerva-pqita',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatTooltipModule,
-  ],
-  providers: [SpeechRecognitionService],
-  templateUrl: './pqita.component.html',
-  styleUrl: './pqita.component.scss',
+    selector: 'minerva-pqita',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatTooltipModule,
+    ],
+    providers: [SpeechRecognitionService],
+    templateUrl: './pqita.component.html',
+    styleUrl: './pqita.component.scss'
 })
 export class PqitaComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];

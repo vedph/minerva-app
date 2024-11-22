@@ -39,29 +39,28 @@ import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
 import { PqitaComponent } from '../pqita/pqita.component';
 
 @Component({
-  selector: 'minerva-ita-search',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatCardModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatTooltipModule,
-    PythiaQueryBuilderModule,
-    PythiaSearchModule,
-    PythiaDocumentReaderModule,
-    PqitaComponent,
-  ],
-  templateUrl: './ita-search.component.html',
-  styleUrl: './ita-search.component.scss',
+    selector: 'minerva-ita-search',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatCardModule,
+        MatExpansionModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatPaginatorModule,
+        MatProgressBarModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatTooltipModule,
+        PythiaQueryBuilderModule,
+        PythiaSearchModule,
+        PythiaDocumentReaderModule,
+        PqitaComponent,
+    ],
+    templateUrl: './ita-search.component.html',
+    styleUrl: './ita-search.component.scss'
 })
 export class ItaSearchComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];

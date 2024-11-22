@@ -6,25 +6,19 @@ import { Observable } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 
 import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
+
 import { PqitaService } from '../services/pqita.service';
 
-import { PqitaComponent } from '../components/pqita/pqita.component';
-
 @Component({
-  standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, PqitaComponent],
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+    imports: [CommonModule, RouterModule, MatCardModule],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   public user$: Observable<User | null>;
 
   constructor(authService: AuthJwtService, pqitaService: PqitaService) {
     this.user$ = authService.currentUser$;
-
-    // @@
-    // let result = pqitaService.convertQuery('locuzione "cane"');
-    // console.log(result);
   }
 }
