@@ -12,6 +12,7 @@ import {
 } from 'angular-tag-cloud-module';
 
 import { StatsService } from '@myrmidon/pythia-api';
+import { EnvService } from '@myrmidon/ng-tools';
 
 @Component({
     selector: 'app-stats',
@@ -90,7 +91,8 @@ export class StatsComponent {
     delay: 0.1,
   };
 
-  constructor(statsService: StatsService) {
+  constructor(statsService: StatsService, envService: EnvService) {
+    console.log(envService.get('apiUrl'));
     statsService.getStatistics().subscribe((data) => {
       this.data = data;
       this.drawSpanChart();

@@ -32,7 +32,7 @@ import { DataPage } from '@myrmidon/ng-tools';
 
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
 import { KwicSearchResult } from '@myrmidon/pythia-api';
-import { PythiaDocumentReaderModule } from '@myrmidon/pythia-document-reader';
+import { DocumentReaderComponent } from '@myrmidon/pythia-document-reader';
 import { PythiaSearchModule, SearchRepository } from '@myrmidon/pythia-search';
 import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
 
@@ -56,8 +56,8 @@ import { PqitaComponent } from '../pqita/pqita.component';
         MatTooltipModule,
         PythiaQueryBuilderModule,
         PythiaSearchModule,
-        PythiaDocumentReaderModule,
         PqitaComponent,
+        DocumentReaderComponent
     ],
     templateUrl: './ita-search.component.html',
     styleUrl: './ita-search.component.scss'

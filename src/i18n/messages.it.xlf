@@ -69,6 +69,22 @@
           <context context-type="linenumber">1,2</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5519328688857050139" datatype="html">
+        <source>filter</source>
+        <target state="translated">filtro</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-document-reader/src/lib/map-paged-tree-browser/map-paged-tree-browser.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3351509413992500351" datatype="html">
+        <source>Whole document</source>
+        <target state="translated">Intero documento</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/myrmidon/pythia-document-reader/src/lib/map-paged-tree-browser/map-paged-tree-browser.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="125111376198337295" datatype="html">
         <source>title</source>
         <target state="translated">titolo</target>
@@ -298,7 +314,7 @@
         <target state="translated">coppia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/components/query-entry/query-entry.component.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5641150508529610673" datatype="html">
@@ -1321,9 +1337,9 @@
           <context context-type="linenumber">450</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="89989402839143048" datatype="html">
-        <source>Filters the first pair so that it must be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
-        <target state="translated">Filtra la prima coppia in modo che sia dentro il testo definito dalla seconda, eventualmente alla distanza specificata dall'inizio o fine del contenitore.</target>
+      <trans-unit id="9020672469855396523" datatype="html">
+        <source>Filters the first pair so that it must be inside the span defined by the second pair, optionally at the specified distance from the container start or end.</source>
+        <target state="translated">Filtra la prima coppia in modo che si trovi all'interno della seconda, opzionalmente alla distanza specificata dal suo inizio o fine.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">452</context>
@@ -1385,9 +1401,9 @@
           <context context-type="linenumber">486</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8373612448662259948" datatype="html">
-        <source>Filters the first pair so that it must not be inside the span defined by the second pair, eventually at the specified distance from the container start or end.</source>
-        <target state="translated">Filtra la prima coppia in modo che non sia dentro il testo definito dalla seconda, eventualmente alla distanza specificata dall'inizio o fine del contenitore.</target>
+      <trans-unit id="5809375080148310334" datatype="html">
+        <source>Filters the first pair so that it must not be inside the span defined by the second pair, optionally at the specified distance from the container start or end.</source>
+        <target state="translated">Filtra la prima coppia in modo che non si trovi all'interno della seconda, opzionalmente alla distanza specificata dal suo inizio o fine.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">488</context>
@@ -1401,9 +1417,9 @@
           <context context-type="linenumber">522</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2528454948766196994" datatype="html">
-        <source>Filters the first pair so that its span must overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
-        <target state="translated">Filtra la prima coppia in modo che la sua estensione si sovrapponga a quella definita dalla seconda, eventualmente per l'ammontare di posizioni specificate.</target>
+      <trans-unit id="6435274428451061777" datatype="html">
+        <source>Filters the first pair so that its span must overlap the one defined by the second pair, optionally by the specified amount of positions.</source>
+        <target state="translated">Filtra la prima coppia in modo che si sovrapponga alla seconda, opzionalmente per il numero specificato di posizioni.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">524</context>
@@ -1417,9 +1433,9 @@
           <context context-type="linenumber">546</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="274691664307407516" datatype="html">
-        <source>Filters the first pair so that its span must not overlap the one defined by the second pair, eventually by the specified amount of positions.</source>
-        <target state="translated">Filtra la prima coppia in modo che la sua estensione non si sovrapponga a quella definita dalla seconda, eventualmente per l'ammontare specificato di posizioni.</target>
+      <trans-unit id="3071388728710815281" datatype="html">
+        <source>Filters the first pair so that its span must not overlap the one defined by the second pair, optionally by the specified amount of positions.</source>
+        <target state="translated">Filtra la prima coppia in modo che non si sovrapponga alla seconda, opzionalmente per il numero specificato di posizioni.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-query-builder/src/lib/query-builder.ts</context>
           <context context-type="linenumber">548</context>
@@ -1886,7 +1902,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/words/words.component.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3564206492933865904" datatype="html">
@@ -1898,7 +1914,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/words/words.component.ts</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3205662883788332602" datatype="html">
@@ -1910,7 +1926,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/words/words.component.ts</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7855634635898519245" datatype="html">
@@ -1930,7 +1946,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/words/words.component.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2662918060471058417" datatype="html">
@@ -1942,7 +1958,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/words/words.component.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8135140238553282885" datatype="html">
@@ -1954,7 +1970,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/words/words.component.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3890771237132928825" datatype="html">
@@ -2002,7 +2018,7 @@
         <target state="translated">Copia effettuata negli appunti</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/myrmidon/pythia-word-index/src/lib/components/token-counts/token-counts.component.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2812446888132459854" datatype="html">
@@ -3000,7 +3016,7 @@
         <target state="translated">fraseologie latine</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="542972672351118913" datatype="html">
@@ -3008,7 +3024,7 @@
         <target state="translated">paragrafi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6856774007710621971" datatype="html">
@@ -3016,7 +3032,7 @@
         <target state="translated">frasi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8821114980467455667" datatype="html">
@@ -3024,7 +3040,7 @@
         <target state="translated">token</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6343223903068580126" datatype="html">
@@ -3032,7 +3048,7 @@
         <target state="translated">Regioni di testo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/stats/stats.component.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
     </body>

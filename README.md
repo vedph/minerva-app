@@ -154,6 +154,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-12-16:
+  - ⚠️ updated Pythia dependencies to 5.
+  - updated Angular and packages.
 - 2024-11-22: ⚠️ Upgraded to Angular 19.
 - 2024-11-16: fix to "non" parsing to emit "NOT".
 - 2024-11-14: fix to "non" parsing for "inizio di frase" and the like: must check for both null and undefined. This way, `parola "cane" a inizio di frase` becomes `[value="cane"] LALIGN(m=0) [$name="snt"]` while `parola "cane" non a inizio di frase` becomes `[value="cane"] LALIGN(n=1) [$name="snt"]`.
