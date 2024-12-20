@@ -28,39 +28,40 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { DataPage } from '@myrmidon/ng-tools';
+import { DataPage } from '@myrmidon/ngx-tools';
 
 import { DocumentReadRequest } from '@myrmidon/pythia-core';
 import { KwicSearchResult } from '@myrmidon/pythia-api';
 import { DocumentReaderComponent } from '@myrmidon/pythia-document-reader';
-import { PythiaSearchModule, SearchRepository } from '@myrmidon/pythia-search';
-import { PythiaQueryBuilderModule } from '@myrmidon/pythia-query-builder';
+import {
+  SearchExportComponent,
+  SearchRepository,
+} from '@myrmidon/pythia-search';
 
 import { PqitaComponent } from '../pqita/pqita.component';
 
 @Component({
-    selector: 'minerva-ita-search',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatCardModule,
-        MatExpansionModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatPaginatorModule,
-        MatProgressBarModule,
-        MatSelectModule,
-        MatTabsModule,
-        MatTooltipModule,
-        PythiaQueryBuilderModule,
-        PythiaSearchModule,
-        PqitaComponent,
-        DocumentReaderComponent
-    ],
-    templateUrl: './ita-search.component.html',
-    styleUrl: './ita-search.component.scss'
+  selector: 'minerva-ita-search',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatTooltipModule,
+    PqitaComponent,
+    DocumentReaderComponent,
+    SearchExportComponent,
+  ],
+  templateUrl: './ita-search.component.html',
+  styleUrl: './ita-search.component.scss',
 })
 export class ItaSearchComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];

@@ -10,10 +10,10 @@ import { AuthJwtService, User } from '@myrmidon/auth-jwt-login';
 import { PqitaService } from '../services/pqita.service';
 
 @Component({
-    imports: [CommonModule, RouterModule, MatCardModule],
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+  imports: [CommonModule, RouterModule, MatCardModule],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
   public user$: Observable<User | null>;

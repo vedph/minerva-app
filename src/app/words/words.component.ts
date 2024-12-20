@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 
-import { EnvService } from '@myrmidon/ng-tools';
+import { EnvService } from '@myrmidon/ngx-tools';
 
 import {
   AttributeInfo,
@@ -16,16 +16,16 @@ import {
 import { WordIndexComponent } from '@myrmidon/pythia-word-index';
 
 @Component({
-    selector: 'app-words',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatCardModule,
-        MatIconModule,
-        WordIndexComponent,
-    ],
-    templateUrl: './words.component.html',
-    styleUrl: './words.component.scss'
+  selector: 'app-words',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    WordIndexComponent,
+  ],
+  templateUrl: './words.component.html',
+  styleUrl: './words.component.scss',
 })
 export class WordsComponent {
   public attributes?: AttributeInfo[];

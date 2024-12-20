@@ -32,7 +32,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { EnvService } from '@myrmidon/ng-tools';
+import { EnvService } from '@myrmidon/ngx-tools';
 
 import { PqitaService } from '../../services/pqita.service';
 import { SpeechRecognitionService } from '../../services/speech-recognition.service';
@@ -53,23 +53,23 @@ interface HistoryEntry {
  * Component to convert text to a query and search for it.
  */
 @Component({
-    selector: 'minerva-pqita',
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatProgressBarModule,
-        MatSelectModule,
-        MatSlideToggleModule,
-        MatTooltipModule,
-    ],
-    providers: [SpeechRecognitionService],
-    templateUrl: './pqita.component.html',
-    styleUrl: './pqita.component.scss'
+  selector: 'minerva-pqita',
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatTooltipModule,
+  ],
+  providers: [SpeechRecognitionService],
+  templateUrl: './pqita.component.html',
+  styleUrl: './pqita.component.scss',
 })
 export class PqitaComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];

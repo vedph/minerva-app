@@ -154,8 +154,11 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
-- 2024-12-16:
-  - ⚠️ updated Pythia dependencies to 5.
+### 1.0.0
+
+- 2024-12-20:
+  - ⚠️ updated Pythia dependencies to 6.
+  - removed `envServiceProvider`.
   - updated Angular and packages.
 - 2024-11-22: ⚠️ Upgraded to Angular 19.
 - 2024-11-16: fix to "non" parsing to emit "NOT".

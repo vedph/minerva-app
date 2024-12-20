@@ -15,7 +15,6 @@ import '@angular/localize/init';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
-import { EnvServiceProvider } from '@myrmidon/ng-tools';
 import { QUERY_BUILDER_ATTR_DEFS_KEY } from '@myrmidon/pythia-query-builder';
 
 // local
@@ -34,7 +33,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       NgxEchartsModule.forRoot({ echarts: () => import('echarts') })
     ),
-    EnvServiceProvider,
     // HTTP interceptors
     {
       provide: HTTP_INTERCEPTORS,
