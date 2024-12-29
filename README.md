@@ -154,6 +154,8 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2024-12-29: updated packages.
+
 ### 1.0.0
 
 - 2024-12-20:
