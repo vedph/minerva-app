@@ -38,7 +38,7 @@
     "@myrmidon/pythia-word-index": "^6.0.0",
     "angular-tag-cloud-module": "^17.0.1",
     "antlr4": "^4.13.2",
-    "echarts": "^5.5.1",
+    "echarts": "^5.6.0",
     "ngx-echarts": "^19.0.0",
     "ngx-i18nsupport": "^0.17.1",
     "rxjs": "~7.8.1",
