@@ -154,6 +154,7 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2025-01-09: updated Angular and packages. Preserved direct import of `@angular/localize/init` in `app.config` to avoid runtime errors, which should not be there.
 - 2024-12-29: updated packages.
 
 ### 1.0.0

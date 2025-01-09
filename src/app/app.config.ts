@@ -6,10 +6,11 @@ import {
 import { provideRouter, withDebugTracing } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
+import '@angular/localize/init';
+
 // material
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import '@angular/localize/init';
 
 // vendor
 import { NgxEchartsModule } from 'ngx-echarts';
