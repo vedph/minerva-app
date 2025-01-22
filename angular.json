@@ -8,7 +8,7 @@
         "sourceLocale": "en-US",
         "locales": {
           "it": {
-            "baseHref": "",
+            "subPath": "",
             "translation": "src/i18n/messages.it.xlf"
           }
         }
