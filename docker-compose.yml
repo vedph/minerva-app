@@ -12,7 +12,7 @@ services:
       - minerva-network
 
   minerva-api:
-    image: vedph2020/minerva-api:1.0.0
+    image: vedph2020/minerva-api:1.0.1
     container_name: minerva-api
     ports:
       - 5180:8080

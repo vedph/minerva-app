@@ -154,11 +154,14 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
-- 2025-10-22:
+- 2025-01-29:
+  - updated Angular and packages.
+  - added view transitions.
+- 2025-01-22:
   - updated Angular.
   - replaced deprecated `baseHref` with `subPath` in `angular.json`. Setting this to `""` means that the localized version will be output as the root app in the `dist/browser` folder. If we omit this, it will be output under its locale subfolder. The Dockerfile has changed accordingly.
 - 2025-10-20: updated Angular.
-- 2025-01-09: updated Angular and packages. Preserved direct import of `@angular/localize/init` in `app.config` to avoid runtime errors, which should not be there.
+- 2025-01-09: updated Angular and packages. 👉 Preserved direct import of `@angular/localize/init` in `app.config` to avoid runtime errors, which should not be there.
 - 2024-12-29: updated packages.
 
 ### 1.0.0

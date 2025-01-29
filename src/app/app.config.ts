@@ -3,10 +3,10 @@ import {
   importProvidersFrom,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter, withDebugTracing } from '@angular/router';
+import { provideRouter, withDebugTracing, withViewTransitions } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
-// import '@angular/localize/init';
+import '@angular/localize/init';
 
 // material
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -28,7 +28,7 @@ import { RateLimitInterceptor } from './interceptors/rate-limit.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withDebugTracing()),
+    provideRouter(routes, withDebugTracing(), withViewTransitions()),
     provideAnimationsAsync(),
     provideHttpClient(),
     importProvidersFrom(
