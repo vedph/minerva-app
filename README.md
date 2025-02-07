@@ -154,6 +154,11 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2025-02-07:
+  - updated Angular and packages (added feature: POS filtering).
+  - added missing translations to search component.
+  - better homepage style.
+
 ### 1.0.1
 
 - 2025-01-29:

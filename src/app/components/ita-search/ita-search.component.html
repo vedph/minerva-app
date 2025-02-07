@@ -70,7 +70,7 @@
               <!-- history -->
               @if (lastQueries$ | async; as queries) {
               <mat-form-field>
-                <mat-label>history</mat-label>
+                <mat-label i18n>history</mat-label>
                 <mat-select [formControl]="history">
                   @for (q of queries; track q) {
                   <mat-option [value]="q">{{ q }}</mat-option>
@@ -96,7 +96,7 @@
     <!-- query progress -->
     @if (loading$ | async) {
     <div>
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar mode="indeterminate"/>
     </div>
     }
     <!-- query error -->
