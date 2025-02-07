@@ -9,7 +9,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 3. `ng build --configuration=production`;
 4. `docker build . -t vedph2020/minerva-app:1.0.1 -t vedph2020/minerva-app:latest` (replace with the current version).
 
->Note that the default language for Minerva images is Italian.
+>Note that the default production language for Minerva images is Italian.
 
 ## Localization
 

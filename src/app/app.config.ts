@@ -6,7 +6,7 @@ import {
 import { provideRouter, withDebugTracing, withViewTransitions } from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
-import '@angular/localize/init';
+// import '@angular/localize/init';
 
 // material
 import { MatPaginatorIntl } from '@angular/material/paginator';
