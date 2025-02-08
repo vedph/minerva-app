@@ -15,6 +15,79 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 To update messages: `npm run xi18n` and use Poedit to edit `messages.it.xlf`.
 
+## Deployment
+
+For local deployment with database, follow these instructions according to your OS.
+
+- **Windows**:
+
+1. create directory:
+
+    ```ps1
+    md -Force "C:\data"
+    ```
+
+2. download ZIP:
+
+    ```ps1
+    Invoke-WebRequest -Uri "http://www.fusisoft.it/xfer/minerva-bin.zip" -OutFile "C:\data\minerva-bin.zip"
+    ```
+
+3. unzip the downloaded ZIP and remove it:
+
+    ```ps1
+    Expand-Archive -Path "C:\data\minerva-bin.zip" -DestinationPath "C:\data" -Force
+    Remove-Item "C:\data\minerva-bin.zip" -Force
+    ```
+
+4. ensure your compose script has a bound volume for data:
+
+```yml
+    environment:
+      # ...
+      # unzip bin files from DB into host opt/dump to restore the DB
+      - DATA__SOURCEDIR=/opt/dump/
+    volumes:
+      - type: bind
+        source: 'c:/data'
+        target: '/opt/dump'
+```
+
+- **Ubuntu**/**MacOS**:
+
+1. create directory (`-p` creates parent directories if they don't exist):
+
+    ```sh
+    sudo mkdir -p /opt/dump
+    ```
+
+2. download ZIP (the `-L` option for `curl` follows redirects; the `-O` option for `wget` and `curl` specifies the output file):
+
+    ```sh
+    sudo curl -L http://www.fusisoft.it/xfer/minerva-bin.zip -o /opt/dump/minerva-bin.zip
+    # OR
+    sudo wget http://www.fusisoft.it/xfer/minerva-bin.zip -O /opt/dump/minerva-bin.zip
+    ```
+
+3. unzip the downloaded ZIP and remove it:
+
+    ```sh
+    sudo unzip /opt/dump/minerva-bin.zip -d /opt/dump
+    sudo rm /opt/dump/minerva-bin.zip
+    ```
+
+4. ensure your compose script has a bound volume for data:
+
+```yml
+    environment:
+      # ...
+      # unzip bin files from DB into host opt/dump to restore the DB
+      - DATA__SOURCEDIR=/opt/dump/
+    volumes:
+      # host:container
+      - /opt/dump:/opt/dump
+```
+
 ## Static Pages
 
 Source document: <https://docs.google.com/document/d/12yXGM6TPunSVkkMUiW7ejtkqc0GaAPr8OJZAKnUGLZg/edit?usp=sharing>
