@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ItaSearchComponent } from '../components/ita-search/ita-search.component';
 
 @Component({
-  imports: [CommonModule, MatCardModule, MatIconModule, ItaSearchComponent],
+  imports: [MatCardModule, MatIconModule, ItaSearchComponent],
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],

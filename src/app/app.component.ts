@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
@@ -16,15 +16,14 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 @Component({
   selector: 'app-root',
   imports: [
-    CommonModule,
     RouterModule,
     RouterOutlet,
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    MatTooltipModule,
-  ],
+    MatTooltipModule
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
