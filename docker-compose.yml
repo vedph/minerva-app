@@ -34,7 +34,7 @@ services:
       - minerva-network
 
   minerva-app:
-    image: vedph2020/minerva-app:1.1.0
+    image: vedph2020/minerva-app:2.0.0
     container_name: minerva-app
     ports:
       - 4200:80
