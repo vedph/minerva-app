@@ -132,11 +132,21 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     if (this.initialQueryTerm) {
-      if (this.initialQueryTerm.startsWith('^')) {
-        this.query.setValue(`[lemma="${this.initialQueryTerm.substring(1)}"]`);
+      // if ends with # plus L/W plus id, search for lemma or word by id
+      const m = this.initialQueryTerm.match(/^([^#]+)#([LW])(\d+)$/);
+      if (m) {
+        const type = m[2];
+        const id = parseInt(m[3], 10);
+        if (type === 'L') {
+          this.query.setValue(`[lemma_id="${id}"]`);
+        } else {
+          this.query.setValue(`[word_id="${id}"]`);
+        }
       } else {
+        // otherwise, just set the query text
         this.query.setValue(`[value="${this.initialQueryTerm}"]`);
       }
+
       setTimeout(() => this.search(), 0);
     }
 

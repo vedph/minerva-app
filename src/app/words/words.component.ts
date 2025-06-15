@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -21,8 +20,8 @@ import { WordIndexComponent } from '@myrmidon/pythia-word-index';
     ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
-    WordIndexComponent
-],
+    WordIndexComponent,
+  ],
   templateUrl: './words.component.html',
   styleUrl: './words.component.scss',
 })
@@ -51,11 +50,17 @@ export class WordsComponent {
     this.attributes = env.get('indexDocAttrs') as AttributeInfo[] | undefined;
   }
 
-  public onSearchRequest(token: Word | Lemma): void {
-    if (token.type === 'lemma') {
-      this._router.navigate(['search', '^' + token.value]);
+  public onSearchRequest(span: Word | Lemma): void {
+    // pass the span to the search page
+    // the argument is a string of the form "<value>#<L|W><id>"
+    // where:
+    // - value is the word or lemma value
+    // - L or W indicates whether it is a lemma or word
+    // - id is the word or lemma id
+    if (span.type === 'lemma') {
+      this._router.navigate(['search', `${span.value}#L${span.id}`]);
     } else {
-      this._router.navigate(['search', token.value]);
+      this._router.navigate(['search', `${span.value}#W${span.id}`]);
     }
   }
 }
