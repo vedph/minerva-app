@@ -38,5 +38,11 @@
         'trova il lemma "ritenere" prima di tutte le parole come participio',
     },
     { group: "-", value: 'trova il lemma "bastare" a inizio di frase' },
+    {
+      group: "-",
+      value: 'cerca il lemma "domanda" prima della parola "attoreo"',
+    },
+
+    { group: "-", value: 'cerca il lemma "nonostante" dopo la parola "cio"' },
   ];
 })(this);

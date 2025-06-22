@@ -227,6 +227,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2025-06-22:
+  - added preset queries.
+  - updated Angular and packages.
 - 2025-06-15: refactored query from index so that instead of searching the span's value (e.g. `[value="abbandonato"]`) it searches for the lemma or word ID (`[lemma_id="123"]`). This reconciliates the counts in the words index with those in the search result. Before this, searching for "abbandonato" from lemma "abbandonare" also included forms of "abbandonato" which were classified as adjective rather than verb (past participle).
 
 ### 2.0.0
