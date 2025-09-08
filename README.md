@@ -227,6 +227,8 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2025-09-08: updated Angular and packages.
+
 ### 2.0.1
 
 - 2025-07-29: updated packages (with export fix).
