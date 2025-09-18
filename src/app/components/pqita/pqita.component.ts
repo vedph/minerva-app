@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  EventEmitter,
+  computed,
   HostListener,
-  Input,
+  input,
   OnDestroy,
   OnInit,
-  Output,
+  output,
+  signal,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -73,29 +74,35 @@ interface HistoryEntry {
 })
 export class PqitaComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];
+
+  /**
+   * Whether to make the converted query read-only.
+   */
+  public readonly readonlyQuery = input<boolean>();
+
+  public readonly searchRequest = output<string>();
+
+  public readonly noSpeech = signal<boolean>(false);
+  public readonly presetEntries = signal<PqitaPresetEntry[]>([]);
+  public readonly filteredPresetEntries = signal<PqitaPresetEntry[]>([]);
+  public readonly presetGroups = computed<string[]>(() => {
+    return this.presetEntries()
+      ? Array.from<string>(
+          new Set(this.presetEntries().map((e) => e.group || '-'))
+        )
+      : [];
+  });
+
+  public readonly listening$: Observable<boolean>;
+
+  public presetGroup: FormControl<string | null>;
+  public presetEntry: FormControl<PqitaPresetEntry | null>;
+
   public text: FormControl<string | null>;
   public autoRun: FormControl<boolean>;
   public query: FormControl<string | null>;
   public history: FormControl<HistoryEntry[]>;
   public form: FormGroup;
-
-  public noSpeech: boolean;
-  public readonly listening$: Observable<boolean>;
-  // presets
-  public readonly presetGroups: string[];
-  public readonly presetEntries: PqitaPresetEntry[];
-  public filteredPresetEntries: PqitaPresetEntry[] = [];
-  public presetGroup: FormControl<string | null>;
-  public presetEntry: FormControl<PqitaPresetEntry | null>;
-
-  /**
-   * Whether to make the converted query read-only.
-   */
-  @Input()
-  public readonlyQuery?: boolean;
-
-  @Output()
-  public searchRequest: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     formBuilder: FormBuilder,
@@ -103,13 +110,11 @@ export class PqitaComponent implements OnInit, OnDestroy {
     private _speechRecService: SpeechRecognitionService,
     env: EnvService
   ) {
-    this.noSpeech = this._speechRecService.unsupported;
+    this.noSpeech.set(this._speechRecService.unsupported);
 
-    this.presetEntries =
-      (env.get('pqitaPresetEntries') as PqitaPresetEntry[] | undefined) || [];
-    this.presetGroups = this.presetEntries
-      ? Array.from(new Set(this.presetEntries.map((e) => e.group || '-')))
-      : [];
+    this.presetEntries.set(
+      (env.get('pqitaPresetEntries') as PqitaPresetEntry[] | undefined) || []
+    );
 
     this.presetGroup = formBuilder.control(null);
     this.presetEntry = formBuilder.control(null);
@@ -175,15 +180,17 @@ export class PqitaComponent implements OnInit, OnDestroy {
   }
 
   private setFilteredPresetEntries(group?: string | null): void {
-    this.filteredPresetEntries = this.presetEntries
-      ? this.presetEntries.filter((e) => e.group === group || !group)
-      : [];
+    this.filteredPresetEntries.set(
+      this.presetEntries()
+        ? this.presetEntries().filter((e) => e.group === group || !group)
+        : []
+    );
   }
 
   public ngOnInit(): void {
-    if (this.presetGroups.length > 0) {
-      this.presetGroup.setValue(this.presetGroups[0]);
-      this.setFilteredPresetEntries(this.presetGroups[0]);
+    if (this.presetGroups().length > 0) {
+      this.presetGroup.setValue(this.presetGroups()[0]);
+      this.setFilteredPresetEntries(this.presetGroups()[0]);
     }
   }
 
@@ -265,7 +272,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
     entries.splice(index, 1);
     this.history.setValue(entries);
     this.history.markAsDirty();
-    this.history.updateValueAndValidity;
+    this.history.updateValueAndValidity();
   }
 
   public pickFromHistory(index: number): void {

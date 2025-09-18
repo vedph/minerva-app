@@ -3,14 +3,17 @@ import {
   importProvidersFrom,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter, withDebugTracing, withViewTransitions } from '@angular/router';
+import {
+  provideRouter,
+  withDebugTracing,
+  withViewTransitions,
+} from '@angular/router';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
 // import '@angular/localize/init';
 
 // material
 import { MatPaginatorIntl } from '@angular/material/paginator';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // vendor
 import { NgxEchartsModule } from 'ngx-echarts';
@@ -29,7 +32,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withDebugTracing(), withViewTransitions()),
-    provideAnimationsAsync(),
     provideHttpClient(),
     importProvidersFrom(
       NgxEchartsModule.forRoot({ echarts: () => import('echarts') })

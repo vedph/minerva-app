@@ -1,9 +1,15 @@
 <div id="container">
   <!-- query -->
   <div id="query">
-    <mat-expansion-panel [(expanded)]="queryExpanded">
+    <mat-expansion-panel
+      [expanded]="queryExpanded()"
+      (expandedChange)="queryExpanded.set($event)"
+    >
       <mat-expansion-panel-header>query</mat-expansion-panel-header>
-      <mat-tab-group [(selectedIndex)]="queryTabIndex">
+      <mat-tab-group
+        [selectedIndex]="queryTabIndex()"
+        (selectedIndexChange)="queryTabIndex.set($event)"
+      >
         <!-- query - simple -->
         <mat-tab>
           <ng-template mat-tab-label>
@@ -11,7 +17,7 @@
             <span i18n class="label">simple</span>
           </ng-template>
           <minerva-pqita
-            [readonlyQuery]="readonlyQuery"
+            [readonlyQuery]="readonlyQuery()"
             (searchRequest)="onSearchRequest($event)"
           />
         </mat-tab>
@@ -96,7 +102,7 @@
     <!-- query progress -->
     @if (loading$ | async) {
     <div>
-      <mat-progress-bar mode="indeterminate"/>
+      <mat-progress-bar mode="indeterminate" />
     </div>
     }
     <!-- query error -->
@@ -118,15 +124,15 @@
         <tr>
           <th></th>
           <th class="noif-lt-md"></th>
-          @if (!hideAuthor) {
+          @if (!hideAuthor()) {
           <th i18n>author</th>
-          } @if (!hideTitle) {
+          } @if (!hideTitle()) {
           <th i18n>title</th>
-          } @for (l of leftContextLabels; track l) {
+          } @for (l of leftContextLabels(); track l) {
           <th>{{ l }}</th>
           }
           <th i18n>value</th>
-          @for (l of rightContextLabels; track l) {
+          @for (l of rightContextLabels(); track l) {
           <th>{{ l }}</th>
           }
         </tr>
@@ -161,15 +167,15 @@
             </button>
           </td>
           <!-- author -->
-          @if (!hideAuthor) {
+          @if (!hideAuthor()) {
           <td class="author">{{ r.author }}</td>
           }
           <!-- title -->
-          @if (!hideTitle) {
+          @if (!hideTitle()) {
           <td class="title">{{ r.title }}</td>
           }
           <!-- left -->
-          @for (l of leftContextLabels; track l; let i = $index) {
+          @for (l of leftContextLabels(); track l; let i = $index) {
           <td class="context">
             {{ r.leftContext[i] }}
           </td>
@@ -183,7 +189,7 @@
             {{ r.text }}
           </td>
           <!-- right -->
-          @for (l of rightContextLabels; track l; let i = $index) {
+          @for (l of rightContextLabels(); track l; let i = $index) {
           <td class="context">
             {{ r.rightContext[i] }}
           </td>

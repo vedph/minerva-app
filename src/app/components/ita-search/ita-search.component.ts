@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
-  Input,
+  input,
   OnDestroy,
   OnInit,
+  signal,
   ViewChild,
 } from '@angular/core';
 import {
@@ -71,26 +72,27 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   /**
    * Initial query term to be set in the search box.
    */
-  @Input()
-  public initialQueryTerm: string | undefined;
+  public readonly initialQueryTerm = input<string>();
 
   /**
    * Whether to hide the author field in the search results.
    */
-  @Input()
-  public hideAuthor?: boolean;
+  public readonly hideAuthor = input<boolean>();
 
   /**
    * Whether to hide the title field in the search results.
    */
-  @Input()
-  public hideTitle?: boolean;
+  public readonly hideTitle = input<boolean>();
 
   /**
    * Whether to make the converted query read-only.
    */
-  @Input()
-  public readonlyQuery?: boolean;
+  public readonly readonlyQuery = input<boolean>();
+
+  public readonly leftContextLabels = signal<string[]>(['5', '4', '3', '2', '1']);
+  public readonly rightContextLabels = signal<string[]>(['1', '2', '3', '4', '5']);
+  public readonly queryTabIndex = signal<number>(0);
+  public readonly queryExpanded = signal<boolean>(true);
 
   public query$: Observable<string | undefined>;
   public lastQueries$: Observable<string[]>;
@@ -103,11 +105,6 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   public history: FormControl<string | null>;
   public form: FormGroup;
 
-  public leftContextLabels: string[];
-  public rightContextLabels: string[];
-  public queryTabIndex: number;
-  public queryExpanded: boolean = true;
-
   constructor(private _repository: SearchRepository, formBuilder: FormBuilder) {
     this.query = formBuilder.control(null, [
       Validators.required,
@@ -118,9 +115,6 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
       query: this.query,
       history: this.history,
     });
-    this.leftContextLabels = ['5', '4', '3', '2', '1'];
-    this.rightContextLabels = ['1', '2', '3', '4', '5'];
-    this.queryTabIndex = 0;
 
     this.page$ = _repository.page$;
     this.query$ = _repository.query$;
@@ -131,9 +125,9 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    if (this.initialQueryTerm) {
+    if (this.initialQueryTerm()) {
       // if ends with # plus L/W plus id, search for lemma or word by id
-      const m = this.initialQueryTerm.match(/^([^#]+)#([LW])(\d+)$/);
+      const m = this.initialQueryTerm()?.match(/^([^#]+)#([LW])(\d+)$/);
       if (m) {
         const type = m[2];
         const id = parseInt(m[3], 10);
@@ -144,7 +138,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
         }
       } else {
         // otherwise, just set the query text
-        this.query.setValue(`[value="${this.initialQueryTerm}"]`);
+        this.query.setValue(`[value="${this.initialQueryTerm()}"]`);
       }
 
       setTimeout(() => this.search(), 0);
@@ -153,7 +147,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
     // when page$ changes, set queryExpanded to false if page has any items
     this._subs.push(
       this._repository.page$.subscribe((page) => {
-        this.queryExpanded = !page?.items.length || !page.items.length;
+        this.queryExpanded.set(!page?.items.length || !page.items.length);
       })
     );
   }
@@ -196,7 +190,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   public onQueryPeek(query: string): void {
     this.query.setValue(query);
     setTimeout(() => {
-      this.queryTabIndex = 0;
+      this.queryTabIndex.set(0);
       this.queryElementRef?.nativeElement.focus();
     }, 0);
   }

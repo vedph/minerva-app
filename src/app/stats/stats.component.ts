@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -79,39 +79,42 @@ export class StatsComponent {
   };
 
   // stats data
-  public data?: { [key: string]: number };
+  public readonly data = signal<{ [key: string]: number } | undefined>(
+    undefined
+  );
 
   // pie chart
-  public chartOptions: any;
+  public readonly chartOptions = signal<any>(undefined);
+
   // tags cloud
-  public cloudData: CloudData[] = [];
-  public zoomOnHoverOptions: ZoomOnHoverOptions = {
+  public readonly cloudData = signal<CloudData[]>([]);
+  public readonly zoomOnHoverOptions = signal<ZoomOnHoverOptions>({
     scale: 1.3,
     transitionTime: 1.2,
     delay: 0.1,
-  };
+  });
 
   constructor(statsService: StatsService, envService: EnvService) {
     console.log(envService.get('apiUrl'));
     statsService.getStatistics().subscribe((data) => {
-      this.data = data;
+      this.data.set(data);
       this.drawSpanChart();
       this.drawTagsCloud();
     });
   }
 
   private drawSpanChart(): void {
-    if (!this.data) {
+    if (!this.data()) {
       return;
     }
-    const spanData = Object.entries(this.data)
+    const spanData = Object.entries(this.data()!)
       .filter(([key, value]) => key.startsWith('span.'))
       .map(([key, value]) => ({
         name: this._spanMap[key] || key,
         value,
       }));
 
-    this.chartOptions = {
+    this.chartOptions.set({
       tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b} : {c} ({d}%)',
@@ -137,18 +140,20 @@ export class StatsComponent {
           },
         },
       ],
-    };
+    });
   }
 
   private drawTagsCloud(): void {
-    if (!this.data) {
+    if (!this.data()) {
       return;
     }
-    this.cloudData = Object.entries(this.data)
-      .filter(([key, value]) => key.startsWith('@'))
-      .map(([key, value]) => ({
-        text: this._attrMap[key] || key,
-        weight: value,
-      }));
+    this.cloudData.set(
+      Object.entries(this.data()!)
+        .filter(([key, value]) => key.startsWith('@'))
+        .map(([key, value]) => ({
+          text: this._attrMap[key] || key,
+          weight: value,
+        }))
+    );
   }
 }

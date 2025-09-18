@@ -8,8 +8,8 @@
       [hideLanguage]="true"
       [hideFilter]="true"
       [hideLoc]="true"
-      [sortOrderEntries]="sortOrderEntries"
-      [attributes]="attributes"
+      [sortOrderEntries]="sortOrderEntries()"
+      [attributes]="attributes()"
       (searchRequest)="onSearchRequest($event)"
     />
   </mat-card-content>

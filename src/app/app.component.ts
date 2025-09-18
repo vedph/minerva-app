@@ -1,5 +1,4 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 // material
@@ -11,7 +10,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 // myrmidon
 import { EnvService } from '@myrmidon/ngx-tools';
-import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -22,27 +20,15 @@ import { BreakpointObserver } from '@angular/cdk/layout';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    MatTooltipModule
-],
+    MatTooltipModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  public version: string;
-  public isSmall: boolean = false;
+export class AppComponent {
+  public readonly version = signal<string>('');
 
-  constructor(
-    env: EnvService,
-    private _breakpointObserver: BreakpointObserver
-  ) {
-    this.version = env.get('version') || '';
-  }
-
-  public ngOnInit(): void {
-    this._breakpointObserver
-      .observe(['(max-width: 599px)'])
-      .subscribe((state) => {
-        this.isSmall = state.matches;
-      });
+  constructor(env: EnvService) {
+    this.version.set(env.get('version') || '');
   }
 }

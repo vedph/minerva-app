@@ -42,7 +42,7 @@
       >
         <mat-icon>arrow_circle_right</mat-icon>
       </button>
-      @if (!noSpeech) { @if (listening$ | async) {
+      @if (!noSpeech()) { @if (listening$ | async) {
       <!-- stop listening -->
       <button
         type="button"
@@ -80,7 +80,7 @@
   <div id="query">
     <div class="form-row">
       <!-- preset groups -->
-      @if (presetGroups.length > 1) {
+      @if (presetGroups().length > 1) {
       <mat-form-field>
         <mat-select
           [formControl]="presetGroup"
@@ -90,7 +90,7 @@
           <mat-option [value]="null">
             <ng-container i18n>(all)</ng-container>
           </mat-option>
-          @for (group of presetGroups; track $index) {
+          @for (group of presetGroups(); track $index) {
           <mat-option [value]="group">
             {{ group }}
           </mat-option>
@@ -99,7 +99,7 @@
       </mat-form-field>
       }
       <!-- preset entries -->
-      @if (filteredPresetEntries.length) {
+      @if (filteredPresetEntries().length) {
       <mat-form-field class="filler">
         <mat-select
           [formControl]="presetEntry"
@@ -107,7 +107,7 @@
           i18n-placeholder
           (selectionChange)="pickFromPreset()"
         >
-          @for (entry of filteredPresetEntries; track $index) {
+          @for (entry of filteredPresetEntries(); track $index) {
           <mat-option [value]="entry">
             {{ entry.value }}
           </mat-option>
@@ -118,14 +118,14 @@
     </div>
     <mat-form-field class="full-width">
       <textarea
-        [readonly]="readonlyQuery"
+        [readonly]="readonlyQuery()"
         matInput
         [formControl]="query"
         placeholder="query"
         i18n-placeholder
         (keyup.control.enter)="searchByEnter($any($event))"
       ></textarea>
-      @if (!readonlyQuery) {
+      @if (!readonlyQuery()) {
       <mat-hint i18n>Ctrl+Enter to search</mat-hint>
       } @if ($any(query).errors?.required && (query.dirty || query.touched)) {
       <mat-error i18n>query required</mat-error>

@@ -1,5 +1,4 @@
-
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
@@ -14,11 +13,11 @@ import { ItaSearchComponent } from '../components/ita-search/ita-search.componen
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
-  public initialQueryTerm: string | undefined;
+  public readonly initialQueryTerm = signal<string | undefined>(undefined);
 
   constructor(route: ActivatedRoute) {
     if ('term' in route.snapshot.params) {
-      this.initialQueryTerm = route.snapshot.params['term'];
+      this.initialQueryTerm.set(route.snapshot.params['term']);
     }
   }
 }

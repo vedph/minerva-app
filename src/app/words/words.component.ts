@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,8 +26,8 @@ import { WordIndexComponent } from '@myrmidon/pythia-word-index';
   styleUrl: './words.component.scss',
 })
 export class WordsComponent {
-  public attributes?: AttributeInfo[];
-  public sortOrderEntries = [
+  public readonly attributes = signal<AttributeInfo[] | undefined>(undefined);
+  public readonly sortOrderEntries = signal<any>([
     // ascending
     { key: $localize`▲ value`, value: WordSortOrder.ByValue },
     { key: $localize`▲ reversed value`, value: WordSortOrder.ByReversedValue },
@@ -44,10 +44,12 @@ export class WordsComponent {
       value: WordSortOrder.ByCount,
       descending: true,
     },
-  ];
+  ]);
 
   constructor(private _router: Router, env: EnvService) {
-    this.attributes = env.get('indexDocAttrs') as AttributeInfo[] | undefined;
+    this.attributes.set(
+      env.get('indexDocAttrs') as AttributeInfo[] | undefined
+    );
   }
 
   public onSearchRequest(span: Word | Lemma): void {
