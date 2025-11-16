@@ -27,7 +27,7 @@ For local deployment with database, follow these instructions according to your 
     md -Force "C:\data"
     ```
 
-2. download ZIP:
+2. download ZIP (change the example URL as required):
 
     ```ps1
     Invoke-WebRequest -Uri "http://www.fusisoft.it/xfer/minerva-bin.zip" -OutFile "C:\data\minerva-bin.zip"
@@ -91,6 +91,72 @@ For local deployment with database, follow these instructions according to your 
 ## Static Pages
 
 Source document: <https://docs.google.com/document/d/12yXGM6TPunSVkkMUiW7ejtkqc0GaAPr8OJZAKnUGLZg/edit?usp=sharing>
+
+## Higher Order Query DSL
+
+Minerva uses the [Pythia search engine](https://vedph.github.io/pythia-doc). The [Pythia query language DSL](https://vedph.github.io/pythia-doc/query.html) is very powerful, but for some audiences it might just be too much. This is the case for a part of the audience targeted by this Minerva frontend, built for the [Atti Chiari](https://attichiari.unige.it) project, which addresses not only linguists and jurists, but also a broader public of non-specialized users.
+
+In the case of Minerva, a **new query layer** has been added on top of the existing one, acting as an alternative, "simple" query language, as opposed to the default one. This is just another DSL, targeting an Italian audience and much nearer to natural language expression.
+
+In this DSL, users just build some predefined Italian sentences to query the corpus. Apart from the simplest, one-word query, which just corresponds to the word you want to find, Figure 1 shows the various paths which can be followed to build a sentence, from left to right.
+
+![Minerva DSL](public/img/pqita.png)
+
+- Figure 1 - The Minerva additional DSL
+
+1. users can start from "trova" and then pick an object, like "parola", "locuzione", "lemma", "forestierismo", "latinismo", "anglicismo" on one branch, or "tutte le parole", "tutti i forestierismi", "tutti i latinismi", "tutti gli anglicismi" on another one. The former branch allows to specify expressions corresponding to comparison operators, like "iniziante per", "terminante per", "contenente", "corrispondente a" (for wildcard matches), or "(molto/poco) simile a" for fuzzy matches; these are then followed by the value being compared.
+
+2. then, both branches converge in the optional "come" clause, which introduces search criteria derived from POS tagging, like noun, adjective, verb, one of its specific moods or tenses, etc.
+
+3. optionally, this can be followed by an "in" clause, which adds search criteria related to typographic features (extracted from the original DOCX documents), like bold, italic, or underline.
+
+4. finally, we can add a positional clause, like at sentence start or end, or near to, attached to (=near with zero distance), before, or after, which in turn can be followed by yet another expression like that introduced by "trova", in a recursive way.
+
+In most cases, where these criteria require parameters the DSL supplies some meaningful defaults, thus hiding more complex details to the end users.
+
+Once the query expression is complete, it gets **translated** into the standard Pythia query DSL, thus allowing users to have a glance at it if they want to learn it by example, or just customize some of its parameters.
+
+For instance, users can just ask the system 'trova un anglicismo poco simile a "provider"' and get this Italian sentence automatically translated into a query like:
+
+```txt
+[language="eng"] AND [value%="provider:0.5"]
+```
+
+This query just looks for any word having both these properties:
+
+- language = English;
+- value similar to "provider" with a similarity threshold equal to 0.5 (in a range from 0 to 1, where 1 is equal).
+
+The query will thus find any English word which is broadly similar to "provider". Should you just want to find any foreign word in these Italian texts, you could just replace "anglicismo" with "forestierismo", and get a slightly different query:
+
+```txt
+[language<>"ita"] AND [value%="provider:0.5"]
+```
+
+In this case, the DSL has built a query which finds any non-Italian word, as of course in this case we deal with an Italian corpus, where any non-Italian word is considered as foreign. On passage, legal acts are full of foreign words especially drawn from Latin, and this is thus a very useful feature in linguistic or juridic searches.
+
+Speaking about Latin, this DSL also allows for searching not just a single word, but also a full phrase, as in most cases juridic texts use them in a highly formular way. This is made possible by the fact that the underlying Pythia engine deals with any span of text, representing any type of textual structure, whether it's a word, or a phrase, sentence, verse, etc. In this case, a query expression like 'trova la locuzione "pro tempore"' would thus be translated into `[$fp-lat] AND [_value="pro tempore"]`, where `$` is the prefix used for non-token spans ("structures") and `fp-lat` the name chosen during indexing for Latin foreign phrases (in this case, the `_` prefix before `value` tells the engine to refer this attribute to the mentioned structure, rather than to a token).
+
+Any valid path along the expression tree can be exploited; so one might modify this expression like 'trova la locuzione iniziante per "pro"' to get `[$fp-lat] AND [_value^="pro"]`, or 'terminante per "tempore" to get `[$fp-lat] AND [_value$="pro"]`; in both cases, the only difference is the comparison operator.
+
+Again, we could add more clauses about the relative position of the text being searched, like in 'trova la parola "invero" a inizio di frase"; this would be translated into:
+
+```txt
+[value="invero"] LALIGN(m=0) [$snt]
+```
+
+which means looking for a word whose value is equal to "invero", left-aligned with a sentence object, only when the maximum distance (`m`) from its start is 0. This will effectively find that word only when it appears at the beginning of a sentence.
+
+Even these short sample expressions should be enough to show how they can be a powerful way for exploiting the potential of the underlying engine while preserving a very easy user experience. In fact, in Minerva this additional query layer just builds on top of the base one, as a higher-order DSL. In this case, we have a twofold translation:
+
+1. the Italian query DSL is translated into the base query DSL.
+2. the base query DSL is translated into SQL.
+
+Alternatively, Minerva users can also use the base query DSL, either directly or from a translated expression (when they want to modify it); in both cases, we will end up with the same SQL code. Of course, a third-party software might either use these DSLs, or just bypass them and use its own, or even no DSL at all, when directly talking to the underlying database engine via SQL or some helper tool (e.g. an ORM mapping technology).
+
+>⚙️ Technically, both DSLs are defined via ANTLR; in the case of the Pythia engine, ANTLR generates a C# parser integrated in its backend, while in the case of Minerva its additional DSL is limited to the frontend it applies to, so there ANTLR generates a Typescript parser directly leveraged in the UI.
+
+Finally, an even more natural addition implemented in Minerva on top of this DSL is the consequence of using natural-language like expressions for it: in fact, as an alternative input method the UI leverages the browser's builtin **speech recognition** capabilities to let users just say what they want to find. In this case, the speech is converted into text, validated and integrated by the software (for instance to introduce quotes around the values being searched), and finally translated just as it had been entered by typing it. This provides an additional and very natural way for querying this index, especially fit to wider audiences.
 
 ## ANTLR
 
@@ -226,6 +292,8 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
     - "dopo di|della|del": output space + `AFTER(m=3,s=snt)` + space.
 
 ## History
+
+- 2025-11-16: updated Angular and packages.
 
 ### 3.0.0
 
