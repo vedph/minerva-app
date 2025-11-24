@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 🐋 Docker:
 
-1. if you changed anything, run `npm run xi18n` to extract the messages and merge them with the existing translations if any. Then use Poedit or any other tool to add translations;
+1. if you changed anything, run `pnpm run xi18n` to extract the messages and merge them with the existing translations if any. Then use Poedit or any other tool to add translations;
 2. update version in `env.js` (and in Docker compose scripts);
 3. `ng build --configuration=production`;
 4. `docker build . -t vedph2020/minerva-app:3.0.0 -t vedph2020/minerva-app:latest` (replace with the current version).
@@ -293,6 +293,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2025-11-24:
+  - ⚠️ upgraded to Angular 21.
+  - migrated to `pnpm`.
 - 2025-11-16: updated Angular and packages.
 
 ### 3.0.0
