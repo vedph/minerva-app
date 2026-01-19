@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. if you changed anything, run `pnpm run xi18n` to extract the messages and merge them with the existing translations if any. Then use Poedit or any other tool to add translations;
 2. update version in `env.js` (and in Docker compose scripts);
 3. `ng build --configuration=production`;
-4. `docker build . -t vedph2020/minerva-app:3.0.0 -t vedph2020/minerva-app:latest` (replace with the current version).
+4. `docker build . -t vedph2020/minerva-app:3.0.1 -t vedph2020/minerva-app:latest` (replace with the current version).
 
 >Note that the default production language for Minerva images is Italian.
 
@@ -293,6 +293,9 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+### 3.0.1
+
+- 2026-01-19: updated Angular and packages.
 - 2026-01-09: updated Angular and packages.
 - 2025-11-24:
   - ⚠️ upgraded to Angular 21.
