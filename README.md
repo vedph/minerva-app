@@ -293,6 +293,8 @@ The corresponding parser directions are to build pairs joined by `AND`, handling
 
 ## History
 
+- 2026-02-04: updated Angular and packages.
+
 ### 3.0.1
 
 - 2026-01-19: updated Angular and packages.

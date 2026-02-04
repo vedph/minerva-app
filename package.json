@@ -10,24 +10,25 @@
     "xi18n": "ng extract-i18n --output-path src/i18n && xliffmerge --profile xliffmerge.json it"
   },
   "private": true,
+  "packageManager": "pnpm@10.28.2",
   "dependencies": {
-    "@angular/animations": "^21.1.0",
-    "@angular/cdk": "^21.1.0",
-    "@angular/common": "^21.1.0",
-    "@angular/compiler": "^21.1.0",
-    "@angular/core": "^21.1.0",
-    "@angular/forms": "^21.1.0",
-    "@angular/material": "^21.1.0",
-    "@angular/platform-browser": "^21.1.0",
-    "@angular/platform-browser-dynamic": "^21.1.0",
-    "@angular/router": "^21.1.0",
+    "@angular/animations": "^21.1.2",
+    "@angular/cdk": "^21.1.2",
+    "@angular/common": "^21.1.2",
+    "@angular/compiler": "^21.1.2",
+    "@angular/core": "^21.1.2",
+    "@angular/forms": "^21.1.2",
+    "@angular/material": "^21.1.2",
+    "@angular/platform-browser": "^21.1.2",
+    "@angular/platform-browser-dynamic": "^21.1.2",
+    "@angular/router": "^21.1.2",
     "@auth0/angular-jwt": "^5.2.0",
     "@myrmidon/auth-jwt-admin": "^8.0.3",
     "@myrmidon/auth-jwt-login": "^8.0.3",
     "@myrmidon/cadmus-refs-lookup": "^10.0.6",
     "@myrmidon/ngx-mat-tools": "^1.0.1",
     "@myrmidon/ngx-tools": "^2.0.2",
-    "@myrmidon/paged-data-browsers": "^5.1.3",
+    "@myrmidon/paged-data-browsers": "^5.1.4",
     "@myrmidon/pythia-api": "^8.0.2",
     "@myrmidon/pythia-core": "^8.0.1",
     "@myrmidon/pythia-document-reader": "^8.0.1",
@@ -48,16 +49,24 @@
   },
   "devDependencies": {
     "@angular-builders/jest": "^21.0.3",
-    "@angular/build": "^21.1.0",
-    "@angular/cli": "^21.1.0",
-    "@angular/compiler-cli": "^21.1.0",
-    "@angular/localize": "^21.1.0",
-    "@types/jasmine": "~5.1.15",
+    "@angular/build": "^21.1.2",
+    "@angular/cli": "^21.1.2",
+    "@angular/compiler-cli": "^21.1.2",
+    "@angular/localize": "^21.1.2",
+    "@types/jasmine": "~6.0.0",
     "@types/jest": "^30.0.0",
-    "jasmine-core": "~6.0.0",
+    "jasmine-core": "~6.0.1",
     "jest": "^30.2.0",
     "jest-preset-angular": "^16.0.0",
     "karma-coverage": "~2.2.1",
     "typescript": "~5.9.3"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-win32-arm64-msvc": "^4.57.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "rollup": "npm:@rollup/wasm-node"
+    }
   }
 }
