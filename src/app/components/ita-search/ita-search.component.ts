@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   input,
   OnDestroy,
   OnInit,
   signal,
-  ViewChild,
+  viewChild,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -63,11 +64,12 @@ import { PqitaComponent } from '../pqita/pqita.component';
   ],
   templateUrl: './ita-search.component.html',
   styleUrl: './ita-search.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItaSearchComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];
 
-  @ViewChild('queryCtl') queryElementRef: ElementRef | undefined;
+  public readonly queryElementRef = viewChild<ElementRef>('queryCtl');
 
   /**
    * Initial query term to be set in the search box.
@@ -89,8 +91,20 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
    */
   public readonly readonlyQuery = input<boolean>();
 
-  public readonly leftContextLabels = signal<string[]>(['5', '4', '3', '2', '1']);
-  public readonly rightContextLabels = signal<string[]>(['1', '2', '3', '4', '5']);
+  public readonly leftContextLabels = signal<string[]>([
+    '5',
+    '4',
+    '3',
+    '2',
+    '1',
+  ]);
+  public readonly rightContextLabels = signal<string[]>([
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+  ]);
   public readonly queryTabIndex = signal<number>(0);
   public readonly queryExpanded = signal<boolean>(true);
 
@@ -105,7 +119,10 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   public history: FormControl<string | null>;
   public form: FormGroup;
 
-  constructor(private _repository: SearchRepository, formBuilder: FormBuilder) {
+  constructor(
+    private _repository: SearchRepository,
+    formBuilder: FormBuilder,
+  ) {
     this.query = formBuilder.control(null, [
       Validators.required,
       Validators.maxLength(1000),
@@ -148,7 +165,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
     this._subs.push(
       this._repository.page$.subscribe((page) => {
         this.queryExpanded.set(!page?.items.length || !page.items.length);
-      })
+      }),
     );
   }
 
@@ -167,7 +184,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
       return;
     }
     this.query.setValue(this.history.value);
-    setTimeout(this.queryElementRef?.nativeElement.focus(), 0);
+    setTimeout(() => this.queryElementRef()?.nativeElement.focus(), 0);
   }
 
   public search(): void {
@@ -191,7 +208,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
     this.query.setValue(query);
     setTimeout(() => {
       this.queryTabIndex.set(0);
-      this.queryElementRef?.nativeElement.focus();
+      this.queryElementRef()?.nativeElement.focus();
     }, 0);
   }
 

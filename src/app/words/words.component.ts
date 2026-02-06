@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,6 +24,7 @@ import { WordIndexComponent } from '@myrmidon/pythia-word-index';
   ],
   templateUrl: './words.component.html',
   styleUrl: './words.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WordsComponent {
   public readonly attributes = signal<AttributeInfo[] | undefined>(undefined);
@@ -46,9 +47,12 @@ export class WordsComponent {
     },
   ]);
 
-  constructor(private _router: Router, env: EnvService) {
+  constructor(
+    private _router: Router,
+    env: EnvService,
+  ) {
     this.attributes.set(
-      env.get('indexDocAttrs') as AttributeInfo[] | undefined
+      env.get('indexDocAttrs') as AttributeInfo[] | undefined,
     );
   }
 

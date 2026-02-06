@@ -1,7 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
-  provideZoneChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import {
   provideRouter,
@@ -30,11 +30,12 @@ import { RateLimitInterceptor } from './interceptors/rate-limit.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
+    provideZonelessChangeDetection(),
     provideRouter(routes, withDebugTracing(), withViewTransitions()),
     provideHttpClient(),
     importProvidersFrom(
-      NgxEchartsModule.forRoot({ echarts: () => import('echarts') })
+      NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     ),
     // HTTP interceptors
     {

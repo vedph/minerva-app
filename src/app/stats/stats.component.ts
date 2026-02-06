@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  signal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +31,7 @@ import { EnvService } from '@myrmidon/ngx-tools';
   ],
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatsComponent {
   private readonly _spanMap: { [key: string]: string } = {
@@ -80,41 +86,23 @@ export class StatsComponent {
 
   // stats data
   public readonly data = signal<{ [key: string]: number } | undefined>(
-    undefined
+    undefined,
   );
 
-  // pie chart
-  public readonly chartOptions = signal<any>(undefined);
-
-  // tags cloud
-  public readonly cloudData = signal<CloudData[]>([]);
-  public readonly zoomOnHoverOptions = signal<ZoomOnHoverOptions>({
-    scale: 1.3,
-    transitionTime: 1.2,
-    delay: 0.1,
-  });
-
-  constructor(statsService: StatsService, envService: EnvService) {
-    console.log(envService.get('apiUrl'));
-    statsService.getStatistics().subscribe((data) => {
-      this.data.set(data);
-      this.drawSpanChart();
-      this.drawTagsCloud();
-    });
-  }
-
-  private drawSpanChart(): void {
-    if (!this.data()) {
-      return;
+  // pie chart (derived from data)
+  public readonly chartOptions = computed(() => {
+    const data = this.data();
+    if (!data) {
+      return undefined;
     }
-    const spanData = Object.entries(this.data()!)
-      .filter(([key, value]) => key.startsWith('span.'))
+    const spanData = Object.entries(data)
+      .filter(([key]) => key.startsWith('span.'))
       .map(([key, value]) => ({
         name: this._spanMap[key] || key,
         value,
       }));
 
-    this.chartOptions.set({
+    return {
       tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b} : {c} ({d}%)',
@@ -140,20 +128,33 @@ export class StatsComponent {
           },
         },
       ],
-    });
-  }
+    };
+  });
 
-  private drawTagsCloud(): void {
-    if (!this.data()) {
-      return;
+  // tags cloud (derived from data)
+  public readonly cloudData = computed<CloudData[]>(() => {
+    const data = this.data();
+    if (!data) {
+      return [];
     }
-    this.cloudData.set(
-      Object.entries(this.data()!)
-        .filter(([key, value]) => key.startsWith('@'))
-        .map(([key, value]) => ({
-          text: this._attrMap[key] || key,
-          weight: value,
-        }))
-    );
+    return Object.entries(data)
+      .filter(([key]) => key.startsWith('@'))
+      .map(([key, value]) => ({
+        text: this._attrMap[key] || key,
+        weight: value,
+      }));
+  });
+
+  public readonly zoomOnHoverOptions = signal<ZoomOnHoverOptions>({
+    scale: 1.3,
+    transitionTime: 1.2,
+    delay: 0.1,
+  });
+
+  constructor(statsService: StatsService, envService: EnvService) {
+    console.log(envService.get('apiUrl'));
+    statsService.getStatistics().subscribe((data) => {
+      this.data.set(data);
+    });
   }
 }

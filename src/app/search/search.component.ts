@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { MatCardModule } from '@angular/material/card';
@@ -11,6 +11,7 @@ import { ItaSearchComponent } from '../components/ita-search/ita-search.componen
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent {
   public readonly initialQueryTerm = signal<string | undefined>(undefined);

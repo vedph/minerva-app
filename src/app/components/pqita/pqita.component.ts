@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   HostListener,
@@ -71,6 +72,7 @@ interface HistoryEntry {
   providers: [SpeechRecognitionService],
   templateUrl: './pqita.component.html',
   styleUrl: './pqita.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PqitaComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];
@@ -88,7 +90,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
   public readonly presetGroups = computed<string[]>(() => {
     return this.presetEntries()
       ? Array.from<string>(
-          new Set(this.presetEntries().map((e) => e.group || '-'))
+          new Set(this.presetEntries().map((e) => e.group || '-')),
         )
       : [];
   });
@@ -108,12 +110,12 @@ export class PqitaComponent implements OnInit, OnDestroy {
     formBuilder: FormBuilder,
     private _pqitaService: PqitaService,
     private _speechRecService: SpeechRecognitionService,
-    env: EnvService
+    env: EnvService,
   ) {
     this.noSpeech.set(this._speechRecService.unsupported);
 
     this.presetEntries.set(
-      (env.get('pqitaPresetEntries') as PqitaPresetEntry[] | undefined) || []
+      (env.get('pqitaPresetEntries') as PqitaPresetEntry[] | undefined) || [],
     );
 
     this.presetGroup = formBuilder.control(null);
@@ -145,7 +147,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
             this.searchRequest.emit(this.query.value);
           }
         }
-      })
+      }),
     );
 
     // when the speech recognition service detects a result, update the text field
@@ -157,7 +159,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
           this.text.setValue(this._pqitaService.supplyQuotes(text));
           this.text.markAsDirty();
           this.text.updateValueAndValidity();
-        })
+        }),
     );
 
     // when preset group changes, filter the preset entries in the control
@@ -173,7 +175,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
           }
           // set the filtered preset entries
           this.setFilteredPresetEntries(group);
-        })
+        }),
     );
 
     this.presetGroup.setValue(null);
@@ -183,7 +185,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
     this.filteredPresetEntries.set(
       this.presetEntries()
         ? this.presetEntries().filter((e) => e.group === group || !group)
-        : []
+        : [],
     );
   }
 

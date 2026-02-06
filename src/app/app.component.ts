@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 // material
@@ -24,6 +24,7 @@ import { EnvService } from '@myrmidon/ngx-tools';
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   public readonly version = signal<string>('');

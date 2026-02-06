@@ -1,5 +1,4 @@
-
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -14,6 +13,7 @@ import { PqitaService } from '../services/pqita.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
   public user$: Observable<User | null>;
