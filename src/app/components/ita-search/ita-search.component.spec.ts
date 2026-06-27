@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 
 import { ItaSearchComponent } from './ita-search.component';
 import { SPEECH_RECOGNITION_LANG } from '../../services/speech-recognition.service';
@@ -12,7 +12,7 @@ describe('ItaSearchComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ItaSearchComponent],
       providers: [
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
         {
           provide: SPEECH_RECOGNITION_LANG,
           useValue: 'it-IT',

@@ -8,7 +8,7 @@ import {
   withDebugTracing,
   withViewTransitions,
 } from '@angular/router';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withXhr } from '@angular/common/http';
 
 // import '@angular/localize/init';
 
@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
     provideRouter(routes, withDebugTracing(), withViewTransitions()),
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     importProvidersFrom(
       NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     ),

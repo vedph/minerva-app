@@ -4,3 +4,22 @@ allowBuilds:
   lmdb: true
   msgpackr-extract: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@angular/animations@22.0.3'
+  - '@angular/common@22.0.3'
+  - '@angular/compiler-cli@22.0.3'
+  - '@angular/compiler@22.0.3'
+  - '@angular/core@22.0.3'
+  - '@angular/forms@22.0.3'
+  - '@angular/localize@22.0.3'
+  - '@angular/platform-browser-dynamic@22.0.3'
+  - '@angular/platform-browser@22.0.3'
+  - '@angular/router@22.0.3'
+  - '@myrmidon/pythia-api@9.0.0'
+  - '@myrmidon/pythia-core@9.0.0'
+  - '@myrmidon/pythia-document-reader@9.0.0'
+  - '@myrmidon/pythia-query-builder@10.0.0'
+  - '@myrmidon/pythia-search@10.0.0'
+  - '@myrmidon/pythia-stats@9.0.0'
+  - '@myrmidon/pythia-ui@9.0.0'
+  - '@myrmidon/pythia-word-index@9.0.0'
