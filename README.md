@@ -26,13 +26,6 @@ docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/minerva-app:
 
 To update messages: `npm run xi18n` and use Poedit to edit `messages.it.xlf`.
 
-- **Docker**: already works as-is. subPath: "" in your i18n.locales.it config means the production build's translated output lands directly in dist/minerva/browser (verified — contains documento, no /it/ subfolder), exactly where your Dockerfile expects it. Workflow is just:
-
-```sh
-npm run build      # ng build → production config → localize: ["it"]
-docker build -t minerva .
-```
-
 - **Local Italian preview** (since ng serve can't serve translated output): there is a `development-it` build configuration in `angular.json` (unoptimized, sourcemaps, localize: ["it"]), plus two npm scripts:
   - `npm run watch:it` → ng build --watch --configuration development-it, rebuilds on save (~9s, unminified) with real Italian strings;
   - `npm run preview:it` → static-serves dist/minerva/browser on port 8080 via http-server.
