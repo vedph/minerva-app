@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "watch:it": "ng build --watch --configuration development-it",
+    "preview:it": "npx http-server dist/minerva/browser -p 8080 -c-1",
     "test": "jest",
     "xi18n": "ng extract-i18n --output-path src/i18n && xliffmerge --profile xliffmerge.json it"
   },
