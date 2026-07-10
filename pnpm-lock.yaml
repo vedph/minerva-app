@@ -42,11 +42,11 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))
       '@myrmidon/auth-jwt-admin':
-        specifier: ^9.0.0
-        version: 9.0.0(b00c8a3a1d8e09f8eb42e45a0380f513)
+        specifier: ^10.0.0
+        version: 10.0.0(60e063113f49f7669afec83cacfeae4d)
       '@myrmidon/auth-jwt-login':
-        specifier: ^9.0.0
-        version: 9.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@auth0/angular-jwt@5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))
+        specifier: ^10.0.0
+        version: 10.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@auth0/angular-jwt@5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))
       '@myrmidon/cadmus-refs-lookup':
         specifier: ^11.0.0
         version: 11.0.0(ae52ad7275a2a242ba1e7266b56b64f0)
@@ -2079,23 +2079,23 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@myrmidon/auth-jwt-admin@9.0.0':
-    resolution: {integrity: sha512-uQNuG7UbiMVHCacnvefbmGWr7L7K2IoUX77Iho58q1jXN2e0zo1odjcnEEYyNWgyzMDL6MUB/DhGAsVN3kGHTg==}
+  '@myrmidon/auth-jwt-admin@10.0.0':
+    resolution: {integrity: sha512-J+M7/9n4iDdHAi7CxqvW+6Oj54cvBkIwLQ9HiwJ7IQWLngho5l1nPC/MFTkoU0XPN/Lxit7TjydnZncoHjwOVQ==}
     peerDependencies:
-      '@angular/common': ^22.0.0
-      '@angular/core': ^22.0.0
-      '@angular/material': ^22.0.0
-      '@myrmidon/auth-jwt-login': ^8.0.6
+      '@angular/common': ^22.0.4
+      '@angular/core': ^22.0.4
+      '@angular/material': ^22.0.2
+      '@myrmidon/auth-jwt-login': ^9.0.0
       '@myrmidon/ngx-mat-tools': ^2.0.0
       '@myrmidon/ngx-tools': ^3.0.0
       '@myrmidon/paged-data-browsers': ^6.0.0
 
-  '@myrmidon/auth-jwt-login@9.0.0':
-    resolution: {integrity: sha512-oOcsICr77k7EwTKHyGvJqxWxyGnAiDHdcefIgngTN+gGyoGXHy5dAdkR0W9PL2q2MumfnXoWiytdIwWVu53kWA==}
+  '@myrmidon/auth-jwt-login@10.0.0':
+    resolution: {integrity: sha512-Ci6uvM1kLDTsSd1NSLYvqGENo42HUuKni2w33pgQFV3yz6yr6FVBPG9zN9UTp4bJuWk7shZoUFWZahKBxq4qmQ==}
     peerDependencies:
-      '@angular/common': ^22.0.0
-      '@angular/core': ^22.0.0
-      '@angular/material': ^22.0.0
+      '@angular/common': ^22.0.4
+      '@angular/core': ^22.0.4
+      '@angular/material': ^22.0.2
       '@auth0/angular-jwt': ^5.2.0
       '@myrmidon/ngx-tools': ^3.0.0
 
@@ -8729,18 +8729,18 @@ snapshots:
   '@msgpackr-extract/msgpackr-extract-win32-x64@3.0.4':
     optional: true
 
-  '@myrmidon/auth-jwt-admin@9.0.0(b00c8a3a1d8e09f8eb42e45a0380f513)':
+  '@myrmidon/auth-jwt-admin@10.0.0(60e063113f49f7669afec83cacfeae4d)':
     dependencies:
       '@angular/common': 22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)
       '@angular/material': 22.0.2(be73e7f298e00fc8b82de4192b6d1a64)
-      '@myrmidon/auth-jwt-login': 9.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@auth0/angular-jwt@5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))
+      '@myrmidon/auth-jwt-login': 10.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@auth0/angular-jwt@5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))
       '@myrmidon/ngx-mat-tools': 2.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))
       '@myrmidon/ngx-tools': 3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))
       '@myrmidon/paged-data-browsers': 6.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/forms@22.0.3(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/platform-browser@22.0.3(@angular/animations@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))
       tslib: 2.8.1
 
-  '@myrmidon/auth-jwt-login@9.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@auth0/angular-jwt@5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))':
+  '@myrmidon/auth-jwt-login@10.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(@angular/material@22.0.2(be73e7f298e00fc8b82de4192b6d1a64))(@auth0/angular-jwt@5.2.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)))(@myrmidon/ngx-tools@3.0.0(@angular/common@22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)))':
     dependencies:
       '@angular/common': 22.0.3(@angular/core@22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.0.3(@angular/compiler@22.0.3)(rxjs@7.8.2)
@@ -13027,7 +13027,7 @@ snapshots:
       minizlib: 3.1.0
       yallist: 5.0.0
 
-  terser-webpack-plugin@5.6.0(postcss@8.5.15)(webpack@5.105.2(esbuild@0.27.3)(postcss@8.5.12)):
+  terser-webpack-plugin@5.6.0(esbuild@0.27.3)(postcss@8.5.12)(webpack@5.105.2(esbuild@0.27.3)(postcss@8.5.12)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -13035,7 +13035,8 @@ snapshots:
       terser: 5.46.0
       webpack: 5.105.2(esbuild@0.27.3)(postcss@8.5.12)
     optionalDependencies:
-      postcss: 8.5.15
+      esbuild: 0.27.3
+      postcss: 8.5.12
 
   terser@5.46.0:
     dependencies:
@@ -13397,7 +13398,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.0(postcss@8.5.15)(webpack@5.105.2(esbuild@0.27.3)(postcss@8.5.12))
+      terser-webpack-plugin: 5.6.0(esbuild@0.27.3)(postcss@8.5.12)(webpack@5.105.2(esbuild@0.27.3)(postcss@8.5.12))
       watchpack: 2.5.1
       webpack-sources: 3.5.0
     transitivePeerDependencies:
