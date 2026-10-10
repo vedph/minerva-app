@@ -221,29 +221,29 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(48b946d15cb67c2b5d0879e8678fe652)
       '@myrmidon/pythia-api':
-        specifier: ^9.0.0
-        version: 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+        specifier: ^11.0.0
+        version: 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
       '@myrmidon/pythia-core':
-        specifier: ^9.0.0
-        version: 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+        specifier: ^11.0.0
+        version: 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
       '@myrmidon/pythia-document-reader':
-        specifier: ^9.0.0
-        version: 9.0.0(bfa2051ae4f1b7628a7e6e88296fbf03)
+        specifier: ^11.0.0
+        version: 11.0.0(6879b776d64a0a42ca7d96243c0842fd)
       '@myrmidon/pythia-query-builder':
-        specifier: ^10.0.0
-        version: 10.0.0(4d20ad17e45d147f9b1bd1464bfdf001)
+        specifier: ^11.0.0
+        version: 11.0.0(d16ab2c46916dafa3afe0632f4c4a7f9)
       '@myrmidon/pythia-search':
-        specifier: ^10.0.0
-        version: 10.0.0(74477b0c95371d033fb4ec6d8ae17c8f)
+        specifier: ^11.0.0
+        version: 11.0.0(b1627519054c027b7a119d47938a65be)
       '@myrmidon/pythia-stats':
-        specifier: ^9.0.0
-        version: 9.0.0(05291142ecdab8d8a80e306efa94e0b1)
+        specifier: ^11.0.0
+        version: 11.0.0(40670b83ad464e875d426f06b84e5538)
       '@myrmidon/pythia-ui':
-        specifier: ^9.0.0
-        version: 9.0.0(e25ee7770969a244f72ae51866ed2855)
+        specifier: ^11.0.0
+        version: 11.0.0(fe10a28f7fa79c16b630ca2c6fa2f7b6)
       '@myrmidon/pythia-word-index':
-        specifier: ^9.0.0
-        version: 9.0.0(bfa2051ae4f1b7628a7e6e88296fbf03)
+        specifier: ^11.0.0
+        version: 11.0.0(6879b776d64a0a42ca7d96243c0842fd)
       angular-tag-cloud-module:
         specifier: ^22.0.0
         version: 22.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
@@ -1256,85 +1256,85 @@ packages:
       '@angular/material': ^22.0.0
       '@myrmidon/ngx-tools': ^3.0.1
 
-  '@myrmidon/pythia-api@9.0.0':
-    resolution: {integrity: sha512-mqUJowGGItXUE0rgaXABEX5h+/J5cC73mEmzAqGbamuaIVWYbgpuLhkC5GbxEPY4pzZH0e6pl69/ifkPtpj+mw==}
+  '@myrmidon/pythia-api@11.0.0':
+    resolution: {integrity: sha512-rHacf3zytGZqIZ2h3cX1qpk5b3ZhwWsnRkvvCLyU58CHCd9xxn8a2ERBOx3JYXfGgq9M8XRnJNQHlfY2Q4/4MA==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@myrmidon/pythia-core': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@myrmidon/pythia-core': ^11.0.0
 
-  '@myrmidon/pythia-core@9.0.0':
-    resolution: {integrity: sha512-sZOdMfxhs1ckE1/fAF9zW0xlsUt67u56nDdiEkqKPf/vyvWLpntBPZrHBaiJN09mfPDZiw76Ce+2O1MS/tFPog==}
+  '@myrmidon/pythia-core@11.0.0':
+    resolution: {integrity: sha512-ma7co02f7sNLCaqoFUbc8DUhNpdf+GMv7wpZ0U6KFX71mHzdX0vvfm7DS50ylJtOqyNiflCb16vlCG9bBFphPg==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
 
-  '@myrmidon/pythia-document-reader@9.0.0':
-    resolution: {integrity: sha512-j5cFFuNUAt3ofr1NNHEYfMJKarz+aasHGBHbRnVu7Ea/z/MXAyLihq0LW/gJXFhx3lmRGTBY2y0Ouu/2rPpQ/w==}
+  '@myrmidon/pythia-document-reader@11.0.0':
+    resolution: {integrity: sha512-If+6QhfH9Rj5Ge1zIfOqnxykcXZTFL78CXTDau9Nf0jSS7Rr8zet8atRHw1CFztmlHgvaoSIgM/ksZgxwg+IdQ==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@angular/material': ^22.0.2
-      '@myrmidon/ngx-tools': ^3.0.0
-      '@myrmidon/paged-data-browsers': ^6.0.0
-      '@myrmidon/pythia-api': ^8.0.2
-      '@myrmidon/pythia-core': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@angular/material': ^22.2.1
+      '@myrmidon/ngx-tools': ^3.0.2
+      '@myrmidon/paged-data-browsers': ^6.0.1
+      '@myrmidon/pythia-api': ^11.0.0
+      '@myrmidon/pythia-core': ^11.0.0
 
-  '@myrmidon/pythia-query-builder@10.0.0':
-    resolution: {integrity: sha512-XtR5TmVwBq5YWEMoT5WWpUSdr8hPYj0x2ucf8uouJYnHCBIRUWLfn6u+PpmG4akI7E2oxiHO2fxqL++t4E2apg==}
+  '@myrmidon/pythia-query-builder@11.0.0':
+    resolution: {integrity: sha512-ZPeLzT3DpTSW1JrrIu5iVnH8em2Dj/52jCjqABG4ZXTD1sKJcbowKs7bMaiyF/VALwR16AwjBeWiR9+xS9dAEw==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@angular/material': ^22.0.2
-      '@myrmidon/cadmus-refs-lookup': ^11.0.0
-      '@myrmidon/ngx-tools': ^3.0.0
-      '@myrmidon/pythia-api': ^8.0.2
-      '@myrmidon/pythia-core': ^8.0.2
-      '@myrmidon/pythia-document-reader': ^8.0.2
-      '@myrmidon/pythia-ui': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@angular/material': ^22.2.1
+      '@myrmidon/cadmus-refs-lookup': ^11.0.8
+      '@myrmidon/ngx-tools': ^3.0.2
+      '@myrmidon/pythia-api': ^11.0.0
+      '@myrmidon/pythia-core': ^11.0.0
+      '@myrmidon/pythia-document-reader': ^11.0.0
+      '@myrmidon/pythia-ui': ^11.0.0
 
-  '@myrmidon/pythia-search@10.0.0':
-    resolution: {integrity: sha512-bgqFUImvlQKdQKMJawhNq6nvkrUu+OEImcOUm5862LrNUWMkHgL/euW5cY8LmIHsS4xCdRwj2UKyoSXQ5q/DmA==}
+  '@myrmidon/pythia-search@11.0.0':
+    resolution: {integrity: sha512-FjNF9iU/+0A306LEVpXBGkyUtUhdOcQ2mSwDpuIzDjO9phzr7vmPFnfoip8KFkjqqZKFyfxQoLeN2wLS0gQBeQ==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@angular/material': ^22.0.2
-      '@myrmidon/ngx-tools': ^3.0.0
-      '@myrmidon/pythia-api': ^8.0.2
-      '@myrmidon/pythia-core': ^8.0.2
-      '@myrmidon/pythia-document-reader': ^8.0.2
-      '@myrmidon/pythia-query-builder': ^9.0.2
-      '@myrmidon/pythia-ui': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@angular/material': ^22.2.1
+      '@myrmidon/ngx-tools': ^3.0.2
+      '@myrmidon/pythia-api': ^11.0.0
+      '@myrmidon/pythia-core': ^11.0.0
+      '@myrmidon/pythia-document-reader': ^11.0.0
+      '@myrmidon/pythia-query-builder': ^11.0.0
+      '@myrmidon/pythia-ui': ^11.0.0
 
-  '@myrmidon/pythia-stats@9.0.0':
-    resolution: {integrity: sha512-zrnDFmUaJTTOnWaQDVkhURLsxu6EpoG4J2YfvbYSPFXOD4j8c2HNChk/ccc/32/4xmQCE2mMAVUU4vn1FGIsuA==}
+  '@myrmidon/pythia-stats@11.0.0':
+    resolution: {integrity: sha512-x+UBxdW6rktMeCx27L6KvhVxnxGidFkyNjFo1yoAf3KLYz+CvO2XgB/5DMvFppvV5J51lqoZuXwixdxYDR2Bpg==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@angular/material': ^22.0.2
-      '@myrmidon/ngx-tools': ^3.0.0
-      '@myrmidon/pythia-api': ^8.0.2
-      '@myrmidon/pythia-core': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@angular/material': ^22.2.1
+      '@myrmidon/ngx-tools': ^3.0.2
+      '@myrmidon/pythia-api': ^11.0.0
+      '@myrmidon/pythia-core': ^11.0.0
 
-  '@myrmidon/pythia-ui@9.0.0':
-    resolution: {integrity: sha512-LWZRzVnjkgxL0FOmvH8FEqptDjbf4bm/+OKsfcT3SubujgO5x1mzeXApQB4QT6I/Q0Hzo3grIr+RM8uqNf+7sQ==}
+  '@myrmidon/pythia-ui@11.0.0':
+    resolution: {integrity: sha512-mWq8RL+Yz18Zcxxwfpl8YDJNwOUZ5vVenY5iJawAJYHwtaYwk081u5nMBiu35XS6qlEZleaFGFp3lvSVbyFv0g==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@myrmidon/ngx-tools': ^3.0.0
-      '@myrmidon/pythia-api': ^8.0.2
-      '@myrmidon/pythia-core': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@myrmidon/ngx-tools': ^3.0.2
+      '@myrmidon/pythia-api': ^11.0.0
+      '@myrmidon/pythia-core': ^11.0.0
 
-  '@myrmidon/pythia-word-index@9.0.0':
-    resolution: {integrity: sha512-VRZMcWCjXta9W+8B22Nns4nXTpd72PJjWM5zP6aqcn6OKx/vF2ULNnDhVrX3Bzay2xZNP59FE3pZaZczOkreYA==}
+  '@myrmidon/pythia-word-index@11.0.0':
+    resolution: {integrity: sha512-frxdPOkeI+frhAKS0USE9r1A3Utm8S6g7vK2Zjb3t5TJEFzz4T4GpgB+rQ7sc5duxdrP/RJhJBGPkFSTTugWig==}
     peerDependencies:
-      '@angular/common': ^22.0.3
-      '@angular/core': ^22.0.3
-      '@angular/material': ^22.0.2
-      '@myrmidon/ngx-tools': ^3.0.0
-      '@myrmidon/paged-data-browsers': ^6.0.0
-      '@myrmidon/pythia-api': ^8.0.2
-      '@myrmidon/pythia-core': ^8.0.2
+      '@angular/common': ^22.2.1
+      '@angular/core': ^22.2.1
+      '@angular/material': ^22.2.1
+      '@myrmidon/ngx-tools': ^3.0.2
+      '@myrmidon/paged-data-browsers': ^6.0.1
+      '@myrmidon/pythia-api': ^11.0.0
+      '@myrmidon/pythia-core': ^11.0.0
 
   '@napi-rs/nice-android-arm-eabi@1.1.1':
     resolution: {integrity: sha512-kjirL3N6TnRPv5iuHw36wnucNqXAO46dzK9oPb0wj076R5Xm8PfUVA9nAFB5ZNMmfJQJVKACAPd/Z2KYMppthw==}
@@ -4299,84 +4299,84 @@ snapshots:
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@myrmidon/pythia-api@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))':
+  '@myrmidon/pythia-api@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))':
+  '@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       tslib: 2.8.1
 
-  '@myrmidon/pythia-document-reader@9.0.0(bfa2051ae4f1b7628a7e6e88296fbf03)':
+  '@myrmidon/pythia-document-reader@11.0.0(6879b776d64a0a42ca7d96243c0842fd)':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       '@angular/material': 22.2.2(81965ba108d219c54518d17a383cfb92)
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
       '@myrmidon/paged-data-browsers': 6.0.1(48b946d15cb67c2b5d0879e8678fe652)
-      '@myrmidon/pythia-api': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-api': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@myrmidon/pythia-query-builder@10.0.0(4d20ad17e45d147f9b1bd1464bfdf001)':
+  '@myrmidon/pythia-query-builder@11.0.0(d16ab2c46916dafa3afe0632f4c4a7f9)':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       '@angular/material': 22.2.2(81965ba108d219c54518d17a383cfb92)
       '@myrmidon/cadmus-refs-lookup': 11.0.8(766fa1470e2097916fa978be785deb60)
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
-      '@myrmidon/pythia-api': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
-      '@myrmidon/pythia-document-reader': 9.0.0(bfa2051ae4f1b7628a7e6e88296fbf03)
-      '@myrmidon/pythia-ui': 9.0.0(e25ee7770969a244f72ae51866ed2855)
+      '@myrmidon/pythia-api': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-document-reader': 11.0.0(6879b776d64a0a42ca7d96243c0842fd)
+      '@myrmidon/pythia-ui': 11.0.0(fe10a28f7fa79c16b630ca2c6fa2f7b6)
       tslib: 2.8.1
 
-  '@myrmidon/pythia-search@10.0.0(74477b0c95371d033fb4ec6d8ae17c8f)':
+  '@myrmidon/pythia-search@11.0.0(b1627519054c027b7a119d47938a65be)':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       '@angular/material': 22.2.2(81965ba108d219c54518d17a383cfb92)
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
-      '@myrmidon/pythia-api': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
-      '@myrmidon/pythia-document-reader': 9.0.0(bfa2051ae4f1b7628a7e6e88296fbf03)
-      '@myrmidon/pythia-query-builder': 10.0.0(4d20ad17e45d147f9b1bd1464bfdf001)
-      '@myrmidon/pythia-ui': 9.0.0(e25ee7770969a244f72ae51866ed2855)
+      '@myrmidon/pythia-api': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-document-reader': 11.0.0(6879b776d64a0a42ca7d96243c0842fd)
+      '@myrmidon/pythia-query-builder': 11.0.0(d16ab2c46916dafa3afe0632f4c4a7f9)
+      '@myrmidon/pythia-ui': 11.0.0(fe10a28f7fa79c16b630ca2c6fa2f7b6)
       tslib: 2.8.1
 
-  '@myrmidon/pythia-stats@9.0.0(05291142ecdab8d8a80e306efa94e0b1)':
+  '@myrmidon/pythia-stats@11.0.0(40670b83ad464e875d426f06b84e5538)':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       '@angular/material': 22.2.2(81965ba108d219c54518d17a383cfb92)
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
-      '@myrmidon/pythia-api': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-api': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@myrmidon/pythia-ui@9.0.0(e25ee7770969a244f72ae51866ed2855)':
+  '@myrmidon/pythia-ui@11.0.0(fe10a28f7fa79c16b630ca2c6fa2f7b6)':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
-      '@myrmidon/pythia-api': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-api': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
       tslib: 2.8.1
 
-  '@myrmidon/pythia-word-index@9.0.0(bfa2051ae4f1b7628a7e6e88296fbf03)':
+  '@myrmidon/pythia-word-index@11.0.0(6879b776d64a0a42ca7d96243c0842fd)':
     dependencies:
       '@angular/common': 22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2)
       '@angular/core': 22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)
       '@angular/material': 22.2.2(81965ba108d219c54518d17a383cfb92)
       '@myrmidon/ngx-tools': 3.0.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/forms@22.2.2(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@angular/platform-browser@22.2.2(@angular/animations@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))(rxjs@7.8.2))
       '@myrmidon/paged-data-browsers': 6.0.1(48b946d15cb67c2b5d0879e8678fe652)
-      '@myrmidon/pythia-api': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
-      '@myrmidon/pythia-core': 9.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
+      '@myrmidon/pythia-api': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(@myrmidon/pythia-core@11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2)))
+      '@myrmidon/pythia-core': 11.0.0(@angular/common@22.2.2(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@22.2.2(@angular/compiler@22.2.2)(rxjs@7.8.2))
       tslib: 2.8.1
 
   '@napi-rs/nice-android-arm-eabi@1.1.1':

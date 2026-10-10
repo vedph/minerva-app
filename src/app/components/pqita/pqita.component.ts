@@ -3,19 +3,19 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   OnDestroy,
-  OnInit,
   output,
   signal,
 } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+  form,
+  FormField,
+  maxLength,
+  readonly,
+  required,
+} from '@angular/forms/signals';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -51,6 +51,14 @@ interface HistoryEntry {
   query: string;
 }
 
+interface PqitaControls {
+  presetGroup: string | null;
+  presetEntry: PqitaPresetEntry | null;
+  text: string;
+  autoRun: boolean;
+  query: string;
+}
+
 /**
  * Component to convert text to a query and search for it.
  */
@@ -58,7 +66,7 @@ interface HistoryEntry {
   selector: 'minerva-pqita',
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormField,
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
@@ -77,7 +85,9 @@ interface HistoryEntry {
     '(window:keydown)': 'handleKeyboardEvent($event)',
   },
 })
-export class PqitaComponent implements OnInit, OnDestroy {
+export class PqitaComponent implements OnDestroy {
+  private readonly _pqitaService = inject(PqitaService);
+  private readonly _speechRecService = inject(SpeechRecognitionService);
   private readonly _subs: Subscription[] = [];
 
   /**
@@ -87,67 +97,55 @@ export class PqitaComponent implements OnInit, OnDestroy {
 
   public readonly searchRequest = output<string>();
 
-  public readonly noSpeech = signal<boolean>(false);
-  public readonly presetEntries = signal<PqitaPresetEntry[]>([]);
-  public readonly filteredPresetEntries = signal<PqitaPresetEntry[]>([]);
-  public readonly presetGroups = computed<string[]>(() => {
-    return this.presetEntries()
-      ? Array.from<string>(
-          new Set(this.presetEntries().map((e) => e.group || '-')),
-        )
-      : [];
+  public readonly noSpeech = signal<boolean>(
+    this._speechRecService.unsupported,
+  );
+  public readonly presetEntries = signal<PqitaPresetEntry[]>(
+    (inject(EnvService).get('pqitaPresetEntries') as
+      PqitaPresetEntry[] | undefined) || [],
+  );
+  public readonly presetGroups = computed<string[]>(() =>
+    Array.from(new Set(this.presetEntries().map((e) => e.group || '-'))),
+  );
+
+  public readonly listening$: Observable<boolean> =
+    this._speechRecService.listening$;
+
+  public readonly form = form(
+    signal<PqitaControls>({
+      presetGroup: this.presetGroups()[0] ?? null,
+      presetEntry: null,
+      text: '',
+      autoRun: false,
+      query: '',
+    }),
+    (path) => {
+      required(path.text);
+      maxLength(path.text, 1000);
+      readonly(path.query, { when: () => !!this.readonlyQuery() });
+    },
+  );
+
+  public readonly filteredPresetEntries = computed<PqitaPresetEntry[]>(() => {
+    const group = this.form.presetGroup().value();
+    return this.presetEntries().filter(
+      // entries without a group belong to the '-' group
+      (e) => !group || (e.group || '-') === group,
+    );
   });
 
-  public readonly listening$: Observable<boolean>;
+  public readonly history = signal<HistoryEntry[]>([]);
 
-  public presetGroup: FormControl<string | null>;
-  public presetEntry: FormControl<PqitaPresetEntry | null>;
-
-  public text: FormControl<string | null>;
-  public autoRun: FormControl<boolean>;
-  public query: FormControl<string | null>;
-  public history: FormControl<HistoryEntry[]>;
-  public form: FormGroup;
-
-  constructor(
-    formBuilder: FormBuilder,
-    private _pqitaService: PqitaService,
-    private _speechRecService: SpeechRecognitionService,
-    env: EnvService,
-  ) {
-    this.noSpeech.set(this._speechRecService.unsupported);
-
-    this.presetEntries.set(
-      (env.get('pqitaPresetEntries') as PqitaPresetEntry[] | undefined) || [],
-    );
-
-    this.presetGroup = formBuilder.control(null);
-    this.presetEntry = formBuilder.control(null);
-    this.text = formBuilder.control(null, {
-      validators: [Validators.required, Validators.maxLength(1000)],
-    });
-    this.autoRun = formBuilder.control(false, { nonNullable: true });
-    this.query = formBuilder.control(null);
-    this.history = formBuilder.control([], { nonNullable: true });
-    this.form = formBuilder.group({
-      presetGroup: this.presetGroup,
-      presetEntry: this.presetEntry,
-      text: this.text,
-      autoRun: this.autoRun,
-      query: this.query,
-      history: this.history,
-    });
-
-    this.listening$ = this._speechRecService.listening$;
-
+  constructor() {
     // when listening$ changes to false, convert the text to a query
     // and emit the search request if autoRun is true
     this._subs.push(
       this.listening$.subscribe((listening) => {
         if (!listening) {
           this.convert(true);
-          if (this.autoRun.value && this.query.value) {
-            this.searchRequest.emit(this.query.value);
+          const query = this.form.query().value();
+          if (this.form.autoRun().value() && query) {
+            this.searchRequest.emit(query);
           }
         }
       }),
@@ -160,51 +158,23 @@ export class PqitaComponent implements OnInit, OnDestroy {
       this._speechRecService.text$
         .pipe(distinctUntilChanged(), skip(1), debounceTime(100))
         .subscribe((text) => {
-          this.text.setValue(this._pqitaService.supplyQuotes(text));
-          this.text.markAsDirty();
-          this.text.updateValueAndValidity();
+          this.setText(this._pqitaService.supplyQuotes(text));
         }),
     );
-
-    // when preset group changes, filter the preset entries in the control
-    this._subs.push(
-      this.presetGroup.valueChanges
-        .pipe(distinctUntilChanged(), debounceTime(300))
-        .subscribe((group) => {
-          // clear the preset entry
-          if (this.presetEntry.value) {
-            this.presetEntry.setValue(null);
-            this.presetEntry.markAsDirty();
-            this.presetEntry.updateValueAndValidity();
-          }
-          // set the filtered preset entries
-          this.setFilteredPresetEntries(group);
-        }),
-    );
-
-    this.presetGroup.setValue(null);
-  }
-
-  private setFilteredPresetEntries(group?: string | null): void {
-    this.filteredPresetEntries.set(
-      this.presetEntries()
-        ? this.presetEntries().filter(
-            // entries without a group belong to the '-' group
-            (e) => !group || (e.group || '-') === group,
-          )
-        : [],
-    );
-  }
-
-  public ngOnInit(): void {
-    if (this.presetGroups().length > 0) {
-      this.presetGroup.setValue(this.presetGroups()[0]);
-      this.setFilteredPresetEntries(this.presetGroups()[0]);
-    }
   }
 
   public ngOnDestroy(): void {
     this._subs.forEach((sub) => sub.unsubscribe());
+  }
+
+  private setText(text: string): void {
+    this.form.text().value.set(text);
+    this.form.text().markAsDirty();
+  }
+
+  private setQuery(query: string): void {
+    this.form.query().value.set(query);
+    this.form.query().markAsDirty();
   }
 
   public handleKeyboardEvent(event: KeyboardEvent) {
@@ -218,14 +188,14 @@ export class PqitaComponent implements OnInit, OnDestroy {
       event.preventDefault();
     }
     // Ctrl + T searches
-    if (event.ctrlKey && event.key === 't' && this.form.valid) {
+    if (event.ctrlKey && event.key === 't' && this.form().valid()) {
       this.search();
       event.preventDefault();
     }
   }
 
   public startListening() {
-    if (this.autoRun.value) {
+    if (this.form.autoRun().value()) {
       this._speechRecService.startListening(3000);
     } else {
       this._speechRecService.startListening();
@@ -234,21 +204,25 @@ export class PqitaComponent implements OnInit, OnDestroy {
 
   public stopListening() {
     this._speechRecService.stopListening();
-    if (this.text.value) {
+    if (this.form.text().value()) {
       this.convert();
     }
   }
 
   public clearText() {
-    this.text.reset();
-    this.query.reset();
+    this.form.text().reset('');
+    this.form.query().reset('');
+  }
+
+  public onPresetGroupChange(): void {
+    // the picked entry might not belong to the new group
+    this.form.presetEntry().value.set(null);
   }
 
   public pickFromPreset() {
-    if (this.presetEntry.value) {
-      this.text.setValue(this.presetEntry.value.value);
-      this.text.markAsDirty();
-      this.text.updateValueAndValidity();
+    const entry = this.form.presetEntry().value();
+    if (entry) {
+      this.setText(entry.value);
       this.convert();
     }
   }
@@ -264,51 +238,35 @@ export class PqitaComponent implements OnInit, OnDestroy {
   }
 
   private appendToHistory(text: string, query: string) {
-    const entries = [...this.history.value];
-    entries.splice(0, 0, { text, query });
-
-    if (entries.length > MAX_HISTORY) {
-      entries.pop();
-    }
-    this.history.setValue(entries);
-    this.history.markAsDirty();
-    this.history.updateValueAndValidity();
+    this.history.update((entries) =>
+      [{ text, query }, ...entries].slice(0, MAX_HISTORY),
+    );
   }
 
   public removeFromHistory(index: number): void {
-    const entries = [...this.history.value];
-    entries.splice(index, 1);
-    this.history.setValue(entries);
-    this.history.markAsDirty();
-    this.history.updateValueAndValidity();
+    this.history.update((entries) => entries.filter((_, i) => i !== index));
   }
 
   public pickFromHistory(index: number): void {
-    const entry = this.history.value[index];
-    this.text.setValue(entry.text);
-    this.text.markAsDirty();
-    this.text.updateValueAndValidity();
+    const entry = this.history()[index];
+    this.setText(entry.text);
+    this.setQuery(entry.query);
 
-    this.query.setValue(entry.query);
-    this.query.markAsDirty();
-    this.query.updateValueAndValidity();
-
-    if (this.autoRun.value) {
+    if (this.form.autoRun().value()) {
       this.searchRequest.emit(entry.query);
     }
   }
 
   public convert(history = false): void {
-    if (this.form.invalid) {
+    if (this.form().invalid()) {
       return;
     }
     try {
-      const query = this._pqitaService.convertQuery(this.text.value!);
-      this.query.setValue(query);
-      this.query.markAsDirty();
-      this.query.updateValueAndValidity();
+      const text = this.form.text().value();
+      const query = this._pqitaService.convertQuery(text);
+      this.setQuery(query);
       if (history && query) {
-        this.appendToHistory(this.text.value!, query);
+        this.appendToHistory(text, query);
       }
     } catch (e) {
       console.log(e);
@@ -318,9 +276,10 @@ export class PqitaComponent implements OnInit, OnDestroy {
 
   public search(): void {
     // there might be no query yet when using keyboard shortcuts
-    if (this.form.invalid || !this.query.value) {
+    const query = this.form.query().value();
+    if (this.form().invalid() || !query) {
       return;
     }
-    this.searchRequest.emit(this.query.value);
+    this.searchRequest.emit(query);
   }
 }

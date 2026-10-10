@@ -3,19 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  inject,
   input,
   OnDestroy,
   OnInit,
   signal,
   viewChild,
 } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { form, FormField, maxLength, required } from '@angular/forms/signals';
 import { Observable, Subscription } from 'rxjs';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -46,7 +41,7 @@ import { PqitaComponent } from '../pqita/pqita.component';
   selector: 'minerva-ita-search',
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    FormField,
     MatButtonModule,
     MatCardModule,
     MatExpansionModule,
@@ -67,6 +62,7 @@ import { PqitaComponent } from '../pqita/pqita.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItaSearchComponent implements OnInit, OnDestroy {
+  private readonly _repository = inject(SearchRepository);
   private readonly _subs: Subscription[] = [];
 
   public readonly queryElementRef = viewChild<ElementRef>('queryCtl');
@@ -108,38 +104,29 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   public readonly queryTabIndex = signal<number>(0);
   public readonly queryExpanded = signal<boolean>(true);
 
-  public query$: Observable<string | undefined>;
-  public lastQueries$: Observable<string[]>;
-  public loading$: Observable<boolean | undefined>;
-  public page$: Observable<DataPage<KwicSearchResult> | undefined>;
-  public error$: Observable<string | undefined>;
-  public readRequest$: Observable<DocumentReadRequest | undefined>;
+  public readonly query$: Observable<string | undefined> =
+    this._repository.query$;
+  public readonly lastQueries$: Observable<string[]> =
+    this._repository.lastQueries$;
+  public readonly loading$: Observable<boolean | undefined> =
+    this._repository.loading$;
+  public readonly page$: Observable<DataPage<KwicSearchResult> | undefined> =
+    this._repository.page$;
+  public readonly error$: Observable<string | undefined> =
+    this._repository.error$;
+  public readonly readRequest$: Observable<DocumentReadRequest | undefined> =
+    this._repository.readRequest$;
 
-  public query: FormControl<string | null>;
-  public history: FormControl<string | null>;
-  public form: FormGroup;
-
-  constructor(
-    private _repository: SearchRepository,
-    formBuilder: FormBuilder,
-  ) {
-    this.query = formBuilder.control(null, [
-      Validators.required,
-      Validators.maxLength(1000),
-    ]);
-    this.history = formBuilder.control(null);
-    this.form = formBuilder.group({
-      query: this.query,
-      history: this.history,
-    });
-
-    this.page$ = _repository.page$;
-    this.query$ = _repository.query$;
-    this.lastQueries$ = _repository.lastQueries$;
-    this.loading$ = _repository.loading$;
-    this.error$ = _repository.error$;
-    this.readRequest$ = _repository.readRequest$;
-  }
+  public readonly form = form(
+    signal<{ query: string; history: string | null }>({
+      query: '',
+      history: null,
+    }),
+    (path) => {
+      required(path.query);
+      maxLength(path.query, 1000);
+    },
+  );
 
   public ngOnInit(): void {
     if (this.initialQueryTerm()) {
@@ -149,13 +136,13 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
         const type = m[2];
         const id = parseInt(m[3], 10);
         if (type === 'L') {
-          this.query.setValue(`[lemma_id="${id}"]`);
+          this.form.query().value.set(`[lemma_id="${id}"]`);
         } else {
-          this.query.setValue(`[word_id="${id}"]`);
+          this.form.query().value.set(`[word_id="${id}"]`);
         }
       } else {
         // otherwise, just set the query text
-        this.query.setValue(`[value="${this.initialQueryTerm()}"]`);
+        this.form.query().value.set(`[value="${this.initialQueryTerm()}"]`);
       }
 
       setTimeout(() => this.search(), 0);
@@ -175,23 +162,24 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
 
   public pageChange(event: PageEvent): void {
     this._repository.loadPage(event.pageIndex + 1, event.pageSize, {
-      query: this.query.value!,
+      query: this.form.query().value(),
     });
   }
 
   public pickHistory(): void {
-    if (!this.history.value) {
+    const history = this.form.history().value();
+    if (!history) {
       return;
     }
-    this.query.setValue(this.history.value);
+    this.form.query().value.set(history);
     setTimeout(() => this.queryElementRef()?.nativeElement.focus(), 0);
   }
 
   public search(): void {
-    if (this.form.invalid) {
+    if (this.form().invalid()) {
       return;
     }
-    const query = this.query.value?.trim();
+    const query = this.form.query().value().trim();
     if (!query) {
       return;
     }
@@ -205,7 +193,7 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   }
 
   public onQueryPeek(query: string): void {
-    this.query.setValue(query);
+    this.form.query().value.set(query);
     setTimeout(() => {
       this.queryTabIndex.set(0);
       this.queryElementRef()?.nativeElement.focus();
@@ -213,15 +201,14 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   }
 
   public onQueryChange(query: string): void {
-    this.query.setValue(query);
+    this.form.query().value.set(query);
     this._repository.addToHistory(query);
     this._repository.setFilter({ query });
   }
 
   public onSearchRequest(query: string): void {
-    this.query.setValue(query);
-    this.query.markAsDirty();
-    this.query.updateValueAndValidity();
+    this.form.query().value.set(query);
+    this.form.query().markAsDirty();
     this.search();
   }
 

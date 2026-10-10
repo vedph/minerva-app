@@ -285,18 +285,45 @@ describe('ItaSearchComponent', () => {
       expect(await screen.findByText('query required')).toBeInTheDocument();
     });
 
-    it('should reject a query which is too long', async () => {
-      const { user, repository } = await setup();
+    it('should not let the user enter a query which is too long', async () => {
+      const { user } = await setup();
       const query = await openAdvancedTab(user);
 
       await user.click(query);
       await user.paste('x'.repeat(1001));
+
+      expect(query).toHaveValue('x'.repeat(1000));
+    });
+
+    it('should reject a query which is too long', async () => {
+      const { user, repository } = await setup({
+        initialQueryTerm: 'x'.repeat(1001),
+      });
+      const query = await openAdvancedTab(user);
+
+      await user.click(query);
       await user.keyboard('{Control>}{Enter}{/Control}');
       await user.tab();
 
       expect(await screen.findByText('query too long')).toBeInTheDocument();
       expect(button('search')).toBeDisabled();
       expect(repository.setFilter).not.toHaveBeenCalled();
+    });
+
+    it('should not search with Enter alone', async () => {
+      const { user, repository } = await setup();
+      const query = await openAdvancedTab(user);
+
+      await user.type(query, '[[value="cane"]{Enter}');
+
+      expect(repository.setFilter).not.toHaveBeenCalled();
+    });
+
+    it('should render no form element', async () => {
+      const { user, container } = await setup();
+      await openAdvancedTab(user);
+
+      expect(container.querySelector('form')).toBeNull();
     });
 
     it('should not let the user search while loading', async () => {

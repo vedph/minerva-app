@@ -5,7 +5,6 @@ import {
   computed,
   signal,
 } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -23,7 +22,6 @@ import { EnvService } from '@myrmidon/ngx-tools';
   selector: 'app-stats',
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
     NgxEchartsModule,

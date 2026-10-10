@@ -42,6 +42,8 @@ async function setup(options: SetupOptions = {}) {
   };
 }
 
+const TOO_LONG = 'x'.repeat(1001);
+
 const textBox = () => screen.getByPlaceholderText<HTMLTextAreaElement>('text');
 const queryBox = () =>
   screen.getByPlaceholderText<HTMLTextAreaElement>('query');
@@ -157,11 +159,20 @@ describe('PqitaComponent', () => {
       expect(await screen.findByText('text required')).toBeInTheDocument();
     });
 
-    it('should reject a text which is too long', async () => {
+    it('should not let the user enter a text which is too long', async () => {
       const { user } = await setup();
 
       await user.click(textBox());
       await user.paste('x'.repeat(1001));
+
+      expect(textBox()).toHaveValue('x'.repeat(1000));
+    });
+
+    it('should reject a text which is too long', async () => {
+      const { user } = await setup({ presets: [{ value: TOO_LONG }] });
+
+      await selectOption(user, screen.getByRole('combobox'), TOO_LONG);
+      await user.click(textBox());
       await user.tab();
 
       expect(await screen.findByText('text too long')).toBeInTheDocument();
@@ -169,14 +180,20 @@ describe('PqitaComponent', () => {
     });
 
     it('should not convert a text which is too long', async () => {
-      const { user } = await setup();
-      await user.click(textBox());
-      await user.paste('x'.repeat(1001));
+      const { user } = await setup({ presets: [{ value: TOO_LONG }] });
 
+      await selectOption(user, screen.getByRole('combobox'), TOO_LONG);
+      expect(textBox()).toHaveValue(TOO_LONG);
       await user.click(button('convert'));
 
       expect(queryBox()).toHaveValue('');
       expect(historyRows()).toEqual([]);
+    });
+
+    it('should render no form element', async () => {
+      const { container } = await setup();
+
+      expect(container.querySelector('form')).toBeNull();
     });
 
     it('should keep the current query when the conversion fails', async () => {
@@ -303,6 +320,17 @@ describe('PqitaComponent', () => {
       expect(
         screen.queryByText('Ctrl+Enter to search'),
       ).not.toBeInTheDocument();
+    });
+
+    it('should still convert and search with a readonly query', async () => {
+      const { user, searchRequest } = await setup({ readonlyQuery: true });
+
+      await user.type(textBox(), 'cane');
+      await user.click(button('convert'));
+      await user.click(button('search'));
+
+      expect(queryBox()).toHaveValue('[value="cane"]');
+      expect(searchRequest).toHaveBeenCalledWith('[value="cane"]');
     });
   });
 

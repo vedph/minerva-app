@@ -1,5 +1,7 @@
 # History
 
+- 2026-10-10: ⚠️ migrated to signal-based forms.
+
 ## 4.0.1
 
 - 2026-10-10:

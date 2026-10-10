@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
@@ -16,12 +15,7 @@ import { WordIndexComponent } from '@myrmidon/pythia-word-index';
 
 @Component({
   selector: 'app-words',
-  imports: [
-    ReactiveFormsModule,
-    MatCardModule,
-    MatIconModule,
-    WordIndexComponent,
-  ],
+  imports: [MatCardModule, MatIconModule, WordIndexComponent],
   templateUrl: './words.component.html',
   styleUrl: './words.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
