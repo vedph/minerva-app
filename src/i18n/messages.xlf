@@ -2616,6 +2616,13 @@
           <context context-type="linenumber">227</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8848202746795743319" datatype="html">
+        <source>convert</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/pqita/pqita.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3667842621564887364" datatype="html">
         <source>text</source>
         <context-group purpose="location">

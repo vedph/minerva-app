@@ -3,7 +3,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  HostListener,
   input,
   OnDestroy,
   OnInit,
@@ -21,6 +20,7 @@ import {
   debounceTime,
   distinctUntilChanged,
   Observable,
+  skip,
   Subscription,
 } from 'rxjs';
 
@@ -73,6 +73,9 @@ interface HistoryEntry {
   templateUrl: './pqita.component.html',
   styleUrl: './pqita.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:keydown)': 'handleKeyboardEvent($event)',
+  },
 })
 export class PqitaComponent implements OnInit, OnDestroy {
   private readonly _subs: Subscription[] = [];
@@ -151,10 +154,11 @@ export class PqitaComponent implements OnInit, OnDestroy {
     );
 
     // when the speech recognition service detects a result, update the text field
-    // supplying quotes to the text
+    // supplying quotes to the text; the initial empty text is skipped,
+    // as it is not a result and would overwrite what the user is typing
     this._subs.push(
       this._speechRecService.text$
-        .pipe(distinctUntilChanged(), debounceTime(100))
+        .pipe(distinctUntilChanged(), skip(1), debounceTime(100))
         .subscribe((text) => {
           this.text.setValue(this._pqitaService.supplyQuotes(text));
           this.text.markAsDirty();
@@ -184,7 +188,10 @@ export class PqitaComponent implements OnInit, OnDestroy {
   private setFilteredPresetEntries(group?: string | null): void {
     this.filteredPresetEntries.set(
       this.presetEntries()
-        ? this.presetEntries().filter((e) => e.group === group || !group)
+        ? this.presetEntries().filter(
+            // entries without a group belong to the '-' group
+            (e) => !group || (e.group || '-') === group,
+          )
         : [],
     );
   }
@@ -200,8 +207,7 @@ export class PqitaComponent implements OnInit, OnDestroy {
     this._subs.forEach((sub) => sub.unsubscribe());
   }
 
-  @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
+  public handleKeyboardEvent(event: KeyboardEvent) {
     // Ctrl + L toggles listening
     if (event.ctrlKey && event.key === 'l') {
       if (this._speechRecService.isListening()) {
@@ -311,9 +317,10 @@ export class PqitaComponent implements OnInit, OnDestroy {
   }
 
   public search(): void {
-    if (this.form.invalid) {
+    // there might be no query yet when using keyboard shortcuts
+    if (this.form.invalid || !this.query.value) {
       return;
     }
-    this.searchRequest.emit(this.query.value!);
+    this.searchRequest.emit(this.query.value);
   }
 }

@@ -57,7 +57,7 @@
                 <mat-error i18n>query required</mat-error>
               }
               @if (
-                $any(query).errors?.maxLength && (query.dirty || query.touched)
+                $any(query).errors?.maxlength && (query.dirty || query.touched)
               ) {
                 <mat-error i18n>query too long</mat-error>
               }
@@ -91,6 +91,8 @@
                     matSuffix
                     i18n-matTooltip
                     matTooltip="Pick the selected query"
+                    aria-label="Pick the selected query"
+                    i18n-aria-label
                     (click)="pickHistory()"
                   >
                     <mat-icon>check_circle</mat-icon>
@@ -155,6 +157,8 @@
                     type="button"
                     i18n-matTooltip
                     matTooltip="Read in context"
+                    aria-label="Read in context"
+                    i18n-aria-label
                     [disabled]="loading$ | async"
                     (click)="readDocumentPiece(r.documentId, r.index, r.length)"
                   >
@@ -166,6 +170,8 @@
                     type="button"
                     i18n-matTooltip
                     matTooltip="Read document"
+                    aria-label="Read document"
+                    i18n-aria-label
                     [disabled]="loading$ | async"
                     (click)="readDocument(r.documentId)"
                   >

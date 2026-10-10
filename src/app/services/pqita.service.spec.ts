@@ -1252,7 +1252,66 @@ describe('PqitaService', () => {
   it('should convert parola "cane" a inizio di frase', () => {
     expect(
       service.convertQuery("parola \"cane\" a inizio di frase")
-    ).toBe('[value="cane"] LALIGN(m=0) [$snt]');
+    ).toBe('[value="cane"] LALIGN(m=0) [$name="snt"]');
+  });
+
+  // a fine di frase
+  it('should convert parola "cane" a fine di frase', () => {
+    expect(service.convertQuery('parola "cane" a fine di frase')).toBe(
+      '[value="cane"] RALIGN(m=0) [$name="snt"]'
+    );
+  });
+
+  // non a inizio di frase
+  it('should convert parola "cane" non a inizio di frase', () => {
+    expect(service.convertQuery('parola "cane" non a inizio di frase')).toBe(
+      '[value="cane"] NOT LALIGN(m=0) [$name="snt"]'
+    );
+  });
+
+  // non a fine di frase
+  it('should convert parola "cane" non a fine di frase', () => {
+    expect(service.convertQuery('parola "cane" non a fine di frase')).toBe(
+      '[value="cane"] NOT RALIGN(m=0) [$name="snt"]'
+    );
+  });
+
+  // non vicino a
+  it('should convert parola "cane" non vicino alla parola "bello"', () => {
+    expect(
+      service.convertQuery('parola "cane" non vicino alla parola "bello"')
+    ).toBe('[value="cane"] NOT NEAR(m=3,s=snt) [value="bello"]');
+  });
+  //#endregion
+
+  //#region style
+  it('should convert tutti i latinismi in sottolineato to [language="lat"] AND [u="1"]', () => {
+    expect(service.convertQuery('tutti i latinismi in sottolineato')).toBe(
+      '[language="lat"] AND [u="1"]'
+    );
+  });
+  //#endregion
+
+  //#region normalization
+  it('should convert an empty text to an empty query', () => {
+    expect(service.convertQuery('')).toBe('');
+  });
+
+  it('should lowercase the text and strip its diacritics', () => {
+    expect(service.convertQuery('Città')).toBe('[value="citta"]');
+  });
+
+  it('should convert no text to no segments', () => {
+    expect(service.convertToSegments(undefined)).toBe('');
+    expect(service.convertToSegments('')).toBe('');
+  });
+
+  it('should strip diacritics preserving case when converting to segments', () => {
+    expect(service.convertToSegments('Perché È così')).toBe('Perche E cosi');
+  });
+
+  it('should preserve characters out of the Latin range when converting to segments', () => {
+    expect(service.convertToSegments('λόγος è')).toBe('λόγος e');
   });
   //#endregion
 });

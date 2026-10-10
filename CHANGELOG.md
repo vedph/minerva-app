@@ -2,6 +2,21 @@
 
 ## 4.0.1
 
+- 2026-10-10:
+  - fixed the `Angular compilation initialization failed` build error (`The requested module '@jridgewell/sourcemap-codec' does not provide an export named 'encodeRangeMappings'`): `@angular/compiler-cli` 22.2 requires `@jridgewell/sourcemap-codec` 1.6.0+ while still declaring `^1.4.14`, so the lockfile kept 1.5.5. Added an override for `^1.6.0` in `pnpm-workspace.yaml`.
+  - ⚠️ migrated tests from Jest to Vitest via the `@angular/build:unit-test` builder (`pnpm test`, `pnpm test:ci`, `pnpm test:coverage`). Removed `@angular-builders/jest`, `jest`, `jest-preset-angular`, `@types/jest`, `@types/jasmine`, `jasmine-core`, `karma-coverage`, `jest.config.js`, `setupJest.ts` and the stale Jest/Karma launch configurations. Added `vitest`, `@vitest/coverage-v8`, `jsdom`, `@testing-library/angular`, `@testing-library/user-event`, `@testing-library/dom`, `@testing-library/jest-dom`.
+  - added tests for all the components (Angular Testing Library), services and the interceptor.
+  - fixes found while testing:
+    - the rate limit interceptor was never used, because `provideHttpClient` lacked `withInterceptorsFromDi()`. Now that it runs: on 429 it shows its notification; it retries (up to 3 times) only when the server sends a `Retry-After` header (seconds or HTTP date), rather than blindly after 1 second; and it no longer replaces any other HTTP error with a generic `Error`, so that consumers still get the original `HttpErrorResponse` and its status.
+    - the "text too long" (simple query) and "query too long" (advanced query) messages were never displayed, because templates looked for the `maxLength` error key instead of `maxlength`.
+    - in the simple query, Ctrl+T or Ctrl+Enter in the query box requested a search for an empty query when the text had not been converted yet.
+    - in the simple query, preset entries without a `group` were never listed.
+    - in the simple query, text typed within the first 100 ms was overwritten by the initial empty speech recognition text.
+    - accessibility: added names (`aria-label`) to icon-only buttons, autorun toggle and preset selectors in simple and advanced query. All reuse existing translations, except for the new `convert` message (added to `messages.xlf` and `messages.it.xlf`).
+    - fixed a stale test expectation (`[$snt]` instead of `[$name="snt"]`).
+    - speech recognition service made more robust: it now follows the engine when this stops by itself (error, denied permission, silence) rather than staying in listening state; it keeps the text recognized before a pause rather than only the last recognized part; it ignores requests to start when already listening or to stop when not listening; it survives engine failures on start/stop; it releases the microphone and its timer when the component is destroyed; it no longer logs to the console every 250 ms. `SPEECH_RECOGNITION_LANG` is now an `InjectionToken` defaulting to `it-IT`.
+    - removed router debug tracing (`withDebugTracing`).
+    - replaced `@HostListener` with the `host` property in `PqitaComponent`.
 - 2026-09-01: updated packages.
 - 2026-08-27: updated packages.
 

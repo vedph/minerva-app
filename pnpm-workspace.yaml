@@ -4,6 +4,11 @@ allowBuilds:
   lmdb: true
   msgpackr-extract: true
   unrs-resolver: true
+overrides:
+  # @angular/compiler-cli 22.2 imports encodeRangeMappings, which only exists
+  # since 1.6.0, while still declaring ^1.4.14: without this the lockfile keeps
+  # 1.5.5 and the build fails with "Angular compilation initialization failed"
+  '@jridgewell/sourcemap-codec': ^1.6.0
 minimumReleaseAgeExclude:
   - '@angular/animations@22.0.3'
   - '@angular/common@22.0.3'
@@ -23,3 +28,4 @@ minimumReleaseAgeExclude:
   - '@myrmidon/pythia-stats@9.0.0'
   - '@myrmidon/pythia-ui@9.0.0'
   - '@myrmidon/pythia-word-index@9.0.0'
+  - '@rollup/rollup-win32-arm64-msvc@4.64.4'

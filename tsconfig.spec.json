@@ -4,10 +4,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
-    "types": ["jest", "@angular/localize"]
+    "types": ["vitest/globals", "@testing-library/jest-dom/vitest", "@angular/localize"]
   },
   "include": [
     "src/**/*.spec.ts",
+    "src/test-setup.ts",
     "src/**/*.d.ts"
   ],
   "angularCompilerOptions": {

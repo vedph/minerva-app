@@ -1,7 +1,13 @@
-import { Inject, Injectable } from '@angular/core';
+import { inject, Injectable, InjectionToken, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export const SPEECH_RECOGNITION_LANG = 'SPEECH_RECOGNITION_LANG';
+/**
+ * The language used for speech recognition (BCP 47 tag). Default is Italian.
+ */
+export const SPEECH_RECOGNITION_LANG = new InjectionToken<string>(
+  'SPEECH_RECOGNITION_LANG',
+  { providedIn: 'root', factory: () => 'it-IT' },
+);
 
 interface IWindow extends Window {
   SpeechRecognition: new () => SpeechRecognition;
@@ -31,18 +37,26 @@ interface SpeechRecognitionEvent {
   results: SpeechRecognitionResultList;
 }
 
+interface SpeechRecognitionErrorEvent {
+  error: string;
+  message?: string;
+}
+
 interface SpeechRecognition extends EventTarget {
   continuous: boolean;
   interimResults: boolean;
   lang: string;
-  onresult: (event: SpeechRecognitionEvent) => void;
-  onspeechend: () => void;
+  onresult: ((event: SpeechRecognitionEvent) => void) | null;
+  onspeechend: (() => void) | null;
+  onend: (() => void) | null;
+  onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
   start(): void;
   stop(): void;
+  abort(): void;
 }
 
 @Injectable()
-export class SpeechRecognitionService {
+export class SpeechRecognitionService implements OnDestroy {
   private readonly _recognition?: SpeechRecognition;
   private readonly _listening$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
@@ -55,7 +69,9 @@ export class SpeechRecognitionService {
   public text$: Observable<string> = this._text$.asObservable();
   public unsupported: boolean;
 
-  constructor(@Inject(SPEECH_RECOGNITION_LANG) lang: string = 'it-IT') {
+  constructor() {
+    const lang = inject(SPEECH_RECOGNITION_LANG);
+
     if (
       !('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)
     ) {
@@ -76,8 +92,11 @@ export class SpeechRecognitionService {
       };
 
       this._recognition.onresult = (event: SpeechRecognitionEvent) => {
+        // the results list holds all the results of the session, so collect
+        // all the final ones rather than only those changed by this event,
+        // or the text recognized before a pause would be lost
         let transcript = '';
-        for (let i = event.resultIndex; i < event.results.length; ++i) {
+        for (let i = 0; i < event.results.length; ++i) {
           const result = event.results[i];
           if (result.isFinal) {
             transcript += result[0].transcript;
@@ -86,7 +105,52 @@ export class SpeechRecognitionService {
         this._lastSpeechEnd = Date.now();
         this._text$.next(transcript);
       };
+
+      this._recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+        // the engine always ends after an error, so onend does the cleanup
+        console.warn(`Speech recognition error: ${event.error}`);
+      };
+
+      // the engine can end by itself (e.g. on error, denied permission,
+      // or prolonged silence): keep our state in synch with it
+      this._recognition.onend = () => {
+        this.setNotListening();
+      };
     }
+  }
+
+  private clearTimer(): void {
+    if (this._timer !== undefined) {
+      window.clearInterval(this._timer);
+      this._timer = undefined;
+    }
+  }
+
+  private setNotListening(): void {
+    this.clearTimer();
+    if (this._listening$.value) {
+      this._listening$.next(false);
+    }
+  }
+
+  public ngOnDestroy(): void {
+    this.clearTimer();
+    if (this._recognition) {
+      // detach before aborting, so that no event is handled after destroy
+      this._recognition.onresult = null;
+      this._recognition.onspeechend = null;
+      this._recognition.onerror = null;
+      this._recognition.onend = null;
+      if (this._listening$.value) {
+        try {
+          this._recognition.abort();
+        } catch (error) {
+          console.warn('Unable to abort speech recognition', error);
+        }
+      }
+    }
+    this._listening$.complete();
+    this._text$.complete();
   }
 
   public isListening(): boolean {
@@ -94,20 +158,26 @@ export class SpeechRecognitionService {
   }
 
   public startListening(timeout?: number) {
-    if (this.unsupported) {
+    if (this.unsupported || this._listening$.value) {
+      return;
+    }
+    try {
+      // this throws e.g. when the engine is still ending a previous session
+      this._recognition!.start();
+    } catch (error) {
+      console.warn('Unable to start speech recognition', error);
       return;
     }
     this._lastSpeechEnd = 0;
     this._text$.next('');
     this._listening$.next(true);
-    this._recognition!.start();
 
     if (timeout) {
       this._timer = window.setInterval(() => {
-        const n = Date.now() - this._lastSpeechEnd;
-        console.log(n);
-        if (this._lastSpeechEnd && n >= timeout) {
-          console.log('Speech recognition timeout');
+        if (
+          this._lastSpeechEnd &&
+          Date.now() - this._lastSpeechEnd >= timeout
+        ) {
           this.stopListening();
         }
       }, 250);
@@ -115,14 +185,14 @@ export class SpeechRecognitionService {
   }
 
   public stopListening() {
-    if (this.unsupported) {
+    if (this.unsupported || !this._listening$.value) {
       return;
     }
-    if (this._timer !== undefined) {
-      window.clearInterval(this._timer);
-      this._timer = undefined;
+    try {
+      this._recognition!.stop();
+    } catch (error) {
+      console.warn('Unable to stop speech recognition', error);
     }
-    this._recognition!.stop();
-    this._listening$.next(false);
+    this.setNotListening();
   }
 }

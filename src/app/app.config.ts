@@ -3,12 +3,13 @@ import {
   importProvidersFrom,
   provideZonelessChangeDetection,
 } from '@angular/core';
+import { provideRouter, withViewTransitions } from '@angular/router';
 import {
-  provideRouter,
-  withDebugTracing,
-  withViewTransitions,
-} from '@angular/router';
-import { HTTP_INTERCEPTORS, provideHttpClient, withXhr } from '@angular/common/http';
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+  withXhr,
+} from '@angular/common/http';
 
 // import '@angular/localize/init';
 
@@ -32,8 +33,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideZonelessChangeDetection(),
-    provideRouter(routes, withDebugTracing(), withViewTransitions()),
-    provideHttpClient(withXhr()),
+    provideRouter(routes, withViewTransitions()),
+    // withInterceptorsFromDi is required for HTTP_INTERCEPTORS to be used
+    provideHttpClient(withXhr(), withInterceptorsFromDi()),
     importProvidersFrom(
       NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     ),

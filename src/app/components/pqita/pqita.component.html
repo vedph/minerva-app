@@ -14,7 +14,7 @@
       @if ($any(text).errors?.required && (text.dirty || text.touched)) {
         <mat-error i18n>text required</mat-error>
       }
-      @if ($any(text).errors?.maxLength && (text.dirty || text.touched)) {
+      @if ($any(text).errors?.maxlength && (text.dirty || text.touched)) {
         <mat-error i18n>text too long</mat-error>
       }
     </mat-form-field>
@@ -29,6 +29,8 @@
         type="button"
         mat-icon-button
         class="mat-warn"
+        aria-label="clear"
+        i18n-aria-label
         (click)="clearText()"
         [disabled]="!text.value?.length || (listening$ | async)"
       >
@@ -38,6 +40,8 @@
         type="button"
         mat-icon-button
         class="mat-primary"
+        aria-label="convert"
+        i18n-aria-label
         (click)="convert(true)"
         [disabled]="!text.value?.length || (listening$ | async)"
       >
@@ -52,6 +56,8 @@
             mat-icon-button
             matTooltip="Stop listening"
             i18n-matTooltip
+            aria-label="Stop listening"
+            i18n-aria-label
             (click)="stopListening()"
           >
             <mat-icon>mic_off</mat-icon>
@@ -64,6 +70,8 @@
             mat-icon-button
             matTooltip="Start listening"
             i18n-matTooltip
+            aria-label="Start listening"
+            i18n-aria-label
             (click)="startListening()"
           >
             <mat-icon>mic</mat-icon>
@@ -89,6 +97,8 @@
             [formControl]="presetGroup"
             placeholder="preset group"
             i18n-placeholder
+            aria-label="preset group"
+            i18n-aria-label
           >
             <mat-option [value]="null">
               <ng-container i18n>(all)</ng-container>
@@ -108,6 +118,8 @@
             [formControl]="presetEntry"
             placeholder="preset"
             i18n-placeholder
+            aria-label="preset"
+            i18n-aria-label
             (selectionChange)="pickFromPreset()"
           >
             @for (entry of filteredPresetEntries(); track $index) {
@@ -134,7 +146,7 @@
       @if ($any(query).errors?.required && (query.dirty || query.touched)) {
         <mat-error i18n>query required</mat-error>
       }
-      @if ($any(query).errors?.maxLength && (query.dirty || query.touched)) {
+      @if ($any(query).errors?.maxlength && (query.dirty || query.touched)) {
         <mat-error i18n>query too long</mat-error>
       }
     </mat-form-field>
@@ -157,6 +169,8 @@
         [formControl]="autoRun"
         i18n-matTooltip
         matTooltip="Autorun"
+        aria-label="Autorun"
+        i18n-aria-label
       >
         <mat-icon>flash_auto</mat-icon>
       </mat-slide-toggle>
@@ -184,6 +198,8 @@
                   class="mat-primary"
                   (click)="pickFromHistory(i)"
                   matTooltip="Pick this entry"
+                  aria-label="Pick this entry"
+                  i18n-aria-label
                   [disabled]="listening$ | async"
                   i18n-matTooltip
                 >
@@ -195,6 +211,8 @@
                   class="mat-warn"
                   (click)="removeFromHistory(i)"
                   matTooltip="Remove this entry"
+                  aria-label="Remove this entry"
+                  i18n-aria-label
                   [disabled]="listening$ | async"
                   i18n-matTooltip
                 >
