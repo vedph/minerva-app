@@ -3,6 +3,9 @@
   window.__env.apiUrl = "http://localhost:5180/api/";
   window.__env.version = "4.0.1";
   window.__env.hasLemmata = "true";
+  // hide the document map, so that users can read only the context of search
+  // results and not whole documents (map hidden unless this is "false")
+  window.__env.hideMap = "true";
   window.__env.indexDocAttrs = [
     { name: "data", type: 0 },
     { name: "giudicante", type: 0 },

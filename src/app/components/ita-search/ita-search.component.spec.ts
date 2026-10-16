@@ -19,10 +19,12 @@ import { ItaSearchComponent } from './ita-search.component';
 // stands in for the real document reader, exposing the request it receives
 @Component({
   selector: 'pythia-document-reader',
-  template: `<output aria-label="read request">{{ json() }}</output>`,
+  template: `<output aria-label="read request">{{ json() }}</output>
+    <output aria-label="reader hide map">{{ hideMap() }}</output>`,
 })
 class DocumentReaderStubComponent {
   public readonly request = input<DocumentReadRequest>();
+  public readonly hideMap = input<boolean>();
 
   public json(): string {
     return this.request() ? JSON.stringify(this.request()) : '';
@@ -97,6 +99,7 @@ interface SetupOptions {
   hideAuthor?: boolean;
   hideTitle?: boolean;
   readonlyQuery?: boolean;
+  hideMap?: boolean;
   query?: string;
   page?: DataPage<KwicSearchResult>;
 }
@@ -112,6 +115,7 @@ async function setup(options: SetupOptions = {}) {
       hideAuthor: options.hideAuthor,
       hideTitle: options.hideTitle,
       readonlyQuery: options.readonlyQuery,
+      hideMap: options.hideMap,
     },
     providers: [
       { provide: SearchRepository, useValue: repository },
@@ -675,6 +679,25 @@ describe('ItaSearchComponent', () => {
       expect(repository.setReadRequest).toHaveBeenCalledWith({
         documentId: 101,
       });
+    });
+
+    it('should hide the read document button when the map is hidden', async () => {
+      await setup({ query: 'q', page: page(2), hideMap: true });
+
+      expect(
+        screen.queryByRole('button', { name: 'Read document' }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getAllByRole('button', { name: 'Read in context' }),
+      ).toHaveLength(2);
+    });
+
+    it('should pass hideMap to the reader', async () => {
+      await setup({ hideMap: true });
+
+      expect(screen.getByLabelText('reader hide map')).toHaveTextContent(
+        'true',
+      );
     });
 
     it('should pass the read request to the reader', async () => {

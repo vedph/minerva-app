@@ -26,6 +26,14 @@ services:
       - MESSAGING__APIROOTURL=https://minerva.it/api/
       - MESSAGING__APPROOTURL=https://minerva.it/
       - MESSAGING__SUPPORTEMAIL=attichiari@unige.it
+      # public API: never serve the full text of documents
+      - READER__ISFULLTEXTDISABLED=true
+      # in a VM behind a dockerized reverse proxy (see MinervaApi README),
+      # publish the port as 127.0.0.1:5180:8080 (or not at all) and set
+      # the subnet of the proxy network in these:
+      # - FORWARDEDHEADERS__KNOWNNETWORKS__0=172.30.0.0/16
+      # - RATELIMIT__ISDISABLED=false
+      # - RATELIMIT__PERMITLIMIT=300
       # unzip bin files from DB into host opt/dump to restore the DB
       - DATA__SOURCEDIR=/opt/dump/
     volumes:
@@ -34,6 +42,28 @@ services:
     networks:
       - minerva-network
 
+  # API for the teammates app: same database, full text enabled.
+  # It starts after the public API has created and seeded the database.
+  minerva-api-team:
+    image: vedph2020/minerva-api:2.0.0
+    container_name: minerva-api-team
+    ports:
+      - 5181:8080
+    depends_on:
+      - minerva-api
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - CONNECTIONSTRINGS__DEFAULT=User ID=postgres;Password=postgres;Host=minerva-pgsql;Port=5432;Database={0};
+      - ALLOWEDORIGINS__0=http://localhost:4201
+      - SEEDDELAY=90
+      - MESSAGING__APIROOTURL=https://minerva.it/api/
+      - MESSAGING__APPROOTURL=https://minerva.it/
+      - MESSAGING__SUPPORTEMAIL=attichiari@unige.it
+      - READER__ISFULLTEXTDISABLED=false
+    networks:
+      - minerva-network
+
+  # public app: map hidden (env.js has hideMap=true)
   minerva-app:
     # for MacOS this might be required:
     # platform: linux/amd64
@@ -43,6 +73,22 @@ services:
       - 4200:80
     depends_on:
       - minerva-api
+    networks:
+      - minerva-network
+
+  # teammates app: same image, map enabled by replacing env.js with
+  # env.team.js (hideMap=false, apiUrl pointing to minerva-api-team)
+  minerva-app-team:
+    # for MacOS this might be required:
+    # platform: linux/amd64
+    image: vedph2020/minerva-app:4.0.0
+    container_name: minerva-app-team
+    ports:
+      - 4201:80
+    depends_on:
+      - minerva-api-team
+    volumes:
+      - ./env.team.js:/usr/share/nginx/html/env.js:ro
     networks:
       - minerva-network
 

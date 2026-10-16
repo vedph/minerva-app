@@ -9,7 +9,20 @@ import {
 import { Observable, throwError, timer } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
+
+/**
+ * The maximum delay requested by the server for which a rate limited request
+ * is automatically retried. Longer delays (like the usual 1 minute window)
+ * are not retried, as the app would look frozen while waiting: users are
+ * rather told to wait and try again.
+ */
+const MAX_RETRY_DELAY = 5000;
+
+/**
+ * How long the rate limit message is displayed (ms).
+ */
+const MESSAGE_DURATION = 10000;
 
 function isRateLimitError(error: unknown): error is HttpErrorResponse {
   return error instanceof HttpErrorResponse && error.status === 429;
@@ -33,47 +46,81 @@ function getRetryDelay(error: HttpErrorResponse): number | undefined {
   return Number.isNaN(date) ? undefined : Math.max(0, date - Date.now());
 }
 
+/**
+ * Get the message to show to users when the API rejects a request because
+ * of its rate limit.
+ */
+export function getRateLimitMessage(error: HttpErrorResponse): string {
+  const delay = getRetryDelay(error);
+  if (delay === undefined || delay <= 0) {
+    return $localize`:@@rateLimit.message:Too many requests to the server in a short time. Please wait a little and try again.`;
+  }
+  const seconds = Math.ceil(delay / 1000);
+  return $localize`:@@rateLimit.messageWithDelay:Too many requests to the server in a short time. Please wait ${seconds}:seconds: seconds and try again.`;
+}
+
+/**
+ * HTTP interceptor handling the API rate limit (429 Too Many Requests).
+ * Requests are retried only when the server asks to wait for a short time;
+ * otherwise users get a message telling them to wait, so that they do not
+ * take the failure for a bug. The original error is then passed to the
+ * consumer.
+ */
 @Injectable()
 export class RateLimitInterceptor implements HttpInterceptor {
+  private _messageRef?: MatSnackBarRef<unknown>;
+
   constructor(private _snackBar: MatSnackBar) {}
+
+  private notify(error: HttpErrorResponse): void {
+    // open the message after the consumer has handled the error, so that
+    // it is not replaced by any message opened by the consumer itself
+    // (e.g. "Error exporting results")
+    setTimeout(() => {
+      // several concurrent requests can be rejected: just show one message
+      if (this._messageRef) {
+        return;
+      }
+      this._messageRef = this._snackBar.open(
+        getRateLimitMessage(error),
+        $localize`:@@rateLimit.close:Close`,
+        {
+          duration: MESSAGE_DURATION,
+        },
+      );
+      this._messageRef.afterDismissed().subscribe(() => {
+        this._messageRef = undefined;
+      });
+    });
+  }
 
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       retry({
         count: 3,
         delay: (error) => {
           // retry only when the server tells when it will accept requests
-          // again: retrying blindly inside the same rate limit window would
-          // just add more rejected requests
+          // again, and this is soon: retrying blindly inside the same rate
+          // limit window would just add more rejected requests
           const delayTime = isRateLimitError(error)
             ? getRetryDelay(error)
             : undefined;
-          return delayTime === undefined
+          return delayTime === undefined || delayTime > MAX_RETRY_DELAY
             ? throwError(() => error)
             : timer(delayTime);
         },
       }),
       catchError((error: unknown) => {
         if (isRateLimitError(error)) {
-          this._snackBar.open(
-            'Too many requests. Please try again later.',
-            'Close',
-            {
-              duration: 3000,
-            }
-          );
-          return throwError(
-            () => new Error('Too many requests. Please try again later.')
-          );
-        } else {
-          // pass any other error untouched, as consumers rely on the
-          // original HttpErrorResponse (e.g. its status)
-          return throwError(() => error);
+          this.notify(error);
         }
-      })
+        // pass the error untouched, as consumers rely on the original
+        // HttpErrorResponse (e.g. its status)
+        return throwError(() => error);
+      }),
     );
   }
 }

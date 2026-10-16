@@ -87,6 +87,13 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
    */
   public readonly readonlyQuery = input<boolean>();
 
+  /**
+   * Whether to hide the document map in the reader. When hidden, users can
+   * read only the context of each result, and not browse whole documents
+   * (so also the read document button is hidden).
+   */
+  public readonly hideMap = input<boolean>();
+
   public readonly leftContextLabels = signal<string[]>([
     '5',
     '4',
@@ -221,6 +228,10 @@ export class ItaSearchComponent implements OnInit, OnDestroy {
   }
 
   public readDocument(id: number) {
+    // reading a whole document requires browsing it via its map
+    if (this.hideMap()) {
+      return;
+    }
     this._repository.setReadRequest({
       documentId: id,
     });

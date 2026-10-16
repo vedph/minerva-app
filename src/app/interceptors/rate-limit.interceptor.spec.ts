@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import type { Mock } from 'vitest';
+import { Subject } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,6 +24,7 @@ describe('RateLimitInterceptor', () => {
   let http: HttpClient;
   let controller: HttpTestingController;
   let snackBar: { open: Mock };
+  let dismissed: Subject<void>;
   let next: Mock<(value: unknown) => void>;
   let error: Mock<(error: HttpErrorResponse | Error) => void>;
 
@@ -35,7 +37,10 @@ describe('RateLimitInterceptor', () => {
 
   beforeEach(() => {
     vi.useFakeTimers();
-    snackBar = { open: vi.fn() };
+    dismissed = new Subject<void>();
+    snackBar = {
+      open: vi.fn(() => ({ afterDismissed: () => dismissed.asObservable() })),
+    };
     next = vi.fn();
     error = vi.fn();
 
@@ -97,20 +102,23 @@ describe('RateLimitInterceptor', () => {
     expect(error).toHaveBeenCalledTimes(1);
   });
 
-  it('should fail at once when rate limited with no Retry-After', () => {
+  it('should fail at once and notify when rate limited with no Retry-After', () => {
     http.get(URL).subscribe({ next, error });
 
     rejectWith429();
+    // the message is opened after the consumer handled the error
+    expect(snackBar.open).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(0);
 
     expect(error).toHaveBeenCalledTimes(1);
-    expect(error.mock.calls[0][0]).toBeInstanceOf(Error);
-    expect(error.mock.calls[0][0].message).toBe(
-      'Too many requests. Please try again later.',
-    );
+    const received = error.mock.calls[0][0] as HttpErrorResponse;
+    expect(received).toBeInstanceOf(HttpErrorResponse);
+    expect(received.status).toBe(429);
     expect(snackBar.open).toHaveBeenCalledWith(
-      'Too many requests. Please try again later.',
+      'Too many requests to the server in a short time. ' +
+        'Please wait a little and try again.',
       'Close',
-      { duration: 3000 },
+      { duration: 10000 },
     );
   });
 
@@ -118,9 +126,52 @@ describe('RateLimitInterceptor', () => {
     http.get(URL).subscribe({ next, error });
 
     rejectWith429('soon');
+    vi.advanceTimersByTime(0);
 
     expect(error).toHaveBeenCalledTimes(1);
     expect(snackBar.open).toHaveBeenCalledTimes(1);
+  });
+
+  it('should not retry and tell the wait time when Retry-After is long', () => {
+    http.get(URL).subscribe({ next, error });
+
+    rejectWith429('60');
+    vi.advanceTimersByTime(60_000);
+
+    // verify in afterEach ensures no further request was made
+    expect(error).toHaveBeenCalledTimes(1);
+    expect(snackBar.open).toHaveBeenCalledWith(
+      'Too many requests to the server in a short time. ' +
+        'Please wait 60 seconds and try again.',
+      'Close',
+      { duration: 10000 },
+    );
+  });
+
+  it('should show a single message for concurrent rejections', () => {
+    http.get(URL).subscribe({ next, error });
+    http.get(URL).subscribe({ next, error });
+
+    for (const req of controller.match(URL)) {
+      req.flush(null, { ...TOO_MANY, headers: { 'Retry-After': '60' } });
+    }
+    vi.advanceTimersByTime(0);
+
+    expect(error).toHaveBeenCalledTimes(2);
+    expect(snackBar.open).toHaveBeenCalledTimes(1);
+  });
+
+  it('should show the message again after the previous one is dismissed', () => {
+    http.get(URL).subscribe({ next, error });
+    rejectWith429('60');
+    vi.advanceTimersByTime(0);
+    dismissed.next();
+
+    http.get(URL).subscribe({ next, error });
+    rejectWith429('60');
+    vi.advanceTimersByTime(0);
+
+    expect(snackBar.open).toHaveBeenCalledTimes(2);
   });
 
   it('should retry after the seconds requested by Retry-After', () => {
@@ -172,10 +223,12 @@ describe('RateLimitInterceptor', () => {
 
     expect(next).not.toHaveBeenCalled();
     expect(error).toHaveBeenCalledTimes(1);
-    expect(error.mock.calls[0][0].message).toBe(
-      'Too many requests. Please try again later.',
-    );
+    expect((error.mock.calls[0][0] as HttpErrorResponse).status).toBe(429);
     expect(snackBar.open).toHaveBeenCalledTimes(1);
+    expect(snackBar.open.mock.calls[0][0]).toBe(
+      'Too many requests to the server in a short time. ' +
+        'Please wait 1 seconds and try again.',
+    );
   });
 
   it('should pass through a different error met while retrying', () => {
@@ -186,6 +239,7 @@ describe('RateLimitInterceptor', () => {
     controller
       .expectOne(URL)
       .flush(null, { status: 503, statusText: 'Unavailable' });
+    vi.advanceTimersByTime(0);
 
     expect(error).toHaveBeenCalledTimes(1);
     expect((error.mock.calls[0][0] as HttpErrorResponse).status).toBe(503);

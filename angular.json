@@ -85,7 +85,16 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
+          "builder": "ng-extract-i18n-merge:ng-extract-i18n-merge",
+          "options": {
+            "buildTarget": "minerva:build",
+            "format": "xlf",
+            "outputPath": "src/i18n",
+            "sourceFile": "messages.xlf",
+            "targetFiles": ["messages.it.xlf"],
+            "newTranslationTargetsBlank": "omit",
+            "includeContext": true
+          }
         },
         "test": {
           "builder": "@angular/build:unit-test",

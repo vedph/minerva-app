@@ -167,19 +167,21 @@
                   >
                     <mat-icon>find_in_page</mat-icon>
                   </button>
-                  <!-- read-doc -->
-                  <button
-                    mat-icon-button
-                    type="button"
-                    i18n-matTooltip
-                    matTooltip="Read document"
-                    aria-label="Read document"
-                    i18n-aria-label
-                    [disabled]="loading$ | async"
-                    (click)="readDocument(r.documentId)"
-                  >
-                    <mat-icon>description</mat-icon>
-                  </button>
+                  <!-- read-doc (requires the map to browse the document) -->
+                  @if (!hideMap()) {
+                    <button
+                      mat-icon-button
+                      type="button"
+                      i18n-matTooltip
+                      matTooltip="Read document"
+                      aria-label="Read document"
+                      i18n-aria-label
+                      [disabled]="loading$ | async"
+                      (click)="readDocument(r.documentId)"
+                    >
+                      <mat-icon>description</mat-icon>
+                    </button>
+                  }
                 </td>
                 <!-- author -->
                 @if (!hideAuthor()) {
@@ -256,7 +258,10 @@
   <div id="reader">
     <mat-card>
       <mat-card-content>
-        <pythia-document-reader [request]="$any(readRequest$ | async)" />
+        <pythia-document-reader
+          [request]="$any(readRequest$ | async)"
+          [hideMap]="hideMap()"
+        />
       </mat-card-content>
     </mat-card>
   </div>

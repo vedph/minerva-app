@@ -1,3 +1,4 @@
+import { of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
   HttpTestingController,
@@ -19,7 +20,9 @@ describe('appConfig', () => {
   let snackBar: { open: ReturnType<typeof vi.fn> };
 
   beforeEach(() => {
-    snackBar = { open: vi.fn() };
+    snackBar = {
+      open: vi.fn(() => ({ afterDismissed: () => of(undefined) })),
+    };
     TestBed.configureTestingModule({
       providers: [
         ...appConfig.providers,
@@ -30,15 +33,18 @@ describe('appConfig', () => {
   });
 
   it('should run the rate limit interceptor on HTTP requests', () => {
+    vi.useFakeTimers();
     const error = vi.fn<(error: unknown) => void>();
     TestBed.inject(HttpClient).get('/api/test').subscribe({ error });
 
     TestBed.inject(HttpTestingController)
       .expectOne('/api/test')
       .flush(null, { status: 429, statusText: 'Too Many Requests' });
+    vi.advanceTimersByTime(0);
 
     expect(snackBar.open).toHaveBeenCalledTimes(1);
     expect(error).toHaveBeenCalledTimes(1);
+    vi.useRealTimers();
   });
 
   it('should use the localizable paginator labels', () => {
