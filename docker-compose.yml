@@ -12,7 +12,7 @@ services:
       - minerva-network
 
   minerva-api:
-    image: vedph2020/minerva-api:2.0.0
+    image: vedph2020/minerva-api:2.1.0
     container_name: minerva-api
     ports:
       - 5180:8080
@@ -37,15 +37,15 @@ services:
       # unzip bin files from DB into host opt/dump to restore the DB
       - DATA__SOURCEDIR=/opt/dump/
     volumes:
-      # for Windows you can use e.g. /c/dump:/opt/dump
-      - /opt/dump:/opt/dump
+      # for Windows if you need absolute path use e.g. /c/dump:/opt/dump
+      - ./dump:/opt/dump
     networks:
       - minerva-network
 
   # API for the teammates app: same database, full text enabled.
   # It starts after the public API has created and seeded the database.
   minerva-api-team:
-    image: vedph2020/minerva-api:2.0.0
+    image: vedph2020/minerva-api:2.1.0
     container_name: minerva-api-team
     ports:
       - 5181:8080
@@ -67,7 +67,7 @@ services:
   minerva-app:
     # for MacOS this might be required:
     # platform: linux/amd64
-    image: vedph2020/minerva-app:4.0.0
+    image: vedph2020/minerva-app:5.0.0
     container_name: minerva-app
     ports:
       - 4200:80
@@ -81,7 +81,7 @@ services:
   minerva-app-team:
     # for MacOS this might be required:
     # platform: linux/amd64
-    image: vedph2020/minerva-app:4.0.0
+    image: vedph2020/minerva-app:5.0.0
     container_name: minerva-app-team
     ports:
       - 4201:80
