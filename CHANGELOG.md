@@ -1,5 +1,7 @@
 # History
 
+## 5.0.0
+
 - 2026-10-16:
   - updated packages.
   - rate limit (429): users are told to wait (for the seconds requested by the server's `Retry-After` header, if any) and try again, in Italian and for 10 seconds rather than 3. Before, as the API always asks to wait until the end of its rate limit window (usually 1 minute), each rejected request was silently retried up to 3 times, so that the app looked frozen for minutes before showing a short English message. Now requests are retried only when the server asks to wait for at most 5 seconds; the message is shown once for concurrent rejections, and after any message opened by the consumer of the failed request (which would otherwise replace it); consumers get the original `HttpErrorResponse` rather than a generic `Error`.
