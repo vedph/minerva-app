@@ -1,32 +1,31 @@
+// pie and table beside the tags cloud when there is room, else stacked
 div#container {
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: auto 1fr;
-  grid-template-areas: "pie cloud";
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "pie"
+    "cloud";
   gap: 16px;
 }
-
 div#pie {
   grid-area: pie;
-  width: 600px;
+  min-width: 0;
 }
 .chart {
   width: 100%;
   height: 400px;
 }
-
+// the tags cloud width is relative to this element (see its [width])
 div#cloud {
   grid-area: cloud;
-  min-width: 800px;
+  min-width: 0;
+  overflow: hidden;
 }
 
-@media only screen and (max-width: 959px) {
+@media (min-width: 1280px) {
   div#container {
-    grid-template-rows: auto auto;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "pie"
-      "cloud";
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    grid-template-areas: "pie cloud";
   }
 }
 

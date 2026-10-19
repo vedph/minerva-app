@@ -4,84 +4,250 @@
     <mat-card-title>Guida utente</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <article>
-      <section>
-        <h3>Introduzione</h3>
-        <p>TODO: scrivere manuale</p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          interdum nec magna a cursus. Praesent aliquet sollicitudin orci non
-          sodales. Vestibulum fringilla, est vel auctor ornare, eros purus
-          vulputate lectus, sed viverra felis felis eu lectus. Etiam ac lectus
-          tellus.
-        </p>
-        <p>
-          Sed efficitur ipsum enim, efficitur molestie magna ornare sed. Proin a
-          convallis lacus, quis vehicula lectus. Phasellus semper urna non ante
-          rhoncus, non egestas magna condimentum. Aenean sagittis vitae ante ut
-          feugiat. Morbi euismod cursus sapien, vitae dapibus tellus fermentum
-          eget. Proin viverra est quam, quis finibus nunc porttitor et.
-        </p>
-      </section>
-    </article>
+    <!-- index -->
     <article>
       <section>
         <h3>Indice</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          interdum nec magna a cursus. Praesent aliquet sollicitudin orci non
-          sodales. Vestibulum fringilla, est vel auctor ornare, eros purus
-          vulputate lectus, sed viverra felis felis eu lectus.
+          L'indice consente di scorrere l'elenco di tutti i lemmi presenti nel
+          corpus con relative forme flesse.
         </p>
         <p>
-          Etiam ac lectus tellus. Sed efficitur ipsum enim, efficitur molestie
-          magna ornare sed. Proin a convallis lacus, quis vehicula lectus.
-          Phasellus semper urna non ante rhoncus, non egestas magna condimentum.
-          Aenean sagittis vitae ante ut feugiat. Morbi euismod cursus sapien,
-          vitae dapibus tellus fermentum eget. Proin viverra est quam, quis
-          finibus nunc porttitor et.
+          Per ogni lemma viene visualizzato il lemma stesso e il totale delle
+          occorrenze di tutte le sue forme. Accanto a ogni lemma i pulsanti
+          consentono di (da sinistra a destra):
+        </p>
+        <ul>
+          <li>
+            (freccia) espandere il lemma per visualizzarne tutte le forme
+            flesse. Anche per ogni forma flessa sono visualizzati gli stessi
+            dati e pulsanti del lemma.
+          </li>
+          <li>(lente) ricercare tutte le forme del lemma nel corpus.</li>
+          <li>
+            (torta) visualizzare le statistiche relative alla distribuzione
+            delle forme del lemma nei documenti raggruppate per metadati dei
+            documenti stessi.
+          </li>
+        </ul>
+
+        <h4>Filtri di elenco</h4>
+        <p>
+          L'elenco può essere ridotto focalizzandosi su specifici aspetti delle
+          parole, combinando a piacimento uno o più criteri nel pannello dei
+          <strong>filtri</strong>:
+        </p>
+        <ul>
+          <li>POS: parte del discorso.</li>
+          <li>
+            valore: il valore della parola; può contenere i caratteri jolly
+            <code>*</code> per indicare uno o più caratteri e <code>?</code>
+            per indicare un singolo carattere.
+          </li>
+          <li>lunghezza minima/massima: lunghezza in caratteri.</li>
+          <li>
+            frequenza minima/massima: numero di occorrenze della parola nel
+            corpus.
+          </li>
+        </ul>
+        <p>
+          Lo stesso pannello consente anche di cambiare l'<strong
+            >ordinamento</strong
+          >
+          dell'elenco scegliendo uno dei seguenti: dell'elenco scegliendo uno
+          dei seguenti:
+        </p>
+        <ul>
+          <li>valore, ascendente</li>
+          <li>valore inverso (dall'ultimo al primo carattere), ascendente</li>
+          <li>frequenza, ascendente</li>
+          <li>valore, discendente</li>
+          <li>valore inverso (dall'ultimo al primo carattere), discendente</li>
+          <li>frequenza, discendente</li>
+        </ul>
+
+        <h4>Distribuzione delle forme</h4>
+        <p>
+          Cliccando sul pulsante della torta viene visualizzata una
+          rappresentazione grafica della distribuzione delle forme del lemma nei
+          documenti, raggruppata per metadati dei documenti stessi. I metadati
+          desiderati sono selezionati dall'utente a partire da un elenco.
+        </p>
+        <p>
+          Una volta cliccato il pulsante, in alto a destra dell'elenco appare la
+          parola cliccata con il totale delle sue occorrenze accanto a un elenco
+          a discesa da cui selezionare i metadati desiderati: spuntare tutti i
+          metadati in cui distribuire le occorrenze, e cliccare il pulsante a
+          destra dell'elenco per confermare la selezione e visualizzare i
+          grafici. Per ogni metadato selezionato viene visualizzato un grafico a
+          torta che mostra la distribuzione delle forme del lemma nei documenti
+          corrispondenti.
+        </p>
+        <p>
+          Passando il mouse sopra le fette del grafico si visualizzano
+          informazioni relative a quella fetta. Cliccando su ogni rettangolo
+          colorato nella legenda è possibile nascondere o visualizzare la
+          corrispondente fetta nel grafico, sì da mostrare anche quelle fette
+          che risulterebbero troppo piccole per essere apprezzabili.
+        </p>
+        <p>
+          Cliccando il numero delle occorrenze del grafico si visualizza la
+          tabella relativa con tutti i dati di dettaglio. Due pulsanti in fondo
+          al grafico consentono di copiare la tabella o di esportarla in un file
+          in formato CSV (facilmente leggibile da applicazioni come Excel).
         </p>
       </section>
     </article>
+
+    <!-- search -->
     <article>
+      <h3>Ricerca</h3>
       <section>
-        <h3>Ricerca semplice</h3>
+        <h4>Ricerca semplice</h4>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          interdum nec magna a cursus. Praesent aliquet sollicitudin orci non
-          sodales. Vestibulum fringilla, est vel auctor ornare, eros purus
-          vulputate lectus, sed viverra felis felis eu lectus.
+          La ricerca semplice usa un linguaggio di interrogazione intuitivo e
+          diretto, adatto per ricerche rapide e non complesse. Esempi di
+          interrogazioni da cui partire sono disponibili nell'elenco a discesa
+          immediatamente al di sotto del campo di ricerca.
         </p>
         <p>
-          Etiam ac lectus tellus. Sed efficitur ipsum enim, efficitur molestie
-          magna ornare sed. Proin a convallis lacus, quis vehicula lectus.
-          Phasellus semper urna non ante rhoncus, non egestas magna condimentum.
-          Aenean sagittis vitae ante ut feugiat. Morbi euismod cursus sapien,
-          vitae dapibus tellus fermentum eget. Proin viverra est quam, quis
-          finibus nunc porttitor et.
+          Questa ricerca si fonda su una semplice frase con la forma di un
+          comando, i cui termini sono visualizzati nel diagramma sottostante. È
+          possibile seguire uno qualsiasi dei percorsi illustrati nel diagramma,
+          da sinistra a destra, per formare il comando completo. I colori del
+          diagramma indicano le categorie funzionali dei termini nel comando:
+        </p>
+        <ul>
+          <li>bianco: inizio del comando ("trova").</li>
+          <li>
+            verde: categoria del termine cercato (parola, locuzione, lemma,
+            forestierismo, etc.).
+          </li>
+          <li>
+            azzurro: operatore di confronto (iniziante per, terminante per,
+            contenente, etc.)
+          </li>
+          <li>rosso: termine cercato nel comando.</li>
+          <li>
+            giallo: qualificatori morfologici del termine cercato (derivati
+            dall'analisi linguistica automatica).
+          </li>
+          <li>
+            malva: aspetti tipografici del termine cercato nel documento
+            originale.
+          </li>
+          <li>
+            viola: allineamento del termine cercato rispetto ad altri oggetti
+            (termini, frasi, etc.). A loro volta questi sono seguiti da un
+            secondo percorso visivamente rappresentato dal triangolo verde
+            finale nel diagramma.
+          </li>
+        </ul>
+        <p>
+          Per eseguire una ricerca semplice, inserire il comando nel campo di
+          ricerca; premendo CTRL+Invio la ricerca semplice viene tradotta nel
+          linguaggio di interrogazione avanzata e visualizzato nel campo di
+          testo inferiore, dove può essere eventualmente modificato. In tal modo
+          l'utente può iniziare con una ricerca semplice e poi passare
+          facilmente alla modalità avanzata per ulteriori raffinamenti,
+          imparando progressivamente il linguaggio di interrogazione avanzata.
+        </p>
+        <p>
+          Per interrogazioni semplici è anche possibile dettare la query
+          utilizzando il microfono del dispositivo. Quando l'opzione di
+          esecuzione automatica vicino al pulsante di ricerca è attiva, al primo
+          silenzio la dettatura verrà automaticamente inviata come query di
+          ricerca.
+        </p>
+        <figure>
+          <img
+            src="img/pqita.png"
+            alt="Linguaggio di interrogazione semplice"
+          />
+          <figcaption>linguaggio di interrogazione semplice</figcaption>
+        </figure>
+      </section>
+      <section>
+        <h4>Ricerca avanzata</h4>
+        <p>
+          La ricerca avanzata consente di costruire query complesse utilizzando
+          un apposito linguaggio di interrogazione; può essere costruita a
+          partire da ricerche semplici, o direttamente digitata nel campo
+          corrispondente, accessibile dalla linguetta "Avanzata". Al di sotto
+          del campo di ricerca sono recuperabili le ultime query digitate da una
+          casella di selezione a discesa.
+        </p>
+        <p>
+          I dettagli del linguaggio di interrogazione avanzata sono disponibili
+          nella
+          <a
+            href="https://vedph.github.io/pythia-doc/query.html"
+            rel="noopener"
+            target="_blank"
+            >documentazione del linguaggio di interrogazione di Pythia</a
+          >, il motore di ricerca utilizzato in Minerva.
+        </p>
+      </section>
+      <section>
+        <h4>Risultati</h4>
+        <p>
+          Quale che sia il tipo di ricerca effettuata, i risultati sono
+          visualizzati in un elenco di concordanze con 5 parole prima e dopo la
+          parola trovata. Cliccando il pulsante con la lente (o direttamente la
+          parola trovata) è possibile visualizzare il contesto del risultato.
+        </p>
+        <p>
+          Si noti che per maggior riservatezza il contesto è volutamente di
+          estensione limitata, benché tagliato secondo cesure tendenzialmente
+          non artificiose e abbastanza ampio da risultare intellegibile.
+        </p>
+        <p>
+          Il contesto è comunque visualizzato in una veste tipografica molto
+          simile alla originale, rispettandone grassetti, corsivi e altre
+          formattazioni tipografiche essenziali. Trattandosi di documenti
+          destinati alla lettura, la loro stessa veste tipografica almeno per i
+          suoi aspetti più rilevanti risulta infatti linguisticamente
+          significativa ed è per questo non solo preservata, ma anche
+          ricercabile in modo esplicito.
+        </p>
+        <p>
+          A questo si aggiunge una colorazione utile a evidenziare determinati
+          termini, come nomi propri, abbreviazioni, etc. Passando il cursore su
+          questi termini viene mostrata una descrizione aggiuntiva.
+        </p>
+        <p>
+          In fondo alla lista dei risultati sono presenti due pulsanti per
+          esportare i risultati in un file CSV o per cancellarli.
         </p>
       </section>
     </article>
-    <figure>
-      <img src="img/pqita.png" alt="Linguaggio di interrogazione semplice" />
-      <figcaption>linguaggio di interrogazione semplice</figcaption>
-    </figure>
+
+    <!-- general concepts -->
     <article>
       <section>
-        <h3>Ricerca avanzata</h3>
+        <h3>Concetti generali</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          interdum nec magna a cursus. Praesent aliquet sollicitudin orci non
-          sodales. Vestibulum fringilla, est vel auctor ornare, eros purus
-          vulputate lectus, sed viverra felis felis eu lectus. Etiam ac lectus
-          tellus.
+          Il motore di ricerca utilizzato in Minerva (Pythia) consente ricerche
+          molto specializzate rispetto alle tradizionali interrogazioni
+          focalizzate sul testo inteso come sequenza di caratteri.
         </p>
         <p>
-          Sed efficitur ipsum enim, efficitur molestie magna ornare sed. Proin a
-          convallis lacus, quis vehicula lectus. Phasellus semper urna non ante
-          rhoncus, non egestas magna condimentum. Aenean sagittis vitae ante ut
-          feugiat. Morbi euismod cursus sapien, vitae dapibus tellus fermentum
-          eget. Proin viverra est quam, quis finibus nunc porttitor et.
+          La scelta di questo motore deriva anzitutto dai requisiti del corpus,
+          dove convergono metadati eterogenei da fonti disparate: annotazioni
+          sul testo, marcature tipografiche desunte dal formato originale dei
+          testi, metadati relativi a ogni atto, dati morfologici e sintattici
+          derivati da analisi linguistica computazionale, etc.
+        </p>
+
+        <p>
+          Per approfondire questi concetti e creare interrogazioni avanzate
+          consultare la
+          <a
+            href="https://vedph.github.io/pythia-doc/"
+            rel="noopener"
+            target="_blank"
+            >documentazione di Pythia</a
+          >.
         </p>
       </section>
     </article>

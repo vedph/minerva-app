@@ -478,8 +478,9 @@ describe('ItaSearchComponent', () => {
       await setup({ query: 'q', page: page(2) });
 
       expect(headers()).toEqual([
-        '',
-        '',
+        // read only by assistive technologies
+        'number',
+        'actions',
         'author',
         'title',
         '5',

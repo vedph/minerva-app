@@ -36,19 +36,7 @@ tr:hover {
   background-color: var(--mat-sys-surface-container-high);
 }
 tbody td {
-  padding-left: 4px;
-  padding-right: 4px;
-  border-left: 1px solid var(--mat-sys-outline);
-  border-right: 1px solid var(--mat-sys-outline);
-}
-tbody td.command {
-  padding: 0px;
-  border: none;
-  width: 32px;
-}
-tbody > tr > td > a {
-  cursor: pointer;
-  text-decoration: underline;
+  padding: 0 4px;
 }
 td.nr {
   color: var(--mat-sys-on-surface-variant);
@@ -69,9 +57,6 @@ td.value {
   text-align: center;
   background-color: var(--mat-sys-surface-container-highest);
   color: var(--mat-sys-on-surface);
-}
-code {
-  color: var(--mat-sys-tertiary);
 }
 .form-row {
   display: flex;
@@ -98,10 +83,26 @@ div#total {
   padding: 4px;
   text-align: center;
 }
+.table-wrapper {
+  overflow-x: auto;
+}
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+/* the layout depends on the width available to the component rather than
+   on the window, so that it adapts to any host layout */
+:host {
+  display: block;
+  container: ita-search / inline-size;
+}
 div#container {
   display: grid;
-  grid-template-rows: auto auto auto;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     "query"
     "results"
@@ -117,23 +118,22 @@ div#results {
 div#reader {
   grid-area: reader;
 }
+div#container > div {
+  min-width: 0;
+}
 
-/* lt-md */
-@media only screen and (max-width: 959px) {
-  div#container {
-    grid-template-columns: 1fr;
-  }
+@container ita-search (width < 720px) {
   .noif-lt-md {
     display: none;
   }
 }
-/* gt-lg */
-@media only screen and (min-width: 1920px) {
+/* results and reader side by side only when both have room */
+@container ita-search (width >= 1600px) {
   div#container {
-    grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas:
       "query query"
       "results reader";
+    align-items: start;
   }
 }

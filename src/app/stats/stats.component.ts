@@ -110,22 +110,29 @@ export class StatsComponent {
       }));
 
     return {
+      aria: { enabled: true },
       tooltip: {
         trigger: 'item',
+        confine: true,
         formatter: '{a} <br/>{b} : {c} ({d}%)',
       },
+      // a row below the pie, so that it never overlaps it
       legend: {
-        orient: 'vertical',
-        left: 'left',
+        type: 'scroll',
+        orient: 'horizontal',
+        left: 'center',
+        bottom: 0,
         textStyle: { color: textColor },
+        pageTextStyle: { color: textColor },
         data: spanData.map((item) => item.name),
       },
       series: [
         {
           name: $localize`Spans`,
           type: 'pie',
-          radius: '55%',
-          center: ['50%', '60%'],
+          radius: '58%',
+          center: ['50%', '46%'],
+          label: { color: textColor, textBorderWidth: 0 },
           data: spanData,
           emphasis: {
             itemStyle: {

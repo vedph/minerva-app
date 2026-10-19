@@ -1,6 +1,11 @@
 # History
 
-- 2026-10-19: migrated to M3 styles adding dark/light themes.
+- 2026-10-19:
+  - migrated to M3 styles adding dark/light themes.
+  - responsive layout revision (requires the Pythia libraries layout revision of the same date: `pythia-word-index` 11.0.2, `pythia-document-reader` 11.0.4, `pythia-search` 11.0.4, `pythia-query-builder` 11.0.2):
+    - search: the export and clear buttons are right-aligned below the results; before, being outside the layout grid areas, they ended up below the document reader. The layout depends on the width available to the component (CSS container queries), and the results table scrolls horizontally inside its own wrapper rather than widening the page. Removed the negative margin of the advanced search button, which overlapped the query hint. The headers of the number and actions columns were empty and swapped with respect to their cells: they now have labels read only by assistive technologies.
+    - statistics: removed the fixed widths (600px pie, 1000px tags cloud), which overflowed windows narrower than about 1450px: the pie and the tags cloud share the width when there is room (from 1280px), else they are stacked, and the cloud fits its container. The pie legend is a row below it, so that it never overlaps it.
+    - added the CDK visually hidden styles (`cdk.a11y-visually-hidden`).
 
 ## 5.0.0
 
