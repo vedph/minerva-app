@@ -1,8 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  DestroyRef,
+  inject,
   signal,
 } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
@@ -87,12 +89,19 @@ export class StatsComponent {
     undefined,
   );
 
+  // ECharts draws on canvas and cannot read CSS variables, so the legend
+  // text color is resolved from the page text color (--mat-sys-on-surface)
+  // and refreshed when the light/dark theme class on <html> changes.
+  private readonly _document = inject(DOCUMENT);
+  private readonly _textColor = signal(this.getTextColor());
+
   // pie chart (derived from data)
   public readonly chartOptions = computed(() => {
     const data = this.data();
     if (!data) {
       return undefined;
     }
+    const textColor = this._textColor();
     const spanData = Object.entries(data)
       .filter(([key]) => key.startsWith('span.'))
       .map(([key, value]) => ({
@@ -108,6 +117,7 @@ export class StatsComponent {
       legend: {
         orient: 'vertical',
         left: 'left',
+        textStyle: { color: textColor },
         data: spanData.map((item) => item.name),
       },
       series: [
@@ -154,5 +164,18 @@ export class StatsComponent {
     statsService.getStatistics().subscribe((data) => {
       this.data.set(data);
     });
+
+    const observer = new MutationObserver(() =>
+      this._textColor.set(this.getTextColor()),
+    );
+    observer.observe(this._document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+    inject(DestroyRef).onDestroy(() => observer.disconnect());
+  }
+
+  private getTextColor(): string {
+    return getComputedStyle(this._document.documentElement).color;
   }
 }

@@ -7,15 +7,18 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
     ports:
-      - 5432:5432
+      - 127.0.0.1:5432:5432
     networks:
       - minerva-network
+    # uncomment to persist data into volume
+    #volumes:
+    #  - pgsql-vol:/var/lib/postgresql
 
   minerva-api:
     image: vedph2020/minerva-api:2.1.0
     container_name: minerva-api
     ports:
-      - 5180:8080
+      - 127.0.0.1:5180:8080
     depends_on:
       - minerva-pgsql
     environment:
@@ -48,7 +51,7 @@ services:
     image: vedph2020/minerva-api:2.1.0
     container_name: minerva-api-team
     ports:
-      - 5181:8080
+      - 127.0.0.1:5181:8080
     depends_on:
       - minerva-api
     environment:
@@ -75,6 +78,9 @@ services:
       - minerva-api
     networks:
       - minerva-network
+    #volumes:
+      # TODO: add env.js file with overrides in the same folder of this compose script
+      #- ./env.js:/usr/share/nginx/html/env.js
 
   # teammates app: same image, map enabled by replacing env.js with
   # env.team.js (hideMap=false, apiUrl pointing to minerva-api-team)
@@ -95,3 +101,7 @@ services:
 networks:
   minerva-network:
     driver: bridge
+
+# uncomment to persist PostgreSQL data into a volume
+#volumes:
+#  pgsql-vol:

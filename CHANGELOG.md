@@ -1,5 +1,7 @@
 # History
 
+- 2026-10-19: migrated to M3 styles adding dark/light themes.
+
 ## 5.0.0
 
 - 2026-10-16:

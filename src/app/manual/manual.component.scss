@@ -1,6 +1,6 @@
 h3 {
   padding-bottom: 4px;
-  border-bottom: 1px solid #a0a0a0;
+  border-bottom: 1px solid var(--mat-sys-outline);
   break-inside: avoid;
 }
 article {
@@ -8,13 +8,13 @@ article {
   column-gap: 24px;
 }
 figure {
-  border: 1px solid #a0a0a0;
+  border: 1px solid var(--mat-sys-outline);
   border-radius: 6px;
   padding: 4px;
   margin: 16px 0;
 }
 figcaption {
-  color: #808080;
+  color: var(--mat-sys-on-surface-variant);
   font-size: 0.9em;
   text-align: center;
 }

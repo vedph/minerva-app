@@ -10,11 +10,9 @@
   justify-items: center;
 }
 #container a {
-  color: #303030;
   text-decoration: none;
 }
 #container a:hover {
-  color: #303030;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -34,7 +32,6 @@
   font-size: 1.2em;
   grid-area: text;
   column-width: 600px;
-  color: #303030;
   margin: 0 32px;
 }
 #text > p:first-child {

@@ -10,6 +10,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 // myrmidon
 import { EnvService } from '@myrmidon/ngx-tools';
+import { ThemeToggleComponent } from '@myrmidon/ngx-mat-tools';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { EnvService } from '@myrmidon/ngx-tools';
     MatMenuModule,
     MatToolbarModule,
     MatTooltipModule,
+    ThemeToggleComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

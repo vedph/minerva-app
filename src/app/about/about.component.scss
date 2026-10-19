@@ -9,7 +9,7 @@ article {
   font-style: italic;
 }
 a {
-  color: #005cbb;
+  color: var(--mat-sys-primary);
   text-decoration: none;
 }
 a:hover {

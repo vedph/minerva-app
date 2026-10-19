@@ -31,13 +31,13 @@ table {
 }
 table th,
 table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--mat-sys-outline-variant);
 }
 table th {
   font-weight: normal;
   text-align: left;
-  background-color: silver;
-  color: white;
+  background-color: var(--mat-sys-surface-container-highest);
+  color: var(--mat-sys-on-surface-variant);
 }
 .text-cell {
   word-wrap: break-word;
