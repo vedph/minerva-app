@@ -17,7 +17,7 @@ docker buildx inspect --bootstrap
 5. build for both platforms and push directly to Docker Hub (replace the version with the current one):
 
 ```sh
-docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/minerva-app:5.0.1 -t vedph2020/minerva-app:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/minerva-app:5.0.0 -t vedph2020/minerva-app:latest --push .
 ```
 
 ## Localization
