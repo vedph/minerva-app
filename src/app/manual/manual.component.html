@@ -74,17 +74,17 @@
           desiderati sono selezionati dall'utente a partire da un elenco.
         </p>
         <p>
-          Una volta cliccato il pulsante, in alto a destra dell'elenco appare la
-          parola cliccata con il totale delle sue occorrenze accanto a un elenco
-          a discesa da cui selezionare i metadati desiderati: spuntare tutti i
-          metadati in cui distribuire le occorrenze, e cliccare il pulsante a
-          destra dell'elenco per confermare la selezione e visualizzare i
-          grafici. Per ogni metadato selezionato viene visualizzato un grafico a
-          torta che mostra la distribuzione delle forme del lemma nei documenti
-          corrispondenti.
+          Una volta cliccato il pulsante della torta, in alto a destra
+          dell'elenco appare la parola con il totale delle sue occorrenze,
+          accanto a un elenco a discesa da cui selezionare i metadati
+          desiderati: spuntare tutti i metadati in cui distribuire le
+          occorrenze, e cliccare il pulsante a destra dell'elenco per confermare
+          la selezione e visualizzare i grafici. Per ogni metadato selezionato
+          viene visualizzato un grafico a torta che mostra la distribuzione
+          delle forme del lemma nei documenti corrispondenti.
         </p>
         <p>
-          Passando il mouse sopra le fette del grafico si visualizzano
+          Passando il cursore sopra le fette del grafico si visualizzano
           informazioni relative a quella fetta. Cliccando su ogni rettangolo
           colorato nella legenda è possibile nascondere o visualizzare la
           corrispondente fetta nel grafico, sì da mostrare anche quelle fette
@@ -95,6 +95,27 @@
           tabella relativa con tutti i dati di dettaglio. Due pulsanti in fondo
           al grafico consentono di copiare la tabella o di esportarla in un file
           in formato CSV (facilmente leggibile da applicazioni come Excel).
+        </p>
+        <p>
+          AVVERTENZA: l'indice è il prodotto di analisi linguistica
+          computazionale, che ha una natura probabilistica. Pertanto in esso
+          sono possibili errori, dovuti a imprecisioni dell'analisi linguistica
+          sul piano morfologico o sintattico, o in minor misura a incongruenze
+          formali nei documenti di origine. Ad esempio, una parola come
+          "invitato" potrebbe di volta in volta essere interpretata come un
+          sostantivo, un aggettivo o un participio, in dipendenza dal contesto.
+          L'indice è prodotto aggregando tutte le parole italiane presenti nel
+          corpus riconosciute come appartenenti al medesimo lemma, escludendo i
+          nomi propri (che sono peraltro il prodotto di un processo di
+          pseudonimizzazione). Esso viene costruito dal basso verso l'alto:
+          partendo dalle occorrenze nei documenti, si aggregano tutte quelle con
+          gli stessi lingua, valore, parte del discorso e lemma, rappresentanti
+          dunque tutte le forme flesse attestate nel corpus ricondotte a un
+          singolo lemma. L'indice così costruito viene poi visualizzato
+          dall'alto verso il basso: l'elenco comprende anzitutto i lemmi, che a
+          loro volta comprendono le forme flesse corrispondenti. In qualsiasi
+          momento è possibile risalire da lemmi o forme flesse alle effettive
+          occorrenze nei documenti.
         </p>
       </section>
     </article>
@@ -192,32 +213,38 @@
         <h4>Risultati</h4>
         <p>
           Quale che sia il tipo di ricerca effettuata, i risultati sono
-          visualizzati in un elenco di concordanze con 5 parole prima e dopo la
-          parola trovata. Cliccando il pulsante con la lente (o direttamente la
-          parola trovata) è possibile visualizzare il contesto del risultato.
+          visualizzati in un elenco di <strong>concordanze</strong> con 5 parole
+          prima e dopo la parola trovata. Cliccando il pulsante con la lente (o
+          direttamente la parola trovata) è possibile visualizzare il contesto
+          del risultato.
         </p>
         <p>
-          Si noti che per maggior riservatezza il contesto è volutamente di
-          estensione limitata, benché tagliato secondo cesure tendenzialmente
-          non artificiose e abbastanza ampio da risultare intellegibile.
+          Il testo presente nel database è completamente
+          <strong>pseudonimizzato</strong>, secondo una procedura che ne
+          preserva comunque la tessitura sintattica e una piena leggibilità a
+          scopo sia linguistico che giuridico. Si noti che per maggior
+          riservatezza il contesto è volutamente di estensione limitata, benché
+          tagliato secondo cesure tendenzialmente non artificiose e abbastanza
+          ampio da risultare intellegibile.
         </p>
         <p>
-          Il contesto è comunque visualizzato in una veste tipografica molto
-          simile alla originale, rispettandone grassetti, corsivi e altre
-          formattazioni tipografiche essenziali. Trattandosi di documenti
-          destinati alla lettura, la loro stessa veste tipografica almeno per i
-          suoi aspetti più rilevanti risulta infatti linguisticamente
-          significativa ed è per questo non solo preservata, ma anche
-          ricercabile in modo esplicito.
+          Il contesto è visualizzato in una
+          <strong>veste tipografica</strong> molto simile alla originale,
+          rispettandone grassetti, corsivi e altre formattazioni tipografiche
+          essenziali. Trattandosi di documenti destinati alla lettura, la veste
+          tipografica almeno per i suoi aspetti più rilevanti risulta infatti
+          linguisticamente significativa, ed è per questo non solo preservata,
+          ma anche ricercabile in modo esplicito.
         </p>
         <p>
-          A questo si aggiunge una colorazione utile a evidenziare determinati
+          A ciò si aggiunge una colorazione utile a evidenziare determinati
           termini, come nomi propri, abbreviazioni, etc. Passando il cursore su
           questi termini viene mostrata una descrizione aggiuntiva.
         </p>
         <p>
           In fondo alla lista dei risultati sono presenti due pulsanti per
-          esportare i risultati in un file CSV o per cancellarli.
+          <strong>esportare i risultati</strong> in un file CSV o per
+          cancellarli.
         </p>
       </section>
     </article>
@@ -233,15 +260,37 @@
         </p>
         <p>
           La scelta di questo motore deriva anzitutto dai requisiti del corpus,
-          dove convergono metadati eterogenei da fonti disparate: annotazioni
-          sul testo, marcature tipografiche desunte dal formato originale dei
-          testi, metadati relativi a ogni atto, dati morfologici e sintattici
-          derivati da analisi linguistica computazionale, etc.
+          dove convergono <strong>metadati eterogenei</strong> da fonti
+          disparate: annotazioni sul testo, marcature tipografiche desunte dal
+          formato originale dei testi, metadati relativi a ogni atto, dati
+          morfologici e sintattici derivati da analisi linguistica
+          computazionale, etc. Inoltre, proprio la ricchezza dei metadati
+          disponibili richiede un tipo di ricerca che vada oltre la
+          corrispondenza testuale e l'estensione della semplice parola,
+          allargandosi a qualsiasi altra struttura testuale ritenuta
+          significativa.
         </p>
-
         <p>
-          Per approfondire questi concetti e creare interrogazioni avanzate
-          consultare la
+          Tutti questi metadati, quale che sia la loro origine ed estensione,
+          devono poter essere ricercabili in modo efficace e flessibile, secondo
+          un <strong>linguaggio di interrogazione</strong> che comprenda in
+          un'unica forma strutture linguistiche di diversa estensione, metadati
+          eterogenei e posizione relativa. Ad esempio, una parola potrebbe
+          essere cercata in base non solo al suo valore testuale, ma anche alla
+          sua classe grammaticale, famiglia lessicale, lingua, prefisso,
+          suffisso, somiglianza, aspetto tipografico, e posizione relativa ad
+          altre strutture linguistiche o grafiche: altre parole, ma anche frasi
+          o paragrafi. Una intera classe di operatori posizionali è disponibile
+          per ricerche focalizzate proprio sull'allineamento di queste
+          strutture: ad esempio, una parola a inizio o fine frase non è che una
+          parola allineata a sinistra o a destra della frase in cui si trova.
+        </p>
+        <p>
+          Il modo più semplice per impratichirsi di questo linguaggio è per via
+          empirica tramite la ricerca semplice, che viene sempre tradotta nel
+          linguaggio di interrogazione prima della sua esecuzione. Per
+          approfondire questi concetti e creare interrogazioni avanzate è poi
+          possibile consultare la
           <a
             href="https://vedph.github.io/pythia-doc/"
             rel="noopener"
@@ -249,6 +298,164 @@
             >documentazione di Pythia</a
           >.
         </p>
+        <h4>Oggetti e metadati</h4>
+        <p>
+          A differenza di approcci più tradizionali, in cui il testo è anzitutto
+          una sequenza di caratteri, Pythia opera a un livello di astrazione
+          superiore, basato su "oggetti" e relativi metadati. Il testo viene
+          smontato in diversi tipi di oggetti dotati di un qualsiasi numero di
+          metadati. Un oggetto può essere una singola parola, ma anche una
+          struttura testuale più estesa, come una frase, un paragrafo, o un
+          intero documento.
+        </p>
+        <p>
+          Tutti gli oggetti condividono la stessa struttura, ricercabile in modo
+          uniforme: non si cerca direttamente una corrispondenza letterale di
+          caratteri, ma si individuano degli oggetti combinando i loro metadati,
+          quale che sia il loro livello di analisi (fonologico, morfologico,
+          grafico, ecc.) e la loro origine. Una banale ricerca come quella di
+          una parola diviene quindi la ricerca di un oggetto parola con un
+          valore testuale uguale a quello desiderato.
+        </p>
+        <p>
+          Inoltre, gli oggetti interni al documento includono fra i loro
+          metadati anche la <strong>posizione relativa</strong> nel testo.
+          Questo permette di effettuare ricerche strutturate più precise
+          rispetto al semplice calcolo meccanico della distanza tra parole.
+          Oltre ai classici operatori logici, di confronto e di testo (uguale,
+          contiene, espressioni regolari, fuzzy matching, ecc.), Pythia dispone
+          infatti di una serie di operatori posizionali: prossimità e sequenza
+          (near, not near, before, not before, after, not after), inclusione e
+          sovrapposizione (inside, not inside, overlaps), allineamento
+          geometrico (left-aligned e right-aligned, utili per trovare, ad
+          esempio, una parola posta esattamente all'inizio o alla fine di una
+          frase).
+        </p>
+        <h4>Coppie</h4>
+        <p>
+          Nello schema di ricerca di Pythia, le interrogazioni si basano su
+          <strong>coppie</strong> (metadato + valore) racchiuse tra parentesi
+          quadre. È possibile interrogare un singolo metadato o combinare più
+          coppie tramite operatori logici o posizionali, utilizzando le
+          parentesi tonde per definire le priorità. I valori sono sempre
+          racchiusi tra doppi apici. Ad esempio, in
+          <code>[value]="esempio"</code> si cerca qualsiasi oggetto dotato di un
+          metadato chiamato "value" (corrispondente al suo valore testuale)
+          uguale a "esempio", il che equivale a cercare la parola "esempio". È
+          poi possibile cambiare operatore (iniziante per, terminante per,
+          contenente, etc.), ma anche il soggetto della ricerca, selezionando un
+          qualsiasi altro metadato, di livello fonologico, morfologico,
+          tipografico, ecc. Più coppie possono essere combinate tramite
+          operatori logici o posizionali all'interno della stessa
+          interrogazione.
+        </p>
+        <p>Pythia dispone di 14 operatori per il confronto delle coppie:</p>
+        <p>Testo letterale:</p>
+        <ul>
+          <li><code>=</code> (uguale)</li>
+          <li><code>&lt;&gt;</code> (diverso)</li>
+          <li><code>*=</code> (contiene)</li>
+          <li><code>^=</code> (inizia con)</li>
+          <li><code>$=</code> (finisce con)</li>
+        </ul>
+        <p>Avanzati e pattern matching:</p>
+        <ul>
+          <li>
+            <code>?=</code> (carattere jolly: <code>?</code> per un singolo
+            carattere, <code>*</code> per caratteri multipli)
+          </li>
+          <li><code>~=</code> (espressione regolare / regex)</li>
+          <li>
+            <code>%=</code> (fuzzy matching / ricerca approssimata). La soglia
+            predefinita è 0.9, ma può essere personalizzata aggiungendola al
+            valore (es. [value%="chommoda:0.75"])
+          </li>
+          <li><code>==</code> (uguale numerico)</li>
+          <li><code>!=</code> (diverso numerico)</li>
+          <li><code><</code> (minore di)</li>
+          <li><code>></code> (maggiore di)</li>
+          <li><code><=</code> (minore o uguale a)</li>
+          <li><code>>=</code> (maggiore o uguale a)</li>
+        </ul>
+        <p>Logici:</p>
+        <ul>
+          <li>
+            per documenti: <code>AND</code>, <code>OR</code>,
+            <code>AND NOT</code>; una speciale sintassi consente di com
+          </li>
+          <li>
+            per testo: <code>OR</code> e operatori posizionali. L'operatore AND
+            isolato non è previsto nella sezione testo, poiché in questo motore
+            di ricerca ha più senso trovare parole legate da una relazione
+            posizionale o di contesto linguistico, e non semplicemente due
+            parole a una distanza qualsiasi nello stesso documento.
+          </li>
+        </ul>
+        <p>Posizionali:</p>
+        <p>
+          Gli operatori di posizione sono una specializzazione dell'operatore
+          AND che integra condizioni posizionali dei token all'interno del
+          documento. Qualsiasi entità testuale (parole, frasi, paragrafi, etc.)
+          è trattata come un oggetto con una posizione di inizio e di fine,
+          proprio come un segmento su una linea. Grazie a questa astrazione
+          geometrica, è possibile cercare qualsiasi tipo di allineamento o
+          sovrapposizione fra questi segmenti (allineato a sinistra o destra,
+          incluso, sovrapposto, etc.) rappresentanti oggetti di natura diversa
+          (es. parola, frase, paragrafo, etc.). La sintassi generale di questi
+          operatori è
+          <code>OPERATORE(parametro=valore, parametro=valore, ...)</code>.
+        </p>
+        <p>
+          In questa sintassi, i <strong>parametri</strong> fra parentesi possono
+          essere specificati in qualsiasi ordine, racchiusi tra parentesi tonde
+          e associati al proprio valore tramite il segno <code>=</code>. I
+          parametri disponibili sono:
+        </p>
+        <ul>
+          <li><code>n</code>: distanza minima (da 0 a N; predefinito: 0).</li>
+          <li>
+            <code>m</code>: distanza massima (da 0 a N; predefinito: intero
+            massimo a 32 bit).
+          </li>
+          <li>
+            <code>s</code>: nome del contesto strutturale (il secondo elemento
+            deve trovarsi all'interno della stessa struttura del primo).
+          </li>
+          <li>
+            <code>ns</code> / <code>ms</code>: distanza minima e massima
+            dall'inizio della struttura.
+          </li>
+          <li>
+            <code>ne</code> / <code>me</code>: distanza minima e massima dalla
+            fine della struttura.
+          </li>
+        </ul>
+        <p>
+          Tutti gli operatori di posizione possono essere negati anteponendo NOT
+          (es. <code>NOT BEFORE(...)</code>); in caso di negazione, l'uso
+          dell'argomento <code>s</code> non è consentito.
+        </p>
+        <p>
+          L'uso degli operatori di posizione permette di eseguire ricerche
+          contestuali avanzate, superando i limiti del semplice calcolo della
+          distanza numerica tra parole. I vantaggi principali sono:
+        </p>
+        <ul>
+          <li>
+            <strong>contesto strutturale</strong> (es. la frase): è possibile
+            cercare due parole vicine (prima, dopo o entro una certa distanza)
+            vincolando il risultato alla stessa struttura contenitore. Questo
+            evita di considerare elementi vicini ma separati da un confine
+            sintattico (ad esempio, una parola alla fine di una frase e l'altra
+            all'inizio della successiva).
+          </li>
+          <li>
+            <strong>allineamento geometrico</strong> (es. inizio/fine verso): si
+            possono individuare elementi in posizioni specifiche di una
+            struttura, come una parola all'inizio di un verso (left-aligned con
+            distanza massima = 0) o alla sua fine (right-aligned).
+          </li>
+        </ul>
       </section>
     </article>
   </mat-card-content>

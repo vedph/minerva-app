@@ -1,7 +1,7 @@
 (function (window) {
   window.__env = window.__env || {};
   window.__env.apiUrl = "http://localhost:5180/api/";
-  window.__env.version = "5.0.0";
+  window.__env.version = "5.0.1";
   window.__env.hasLemmata = "true";
   // hide the document map, so that users can read only the context of search
   // results and not whole documents (map hidden unless this is "false")

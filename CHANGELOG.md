@@ -1,5 +1,7 @@
 # History
 
+## 5.0.1
+
 - 2026-10-19:
   - migrated to M3 styles adding dark/light themes.
   - responsive layout revision (requires the Pythia libraries layout revision of the same date: `pythia-word-index` 11.0.2, `pythia-document-reader` 11.0.4, `pythia-search` 11.0.4, `pythia-query-builder` 11.0.2):
