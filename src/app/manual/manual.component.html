@@ -4,6 +4,10 @@
     <mat-card-title>Guida utente</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <p>
+      Dalla barra superiore è possibile accedere a tutte le sezioni del sito:
+      "indice", "ricerca", "aiuto" e "informazioni".
+    </p>
     <!-- index -->
     <article>
       <section>
@@ -19,7 +23,7 @@
         </p>
         <ul>
           <li>
-            (freccia) espandere il lemma per visualizzarne tutte le forme
+            (freccia blu) espandere il lemma per visualizzarne tutte le forme
             flesse. Anche per ogni forma flessa sono visualizzati gli stessi
             dati e pulsanti del lemma.
           </li>
@@ -39,12 +43,15 @@
         </p>
         <ul>
           <li>POS: parte del discorso.</li>
+          <li>parola: la parola (o sua parte) che si intende cercare;</li>
           <li>
             valore: il valore della parola; può contenere i caratteri jolly
             <code>*</code> per indicare uno o più caratteri e <code>?</code>
             per indicare un singolo carattere.
           </li>
-          <li>lunghezza minima/massima: lunghezza in caratteri.</li>
+          <li>
+            lunghezza minima/massima: lunghezza della parola in caratteri.
+          </li>
           <li>
             frequenza minima/massima: numero di occorrenze della parola nel
             corpus.
@@ -58,12 +65,15 @@
           dei seguenti:
         </p>
         <ul>
-          <li>valore, ascendente</li>
-          <li>valore inverso (dall'ultimo al primo carattere), ascendente</li>
-          <li>frequenza, ascendente</li>
-          <li>valore, discendente</li>
-          <li>valore inverso (dall'ultimo al primo carattere), discendente</li>
-          <li>frequenza, discendente</li>
+          <li>alfabetico A-Z;</li>
+          <li>
+            valore inverso A-Z: consente di vedere le parole ordinate per la
+            loro forma riscritta da destra a sinistra: "velocemente" →
+            "etnemocolev";
+          </li>
+          <li>valore inverso Z-A;</li>
+          <li>frequenza crescente (dal meno frequente al più frequente);</li>
+          <li>frequenza decrescente (dal più frequente al meno frequente);</li>
         </ul>
 
         <h4>Distribuzione delle forme</h4>
@@ -77,8 +87,8 @@
           Una volta cliccato il pulsante della torta, in alto a destra
           dell'elenco appare la parola con il totale delle sue occorrenze,
           accanto a un elenco a discesa da cui selezionare i metadati
-          desiderati: spuntare tutti i metadati in cui distribuire le
-          occorrenze, e cliccare il pulsante a destra dell'elenco per confermare
+          desiderati: occorre spuntare tutti i metadati in cui distribuire le
+          occorrenze e cliccare il pulsante a destra dell'elenco per confermare
           la selezione e visualizzare i grafici. Per ogni metadato selezionato
           viene visualizzato un grafico a torta che mostra la distribuzione
           delle forme del lemma nei documenti corrispondenti.
@@ -127,51 +137,66 @@
         <h4>Ricerca semplice</h4>
         <p>
           La ricerca semplice usa un linguaggio di interrogazione intuitivo e
-          diretto, adatto per ricerche rapide e non complesse. Esempi di
-          interrogazioni da cui partire sono disponibili nell'elenco a discesa
-          immediatamente al di sotto del campo di ricerca.
+          diretto, adatto per ricerche rapide e non complesse.
         </p>
         <p>
-          Questa ricerca si fonda su una semplice frase con la forma di un
-          comando, i cui termini sono visualizzati nel diagramma sottostante. È
-          possibile seguire uno qualsiasi dei percorsi illustrati nel diagramma,
-          da sinistra a destra, per formare il comando completo. I colori del
-          diagramma indicano le categorie funzionali dei termini nel comando:
+          Cliccando su "predefinita", si accede a un elenco di domande di
+          ricerca preimpostate. La domanda eventualmente selezionata apparirà
+          anche nel campo "testo" e potrà essere modificata. Ad esempio, a
+          partire da «trova la parola "apodittica"», si potrà ricercare
+          qualsiasi altra forma sostituendola ad "apodittica" (nell’esempio
+          sotto, "abrogazione"); o anche, in modo analogo, a partire da «trova
+          il lemma "appalesare"», si potranno ricercare tutte le forme flesse di
+          qualsiasi altro verbo o anche di sostantivi o aggettivi.
+        </p>
+        <p>
+          All'interno del campo "testo" è possibile scrivere autonomamente una
+          domanda. In questo caso, la ricerca si fonda su una semplice frase con
+          la forma di un comando, i cui termini sono visualizzati nel diagramma
+          sottostante. È possibile seguire uno qualsiasi dei percorsi illustrati
+          nel diagramma, da sinistra a destra, rispettando l’ordine indicato,
+          per formare il comando completo. I colori del diagramma indicano le
+          categorie funzionali dei termini nel comando:
         </p>
         <ul>
-          <li>bianco: inizio del comando ("trova").</li>
+          <li>bianco: inizio del comando (per esempio "trova" o "cerca").</li>
           <li>
-            verde: categoria del termine cercato (parola, locuzione, lemma,
-            forestierismo, etc.).
+            verde: categoria del termine cercato ((per esempio "parola",
+            "locuzione", "lemma", "forestierismo", etc.)).
           </li>
           <li>
-            azzurro: operatore di confronto (iniziante per, terminante per,
-            contenente, etc.)
-          </li>
-          <li>rosso: termine cercato nel comando.</li>
-          <li>
-            giallo: qualificatori morfologici del termine cercato (derivati
-            dall'analisi linguistica automatica).
+            azzurro: operatore di confronto (per esempio "corrispondente a",
+            "iniziante per", "terminante per", "contenente", etc.)
           </li>
           <li>
-            malva: aspetti tipografici del termine cercato nel documento
-            originale.
+            rosso: forma cercata nel comando (per esempio una sillaba, una
+            sequenza di caratteri, o una parola intera).
           </li>
           <li>
-            viola: allineamento del termine cercato rispetto ad altri oggetti
-            (termini, frasi, etc.). A loro volta questi sono seguiti da un
-            secondo percorso visivamente rappresentato dal triangolo verde
-            finale nel diagramma.
+            giallo (opzionale): qualificatori morfologici del termine cercato
+            (per esempio "come aggettivo", "come avverbio", etc.).
+          </li>
+          <li>
+            malva (opzionale): aspetti tipografici del termine cercato nel
+            documento originale (per esempio "in grassetto", "in corsivo",
+            etc.).
+          </li>
+          <li>
+            viola (opzionale): allineamento del termine cercato rispetto ad
+            altri oggetti (per esempio "a inizio frase", "a fine frase"). A loro
+            volta questi sono seguiti da un secondo percorso visivamente
+            rappresentato dal triangolo verde finale nel diagramma.
           </li>
         </ul>
         <p>
-          Per eseguire una ricerca semplice, inserire il comando nel campo di
-          ricerca; premendo CTRL+Invio la ricerca semplice viene tradotta nel
-          linguaggio di interrogazione avanzata e visualizzato nel campo di
-          testo inferiore, dove può essere eventualmente modificato. In tal modo
-          l'utente può iniziare con una ricerca semplice e poi passare
-          facilmente alla modalità avanzata per ulteriori raffinamenti,
-          imparando progressivamente il linguaggio di interrogazione avanzata.
+          Premendo CTRL+Invio o il pulsante con la freccia la ricerca semplice
+          viene tradotta nel linguaggio di interrogazione avanzata e
+          visualizzato nel campo di testo inferiore, dove può essere
+          eventualmente modificato. In tal modo l'utente può iniziare con una
+          ricerca semplice e poi passare facilmente alla modalità avanzata per
+          ulteriori raffinamenti, imparando progressivamente il linguaggio di
+          interrogazione avanzata. Per avviare definitivamente la ricerca
+          occorre cliccare sul tasto "trova".
         </p>
         <p>
           Per interrogazioni semplici è anche possibile dettare la query
@@ -216,7 +241,7 @@
           visualizzati in un elenco di <strong>concordanze</strong> con 5 parole
           prima e dopo la parola trovata. Cliccando il pulsante con la lente (o
           direttamente la parola trovata) è possibile visualizzare il contesto
-          del risultato.
+          più ampio del risultato.
         </p>
         <p>
           Il testo presente nel database è completamente
@@ -252,7 +277,7 @@
     <!-- general concepts -->
     <article>
       <section>
-        <h3>Concetti generali</h3>
+        <h3>Approfondimenti</h3>
         <p>
           Il motore di ricerca utilizzato in Minerva (Pythia) consente ricerche
           molto specializzate rispetto alle tradizionali interrogazioni
