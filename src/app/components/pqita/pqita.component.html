@@ -53,6 +53,45 @@
       >
         <mat-icon>arrow_circle_right</mat-icon>
       </button>
+      <!-- presets -->
+      @if (presetEntries().length) {
+        <button
+          type="button"
+          mat-icon-button
+          class="mat-primary"
+          matTooltip="Pick a preset"
+          i18n-matTooltip
+          aria-label="Pick a preset"
+          i18n-aria-label
+          [matMenuTriggerFor]="presetMenu"
+          [disabled]="listening$ | async"
+        >
+          <mat-icon>list</mat-icon>
+        </button>
+        <mat-menu #presetMenu="matMenu" class="preset-menu">
+          @for (entry of ungroupedPresetEntries(); track $index) {
+            <button type="button" mat-menu-item (click)="pickFromPreset(entry)">
+              {{ entry.value }}
+            </button>
+          }
+          @for (group of presetGroups(); track group.name) {
+            <button type="button" mat-menu-item [matMenuTriggerFor]="groupMenu">
+              {{ group.name }}
+            </button>
+            <mat-menu #groupMenu="matMenu" class="preset-menu">
+              @for (entry of group.entries; track $index) {
+                <button
+                  type="button"
+                  mat-menu-item
+                  (click)="pickFromPreset(entry)"
+                >
+                  {{ entry.value }}
+                </button>
+              }
+            </mat-menu>
+          }
+        </mat-menu>
+      }
       @if (!noSpeech()) {
         @if (listening$ | async) {
           <!-- stop listening -->
@@ -95,49 +134,6 @@
 
   <!-- query text -->
   <div id="query">
-    <div class="form-row">
-      <!-- preset groups -->
-      @if (presetGroups().length > 1) {
-        <mat-form-field>
-          <mat-select
-            [formField]="form.presetGroup"
-            (selectionChange)="onPresetGroupChange()"
-            placeholder="preset group"
-            i18n-placeholder
-            aria-label="preset group"
-            i18n-aria-label
-          >
-            <mat-option [value]="null">
-              <ng-container i18n>(all)</ng-container>
-            </mat-option>
-            @for (group of presetGroups(); track $index) {
-              <mat-option [value]="group">
-                {{ group }}
-              </mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      }
-      <!-- preset entries -->
-      @if (filteredPresetEntries().length) {
-        <mat-form-field class="filler">
-          <mat-select
-            [formField]="form.presetEntry"
-            placeholder="preset"
-            i18n-placeholder
-            aria-label="preset"
-            i18n-aria-label
-            (selectionChange)="pickFromPreset()"
-          >
-            @for (entry of filteredPresetEntries(); track $index) {
-              <mat-option [value]="entry">
-                {{ entry.value }}
-              </mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      }
-    </div>
     <mat-form-field class="full-width">
       <textarea
         matInput

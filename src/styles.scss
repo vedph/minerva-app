@@ -233,3 +233,11 @@ article.rendition q:before,
 q:after {
   content: "";
 }
+
+/* pqita presets menu: allow long preset entries to wrap instead of truncating */
+.mat-mdc-menu-panel.preset-menu {
+  max-width: min(600px, 90vw);
+}
+.preset-menu .mat-mdc-menu-item-text {
+  white-space: normal;
+}

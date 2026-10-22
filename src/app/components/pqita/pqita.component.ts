@@ -29,8 +29,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -44,6 +44,11 @@ export interface PqitaPresetEntry {
   value: string;
 }
 
+interface PqitaPresetGroup {
+  name: string;
+  entries: PqitaPresetEntry[];
+}
+
 const MAX_HISTORY = 10;
 
 interface HistoryEntry {
@@ -52,8 +57,6 @@ interface HistoryEntry {
 }
 
 interface PqitaControls {
-  presetGroup: string | null;
-  presetEntry: PqitaPresetEntry | null;
   text: string;
   autoRun: boolean;
   query: string;
@@ -72,8 +75,8 @@ interface PqitaControls {
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatMenuModule,
     MatProgressBarModule,
-    MatSelectModule,
     MatSlideToggleModule,
     MatTooltipModule,
   ],
@@ -104,17 +107,30 @@ export class PqitaComponent implements OnDestroy {
     (inject(EnvService).get('pqitaPresetEntries') as
       PqitaPresetEntry[] | undefined) || [],
   );
-  public readonly presetGroups = computed<string[]>(() =>
-    Array.from(new Set(this.presetEntries().map((e) => e.group || '-'))),
+  /**
+   * Preset entries without a group, listed at the top level of the presets menu.
+   */
+  public readonly ungroupedPresetEntries = computed<PqitaPresetEntry[]>(() =>
+    this.presetEntries().filter((e) => !e.group),
   );
+  /**
+   * Preset entries grouped by their group, each group being a submenu.
+   */
+  public readonly presetGroups = computed<PqitaPresetGroup[]>(() => {
+    const groups = new Map<string, PqitaPresetEntry[]>();
+    for (const entry of this.presetEntries()) {
+      if (entry.group) {
+        groups.set(entry.group, [...(groups.get(entry.group) ?? []), entry]);
+      }
+    }
+    return Array.from(groups, ([name, entries]) => ({ name, entries }));
+  });
 
   public readonly listening$: Observable<boolean> =
     this._speechRecService.listening$;
 
   public readonly form = form(
     signal<PqitaControls>({
-      presetGroup: this.presetGroups()[0] ?? null,
-      presetEntry: null,
       text: '',
       autoRun: false,
       query: '',
@@ -125,14 +141,6 @@ export class PqitaComponent implements OnDestroy {
       readonly(path.query, { when: () => !!this.readonlyQuery() });
     },
   );
-
-  public readonly filteredPresetEntries = computed<PqitaPresetEntry[]>(() => {
-    const group = this.form.presetGroup().value();
-    return this.presetEntries().filter(
-      // entries without a group belong to the '-' group
-      (e) => !group || (e.group || '-') === group,
-    );
-  });
 
   public readonly history = signal<HistoryEntry[]>([]);
 
@@ -214,17 +222,9 @@ export class PqitaComponent implements OnDestroy {
     this.form.query().reset('');
   }
 
-  public onPresetGroupChange(): void {
-    // the picked entry might not belong to the new group
-    this.form.presetEntry().value.set(null);
-  }
-
-  public pickFromPreset() {
-    const entry = this.form.presetEntry().value();
-    if (entry) {
-      this.setText(entry.value);
-      this.convert();
-    }
+  public pickFromPreset(entry: PqitaPresetEntry): void {
+    this.setText(entry.value);
+    this.convert();
   }
 
   public convertByEnter(event: KeyboardEvent): void {
