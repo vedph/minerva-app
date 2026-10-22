@@ -204,6 +204,7 @@ describe('PqitaComponent', () => {
             provide: PqitaService,
             useValue: {
               supplyQuotes: (text: string) => text,
+              analyze: () => ({ status: 'empty', next: [] }),
               convertQuery: () => {
                 throw failure;
               },
@@ -218,6 +219,98 @@ describe('PqitaComponent', () => {
       expect(queryBox()).toHaveValue('');
       expect(historyRows()).toEqual([]);
       expect(console.log).toHaveBeenCalledWith(failure);
+    });
+  });
+
+  describe('hints', () => {
+    it('should show the issue of an invalid text when converting', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova la parola "cane" vicino alla');
+      await user.click(button('convert'));
+
+      expect(screen.getByRole('alert')).toHaveTextContent(
+        'The sentence is incomplete.',
+      );
+      expect(queryBox()).toHaveValue('');
+      expect(historyRows()).toEqual([]);
+    });
+
+    it('should keep the current query when the text is invalid', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova la parola "cane"');
+      await user.click(button('convert'));
+      await user.type(textBox(), ' xyz');
+      await user.click(button('convert'));
+
+      expect(queryBox()).toHaveValue('[value="cane"]');
+      expect(screen.getByRole('alert')).toHaveTextContent(
+        'Unknown word: "xyz".',
+      );
+    });
+
+    it('should forget the conversion issue when the text changes', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova la parola');
+      await user.click(button('convert'));
+      expect(screen.getByRole('alert')).toBeInTheDocument();
+
+      await user.type(textBox(), ' "cane"');
+
+      expect(screen.queryByRole('alert')).not.toBeInTheDocument();
+    });
+
+    it('should show the live issue of an invalid text with its offending part', async () => {
+      const { user, container } = await setup();
+
+      await user.type(textBox(), 'trova la parolaccia "cane"');
+
+      expect(
+        screen.getByText('Unknown word: "parolaccia".'),
+      ).toBeInTheDocument();
+      expect(container.querySelector('mark')).toHaveTextContent('parolaccia');
+    });
+
+    it('should suggest how to continue the text', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova la parola "cane"');
+
+      expect(
+        screen.getByText('The sentence is complete. You can add:'),
+      ).toBeInTheDocument();
+      expect(button('vicino a')).toBeInTheDocument();
+    });
+
+    it('should add a suggestion to the text', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova');
+      await user.click(button('parola'));
+
+      expect(textBox()).toHaveValue('trova parola ');
+      expect(textBox()).toHaveFocus();
+    });
+
+    it('should complete a partially typed word with a suggestion', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova la parola "cane" vic');
+      await user.click(button('vicino a'));
+
+      expect(textBox()).toHaveValue('trova la parola "cane" vicino a ');
+    });
+
+    it('should describe the hints to assistive technologies', async () => {
+      const { user } = await setup();
+
+      await user.type(textBox(), 'trova la parola "cane" vicino alla');
+
+      expect(textBox()).toHaveAccessibleDescription(
+        expect.stringContaining('Continue with:'),
+      );
     });
   });
 

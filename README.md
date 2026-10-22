@@ -176,9 +176,9 @@ The query will thus find any English word which is broadly similar to "provider"
 
 In this case, the DSL has built a query which finds any non-Italian word, as of course in this case we deal with an Italian corpus, where any non-Italian word is considered as foreign. On passage, legal acts are full of foreign words especially drawn from Latin, and this is thus a very useful feature in linguistic or juridic searches.
 
-Speaking about Latin, this DSL also allows for searching not just a single word, but also a full phrase, as in most cases juridic texts use them in a highly formular way. This is made possible by the fact that the underlying Pythia engine deals with any span of text, representing any type of textual structure, whether it's a word, or a phrase, sentence, verse, etc. In this case, a query expression like 'trova la locuzione "pro tempore"' would thus be translated into `[$fp-lat] AND [_value="pro tempore"]`, where `$` is the prefix used for non-token spans ("structures") and `fp-lat` the name chosen during indexing for Latin foreign phrases (in this case, the `_` prefix before `value` tells the engine to refer this attribute to the mentioned structure, rather than to a token).
+Speaking about Latin, this DSL also allows for searching not just a single word, but also a full phrase, as in most cases juridic texts use them in a highly formular way. This is made possible by the fact that the underlying Pythia engine deals with any span of text, representing any type of textual structure, whether it's a word, or a phrase, sentence, verse, etc. In this case, a query expression like 'trova la locuzione "pro tempore"' would thus be translated into `[$fp-lat] AND [$value="pro tempore"]`, where `$` is the prefix used for non-token spans ("structures"), `fp-lat` the name chosen during indexing for Latin foreign phrases, and `$value` the value of a structure, rather than of a token.
 
-Any valid path along the expression tree can be exploited; so one might modify this expression like 'trova la locuzione iniziante per "pro"' to get `[$fp-lat] AND [_value^="pro"]`, or 'terminante per "tempore" to get `[$fp-lat] AND [_value$="pro"]`; in both cases, the only difference is the comparison operator.
+Any valid path along the expression tree can be exploited; so one might modify this expression like 'trova la locuzione iniziante per "pro"' to get `[$fp-lat] AND [$value^="pro"]`, or 'terminante per "tempore"' to get `[$fp-lat] AND [$value$="tempore"]`; in both cases, the only difference is the comparison operator.
 
 Again, we could add more clauses about the relative position of the text being searched, like in 'trova la parola "invero" a inizio di frase"; this would be translated into:
 
@@ -229,15 +229,17 @@ antlr4 -Dlanguage=TypeScript pqita.g4
 
 The [ANTLR runtime for TS](https://github.com/antlr/antlr4/blob/master/doc/typescript-target.md) is installed via `npm i antlr4`.
 
-If you update the grammar, you should regenerate the TS files and then:
+If you update the grammar, regenerate the TS files (from `src`: `antlr4 -v 4.13.2 -Dlanguage=TypeScript pqita.g4`) and then, in `src/app/services`:
 
-- for lexer: overwrite all the code and rename `pqitaLexer` in `PqitaLexer`.
-- for parser: overwrite all the code and rename `pqitaParser` in `PqitaParser`.
-- for listener: keep the existing code, patching it where required.
+- for lexer: overwrite `pqita.lexer.ts` and rename `pqitaLexer` in `PqitaLexer`.
+- for parser: overwrite `pqita.parser.ts`, rename `pqitaParser` in `PqitaParser`, and import the listener from `./pqita.listener.js`.
+- for listener: overwrite `pqita.listener.ts`, rename `pqitaListener` in `PqitaListener`, and import the parser from `./pqita.parser.js`. The listener is pure generated code: the translation logic is in `pqita.translator.ts`, which walks the parse tree.
+
+Then update the translator, the token descriptions used for hints (`TOKEN_INFOS` in `pqita.service.ts`), the syntax diagrams (see below), and the user manual. The manual spec checks that each example in the manual tables is translated as shown there.
 
 ### Grammar
 
-The ANTLR grammar used to convert fixed but composable Italian sentences based on components.
+The ANTLR grammar converts fixed but composable Italian sentences into Pythia queries. It is a subset of the Pythia query language: every sentence maps to a valid Pythia query.
 
 💡 To test the grammar with the online [ANTLR Lab](http://lab.antlr.org):
 
@@ -246,88 +248,75 @@ The ANTLR grammar used to convert fixed but composable Italian sentences based o
 3. to the right, under Start rule, type `expression`.
 4. enter some test query in `input` and click `Run`.
 
-The grammar components in their order are  (the asterisk marks required components):
+The grammar components in their order are (the asterisk marks required components):
 
-(1) VERB: "trova".
+(1) VERB: "trova" | "cerca".
 
-(*2):
-   (2.1.) ITEM: "[la] parola" | "[la] locuzione" | "[il] lemma" | "[il] forestierismo" | "[l'] anglicismo" | "[il] latinismo".
-     (2.1.1.) OPERATOR: "uguale a|iniziante per|terminante per|contenente|corrispondente a|(molto|poco) simile a" or just nothing.
-     (2.1.2.) VALUE: any text between double quotes.
-   (2.2.) SET: "tutte|tutti (le|i|gli)
-parole|forestierismi|anglicismi|latinismi".
+(*2) SUBJECT, either:
 
-(3) POS: "come verbo|aggettivo|sostantivo" etc.
+- (2.1) ITEM, with an optional article ("il", "lo", "la", "l'", "un", "uno", "una", "un'"):
+  - "parola" + (VALUE + FEATURES? | FEATURES);
+  - "lemma" + VALUE + FEATURES?;
+  - "forestierismo" | "anglicismo" | "latinismo" + VALUE? + FEATURES?;
+  - "locuzione" + VALUE?.
+- (2.2) SET, with an optional quantifier ("tutti", "tutte") and plural article ("i", "gli", "le"):
+  - "parole" + FEATURES;
+  - "forestierismi" | "anglicismi" | "latinismi" + FEATURES?;
+  - "locuzioni".
 
-(4) STYLE: "in grassetto|corsivo|sottolineato".
+where:
 
-(5.1.) LOC: ["non"] + "a inizio di frase|fine di frase".
-(5.2):
-   (5.2.1.) REL: ["non"] + "vicino a|(attaccato|attaccata|attaccati) a|prima (di|della|del)|dopo (di|della|del)"
-   (5.2.2.) another sequence from 2 to 5, recursively.
+- VALUE: an optional OPERATOR ("uguale a", "iniziante per|con", "terminante per|con|in", "contenente", "corrispondente a", "(molto|poco)? simile a") + any text between double quotes.
+- FEATURES: "come" + one or more POS ("verbo", "aggettivo", "plurale", ...) + optional STYLE; or just STYLE.
+- STYLE: "in grassetto|corsivo|sottolineato".
 
-![grammar](./public/img/pqita.png)
+(3) LOC (optional): "non"? + "a inizio di frase" | "a fine di frase" (also "all'inizio della frase", "alla fine della frase", etc.).
 
-So for instance we can have:
+(4) REL (optional): "non"? + "vicino a" | "attaccato a" | "prima di" | "dopo" (with articulated prepositions like "vicino alla", "prima del", etc.) + a second SUBJECT, followed by its own optional LOC and REL, recursively.
 
-- `trova la parola uguale a "esempio"` which is:
+A LOC or REL always refers to the SUBJECT preceding it.
 
-1. trova
-  2.1. la parola
-    2.1.1. uguale a
-    2.1.2. "esempio"
+These are the syntax diagrams shown in the manual:
 
-- `tutti i latinismi` which is:
+![sentence](./public/img/pqita-frase.svg)
 
-2.2 tutti i latinismi
+![subject](./public/img/pqita-oggetto.svg)
 
-- `trova la parola "cane" come sostantivo in grassetto prima della parola "bello"`, which is:
+![value](./public/img/pqita-testo.svg)
 
-1. trova
-  2.1.1. la parola
-  2.1.2. "cane"
-3. come sostantivo
-4. in grassetto
-  5.2.1. prima della
-  2.1. parola
-    2.1.1. nothing
-    2.1.2. "bello"
+![features](./public/img/pqita-caratteristiche.svg)
 
-The corresponding parser directions are to build pairs joined by `AND`, handling recursion at branch 5.2, as follows:
+They are generated by [tools/pqita-diagrams.js](tools/pqita-diagrams.js): see its header for its usage.
 
-- on item: according to operator:
-  - "uguale a": output `[value="<VALUE>"]`;
-  - "iniziante per": output `[value^="<VALUE>"]`;
-  - "terminante per": output `[value$="<VALUE>"]`;
-  - "contenente": output `[value*="<VALUE>"]`;
-  - "corrispondente a": output `[value?="<VALUE>"]`;
-  - "simile a": output `[value%="<VALUE>:<THRESHOLD>"]` where THRESHOLD is 0.5 for "poco simile a", 0.8 for "simile a", 0.9 for "molto simile a";
+The lexer also has some error tokens (`UNCLOSED_VALUE`, `UNKNOWN`, `ERROR_CHAR`) which are never accepted by the parser: this turns lexical errors into syntax errors, so that users can be told what was expected. The service probes the parser with a sample of each token type to find which ones can follow the text being typed.
 
-- on set: according to set:
-  - "parole": nothing. This assumes that there will be other nodes after this (for branches 3 or 4), or we should emit an error.
-  - "forestierismi": output `[language<>"ita"]`;
-  - "anglicismi": output `[language="eng"]`;
-  - "latinismi": output `[language="lat"]`;
+A text without spaces is not parsed, but searched as a single word: e.g. `cane` becomes `[value="cane"]`.
 
-- on pos: output `[pos="<POS>"]`;
+The translation builds pairs joined by `AND` for each subject:
 
-- on style: according to style:
-  - "in grassetto": output `[b="1"]`;
-  - "in corsivo": output `[i="1"]`;
-  - "in sottolineato": output `[u="1"]`;
+- item: according to the item and operator, `[value OP "VALUE"]` for "parola", `[lemma OP "VALUE"]` for "lemma", `[language<>"ita"]`, `[language="eng"]` or `[language="lat"]` for foreign words (followed by `[value OP "VALUE"]` when there is a value), `[$fp-lat]` for "locuzione" (followed by `[$value OP "VALUE"]` when there is a value). OP is:
+  - "uguale a" or nothing: `=`;
+  - "iniziante per": `^=`;
+  - "terminante per": `$=`;
+  - "contenente": `*=`;
+  - "corrispondente a": `?=`;
+  - "simile a": `%=` with value `VALUE:THRESHOLD`, where THRESHOLD is 0.5 for "poco simile a", 0.8 for "simile a", 0.9 for "molto simile a".
+- set: nothing for "parole" (which requires features), `[language<>"ita"]`, `[language="eng"]`, `[language="lat"]` for foreign words, `[$fp-lat]` for "locuzioni".
+- features: a pair for each POS (e.g. `[pos="NOUN"]`, `[number="plur"]`, `[verbform="fin"]` for "modo definito", `[verbform<>"fin"]` for "modo indefinito"; see `posMap` in `pqita.translator.ts`); `[b="1"]`, `[i="1"]`, `[u="1"]` for styles.
 
-- on loc: this provides a join between the previously output pair and the next one. According to loc:
-  - "a inizio di frase":
-    - if "non": output space + `LALIGN(n=1) [$name="snt"]` after a left pair. There should be one, or there is an error;
-    - else: output space + `LALIGN(m=0) [$name="snt"]` after a left pair. There should be one, or there is an error;
-  - "a fine di frase":
-    - if "non": output space + `RALIGN(n=1) [$name="snt"]` after a left pair. There should be one, or there is an error;
-    - else: output space + `RALIGN(m=0) [$name="snt"]` after a left pair. There should be one, or there is an error.
+When the subject is followed by a position, its pairs are wrapped in parentheses if more than one, and:
 
-- on rel:
-  - if "non", output space + `NOT`;
-  - according to rel:
-    - "vicino a": output space + `NEAR(m=3,s=snt)` + space;
-    - "(attaccato|attaccata|attaccati) a": output space + `NEAR(m=0,s=snt)` + space;
-    - "prima di|della|del": output space + `BEFORE(m=3,s=snt)` + space;
-    - "dopo di|della|del": output space + `AFTER(m=3,s=snt)` + space.
+- loc: `LALIGN(m=0) [$snt]` for "a inizio di frase", `RALIGN(m=0) [$snt]` for "a fine di frase", prefixed by `NOT` when negated.
+- rel: the operator followed by the pairs of the second subject (wrapped in parentheses if more than one):
+  - "vicino a": `NEAR(m=3,s=snt)`;
+  - "attaccato a": `NEAR(m=0,s=snt)`;
+  - "prima di": `BEFORE(m=3,s=snt)`;
+  - "dopo": `AFTER(m=3,s=snt)`;
+  - when negated, the operator is prefixed by `NOT` (e.g. `NOT NEAR(m=3,s=snt)`).
+
+Location operators are right-associative in Pythia, so each operand which includes more than a pair is wrapped in parentheses: e.g. `trova la parola "a" a inizio di frase vicino alla parola "b" prima della parola "c"` becomes `([value="a"] LALIGN(m=0) [$snt]) NEAR(m=3,s=snt) ([value="b"] BEFORE(m=3,s=snt) [value="c"])`.
+
+For instance:
+
+- `trova la parola "cane" come sostantivo in grassetto prima della parola "bello"` is translated into `([value="cane"] AND [pos="NOUN"] AND [b="1"]) BEFORE(m=3,s=snt) [value="bello"]`.
+- `trova forestierismo vicino a forestierismo` is translated into `[language<>"ita"] NEAR(m=3,s=snt) [language<>"ita"]`.

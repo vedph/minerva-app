@@ -18,3 +18,37 @@ figcaption {
   font-size: 0.9em;
   text-align: center;
 }
+figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 16px 0;
+  break-inside: avoid;
+}
+caption {
+  text-align: left;
+  font-style: italic;
+  padding-bottom: 4px;
+}
+th,
+td {
+  border: 1px solid var(--mat-sys-outline-variant);
+  padding: 4px 6px;
+  text-align: left;
+  vertical-align: top;
+}
+thead th,
+tbody th {
+  font-weight: normal;
+  background-color: var(--mat-sys-surface-container-highest);
+  color: var(--mat-sys-on-surface-variant);
+}
+code {
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}

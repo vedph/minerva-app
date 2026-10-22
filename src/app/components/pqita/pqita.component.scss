@@ -14,17 +14,6 @@
 .form-row * {
   flex: 0 0 auto;
 }
-.form-row .filler {
-  flex: 1 1 auto;
-}
-.button-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.button-row * {
-  flex: 0 0 auto;
-}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -86,4 +75,57 @@ div#history {
   .noif-lt-md {
     display: none;
   }
+}
+
+/* hints */
+.hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin-bottom: 8px;
+  font-size: 0.875em;
+  color: var(--mat-sys-on-surface-variant);
+}
+.hint-label,
+.issue {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.issue,
+.issue-text {
+  flex: 1 0 100%;
+}
+.issue {
+  color: var(--mat-sys-error);
+}
+.issue-text {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+mark {
+  background-color: var(--mat-sys-error-container);
+  color: var(--mat-sys-on-error-container);
+}
+.hint mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.suggestion {
+  font: 1em monospace;
+  padding: 1px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface);
+}
+button.suggestion:hover:enabled {
+  cursor: pointer;
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+}
+.suggestion-text {
+  font-style: italic;
 }

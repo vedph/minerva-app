@@ -4,10 +4,14 @@
     <mat-card-title>Guida utente</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p>
-      Dalla barra superiore è possibile accedere a tutte le sezioni del sito:
-      "indice", "ricerca", "aiuto" e "informazioni".
-    </p>
+    <!-- introduction -->
+    <article>
+      <h3>Introduzione</h3>
+      <p>
+        Dalla barra superiore è possibile accedere a tutte le sezioni del sito:
+        "indice", "ricerca", "aiuto" e "informazioni".
+      </p>
+    </article>
     <!-- index -->
     <article>
       <section>
@@ -130,96 +134,839 @@
       </section>
     </article>
 
-    <!-- search -->
+    <!-- simple search -->
     <article>
-      <h3>Ricerca</h3>
+      <h3>Ricerca semplice</h3>
       <section>
-        <h4>Ricerca semplice</h4>
         <p>
-          La ricerca semplice usa un linguaggio di interrogazione intuitivo e
-          diretto, adatto per ricerche rapide e non complesse.
+          La ricerca semplice permette di descrivere ciò che si cerca con una
+          breve frase italiana, come <code>trova la parola "casa"</code>. La
+          frase segue uno schema fisso e prevedibile, descritto in questa guida:
+          basta comporla scegliendo, nell'ordine, fra le espressioni previste.
         </p>
         <p>
-          Cliccando su "predefinita", si accede a un elenco di domande di
-          ricerca preimpostate. La domanda eventualmente selezionata apparirà
-          anche nel campo "testo" e potrà essere modificata. Ad esempio, a
-          partire da «trova la parola "apodittica"», si potrà ricercare
-          qualsiasi altra forma sostituendola ad "apodittica" (nell’esempio
-          sotto, "abrogazione"); o anche, in modo analogo, a partire da «trova
-          il lemma "appalesare"», si potranno ricercare tutte le forme flesse di
-          qualsiasi altro verbo o anche di sostantivi o aggettivi.
+          Prima di essere eseguita, la frase viene tradotta nel linguaggio di
+          interrogazione della ricerca avanzata, e la traduzione compare nel
+          campo "query". Confrontando la frase con la sua traduzione si impara
+          progressivamente il linguaggio avanzato; la traduzione può anche essere
+          modificata prima di avviare la ricerca, o copiata nella linguetta
+          "avanzata" come punto di partenza per ricerche più complesse.
         </p>
+        <p>Comandi utili:</p>
+        <ul>
+          <li>
+            <strong>converti</strong> (pulsante con la freccia, o Ctrl+Invio nel
+            campo "testo"): traduce la frase nel campo "query" e la aggiunge
+            alla cronologia in fondo alla pagina.
+          </li>
+          <li>
+            <strong>trova</strong> (pulsante, Ctrl+T, o Ctrl+Invio nel campo
+            "query"): esegue la ricerca della query.
+          </li>
+          <li>
+            <strong>domande predefinite</strong> (pulsante con l'elenco): offre
+            alcune frasi di esempio, che compaiono nel campo "testo" e possono
+            essere modificate. Ad esempio, a partire da
+            <code>trova la parola "apodittica"</code> si può cercare qualsiasi
+            altra forma sostituendola ad "apodittica".
+          </li>
+          <li>
+            <strong>dettatura</strong> (pulsante con il microfono, o Ctrl+L): se
+            il browser lo consente, la frase può essere dettata; le virgolette
+            attorno al testo cercato vengono aggiunte automaticamente. Se
+            l'opzione di esecuzione automatica ("Auto", accanto al pulsante
+            "trova") è attiva, al primo silenzio la dettatura viene tradotta e
+            la ricerca avviata.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h4>Primi passi</h4>
         <p>
-          All'interno del campo "testo" è possibile scrivere autonomamente una
-          domanda. In questo caso, la ricerca si fonda su una semplice frase con
-          la forma di un comando, i cui termini sono visualizzati nel diagramma
-          sottostante. È possibile seguire uno qualsiasi dei percorsi illustrati
-          nel diagramma, da sinistra a destra, rispettando l’ordine indicato,
-          per formare il comando completo. I colori del diagramma indicano le
-          categorie funzionali dei termini nel comando:
+          Proviamo a costruire una ricerca un passo alla volta. Dopo ogni passo,
+          premere Ctrl+Invio per vedere la traduzione, e "trova" per vedere i
+          risultati.
+        </p>
+        <ol>
+          <li>
+            <p>
+              Cerchiamo una parola: <code>trova la parola "casa"</code>, che si
+              traduce in <code>[value="casa"]</code>. Fra parentesi quadre c'è
+              una <em>coppia</em>, cioè un dato della parola (qui
+              <code>value</code>, il suo valore testuale) e il valore che deve
+              avere. Il testo cercato va sempre racchiuso tra virgolette doppie.
+            </p>
+          </li>
+          <li>
+            <p>
+              Cambiamo il tipo di confronto:
+              <code>trova la parola iniziante per "cas"</code> diventa
+              <code>[value^="cas"]</code>, e trova "casa", "casale",
+              "cassazione", ecc.
+            </p>
+          </li>
+          <li>
+            <p>
+              Aggiungiamo delle caratteristiche grammaticali:
+              <code
+                >trova la parola iniziante per "cas" come sostantivo
+                plurale</code
+              >
+              diventa
+              <code
+                >[value^="cas"] AND [pos="NOUN"] AND [number="plur"]</code
+              >. L'operatore <code>AND</code> indica che tutte le condizioni
+              devono valere per la stessa parola.
+            </p>
+          </li>
+          <li>
+            <p>
+              Aggiungiamo l'aspetto tipografico: con
+              <code>in corsivo</code> alla fine si aggiunge
+              <code>AND [i="1"]</code>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Infine possiamo indicare la posizione della parola nella frase, ad
+              esempio <code>trova il lemma "bastare" a inizio di frase</code>
+              (<code>[lemma="bastare"] LALIGN(m=0) [$snt]</code>), oppure
+              la sua relazione con un'altra parola:
+              <code>trova la parola "preso" prima della parola "atto"</code>
+              (<code>[value="preso"] BEFORE(m=3,s=snt) [value="atto"]</code>).
+            </p>
+          </li>
+        </ol>
+        <p>
+          Una singola parola senza spazi, come <code>casa</code>, viene cercata
+          così com'è, anche senza virgolette.
+        </p>
+      </section>
+
+      <section>
+        <h4>Schema della frase</h4>
+        <p>
+          Ogni frase è formata da tre parti, sempre in questo ordine:
+        </p>
+        <ol>
+          <li>
+            un <strong>comando</strong> facoltativo: <code>trova</code> o
+            <code>cerca</code>;
+          </li>
+          <li>
+            l'<strong>oggetto</strong> da cercare (una parola, un lemma, una
+            locuzione, un forestierismo, o un insieme di questi), con il
+            <strong>testo</strong> cercato e le sue
+            <strong>caratteristiche</strong> grammaticali e tipografiche;
+          </li>
+          <li>
+            una <strong>posizione</strong> facoltativa: all'inizio o alla fine
+            della frase, e/o vicino, prima o dopo un secondo oggetto, che a sua
+            volta può avere la sua posizione.
+          </li>
+        </ol>
+        <p>
+          I diagrammi seguenti mostrano tutte le frasi possibili. Si leggono da
+          sinistra a destra seguendo una qualsiasi delle linee: ogni riquadro
+          arrotondato è un'espressione da scrivere, mentre ogni riquadro
+          rettangolare rimanda a un altro diagramma con lo stesso nome. Le linee
+          che saltano un riquadro indicano che questo è facoltativo; una linea
+          che torna indietro indica che il riquadro può essere ripetuto. I
+          colori indicano la funzione delle espressioni:
         </p>
         <ul>
-          <li>bianco: inizio del comando (per esempio "trova" o "cerca").</li>
+          <li>bianco tratteggiato: comando;</li>
           <li>
-            verde: categoria del termine cercato ((per esempio "parola",
-            "locuzione", "lemma", "forestierismo", etc.)).
+            verde: oggetto cercato; verde chiaro: articoli e quantificatori;
+          </li>
+          <li>azzurro: tipo di confronto con il testo cercato;</li>
+          <li>rosso: testo cercato, tra virgolette doppie;</li>
+          <li>arancio: caratteristiche grammaticali;</li>
+          <li>lilla: aspetto tipografico;</li>
+          <li>viola: posizione.</li>
+        </ul>
+        <figure>
+          <img
+            ngSrc="img/pqita-frase.svg"
+            width="677"
+            height="251"
+            alt="Diagramma della frase: comando facoltativo (trova o cerca), oggetto seguito facoltativamente da a inizio di frase o a fine di frase, eventualmente preceduti da non; quindi, facoltativamente e anche più volte, vicino a, attaccato a, prima di o dopo, eventualmente preceduti da non, seguiti da un altro oggetto con la sua posizione facoltativa."
+          />
+          <figcaption>frase</figcaption>
+        </figure>
+        <figure>
+          <img
+            ngSrc="img/pqita-oggetto.svg"
+            width="825"
+            height="479"
+            alt="Diagramma dell'oggetto: un articolo facoltativo seguito da parola con testo e caratteristiche facoltative o con sole caratteristiche; lemma con testo e caratteristiche facoltative; forestierismo, anglicismo o latinismo con testo e caratteristiche facoltativi; locuzione con testo facoltativo. Oppure tutte o tutti facoltativo seguito da le parole con caratteristiche; i forestierismi, gli anglicismi o i latinismi con caratteristiche facoltative; le locuzioni."
+          />
+          <figcaption>oggetto</figcaption>
+        </figure>
+        <figure>
+          <img
+            ngSrc="img/pqita-testo.svg"
+            width="469"
+            height="300"
+            alt="Diagramma del testo: un confronto facoltativo (uguale a, iniziante per, terminante per, contenente, corrispondente a, oppure simile a preceduto facoltativamente da molto o poco) seguito dal testo tra virgolette doppie."
+          />
+          <figcaption>testo</figcaption>
+        </figure>
+        <figure>
+          <img
+            ngSrc="img/pqita-caratteristiche.svg"
+            width="649"
+            height="241"
+            alt="Diagramma delle caratteristiche: come seguito da una o più categorie grammaticali e facoltativamente da in grassetto, in corsivo o in sottolineato; oppure solo in grassetto, in corsivo o in sottolineato."
+          />
+          <figcaption>caratteristiche</figcaption>
+        </figure>
+        <p>
+          Maiuscole e accenti sono ignorati (<code>"Città"</code> equivale a
+          <code>"citta"</code>), così come un punto finale. Gli articoli sono
+          sempre facoltativi, e si può usare quello più naturale:
+          <code>il</code>, <code>lo</code>, <code>la</code>, <code>l'</code>,
+          <code>un</code>, <code>uno</code>, <code>una</code>,
+          <code>un'</code>; al plurale <code>i</code>, <code>gli</code>,
+          <code>le</code>, eventualmente preceduti da <code>tutti</code> o
+          <code>tutte</code>.
+        </p>
+      </section>
+
+      <section>
+        <h4>Oggetti</h4>
+        <table>
+          <caption>
+            Oggetti cercati e loro traduzione
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">oggetto</th>
+              <th scope="col">cerca</th>
+              <th scope="col">esempio</th>
+              <th scope="col">traduzione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>parola</code></td>
+              <td>
+                una parola; il testo è facoltativo solo se seguito da
+                caratteristiche
+              </td>
+              <td><code>la parola "casa"</code></td>
+              <td><code>[value="casa"]</code></td>
+            </tr>
+            <tr>
+              <td><code>lemma</code></td>
+              <td>
+                tutte le forme flesse di un lemma; il testo è obbligatorio
+              </td>
+              <td><code>il lemma "andare"</code></td>
+              <td><code>[lemma="andare"]</code></td>
+            </tr>
+            <tr>
+              <td><code>forestierismo</code></td>
+              <td>una parola straniera; il testo è facoltativo</td>
+              <td><code>il forestierismo "privacy"</code></td>
+              <td><code>[language&lt;&gt;"ita"] AND [value="privacy"]</code></td>
+            </tr>
+            <tr>
+              <td><code>anglicismo</code></td>
+              <td>una parola inglese</td>
+              <td><code>trova l'anglicismo</code></td>
+              <td><code>[language="eng"]</code></td>
+            </tr>
+            <tr>
+              <td><code>latinismo</code></td>
+              <td>una parola latina</td>
+              <td><code>trova il latinismo</code></td>
+              <td><code>[language="lat"]</code></td>
+            </tr>
+            <tr>
+              <td><code>locuzione</code></td>
+              <td>
+                una locuzione latina, anche di più parole; il testo è
+                facoltativo; non ammette caratteristiche
+              </td>
+              <td><code>la locuzione "pro tempore"</code></td>
+              <td><code>[$fp-lat] AND [$value="pro tempore"]</code></td>
+            </tr>
+            <tr>
+              <td><code>le parole</code></td>
+              <td>
+                tutte le parole con le caratteristiche indicate, che sono
+                obbligatorie
+              </td>
+              <td><code>tutte le parole come infinito</code></td>
+              <td><code>[verbform="inf"]</code></td>
+            </tr>
+            <tr>
+              <td>
+                <code>i forestierismi</code>, <code>gli anglicismi</code>,
+                <code>i latinismi</code>
+              </td>
+              <td>tutte le parole straniere, inglesi o latine</td>
+              <td><code>tutti i latinismi in corsivo</code></td>
+              <td><code>[language="lat"] AND [i="1"]</code></td>
+            </tr>
+            <tr>
+              <td><code>le locuzioni</code></td>
+              <td>tutte le locuzioni latine</td>
+              <td><code>tutte le locuzioni</code></td>
+              <td><code>[$fp-lat]</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Si noti che <code>la parola come aggettivo</code> equivale a
+          <code>tutte le parole come aggettivo</code>, e può essere più naturale
+          come secondo oggetto di una posizione (ad esempio
+          <code>vicino a una parola come aggettivo</code>).
+        </p>
+      </section>
+
+      <section>
+        <h4>Confronto con il testo cercato</h4>
+        <p>
+          Il testo cercato va sempre racchiuso tra virgolette doppie, e può
+          essere preceduto da un'espressione che indica come confrontarlo. Se
+          questa manca, il testo deve essere uguale.
+        </p>
+        <table>
+          <caption>
+            Tipi di confronto
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">espressione</th>
+              <th scope="col">il valore deve</th>
+              <th scope="col">esempio</th>
+              <th scope="col">traduzione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>(nessuna) o <code>uguale a</code></td>
+              <td>essere uguale al testo</td>
+              <td><code>parola "casa"</code></td>
+              <td><code>[value="casa"]</code></td>
+            </tr>
+            <tr>
+              <td><code>iniziante per</code> (o <code>con</code>)</td>
+              <td>iniziare con il testo</td>
+              <td><code>parola iniziante per "dis"</code></td>
+              <td><code>[value^="dis"]</code></td>
+            </tr>
+            <tr>
+              <td>
+                <code>terminante per</code> (o <code>con</code>,
+                <code>in</code>)
+              </td>
+              <td>terminare con il testo</td>
+              <td><code>parola terminante per "ante"</code></td>
+              <td><code>[value$="ante"]</code></td>
+            </tr>
+            <tr>
+              <td><code>contenente</code></td>
+              <td>contenere il testo</td>
+              <td><code>parola contenente "corr"</code></td>
+              <td><code>[value*="corr"]</code></td>
+            </tr>
+            <tr>
+              <td><code>corrispondente a</code></td>
+              <td>
+                corrispondere al modello, dove <code>?</code> sta per un
+                carattere qualsiasi e <code>*</code> per qualsiasi sequenza di
+                caratteri
+              </td>
+              <td><code>parola corrispondente a "abro?azion*"</code></td>
+              <td><code>[value?="abro?azion*"]</code></td>
+            </tr>
+            <tr>
+              <td><code>simile a</code></td>
+              <td>essere simile al testo (soglia 0.8 su 1)</td>
+              <td><code>parola simile a "periculum"</code></td>
+              <td><code>[value%="periculum:0.8"]</code></td>
+            </tr>
+            <tr>
+              <td><code>molto simile a</code></td>
+              <td>essere molto simile al testo (soglia 0.9)</td>
+              <td><code>parola molto simile a "periculum"</code></td>
+              <td><code>[value%="periculum:0.9"]</code></td>
+            </tr>
+            <tr>
+              <td><code>poco simile a</code></td>
+              <td>essere vagamente simile al testo (soglia 0.5)</td>
+              <td><code>parola poco simile a "periculum"</code></td>
+              <td><code>[value%="periculum:0.5"]</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Lo stesso vale per lemmi (<code>[lemma^="dis"]</code>), forestierismi
+          e locuzioni (<code>[$value^="pro"]</code>, dove il prefisso
+          <code>$</code> indica che il valore è quello di una struttura,
+          cioè della locuzione, e non di una parola).
+        </p>
+      </section>
+
+      <section>
+        <h4>Caratteristiche grammaticali</h4>
+        <p>
+          Le caratteristiche grammaticali seguono la parola <code>come</code>.
+          Se ne possono indicare più di una di seguito, ad esempio
+          <code>come sostantivo femminile plurale</code>, che diventa
+          <code>[pos="NOUN"] AND [gender="fem"] AND [number="plur"]</code>.
+          Le caratteristiche derivano dall'analisi linguistica automatica del
+          corpus, e possono quindi contenere qualche errore.
+        </p>
+        <table>
+          <caption>
+            Caratteristiche grammaticali e loro traduzione
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">tipo</th>
+              <th scope="col">espressioni e traduzioni</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">parte del discorso</th>
+              <td>
+                <code>aggettivo</code> <code>[pos="ADJ"]</code>,
+                <code>avverbio</code> <code>[pos="ADV"]</code>,
+                <code>ausiliare</code> <code>[pos="AUX"]</code>,
+                <code>congiunzione coordinante</code> <code>[pos="CCONJ"]</code>,
+                <code>congiunzione subordinante</code> <code>[pos="SCONJ"]</code>,
+                <code>determinante</code> <code>[pos="DET"]</code>,
+                <code>interiezione</code> <code>[pos="INTJ"]</code>,
+                <code>nome proprio</code> <code>[pos="PROPN"]</code>,
+                <code>numero</code> <code>[pos="NUM"]</code>,
+                <code>preposizione</code> <code>[pos="ADP"]</code>,
+                <code>pronome</code> <code>[pos="PRON"]</code>,
+                <code>simbolo</code> <code>[pos="SYM"]</code>,
+                <code>sostantivo</code> (o <code>nome</code>)
+                <code>[pos="NOUN"]</code>, <code>verbo</code>
+                <code>[pos="VERB"]</code>, <code>altro</code>
+                <code>[pos="X"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">forma verbale</th>
+              <td>
+                <code>infinito</code> <code>[verbform="inf"]</code>,
+                <code>gerundio</code> <code>[verbform="ger"]</code>,
+                <code>participio</code> <code>[verbform="part"]</code>,
+                <code>modo definito</code> <code>[verbform="fin"]</code>,
+                <code>modo indefinito</code> <code>[verbform&lt;&gt;"fin"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">modo</th>
+              <td>
+                <code>indicativo</code> <code>[mood="ind"]</code>,
+                <code>congiuntivo</code> <code>[mood="sub"]</code>,
+                <code>condizionale</code> <code>[mood="cnd"]</code>,
+                <code>imperativo</code> <code>[mood="imp"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">tempo</th>
+              <td>
+                <code>presente</code> <code>[tense="pres"]</code>,
+                <code>imperfetto</code> <code>[tense="imp"]</code>,
+                <code>passato</code> <code>[tense="past"]</code>,
+                <code>futuro</code> <code>[tense="fut"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">persona</th>
+              <td>
+                <code>prima persona</code> <code>[person="1"]</code>,
+                <code>seconda persona</code> <code>[person="2"]</code>,
+                <code>terza persona</code> <code>[person="3"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">numero</th>
+              <td>
+                <code>singolare</code> <code>[number="sing"]</code>,
+                <code>plurale</code> <code>[number="plur"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">genere</th>
+              <td>
+                <code>maschile</code> <code>[gender="masc"]</code>,
+                <code>femminile</code> <code>[gender="fem"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">articoli</th>
+              <td>
+                <code>articolo</code> <code>[prontype="art"]</code>,
+                <code>articolo determinativo</code>
+                <code>[definite="def"]</code>,
+                <code>articolo indeterminativo</code>
+                <code>[definite="ind"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">pronomi</th>
+              <td>
+                <code>pronome dimostrativo</code> <code>[prontype="dem"]</code>,
+                <code>pronome indefinito</code> <code>[prontype="ind"]</code>,
+                <code>pronome interrogativo</code> <code>[prontype="int"]</code>,
+                <code>pronome negativo</code> <code>[prontype="neg"]</code>,
+                <code>pronome personale</code> <code>[prontype="prs"]</code>,
+                <code>pronome relativo</code> <code>[prontype="rel"]</code>,
+                <code>pronome totalizzante</code> <code>[prontype="tot"]</code>,
+                <code>possessivo</code> <code>[poss="yes"]</code>,
+                <code>clitica</code> <code>[clitic="yes"]</code>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">grado</th>
+              <td>
+                <code>comparativo</code> <code>[degree="cmp"]</code>,
+                <code>superlativo</code> <code>[degree="abs"]</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h4>Aspetto tipografico</h4>
+        <p>
+          L'aspetto tipografico del documento originale si indica dopo le
+          eventuali caratteristiche grammaticali:
+          <code>in grassetto</code> (<code>[b="1"]</code>),
+          <code>in corsivo</code> (<code>[i="1"]</code>),
+          <code>in sottolineato</code> (<code>[u="1"]</code>). Ad esempio,
+          <code>tutte le parole come aggettivo in corsivo</code> diventa
+          <code>[pos="ADJ"] AND [i="1"]</code>.
+        </p>
+      </section>
+
+      <section>
+        <h4>Posizione</h4>
+        <p>
+          Dopo l'oggetto si può indicare la sua posizione rispetto alla frase in
+          cui si trova, e poi la sua relazione con un secondo oggetto, descritto
+          con le stesse regole del primo. Il secondo oggetto può avere a sua
+          volta una posizione nella frase, e una relazione con un terzo oggetto,
+          e così via. Ogni posizione si riferisce sempre all'oggetto che la
+          precede immediatamente. I risultati sono sempre le occorrenze del
+          primo oggetto: gli altri sono solo condizioni.
+        </p>
+        <table>
+          <caption>
+            Posizioni e loro traduzione
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">espressione</th>
+              <th scope="col">l'oggetto deve trovarsi</th>
+              <th scope="col">traduzione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>a inizio di frase</code></td>
+              <td>all'inizio della frase</td>
+              <td><code>LALIGN(m=0) [$snt]</code></td>
+            </tr>
+            <tr>
+              <td><code>a fine di frase</code></td>
+              <td>alla fine della frase</td>
+              <td><code>RALIGN(m=0) [$snt]</code></td>
+            </tr>
+            <tr>
+              <td><code>vicino a</code> + oggetto</td>
+              <td>prima o dopo il secondo oggetto, entro 3 parole</td>
+              <td><code>NEAR(m=3,s=snt)</code></td>
+            </tr>
+            <tr>
+              <td><code>attaccato a</code> + oggetto</td>
+              <td>immediatamente prima o dopo il secondo oggetto</td>
+              <td><code>NEAR(m=0,s=snt)</code></td>
+            </tr>
+            <tr>
+              <td><code>prima di</code> + oggetto</td>
+              <td>prima del secondo oggetto, entro 3 parole</td>
+              <td><code>BEFORE(m=3,s=snt)</code></td>
+            </tr>
+            <tr>
+              <td><code>dopo</code> + oggetto</td>
+              <td>dopo il secondo oggetto, entro 3 parole</td>
+              <td><code>AFTER(m=3,s=snt)</code></td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Nelle traduzioni, <code>m</code> indica la distanza massima in parole,
+          e <code>s=snt</code> che i due oggetti devono trovarsi nella stessa
+          frase. Sono ammesse anche le forme con preposizione articolata, come
+          <code>all'inizio della frase</code>, <code>alla fine della frase</code>,
+          <code>vicino alla</code>, <code>vicino al</code>,
+          <code>vicino all'</code>, <code>attaccata alla</code>,
+          <code>prima della</code>, <code>prima del</code>,
+          <code>prima dell'</code>, <code>prima di tutte</code>,
+          <code>dopo la</code>, <code>dopo il</code>, ecc.
+        </p>
+        <p>
+          Anteponendo <code>non</code> la posizione è negata:
+          <code>trova la parola "ciò" non vicino alla parola "detto"</code>
+          diventa
+          <code>[value="cio"] NOT NEAR(m=3,s=snt) [value="detto"]</code>,
+          cioè trova "ciò" quando nella sua frase non c'è "detto" entro 3
+          parole.
+        </p>
+        <p>
+          Combinando più posizioni, nella traduzione ogni oggetto con la sua
+          posizione è racchiuso tra parentesi tonde. Ad esempio:
+        </p>
+        <ul>
+          <li>
+            <code
+              >trova la parola "sentenza" a inizio di frase vicino alla parola
+              "di"</code
+            >
+            diventa
+            <code
+              >([value="sentenza"] LALIGN(m=0) [$snt]) NEAR(m=3,s=snt)
+              [value="di"]</code
+            >: "sentenza" a inizio di frase, vicino a "di";
           </li>
           <li>
-            azzurro: operatore di confronto (per esempio "corrispondente a",
-            "iniziante per", "terminante per", "contenente", etc.)
+            <code
+              >trova la parola "sentenza" vicino alla parola "di" a inizio di
+              frase</code
+            >
+            diventa
+            <code
+              >[value="sentenza"] NEAR(m=3,s=snt) ([value="di"] LALIGN(m=0)
+              [$snt])</code
+            >: "sentenza" vicino a "di", che è a inizio di frase;
           </li>
           <li>
-            rosso: forma cercata nel comando (per esempio una sillaba, una
-            sequenza di caratteri, o una parola intera).
-          </li>
-          <li>
-            giallo (opzionale): qualificatori morfologici del termine cercato
-            (per esempio "come aggettivo", "come avverbio", etc.).
-          </li>
-          <li>
-            malva (opzionale): aspetti tipografici del termine cercato nel
-            documento originale (per esempio "in grassetto", "in corsivo",
-            etc.).
-          </li>
-          <li>
-            viola (opzionale): allineamento del termine cercato rispetto ad
-            altri oggetti (per esempio "a inizio frase", "a fine frase"). A loro
-            volta questi sono seguiti da un secondo percorso visivamente
-            rappresentato dal triangolo verde finale nel diagramma.
+            <code
+              >trova la parola "di" vicino alla parola "la" prima della parola
+              "sentenza"</code
+            >
+            diventa
+            <code
+              >[value="di"] NEAR(m=3,s=snt) ([value="la"] BEFORE(m=3,s=snt)
+              [value="sentenza"])</code
+            >: "di" vicino a "la", che è prima di "sentenza".
           </li>
         </ul>
         <p>
-          Premendo CTRL+Invio o il pulsante con la freccia la ricerca semplice
-          viene tradotta nel linguaggio di interrogazione avanzata e
-          visualizzato nel campo di testo inferiore, dove può essere
-          eventualmente modificato. In tal modo l'utente può iniziare con una
-          ricerca semplice e poi passare facilmente alla modalità avanzata per
-          ulteriori raffinamenti, imparando progressivamente il linguaggio di
-          interrogazione avanzata. Per avviare definitivamente la ricerca
-          occorre cliccare sul tasto "trova".
+          Quando un oggetto ha più condizioni, nella traduzione queste sono
+          raggruppate tra parentesi tonde, per mostrare a quale oggetto si
+          riferiscono: ad esempio
+          <code
+            >trova i latinismi in corsivo vicino alla parola "sindaco"</code
+          >
+          diventa
+          <code
+            >([language="lat"] AND [i="1"]) NEAR(m=3,s=snt)
+            [value="sindaco"]</code
+          >.
+        </p>
+      </section>
+
+      <section>
+        <h4>Aiuto durante la scrittura ed errori</h4>
+        <p>
+          Sotto il campo "testo", mentre si scrive, Minerva indica che cosa può
+          seguire: le espressioni possibili sono mostrate come pulsanti, che
+          cliccati le aggiungono al testo, completando eventualmente una parola
+          già iniziata. Quando la frase è completa, compare il segno di spunta,
+          insieme alle espressioni che si possono ancora aggiungere.
         </p>
         <p>
-          Per interrogazioni semplici è anche possibile dettare la query
-          utilizzando il microfono del dispositivo. Quando l'opzione di
-          esecuzione automatica vicino al pulsante di ricerca è attiva, al primo
-          silenzio la dettatura verrà automaticamente inviata come query di
-          ricerca.
+          Se la frase contiene un errore, viene mostrato un messaggio, con la
+          parte errata evidenziata e le espressioni attese in quel punto. Se si
+          prova a convertire una frase errata o incompleta, la query precedente
+          resta invariata e il messaggio viene evidenziato. Gli errori più
+          comuni sono:
         </p>
-        <figure>
-          <img
-            src="img/pqita.png"
-            alt="Linguaggio di interrogazione semplice"
-          />
-          <figcaption>linguaggio di interrogazione semplice</figcaption>
-        </figure>
+        <ul>
+          <li>
+            testo cercato senza virgolette: <code>trova la parola casa</code>
+            invece di <code>trova la parola "casa"</code>;
+          </li>
+          <li>
+            espressioni in ordine diverso da quello dello schema, ad esempio
+            l'aspetto tipografico prima delle caratteristiche grammaticali, o
+            parole non previste;
+          </li>
+          <li>
+            frase incompleta, ad esempio <code>vicino alla</code> senza il
+            secondo oggetto, o <code>tutte le parole</code> senza
+            caratteristiche;
+          </li>
+          <li>un lemma senza testo cercato;</li>
+          <li>
+            più di una posizione nella frase per lo stesso oggetto, ad esempio
+            <code>a inizio di frase a fine di frase</code>.
+          </li>
+        </ul>
       </section>
+
       <section>
-        <h4>Ricerca avanzata</h4>
+        <h4>Esempi</h4>
+        <table>
+          <caption>
+            Esempi di frasi e loro traduzione
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">frase</th>
+              <th scope="col">traduzione</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code
+                  >trova la parola terminante per "ante" come participio</code
+                >
+              </td>
+              <td>
+                <code>[value$="ante"] AND [verbform="part"]</code>
+              </td>
+            </tr>
+            <tr>
+              <td><code>trova la parola "che" come pronome relativo</code></td>
+              <td><code>[value="che"] AND [prontype="rel"]</code></td>
+            </tr>
+            <tr>
+              <td>
+                <code>trova il lemma "essere" come congiuntivo imperfetto</code>
+              </td>
+              <td>
+                <code
+                  >[lemma="essere"] AND [mood="sub"] AND [tense="imp"]</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td><code>trova tutti gli anglicismi in corsivo</code></td>
+              <td><code>[language="eng"] AND [i="1"]</code></td>
+            </tr>
+            <tr>
+              <td><code>trova la locuzione contenente "tempore"</code></td>
+              <td><code>[$fp-lat] AND [$value*="tempore"]</code></td>
+            </tr>
+            <tr>
+              <td><code>trova la parola "ciò" a fine di frase</code></td>
+              <td><code>[value="cio"] RALIGN(m=0) [$snt]</code></td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  >trova il lemma "ritenere" prima di tutte le parole come
+                  participio</code
+                >
+              </td>
+              <td>
+                <code
+                  >[lemma="ritenere"] BEFORE(m=3,s=snt) [verbform="part"]</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  >trova la parola "sindaco" prima della locuzione "pro
+                  tempore"</code
+                >
+              </td>
+              <td>
+                <code
+                  >[value="sindaco"] BEFORE(m=3,s=snt) ([$fp-lat] AND
+                  [$value="pro tempore"])</code
+                >
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code
+                  >trova la parola "ciò" attaccata alla parola "detto"</code
+                >
+              </td>
+              <td>
+                <code>[value="cio"] NEAR(m=0,s=snt) [value="detto"]</code>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>trova il lemma "bastare" non a inizio di frase</code>
+              </td>
+              <td>
+                <code>[lemma="bastare"] NOT LALIGN(m=0) [$snt]</code>
+              </td>
+            </tr>
+            <tr>
+              <td><code>trova forestierismo vicino a forestierismo</code></td>
+              <td>
+                <code
+                  >[language&lt;&gt;"ita"] NEAR(m=3,s=snt)
+                  [language&lt;&gt;"ita"]</code
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h4>Oltre la ricerca semplice</h4>
+        <p>
+          La ricerca semplice copre le ricerche più comuni. Per tutto il resto
+          si può partire dalla sua traduzione e modificarla nella ricerca
+          avanzata, che consente ad esempio di:
+        </p>
+        <ul>
+          <li>
+            cercare alternative con <code>OR</code>, ad esempio
+            <code>[value="casa"] OR [value="dimora"]</code>;
+          </li>
+          <li>
+            aggiungere più condizioni di posizione allo stesso oggetto,
+            raggruppandole con le parentesi tonde, ad esempio
+            <code
+              >([value="sic"] BEFORE(m=0) [value="mater"]) AFTER(m=5)
+              [value="credo"]</code
+            >;
+          </li>
+          <li>
+            cambiare le distanze, ad esempio
+            <code>NEAR(n=1,m=5,s=snt)</code> per una distanza da 1 a 5 parole;
+          </li>
+          <li>
+            usare espressioni regolari (<code>~=</code>), confronti numerici, o
+            altri metadati e strutture del testo.
+          </li>
+        </ul>
+      </section>
+    </article>
+
+    <!-- advanced search -->
+    <article>
+      <h3>Ricerca avanzata</h3>
+      <section>
         <p>
           La ricerca avanzata consente di costruire query complesse utilizzando
           un apposito linguaggio di interrogazione; può essere costruita a
           partire da ricerche semplici, o direttamente digitata nel campo
-          corrispondente, accessibile dalla linguetta "Avanzata". Al di sotto
+          corrispondente, accessibile dalla linguetta "avanzata". Al di sotto
           del campo di ricerca sono recuperabili le ultime query digitate da una
           casella di selezione a discesa.
         </p>
@@ -234,8 +981,12 @@
           >, il motore di ricerca utilizzato in Minerva.
         </p>
       </section>
+    </article>
+
+    <!-- results -->
+    <article>
+      <h3>Risultati</h3>
       <section>
-        <h4>Risultati</h4>
         <p>
           Quale che sia il tipo di ricerca effettuata, i risultati sono
           visualizzati in un elenco di <strong>concordanze</strong> con 5 parole
@@ -405,15 +1156,20 @@
         <p>Logici:</p>
         <ul>
           <li>
-            per documenti: <code>AND</code>, <code>OR</code>,
-            <code>AND NOT</code>; una speciale sintassi consente di com
+            per testo: <code>AND</code>, <code>AND NOT</code> e
+            <code>OR</code>, che si riferiscono sempre allo stesso oggetto: ad
+            esempio <code>[pos="NOUN"] AND [number="plur"]</code> trova i
+            sostantivi plurali. Per collegare oggetti diversi (ad esempio due
+            parole) si usano invece gli operatori posizionali.
           </li>
           <li>
-            per testo: <code>OR</code> e operatori posizionali. L'operatore AND
-            isolato non è previsto nella sezione testo, poiché in questo motore
-            di ricerca ha più senso trovare parole legate da una relazione
-            posizionale o di contesto linguistico, e non semplicemente due
-            parole a una distanza qualsiasi nello stesso documento.
+            per documenti: <code>AND</code>, <code>AND NOT</code>,
+            <code>OR</code> e <code>OR NOT</code>.
+          </li>
+          <li>
+            <code>AND</code> e <code>AND NOT</code> hanno la precedenza su
+            <code>OR</code>, che a sua volta ha la precedenza sugli operatori
+            posizionali; le parentesi tonde permettono di cambiare l'ordine.
           </li>
         </ul>
         <p>Posizionali:</p>
@@ -457,8 +1213,13 @@
         </ul>
         <p>
           Tutti gli operatori di posizione possono essere negati anteponendo NOT
-          (es. <code>NOT BEFORE(...)</code>); in caso di negazione, l'uso
-          dell'argomento <code>s</code> non è consentito.
+          (es. <code>NOT BEFORE(...)</code>): in questo caso il primo oggetto
+          viene trovato quando non c'è alcun secondo oggetto nella posizione
+          indicata (eventualmente nella stessa struttura indicata da
+          <code>s</code>). Se un operatore di posizione è seguito da un altro,
+          il secondo si applica all'oggetto che lo precede: ad esempio
+          <code>A BEFORE() B BEFORE() C</code> trova A prima di B, quando B è a
+          sua volta prima di C.
         </p>
         <p>
           L'uso degli operatori di posizione permette di eseguire ricerche

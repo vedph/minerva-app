@@ -3,11 +3,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
   inject,
   input,
+  linkedSignal,
   OnDestroy,
   output,
   signal,
+  viewChild,
 } from '@angular/core';
 import {
   form,
@@ -36,7 +39,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { EnvService } from '@myrmidon/ngx-tools';
 
-import { PqitaService } from '../../services/pqita.service';
+import {
+  PqitaError,
+  PqitaIssue,
+  PqitaService,
+  PqitaSuggestion,
+} from '../../services/pqita.service';
 import { SpeechRecognitionService } from '../../services/speech-recognition.service';
 
 export interface PqitaPresetEntry {
@@ -89,6 +97,7 @@ interface PqitaControls {
   },
 })
 export class PqitaComponent implements OnDestroy {
+  private static _nextId = 0;
   private readonly _pqitaService = inject(PqitaService);
   private readonly _speechRecService = inject(SpeechRecognitionService);
   private readonly _subs: Subscription[] = [];
@@ -143,6 +152,45 @@ export class PqitaComponent implements OnDestroy {
   );
 
   public readonly history = signal<HistoryEntry[]>([]);
+
+  public readonly hintId = `pqita-hint-${PqitaComponent._nextId++}`;
+  private readonly _textArea =
+    viewChild<ElementRef<HTMLTextAreaElement>>('textArea');
+
+  /**
+   * The live analysis of the text, telling users what they can type next.
+   */
+  public readonly analysis = computed(() =>
+    this._pqitaService.analyze(this.form.text().value()),
+  );
+
+  /**
+   * The issue found by the last conversion, reset when the text changes.
+   */
+  public readonly conversionError = linkedSignal<string, PqitaIssue | null>({
+    source: () => this.form.text().value(),
+    computation: () => null,
+  });
+
+  /**
+   * The text split around the issue to show, if any, so that its
+   * offending part can be highlighted.
+   */
+  public readonly issueParts = computed(() => {
+    const analysis = this.analysis();
+    const issue =
+      this.conversionError() ??
+      (analysis.status === 'error' ? analysis.error : null);
+    if (!issue || issue.end <= issue.start) {
+      return null;
+    }
+    const text = this.form.text().value();
+    return {
+      before: text.slice(Math.max(0, issue.start - 40), issue.start),
+      error: text.slice(issue.start, issue.end),
+      after: text.slice(issue.end, issue.end + 40),
+    };
+  });
 
   constructor() {
     // when listening$ changes to false, convert the text to a query
@@ -222,6 +270,24 @@ export class PqitaComponent implements OnDestroy {
     this.form.query().reset('');
   }
 
+  /**
+   * Add the suggested keyword to the text, replacing the partially typed
+   * word(s) it completes, if any.
+   */
+  public addSuggestion(suggestion: PqitaSuggestion): void {
+    const text = this.form.text().value();
+    const analysis = this.analysis();
+    const start =
+      analysis.status === 'incomplete' &&
+      analysis.error &&
+      analysis.error.end > analysis.error.start
+        ? analysis.error.start
+        : text.length;
+    const head = text.slice(0, start).trimEnd();
+    this.setText(`${head ? head + ' ' : ''}${suggestion.text} `);
+    this._textArea()?.nativeElement.focus();
+  }
+
   public pickFromPreset(entry: PqitaPresetEntry): void {
     this.setText(entry.value);
     this.convert();
@@ -269,8 +335,11 @@ export class PqitaComponent implements OnDestroy {
         this.appendToHistory(text, query);
       }
     } catch (e) {
-      console.log(e);
-      return;
+      if (e instanceof PqitaError) {
+        this.conversionError.set(e.issue);
+      } else {
+        console.log(e);
+      }
     }
   }
 

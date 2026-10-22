@@ -3,11 +3,13 @@
   <div id="input">
     <mat-form-field class="full-width">
       <textarea
+        #textArea
         matInput
         [formField]="form.text"
         placeholder="text"
         i18n-placeholder
         rows="3"
+        aria-describedby="{{ hintId }}"
         (keyup.control.enter)="convertByEnter($any($event))"
       ></textarea>
       <mat-hint i18n>Ctrl+Enter to convert</mat-hint>
@@ -24,6 +26,73 @@
         <mat-error i18n>text too long</mat-error>
       }
     </mat-form-field>
+
+    <!-- hints -->
+    <div class="hint" [id]="hintId">
+      @let a = analysis();
+      @if (conversionError(); as error) {
+        <div class="issue" role="alert">
+          <mat-icon aria-hidden="true">error</mat-icon>
+          <span>{{ error.message }}</span>
+        </div>
+      } @else if (a.status === "error" && a.error) {
+        <div class="issue">
+          <mat-icon aria-hidden="true">warning</mat-icon>
+          <span>{{ a.error.message }}</span>
+        </div>
+      }
+      @if (issueParts(); as parts) {
+        <div class="issue-text">
+          {{ parts.before }}<mark>{{ parts.error }}</mark>{{ parts.after }}
+        </div>
+      }
+      @switch (a.status) {
+        @case ("empty") {
+          <span class="hint-label" i18n>Start with:</span>
+        }
+        @case ("word") {
+          <span class="hint-label" i18n
+            >A single word is searched as it is.</span
+          >
+          @if (a.next.length) {
+            <span class="hint-label" i18n>To write a sentence, continue with:</span>
+          }
+        }
+        @case ("incomplete") {
+          <span class="hint-label" i18n>Continue with:</span>
+        }
+        @case ("complete") {
+          <span class="hint-label">
+            <mat-icon aria-hidden="true">check_circle</mat-icon>
+            <ng-container i18n>The sentence is complete. You can add:</ng-container>
+          </span>
+        }
+        @case ("error") {
+          @if (a.error?.expected?.length) {
+            <span class="hint-label" i18n>Expected here:</span>
+          }
+        }
+      }
+      @let suggestions = a.status === "error" ? (a.error?.expected ?? []) : a.next;
+      @for (s of suggestions; track s.text) {
+        @if (s.keyword && a.status !== "error") {
+          <button
+            type="button"
+            class="suggestion"
+            matTooltip="Add to the text"
+            i18n-matTooltip
+            (click)="addSuggestion(s)"
+            [disabled]="listening$ | async"
+          >
+            {{ s.text }}
+          </button>
+        } @else if (s.keyword) {
+          <code class="suggestion">{{ s.text }}</code>
+        } @else {
+          <span class="suggestion-text">{{ s.text }}</span>
+        }
+      }
+    </div>
   </div>
 
   <!-- listener toolbar -->

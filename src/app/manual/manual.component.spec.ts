@@ -1,5 +1,7 @@
+import { TestBed } from '@angular/core/testing';
 import { render, screen } from '@testing-library/angular';
 
+import { PqitaService } from '../services/pqita.service';
 import { ManualComponent } from './manual.component';
 
 describe('ManualComponent', () => {
@@ -24,11 +26,43 @@ describe('ManualComponent', () => {
     }
   });
 
-  it('should show the simple query language diagram', async () => {
+  it('should show the simple query language diagrams', async () => {
     await render(ManualComponent);
 
-    expect(
-      screen.getByRole('img', { name: 'Linguaggio di interrogazione semplice' }),
-    ).toHaveAttribute('src', 'img/pqita.png');
+    for (const name of ['frase', 'oggetto', 'testo', 'caratteristiche']) {
+      expect(
+        screen.getByRole('img', {
+          name: new RegExp(`^Diagramma d[a-z']*\\s?${name}`),
+        }),
+      ).toHaveAttribute('src', `img/pqita-${name}.svg`);
+    }
+  });
+
+  it('should show examples translated as the simple search does', async () => {
+    const { container } = await render(ManualComponent);
+    const service = TestBed.inject(PqitaService);
+    const normalize = (text: string | null) =>
+      (text ?? '').replace(/\s+/g, ' ').trim();
+    let count = 0;
+
+    // each table with an example (or sentence) and a translation column
+    for (const table of Array.from(container.querySelectorAll('table'))) {
+      const headers = Array.from(table.querySelectorAll('thead th')).map((th) =>
+        normalize(th.textContent),
+      );
+      const source = headers.findIndex((h) => h === 'esempio' || h === 'frase');
+      const target = headers.indexOf('traduzione');
+      if (source === -1 || target === -1) {
+        continue;
+      }
+      for (const row of Array.from(table.querySelectorAll('tbody tr'))) {
+        const cells = row.querySelectorAll('td');
+        const sentence = normalize(cells[source].textContent);
+        const query = normalize(cells[target].textContent);
+        expect(service.convertQuery(sentence), sentence).toBe(query);
+        count++;
+      }
+    }
+    expect(count).toBeGreaterThan(20);
   });
 });

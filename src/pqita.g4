@@ -1,135 +1,179 @@
 grammar pqita;
 
+// Pythia Query in ITAlian: a fixed sequence of Italian words translated
+// into a Pythia query (see Pythia.Core/Assets/pythia.g4). Each sentence has:
+// 1. an optional verb ("trova", "cerca");
+// 2. a subject: a word, lemma, locution, foreign word, or a set of them,
+//    with an optional value and optional grammatical/typographic features;
+// 3. an optional location in the sentence ("a inizio di frase");
+// 4. an optional relation with a second subject ("vicino alla parola..."),
+//    which in turn can have its own location and relation.
+// A location or relation always refers to the subject preceding it.
+
 // PARSER RULES
-expression:
-	verb? itemOrSet posTag? styleTag? locationOrRelation?;
+expression: verb? query EOF;
 
-verb: 'trova';
+query: subject location? relation?;
 
-itemOrSet: item | set;
+verb: VERB;
 
-item: article? ITEM itemContinuation;
+subject: item | set;
 
-itemContinuation: (operator VALUE) | VALUE;
+// a single object: "la parola", "il lemma", "la locuzione", "il latinismo"...
+item:
+	article? WORD (valueSpec features? | features)	# wordItem
+	| article? LEMMA valueSpec features?			# lemmaItem
+	| article? FOREIGN valueSpec? features?			# foreignItem
+	| article? LOCUTION valueSpec?					# locutionItem;
 
-set: quantifier article? SET_TYPE;
+// a set of objects: "tutte le parole", "i latinismi", "le locuzioni"...
+set:
+	QUANTIFIER? PLURAL_ARTICLE? WORDS features		# wordSet
+	| QUANTIFIER? PLURAL_ARTICLE? FOREIGNS features?	# foreignSet
+	| QUANTIFIER? PLURAL_ARTICLE? LOCUTIONS			# locutionSet;
+
+article: ARTICLE;
+
+valueSpec: operator? VALUE;
 
 operator:
-	'uguale a'
-	| 'iniziante per'
-	| 'terminante per'
-	| 'contenente'
-	| 'corrispondente a'
+	EQ_OP
+	| STARTS_OP
+	| ENDS_OP
+	| CONTAINS_OP
+	| WILDCARDS_OP
 	| similarity;
 
-similarity: degree? 'simile a';
+similarity: DEGREE? SIMILAR_OP;
 
-degree: 'molto' | 'poco';
+features: posTags styleTag? | styleTag;
 
-article: 'la' | 'il' | 'l\'';
-
-quantifier: 'tutte' | 'tutti';
-
-posTag: 'come' POS_TYPE;
+posTags: COME POS_TYPE+;
 
 styleTag: STYLE_TYPE;
 
-locationOrRelation: location | relation recursiveExpression?;
+location: NEGATION? (LOC_START | LOC_END);
 
-location: negation? LOC_TYPE;
+relation: NEGATION? relOp query;
 
-relation: negation? REL_TYPE;
-
-recursiveExpression:
-	itemOrSet posTag? styleTag? locationOrRelation?;
-
-negation: 'non';
+relOp: NEAR_OP | ATTACHED_OP | BEFORE_OP | AFTER_OP;
 
 // LEXER RULES
-ITEM:
-	'parola'
-	| 'locuzione'
-	| 'lemma'
-	| 'forestierismo'
-	| 'anglicismo'
-	| 'latinismo';
+// Keywords come first, so that on equal length they win over UNKNOWN.
 
-SET_TYPE: ('le' | 'i' | 'gli') WS (
-		'parole'
-		| 'forestierismi'
-		| 'anglicismi'
-		| 'latinismi'
-	);
+VERB: 'trova' | 'cerca';
 
-// UDP tags: ADJ ADP ADV AUX CCONJ DET NOUN NUM PRON PROPN SCONJ SYM VERB X
+ARTICLE: 'il' | 'lo' | 'la' | 'l\'' | 'un' | 'uno' | 'una' | 'un\'';
+
+PLURAL_ARTICLE: 'i' | 'gli' | 'le';
+
+QUANTIFIER: 'tutti' | 'tutte';
+
+WORD: 'parola';
+WORDS: 'parole';
+LEMMA: 'lemma';
+LOCUTION: 'locuzione';
+LOCUTIONS: 'locuzioni';
+FOREIGN: 'forestierismo' | 'anglicismo' | 'latinismo';
+FOREIGNS: 'forestierismi' | 'anglicismi' | 'latinismi';
+
+EQ_OP: 'uguale' WS 'a';
+STARTS_OP: 'iniziante' WS ('per' | 'con');
+ENDS_OP: 'terminante' WS ('per' | 'con' | 'in');
+CONTAINS_OP: 'contenente';
+WILDCARDS_OP: 'corrispondente' WS 'a';
+SIMILAR_OP: 'simile' WS 'a';
+DEGREE: 'molto' | 'poco';
+
+COME: 'come';
+
+// UDP tags: ADJ ADP ADV AUX CCONJ DET INTJ NOUN NUM PRON PROPN SCONJ SYM VERB X
 POS_TYPE:
 	'aggettivo'
-	| 'apposizione'
+	| 'preposizione'
+	| 'apposizione' // legacy synonym of preposizione
 	| 'avverbio'
 	| 'ausiliare'
-	| 'congiunzione coordinante'
-  | 'determinante'
+	| 'congiunzione' WS 'coordinante'
+	| 'determinante'
+	| 'interiezione'
 	| 'sostantivo'
-  | 'numero'
-  | 'pronome'
-  | 'nome proprio'
-  | 'congiunzione subordinante'
-  | 'simbolo'
-  | 'verbo'
-  | 'altro'
-  // verbform
-  | 'infinito'
-  | 'gerundio'
-  | 'participio'
-  // mood
-  | 'indicativo'
-  | 'congiuntivo'
-  | 'condizionale'
-  | 'imperativo'
-  // definite
-  | 'modo definito'
-  | 'modo indefinito'
-  // tense
-  | 'presente'
-  | 'passato'
-  | 'futuro'
-  // person
-  | 'prima persona'
-  | 'seconda persona'
-  | 'terza persona'
-  // number
-  | 'singolare'
-  | 'plurale'
-  // gender
-  | 'maschile'
-  | 'femminile'
-  // clitic
-  | 'clitica'
-  // poss
-  | 'possessivo'
-  // prontype
-  | 'articolo'
-  | 'pronome dimostrativo'
-  | 'pronome indefinito'
-  | 'pronome interrogativo'
-  | 'pronome negativo'
-  | 'pronome personale'
-  | 'pronome relativo'
-  | 'pronome totalizzante'
-  // degree
-  | 'comparativo'
-  | 'superlativo';
+	| 'nome'
+	| 'numero'
+	| 'pronome'
+	| 'nome' WS 'proprio'
+	| 'congiunzione' WS 'subordinante'
+	| 'simbolo'
+	| 'verbo'
+	| 'altro'
+	// verbform
+	| 'infinito'
+	| 'gerundio'
+	| 'participio'
+	| 'modo' WS 'definito'
+	| 'modo' WS 'indefinito'
+	// mood
+	| 'indicativo'
+	| 'congiuntivo'
+	| 'condizionale'
+	| 'imperativo'
+	// tense
+	| 'presente'
+	| 'imperfetto'
+	| 'passato'
+	| 'futuro'
+	// person
+	| 'prima' WS 'persona'
+	| 'seconda' WS 'persona'
+	| 'terza' WS 'persona'
+	// number
+	| 'singolare'
+	| 'plurale'
+	// gender
+	| 'maschile'
+	| 'femminile'
+	// clitic
+	| 'clitica'
+	// poss
+	| 'possessivo'
+	// definite
+	| 'articolo' WS 'determinativo'
+	| 'articolo' WS 'indeterminativo'
+	// prontype
+	| 'articolo'
+	| 'pronome' WS 'dimostrativo'
+	| 'pronome' WS 'indefinito'
+	| 'pronome' WS 'interrogativo'
+	| 'pronome' WS 'negativo'
+	| 'pronome' WS 'personale'
+	| 'pronome' WS 'relativo'
+	| 'pronome' WS 'totalizzante'
+	// degree
+	| 'comparativo'
+	| 'superlativo';
 
-STYLE_TYPE: 'in' WS ( 'grassetto' | 'corsivo' | 'sottolineato');
+STYLE_TYPE: 'in' WS ('grassetto' | 'corsivo' | 'sottolineato');
 
-LOC_TYPE: ('a' WS)? ('inizio' | 'fine') WS 'di' WS 'frase';
+NEGATION: 'non';
 
-REL_TYPE:
-	'vicino a'
-	| ('attaccato' | 'attaccata' | 'attaccati') WS 'a'
-	| 'prima' WS ('di' | 'della' | 'del')
-	| 'dopo' WS ('l\'' | 'la' | 'il');
+LOC_START: (('a' | 'ad') WS | 'all\'' WS?)? 'inizio' WS (('di' | 'della') WS)? 'frase';
+LOC_END: (('a' | 'alla') WS)? 'fine' WS (('di' | 'della') WS)? 'frase';
+
+NEAR_OP: 'vicino' WS PREP_A;
+ATTACHED_OP: 'attaccat' [oaie] WS PREP_A;
+BEFORE_OP: 'prima' WS PREP_DI;
+// no article here: it would swallow the start of e.g. "dopo latinismo"
+AFTER_OP: 'dopo';
+
+fragment PREP_A: 'a' | 'ad' | 'al' | 'allo' | 'alla' | 'all\'' | 'ai' | 'agli' | 'alle';
+fragment PREP_DI: 'di' | 'del' | 'dello' | 'della' | 'dell\'' | 'dei' | 'degli' | 'delle';
 
 VALUE: '"' ~["]* '"';
 
 WS: [ \t\r\n]+ -> skip;
+
+// Error tokens: never accepted by the parser, they turn lexical errors
+// into syntax errors, which carry the expected tokens.
+UNCLOSED_VALUE: '"' ~["]*;
+UNKNOWN: ~[ \t\r\n"'.,;:!?]+;
+ERROR_CHAR: .;

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PqitaService } from './pqita.service';
+import { PqitaError, PqitaIssue, PqitaService } from './pqita.service';
 
 describe('PqitaService', () => {
   let service: PqitaService;
@@ -267,17 +267,29 @@ describe('PqitaService', () => {
       '[value="cane"] AND [mood="imp"]'
     );
   });
-  // parola + come: definite=def
-  it('should convert parola "cane" come modo definito to [value="cane"] AND [definite="def"]', () => {
+  // parola + come: verbform=fin (definite is about articles)
+  it('should convert parola "cane" come modo definito to [value="cane"] AND [verbform="fin"]', () => {
     expect(service.convertQuery('parola "cane" come modo definito')).toBe(
-      '[value="cane"] AND [definite="def"]'
+      '[value="cane"] AND [verbform="fin"]'
+    );
+  });
+  // parola + come: verbform<>fin
+  it('should convert parola "cane" come modo indefinito to [value="cane"] AND [verbform<>"fin"]', () => {
+    expect(service.convertQuery('parola "cane" come modo indefinito')).toBe(
+      '[value="cane"] AND [verbform<>"fin"]'
+    );
+  });
+  // parola + come: definite=def
+  it('should convert parola "il" come articolo determinativo to [value="il"] AND [definite="def"]', () => {
+    expect(service.convertQuery('parola "il" come articolo determinativo')).toBe(
+      '[value="il"] AND [definite="def"]'
     );
   });
   // parola + come: definite=ind
-  it('should convert parola "cane" come modo indefinito to [value="cane"] AND [definite="ind"]', () => {
-    expect(service.convertQuery('parola "cane" come modo indefinito')).toBe(
-      '[value="cane"] AND [definite="ind"]'
-    );
+  it('should convert parola "un" come articolo indeterminativo to [value="un"] AND [definite="ind"]', () => {
+    expect(
+      service.convertQuery('parola "un" come articolo indeterminativo')
+    ).toBe('[value="un"] AND [definite="ind"]');
   });
 
   // parola + come: tense=pres
@@ -454,9 +466,9 @@ describe('PqitaService', () => {
   //#endregion
 
   //#region locuzione
-  it('should convert locuzione "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
+  it('should convert locuzione "pro tempore" to [$fp-lat] AND [$value="pro tempore"]', () => {
     expect(service.convertQuery('locuzione "pro tempore"')).toBe(
-      '[$fp-lat] AND [_value="pro tempore"]'
+      '[$fp-lat] AND [$value="pro tempore"]'
     );
   });
   it('should supply quotes in locuzione pro tempore', () => {
@@ -465,9 +477,9 @@ describe('PqitaService', () => {
     );
   });
 
-  it('should convert trova la locuzione "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
+  it('should convert trova la locuzione "pro tempore" to [$fp-lat] AND [$value="pro tempore"]', () => {
     expect(service.convertQuery('trova la locuzione "pro tempore"')).toBe(
-      '[$fp-lat] AND [_value="pro tempore"]'
+      '[$fp-lat] AND [$value="pro tempore"]'
     );
   });
   it('should supply quotes in trova la locuzione pro tempore', () => {
@@ -477,10 +489,10 @@ describe('PqitaService', () => {
   });
 
   // uguale a
-  it('should convert trova la locuzione uguale a "pro tempore" to [$fp-lat] AND [_value="pro tempore"]', () => {
+  it('should convert trova la locuzione uguale a "pro tempore" to [$fp-lat] AND [$value="pro tempore"]', () => {
     expect(
       service.convertQuery('trova la locuzione uguale a "pro tempore"')
-    ).toBe('[$fp-lat] AND [_value="pro tempore"]');
+    ).toBe('[$fp-lat] AND [$value="pro tempore"]');
   });
   it('should supply quotes in trova la locuzione uguale a pro tempore', () => {
     expect(
@@ -489,9 +501,9 @@ describe('PqitaService', () => {
   });
 
   // iniziante per
-  it('should convert trova la locuzione iniziante per "pro" to [$fp-lat] AND [_value^="pro"]', () => {
+  it('should convert trova la locuzione iniziante per "pro" to [$fp-lat] AND [$value^="pro"]', () => {
     expect(service.convertQuery('trova la locuzione iniziante per "pro"')).toBe(
-      '[$fp-lat] AND [_value^="pro"]'
+      '[$fp-lat] AND [$value^="pro"]'
     );
   });
   it('should supply quotes in trova la locuzione iniziante per pro', () => {
@@ -501,10 +513,10 @@ describe('PqitaService', () => {
   });
 
   // terminante per
-  it('should convert trova la locuzione terminante per "tempore" to [$fp-lat] AND [_value$="tempore"]', () => {
+  it('should convert trova la locuzione terminante per "tempore" to [$fp-lat] AND [$value$="tempore"]', () => {
     expect(
       service.convertQuery('trova la locuzione terminante per "tempore"')
-    ).toBe('[$fp-lat] AND [_value$="tempore"]');
+    ).toBe('[$fp-lat] AND [$value$="tempore"]');
   });
   it('should supply quotes in trova la locuzione terminante per tempore', () => {
     expect(
@@ -513,9 +525,9 @@ describe('PqitaService', () => {
   });
 
   // contenente
-  it('should convert trova la locuzione contenente "temp" to [$fp-lat] AND [_value*="temp"]', () => {
+  it('should convert trova la locuzione contenente "temp" to [$fp-lat] AND [$value*="temp"]', () => {
     expect(service.convertQuery('trova la locuzione contenente "temp"')).toBe(
-      '[$fp-lat] AND [_value*="temp"]'
+      '[$fp-lat] AND [$value*="temp"]'
     );
   });
   it('should supply quotes in trova la locuzione contenente temp', () => {
@@ -525,10 +537,10 @@ describe('PqitaService', () => {
   });
 
   // corrispondente a
-  it('should convert trova la locuzione corrispondente a "pro tempore" to [$fp-lat] AND [_value?="pro tempore"]', () => {
+  it('should convert trova la locuzione corrispondente a "pro tempore" to [$fp-lat] AND [$value?="pro tempore"]', () => {
     expect(
       service.convertQuery('trova la locuzione corrispondente a "pro tempore"')
-    ).toBe('[$fp-lat] AND [_value?="pro tempore"]');
+    ).toBe('[$fp-lat] AND [$value?="pro tempore"]');
   });
   it('should supply quotes in trova la locuzione corrispondente a pro tempore', () => {
     expect(
@@ -537,10 +549,10 @@ describe('PqitaService', () => {
   });
 
   // simile a
-  it('should convert trova la locuzione simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.8"]', () => {
+  it('should convert trova la locuzione simile a "pro tempore" to [$fp-lat] AND [$value%="pro tempore:0.8"]', () => {
     expect(
       service.convertQuery('trova la locuzione simile a "pro tempore"')
-    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.8"]');
+    ).toBe('[$fp-lat] AND [$value%="pro tempore:0.8"]');
   });
   it('should supply quotes in trova la locuzione simile a pro tempore', () => {
     expect(
@@ -549,10 +561,10 @@ describe('PqitaService', () => {
   });
 
   // molto simile a
-  it('should convert trova la locuzione molto simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.9"]', () => {
+  it('should convert trova la locuzione molto simile a "pro tempore" to [$fp-lat] AND [$value%="pro tempore:0.9"]', () => {
     expect(
       service.convertQuery('trova la locuzione molto simile a "pro tempore"')
-    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.9"]');
+    ).toBe('[$fp-lat] AND [$value%="pro tempore:0.9"]');
   });
   it('should supply quotes in trova la locuzione molto simile a pro tempore', () => {
     expect(
@@ -561,10 +573,10 @@ describe('PqitaService', () => {
   });
 
   // poco simile a
-  it('should convert trova la locuzione poco simile a "pro tempore" to [$fp-lat] AND [_value%="pro tempore:0.5"]', () => {
+  it('should convert trova la locuzione poco simile a "pro tempore" to [$fp-lat] AND [$value%="pro tempore:0.5"]', () => {
     expect(
       service.convertQuery('trova la locuzione poco simile a "pro tempore"')
-    ).toBe('[$fp-lat] AND [_value%="pro tempore:0.5"]');
+    ).toBe('[$fp-lat] AND [$value%="pro tempore:0.5"]');
   });
   it('should supply quotes in trova la locuzione poco simile a pro tempore', () => {
     expect(
@@ -1252,27 +1264,27 @@ describe('PqitaService', () => {
   it('should convert parola "cane" a inizio di frase', () => {
     expect(
       service.convertQuery("parola \"cane\" a inizio di frase")
-    ).toBe('[value="cane"] LALIGN(m=0) [$name="snt"]');
+    ).toBe('[value="cane"] LALIGN(m=0) [$snt]');
   });
 
   // a fine di frase
   it('should convert parola "cane" a fine di frase', () => {
     expect(service.convertQuery('parola "cane" a fine di frase')).toBe(
-      '[value="cane"] RALIGN(m=0) [$name="snt"]'
+      '[value="cane"] RALIGN(m=0) [$snt]'
     );
   });
 
   // non a inizio di frase
   it('should convert parola "cane" non a inizio di frase', () => {
     expect(service.convertQuery('parola "cane" non a inizio di frase')).toBe(
-      '[value="cane"] NOT LALIGN(m=0) [$name="snt"]'
+      '[value="cane"] NOT LALIGN(m=0) [$snt]'
     );
   });
 
   // non a fine di frase
   it('should convert parola "cane" non a fine di frase', () => {
     expect(service.convertQuery('parola "cane" non a fine di frase')).toBe(
-      '[value="cane"] NOT RALIGN(m=0) [$name="snt"]'
+      '[value="cane"] NOT RALIGN(m=0) [$snt]'
     );
   });
 
@@ -1281,6 +1293,335 @@ describe('PqitaService', () => {
     expect(
       service.convertQuery('parola "cane" non vicino alla parola "bello"')
     ).toBe('[value="cane"] NOT NEAR(m=3,s=snt) [value="bello"]');
+  });
+  it('should convert parola "cane" non attaccata alla parola "bello"', () => {
+    expect(
+      service.convertQuery('parola "cane" non attaccata alla parola "bello"')
+    ).toBe('[value="cane"] NOT NEAR(m=0,s=snt) [value="bello"]');
+  });
+  it('should convert parola "cane" non prima della parola "bello"', () => {
+    expect(
+      service.convertQuery('parola "cane" non prima della parola "bello"')
+    ).toBe('[value="cane"] NOT BEFORE(m=3,s=snt) [value="bello"]');
+  });
+  it('should convert parola "cane" non dopo la parola "bello"', () => {
+    expect(
+      service.convertQuery('parola "cane" non dopo la parola "bello"')
+    ).toBe('[value="cane"] NOT AFTER(m=3,s=snt) [value="bello"]');
+  });
+  //#endregion
+
+  //#region items without value and sets
+  it('should convert trova forestierismo vicino a forestierismo', () => {
+    expect(
+      service.convertQuery('trova forestierismo vicino a forestierismo')
+    ).toBe('[language<>"ita"] NEAR(m=3,s=snt) [language<>"ita"]');
+  });
+  it('should convert trova il latinismo come sostantivo', () => {
+    expect(service.convertQuery('trova il latinismo come sostantivo')).toBe(
+      '[language="lat"] AND [pos="NOUN"]'
+    );
+  });
+  it('should convert trova la parola come aggettivo', () => {
+    expect(service.convertQuery('trova la parola come aggettivo')).toBe(
+      '[pos="ADJ"]'
+    );
+  });
+  it('should convert trova la locuzione', () => {
+    expect(service.convertQuery('trova la locuzione')).toBe('[$fp-lat]');
+  });
+  it('should convert trova tutte le locuzioni', () => {
+    expect(service.convertQuery('trova tutte le locuzioni')).toBe('[$fp-lat]');
+  });
+  it('should convert trova i latinismi without quantifier', () => {
+    expect(service.convertQuery('trova i latinismi')).toBe('[language="lat"]');
+  });
+  it('should convert trova latinismi without quantifier and article', () => {
+    expect(service.convertQuery('trova latinismi')).toBe('[language="lat"]');
+  });
+  it('should convert trova tutte le parole come sostantivo femminile plurale', () => {
+    expect(
+      service.convertQuery(
+        'trova tutte le parole come sostantivo femminile plurale'
+      )
+    ).toBe('[pos="NOUN"] AND [gender="fem"] AND [number="plur"]');
+  });
+  it('should convert tutte le parole come aggettivo in corsivo', () => {
+    expect(
+      service.convertQuery('tutte le parole come aggettivo in corsivo')
+    ).toBe('[pos="ADJ"] AND [i="1"]');
+  });
+  it('should convert tutte le parole in grassetto', () => {
+    expect(service.convertQuery('tutte le parole in grassetto')).toBe(
+      '[b="1"]'
+    );
+  });
+  //#endregion
+
+  //#region verbs, articles and prepositions
+  it('should accept cerca as verb', () => {
+    expect(service.convertQuery('cerca il lemma "domanda"')).toBe(
+      '[lemma="domanda"]'
+    );
+  });
+  it('should accept vicino al', () => {
+    expect(
+      service.convertQuery('parola "cane" vicino al lemma "abbaiare"')
+    ).toBe('[value="cane"] NEAR(m=3,s=snt) [lemma="abbaiare"]');
+  });
+  it("should accept vicino all'", () => {
+    expect(
+      service.convertQuery('parola "cane" vicino all\'anglicismo "dog"')
+    ).toBe(
+      '[value="cane"] NEAR(m=3,s=snt) ([language="eng"] AND [value="dog"])'
+    );
+  });
+  it("should accept prima dell'", () => {
+    expect(
+      service.convertQuery('parola "cane" prima dell\'anglicismo "dog"')
+    ).toBe(
+      '[value="cane"] BEFORE(m=3,s=snt) ([language="eng"] AND [value="dog"])'
+    );
+  });
+  it('should accept prima di tutte le parole', () => {
+    expect(
+      service.convertQuery(
+        'trova il lemma "ritenere" prima di tutte le parole come participio'
+      )
+    ).toBe('[lemma="ritenere"] BEFORE(m=3,s=snt) [verbform="part"]');
+  });
+  it('should accept dopo with a noun starting like an article', () => {
+    expect(service.convertQuery('parola "dog" dopo latinismo')).toBe(
+      '[value="dog"] AFTER(m=3,s=snt) [language="lat"]'
+    );
+    expect(service.convertQuery('parola "dog" dopo lemma "cane"')).toBe(
+      '[value="dog"] AFTER(m=3,s=snt) [lemma="cane"]'
+    );
+  });
+  it('should accept una as article', () => {
+    expect(
+      service.convertQuery('parola "cane" vicino a una parola come aggettivo')
+    ).toBe('[value="cane"] NEAR(m=3,s=snt) [pos="ADJ"]');
+  });
+  it('should accept iniziante con', () => {
+    expect(service.convertQuery('trova la parola iniziante con "ca"')).toBe(
+      '[value^="ca"]'
+    );
+  });
+  it("should accept all'inizio della frase", () => {
+    expect(
+      service.convertQuery('parola "cane" all\'inizio della frase')
+    ).toBe('[value="cane"] LALIGN(m=0) [$snt]');
+  });
+  it('should accept typographic quotes and apostrophes', () => {
+    expect(service.convertQuery('trova l’anglicismo “dog”')).toBe(
+      '[language="eng"] AND [value="dog"]'
+    );
+  });
+  it('should ignore a final period', () => {
+    expect(service.convertQuery('trova la parola "cane".')).toBe(
+      '[value="cane"]'
+    );
+  });
+  //#endregion
+
+  //#region positions
+  it('should chain relations, each referring to the subject before it', () => {
+    expect(
+      service.convertQuery(
+        'parola "a" vicino alla parola "b" prima della parola "c"'
+      )
+    ).toBe(
+      '[value="a"] NEAR(m=3,s=snt) ([value="b"] BEFORE(m=3,s=snt) [value="c"])'
+    );
+  });
+  it('should apply a location after a relation to the second subject', () => {
+    expect(
+      service.convertQuery('parola "a" vicino alla parola "b" a inizio di frase')
+    ).toBe('[value="a"] NEAR(m=3,s=snt) ([value="b"] LALIGN(m=0) [$snt])');
+  });
+  it('should apply a location before a relation to the first subject', () => {
+    expect(
+      service.convertQuery('parola "a" a inizio di frase vicino alla parola "b"')
+    ).toBe('([value="a"] LALIGN(m=0) [$snt]) NEAR(m=3,s=snt) [value="b"]');
+  });
+  it('should group a located subject followed by a chain of relations', () => {
+    expect(
+      service.convertQuery(
+        'trova la parola "a" a inizio di frase vicino alla parola "b" ' +
+          'prima della parola "c"'
+      )
+    ).toBe(
+      '([value="a"] LALIGN(m=0) [$snt]) NEAR(m=3,s=snt) ' +
+        '([value="b"] BEFORE(m=3,s=snt) [value="c"])'
+    );
+  });
+  it('should combine locations and relations of both subjects', () => {
+    expect(
+      service.convertQuery(
+        'trova il lemma "bastare" come verbo a inizio di frase non vicino ' +
+          'alla parola "che" non a fine di frase'
+      )
+    ).toBe(
+      '(([lemma="bastare"] AND [pos="VERB"]) LALIGN(m=0) [$snt]) ' +
+        'NOT NEAR(m=3,s=snt) ([value="che"] NOT RALIGN(m=0) [$snt])'
+    );
+  });
+  //#endregion
+
+  //#region grouping
+  it('should group a compound subject of a location', () => {
+    expect(
+      service.convertQuery('trova il lemma "bastare" come verbo a inizio di frase')
+    ).toBe('([lemma="bastare"] AND [pos="VERB"]) LALIGN(m=0) [$snt]');
+  });
+  it('should group compound subjects of a relation', () => {
+    expect(
+      service.convertQuery(
+        'trova i latinismi in corsivo vicino alla parola "sindaco" come sostantivo'
+      )
+    ).toBe(
+      '([language="lat"] AND [i="1"]) NEAR(m=3,s=snt) ([value="sindaco"] AND [pos="NOUN"])'
+    );
+  });
+  it('should group features and style of a subject', () => {
+    expect(
+      service.convertQuery(
+        'trova la parola "cane" come sostantivo in grassetto prima della parola "bello"'
+      )
+    ).toBe(
+      '([value="cane"] AND [pos="NOUN"] AND [b="1"]) BEFORE(m=3,s=snt) [value="bello"]'
+    );
+  });
+  it('should convert a locution with value before a word', () => {
+    expect(
+      service.convertQuery(
+        'trova la locuzione "pro tempore" prima della parola "sindaco"'
+      )
+    ).toBe(
+      '([$fp-lat] AND [$value="pro tempore"]) BEFORE(m=3,s=snt) [value="sindaco"]'
+    );
+  });
+  //#endregion
+
+  //#region errors
+  function getIssue(text: string): PqitaIssue {
+    try {
+      service.convertQuery(text);
+    } catch (e) {
+      expect(e).toBeInstanceOf(PqitaError);
+      return (e as PqitaError).issue;
+    }
+    throw new Error('No error for: ' + text);
+  }
+
+  it('should reject trailing words', () => {
+    const issue = getIssue('trova la parola "cane" bello');
+    expect(issue.message).toContain('bello');
+    expect(issue.start).toBe(23);
+    expect(issue.end).toBe(28);
+  });
+  it('should reject an incomplete sentence telling what is expected', () => {
+    const issue = getIssue('trova la parola "cane" vicino alla');
+    expect(issue.message).toBe('The sentence is incomplete.');
+    const texts = issue.expected.map((s) => s.text);
+    expect(texts).toContain('parola');
+    expect(texts).toContain('lemma');
+    expect(texts).toContain('tutte');
+  });
+  it('should reject a lemma without value', () => {
+    const issue = getIssue('trova il lemma come verbo');
+    expect(issue.start).toBe(15);
+    expect(issue.expected.map((s) => s.text)).toContain('simile a');
+  });
+  it('should reject tutte le parole without features', () => {
+    const issue = getIssue('trova tutte le parole');
+    expect(issue.expected.map((s) => s.text)).toContain('come');
+    expect(issue.expected.map((s) => s.text)).toContain('in corsivo');
+  });
+  it('should reject features of a locution', () => {
+    const issue = getIssue('trova la locuzione come sostantivo');
+    expect(issue.start).toBe(19);
+  });
+  it('should reject a location after a relation of the same subject', () => {
+    const issue = getIssue(
+      'parola "a" vicino alla parola "b" a inizio di frase a fine di frase'
+    );
+    expect(issue.start).toBe(52);
+  });
+  it('should reject a negated negation', () => {
+    const issue = getIssue('parola "a" non non vicino alla parola "b"');
+    expect(issue.start).toBe(15);
+  });
+  it('should ask for quotes around an unquoted value', () => {
+    const issue = getIssue('trova la parola iniziante per ca');
+    expect(issue.message).toBe(
+      'Put the text to find between double quotes: "ca".'
+    );
+  });
+  it('should report an unknown word', () => {
+    const issue = getIssue('trova la parolaccia "cane"');
+    expect(issue.message).toBe('Unknown word: "parolaccia".');
+    expect(issue.start).toBe(9);
+  });
+  it('should report an unclosed value', () => {
+    const issue = getIssue('trova la parola "cane come aggettivo');
+    expect(issue.message).toBe('The closing double quote is missing.');
+  });
+  it('should report an empty value', () => {
+    const issue = getIssue('trova la parola ""');
+    expect(issue.message).toBe('The text between double quotes is empty.');
+  });
+  it('should report a value without item', () => {
+    const issue = getIssue('trova "cane" vicino alla parola "gatto"');
+    expect(issue.message).toContain('parola "cane"');
+  });
+  it('should report an unexpected character', () => {
+    const issue = getIssue('trova la parola "cane", come aggettivo');
+    expect(issue.message).toBe('Unexpected character: ",".');
+  });
+  //#endregion
+
+  //#region analysis
+  it('should suggest how to start an empty text', () => {
+    const analysis = service.analyze('');
+    expect(analysis.status).toBe('empty');
+    expect(analysis.next.map((s) => s.text)).toContain('trova');
+  });
+  it('should search a single word as such, suggesting how to continue', () => {
+    const analysis = service.analyze('trova');
+    expect(analysis.status).toBe('word');
+    expect(analysis.query).toBe('[value="trova"]');
+    expect(analysis.next.map((s) => s.text)).toContain('parola');
+  });
+  it('should suggest what follows a complete sentence', () => {
+    const analysis = service.analyze('trova la parola "cane"');
+    expect(analysis.status).toBe('complete');
+    expect(analysis.query).toBe('[value="cane"]');
+    const texts = analysis.next.map((s) => s.text);
+    expect(texts).toContain('come');
+    expect(texts).toContain('vicino a');
+    expect(texts).toContain('a inizio di frase');
+    expect(texts).not.toContain('parola');
+  });
+  it('should complete a partially typed word', () => {
+    const analysis = service.analyze('trova la parola "cane" vic');
+    expect(analysis.status).toBe('incomplete');
+    expect(analysis.next.map((s) => s.text)).toEqual(['vicino a']);
+  });
+  it('should complete partially typed words', () => {
+    const analysis = service.analyze('trova la parola "cane" a ini');
+    expect(analysis.status).toBe('incomplete');
+    expect(analysis.next.map((s) => s.text)).toEqual(['a inizio di frase']);
+  });
+  it('should complete a partially typed grammatical feature', () => {
+    const analysis = service.analyze('trova la parola "cane" come agg');
+    expect(analysis.next.map((s) => s.text)).toEqual(['aggettivo']);
+  });
+  it('should report an error with no suggestions to continue', () => {
+    const analysis = service.analyze('trova la parola "cane" xyz');
+    expect(analysis.status).toBe('error');
+    expect(analysis.next).toEqual([]);
   });
   //#endregion
 

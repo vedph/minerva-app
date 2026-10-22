@@ -1,5 +1,8 @@
 # History
 
+## 6.0.0
+
+- 2026-10-22: ⚠️ refactored `pqita.g4` grammar and query frontend.
 - 2026-10-21: updated manual.
 
 ## 5.0.1
