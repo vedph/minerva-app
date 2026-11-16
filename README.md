@@ -139,23 +139,7 @@ Minerva uses the [Pythia search engine](https://vedph.github.io/pythia-doc). The
 
 In the case of Minerva, a **new query layer** has been added on top of the existing one, acting as an alternative, "simple" query language, as opposed to the default one. This is just another DSL, targeting an Italian audience and much nearer to natural language expression.
 
-In this DSL, users just build some predefined Italian sentences to query the corpus. Apart from the simplest, one-word query, which just corresponds to the word you want to find, Figure 1 shows the various paths which can be followed to build a sentence, from left to right.
-
-![Minerva DSL](public/img/pqita.png)
-
-- Figure 1 - The Minerva additional DSL
-
-1. users can start from "trova" and then pick an object, like "parola", "locuzione", "lemma", "forestierismo", "latinismo", "anglicismo" on one branch, or "tutte le parole", "tutti i forestierismi", "tutti i latinismi", "tutti gli anglicismi" on another one. The former branch allows to specify expressions corresponding to comparison operators, like "iniziante per", "terminante per", "contenente", "corrispondente a" (for wildcard matches), or "(molto/poco) simile a" for fuzzy matches; these are then followed by the value being compared.
-
-2. then, both branches converge in the optional "come" clause, which introduces search criteria derived from POS tagging, like noun, adjective, verb, one of its specific moods or tenses, etc.
-
-3. optionally, this can be followed by an "in" clause, which adds search criteria related to typographic features (extracted from the original DOCX documents), like bold, italic, or underline.
-
-4. finally, we can add a positional clause, like at sentence start or end, or near to, attached to (=near with zero distance), before, or after, which in turn can be followed by yet another expression like that introduced by "trova", in a recursive way.
-
-In most cases, where these criteria require parameters the DSL supplies some meaningful defaults, thus hiding more complex details to the end users.
-
-Once the query expression is complete, it gets **translated** into the standard Pythia query DSL, thus allowing users to have a glance at it if they want to learn it by example, or just customize some of its parameters.
+In this DSL, users just build some predefined Italian sentences to query the corpus. Apart from the simplest, one-word query, which just corresponds to the word you want to find, various paths which can be followed to build a sentence. Once the query expression is complete, it gets **translated** into the standard Pythia query DSL, thus allowing users to have a glance at it if they want to learn it by example, or just customize some of its parameters.
 
 For instance, users can just ask the system 'trova un anglicismo poco simile a "provider"' and get this Italian sentence automatically translated into a query like:
 

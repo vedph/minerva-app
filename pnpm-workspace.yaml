@@ -28,7 +28,7 @@ minimumReleaseAgeExclude:
   - '@myrmidon/pythia-stats@9.0.0 || 11.0.0 || 11.0.1 || 11.0.2'
   - '@myrmidon/pythia-ui@9.0.0 || 11.0.0'
   - '@myrmidon/pythia-word-index@9.0.0 || 11.0.0 || 11.0.1 || 11.0.2'
-  - '@rollup/rollup-win32-arm64-msvc@4.64.4'
+  - '@rollup/rollup-win32-arm64-msvc@4.64.4 || 4.68.4'
   - '@vitest/coverage-v8@5.0.5'
   - '@vitest/mocker@5.0.5'
   - '@vitest/spy@5.0.5'
@@ -39,3 +39,4 @@ minimumReleaseAgeExclude:
   - '@angular/build@22.2.3'
   - '@angular/cli@22.2.3'
   - '@schematics/angular@22.2.3'
+  - '@testing-library/user-event@14.6.12'

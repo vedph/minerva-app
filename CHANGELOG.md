@@ -1,5 +1,7 @@
 # History
 
+- 2026-11-16: updated Angular and packages.
+
 ## 6.0.0
 
 - 2026-10-22: ⚠️ refactored `pqita.g4` grammar and query frontend.
